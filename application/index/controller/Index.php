@@ -7,9 +7,8 @@ class Index
 {
     public function index()
     {
-        // echo time();
-
-        return view('index');
+        //echo time();
+        return view('index/index');
     }
 
 
