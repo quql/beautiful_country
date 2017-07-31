@@ -13,6 +13,8 @@ use think\Route;
 Route::get('/','index/index/index');
 Route::get('admin','admin/index/index');
 
+//个人中心
+Route::resource('per', 'index/personal');
 
 
 return [
