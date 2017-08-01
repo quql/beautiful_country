@@ -6,7 +6,7 @@ use think\Request;
 use think\Db; // 导入Db类
 
 
-class Category extends Controller
+class Category extends Admin
 {
 
     public function index()

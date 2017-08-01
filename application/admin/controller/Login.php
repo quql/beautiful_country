@@ -6,7 +6,7 @@ use think\Controller;
 use think\Request;
 use think\Db;
 
-class Login extends Admin
+class Login extends Controller
 {
    public function index()
    {
