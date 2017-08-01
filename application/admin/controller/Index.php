@@ -10,8 +10,9 @@ class Index extends Controller
         //测试数据库连接
         //dump(db('user')->find(1));
 
-        //加载,模板
         return view('index/index');
     }
+
+
 
 }
