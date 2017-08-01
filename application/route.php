@@ -11,7 +11,17 @@
 //动态注册
 use think\Route;
 Route::get('/','index/index/index');
-Route::get('admin','admin/index/index');
+
+// Route::get('category_show','admin/category/show');
+Route::resource('category','admin/Category');
+// Route::Resource('update','admin/category/update');
+// Route::post('category/:id', 'admin/category/delete');
+// Route::get('category_list','admin/category/list');
+// Route::get('category_add','admin/category/add');
+// Route::get('category','admin/category/read');
+// Route::get('cateshow', 'admin/category/show');
+// Route::get('admin','admin/index/index');
+// Route::get('ad','admin/category/index');
 
 //商户注册
 Route::post('busDoRegister','index/BusRegister/doregister');
