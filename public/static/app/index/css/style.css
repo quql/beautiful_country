@@ -96,10 +96,10 @@ Sidebar heading:	'Montserrat', sans-serif;
 */
 @import url('http://www.jq22.com/jquery/bootstrap-3.3.4.css');
 @import url('http://www.jq22.com/jquery/font-awesome.4.6.0.css');
-@import url('css/owl.carousel.css');
-@import url('css/widget.css');
-@import url('css/typography.css');
-@import url('css/svg-style.css');
+@import url('owl.carousel.css');
+@import url('widget.css');
+@import url('typography.css');
+@import url('svg-style.css');
 /*
 	  ==============================================================
 		   Default Style

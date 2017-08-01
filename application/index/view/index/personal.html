@@ -7,18 +7,18 @@
 
   <title>Edu-Skill - Education Template</title>
   <!-- Chosen CSS -->
-  {css href="/static/app/indexc/css/dashboard.css"}
+  {css href="/static/app/index/css/dashboard.css"}
   <!--{!&#45;&#45; Custom Main StyleSheet CSS &#45;&#45;}-->
-  {css href="/static/app/indexc/css/style.css"}
+  {css href="/static/app/index/css/style.css"}
   <!--{!&#45;&#45; Color CSS &#45;&#45;}-->
-  {css href="/static/app/indexc/css/color.css"}
+  {css href="/static/app/index/css/color.css"}
   <!--{!&#45;&#45; Responsive CSS &#45;&#45;}-->
-  {css href="/static/app/indexc/css/responsive.css"}
+  {css href="/static/app/index/css/responsive.css"}
   <!--{!&#45;&#45;超哥css&#45;&#45;}-->
-  {css href="/static/app/indexc/css/reset.css"}
+  {css href="/static/app/index/css/reset.css"}
   <!--{!&#45;&#45;三级地址联动&#45;&#45;}-->
   {css href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet" type="text/css"}
-  {css href="/static/app/indexc/css/city-picker.css" rel="stylesheet" type="text/css"}
+  {css href="/static/app/index/css/city-picker.css" rel="stylesheet" type="text/css"}
 
   </head>
 
@@ -203,8 +203,8 @@
       <div class="container">
         <div class="gt_breadcrumb_wrap default_width">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">My Profile</a></li>
+                <li><a href="{:url('index/index/index')}">首页</a></li>
+                <li><a href="{:url('index/personal/index')}">个人中心</a></li>
             </ul>
         </div>
       </div>
@@ -218,6 +218,7 @@
         <div class="container">
           
           <!-- Dashboard Side Bar Wrap Start -->
+            {volist name="list" id="v"}
           <div class="col-md-4">
             <div class="gt-user-sidebar">
               <div class="gt_d_author_wrap">
@@ -228,16 +229,16 @@
                   </figure>
                 </div>
                 <div class="gt_d_author_pic_des">
-                  <h5>用户名</h5>
+                  <h5>{$v['u_username']}</h5>
                   <span class="gt_hdg_span"></span>
                   <p>会员编号</p>
-                  <label>12345</label>
+                  <label>{$v['u_id']}</label>
                 </div>
                 <div class="gt_d_author_sbj">
                   <h6>会员类型</h6>
-                  <span>普通会员</span>
+                  <span>{$v[0]['ud_type']==0?'普通会员':'超级会员'}</span>
                   <h6>积分</h6>
-                  <span>123</span>
+                  <span>{$v[0]['point']}</span>
                 </div>
               </div>
                 <!--<div class="mt30"></div>-->
@@ -251,7 +252,7 @@
                   <!--<li><a href="profile-setting.html"><i class="icon-three gt-color"></i>Profile Setting</a></li>-->
                   <!--<li><a href="privacy-setting.html"><i class="icon-lock gt-color"></i>Privacy Setting</a></li>-->
                 </ul>
-                <a href="#" class="gt-logout"><i class="icon-arrows-2 gt-color"></i>安全退出</a>
+                <a href="{:url('index/index/index')}" class="gt-logout"><i class="icon-arrows-2 gt-color"></i>安全退出</a>
               </div>
             </div>
           </div>
@@ -270,25 +271,28 @@
                                 <li>
                                     <span>用户名:</span>
                                     <p>
-                                        darcy
+                                        {$v['u_username']}
                                     </p>
                                 </li>
                                 <li>
                                     <span>性别:</span>
                                     <p>
-                                        保密
+                                        {if condition="$v[0]['ud_type'] eq 1"} 男
+                                        {elseif condition="$v[0]['ud_type'] eq 0"/}女
+                                        {else /} 保密
+                                        {/if}
                                     </p>
                                 </li>
                                 <li>
                                     <span>手机:</span>
                                     <p>
-                                        12345678900
+                                        {$v['u_phone']}
                                     </p>
                                 </li>
                                 <li>
                                     <span>邮箱:</span>
                                     <p>
-                                        anjelaadoe@noreply.com
+                                        {$v[0]['ud_email']}
                                     </p>
                                 </li>
                             </ul>
@@ -297,12 +301,13 @@
                     <div class="gt_d_about_author default_width">
                         <h4 class="gt_d_title">个性签名</h4>
                         <p class="d_bold">
-                            巴拉巴拉...
+                            {$v[0]['ud_text']}
                         </p>
                     </div>
                 </div>
                 <!--Classes List Wrap End-->
             </div>
+            {/volist}
             <!--</section>-->
             <!--Classes Wrap End-->
         <!--</div>-->
@@ -361,7 +366,38 @@
                       <!--</div>-->
                       <div class="form-group">
                           <div class="col-sm-offset-2 col-sm-10">
-                              <button type="submit" class="btn btn-success">修改</button>
+                              <button type="submit" class="btn btn-success">确认修改</button>
+                          </div>
+                      </div>
+                  </form>
+                  <form class="form-horizontal mt50" action="" method="post">
+                      <div class="form-group">
+                          <label class="col-sm-2 control-label"></label>
+                          <div class="col-sm-3">
+                              <h4><b>修改密码</b></h4>
+                          </div>
+                      </div>
+                      <div class="form-group mt20">
+                          <label class="col-sm-2 control-label">原密码</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" name="oldpass" placeholder="请输入原密码">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="col-sm-2 control-label">新密码</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" name="oncepass" placeholder="请输入新密码">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="col-sm-2 control-label">确认新密码</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" name="secondpass" placeholder="请再次输入新密码">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="col-sm-offset-2 col-sm-10">
+                              <button type="submit" class="btn btn-success">确认修改</button>
                           </div>
                       </div>
                   </form>
@@ -371,7 +407,7 @@
                       <div class="form-group">
                           <label class="col-sm-2 control-label"></label>
                           <div class="col-sm-3">
-                              <h4>添加收货地址</h4>
+                              <h4><b>添加收货地址</b></h4>
                           </div>
                       </div>
                       <div class="form-group mt20">
@@ -441,7 +477,7 @@
           <div class="col-md-8" id="order" style="display: none;">
               <div class="gt_d_classes_wrap default_width" style="display: block">
                   <ul class="nav nav-tabs nav-justified" id="choose">
-                      <li><a href="javascript:void(0);" class="gt_d_title h4" id="done">已完成</a></li>
+                      <li><a href="javascript:void(0);" class="gt_d_title h4" id="done" style="background-color: #ccc">已完成</a></li>
                       <li><a href="javascript:void(0);" class="gt_d_title h4" id="shipped">已发货</a></li>
                       <li><a href="javascript:void(0);" class="gt_d_title h4" id="notShipped">未发货</a></li>
                   </ul>

@@ -16,7 +16,8 @@ Route::get('admin','admin/index/index');
 //个人中心
 Route::resource('per', 'index/personal');
 
-
+//购物车页面
+Route::get('cart', 'index/cart/index');
 return [
 //    '__pattern__' => [
 //        'name' => '\w+',

@@ -2,33 +2,20 @@
 
 namespace app\index\controller;
 
-//Model::
-use app\index\model\User;
 use think\Controller;
-use think\Model;
 use think\Request;
 
-class Personal extends Controller
+class Cart extends Controller
 {
     /**
-     * 显示个人中心页面
+     * 显示购物车页面
      *
      * @return \think\Response
      */
     public function index()
     {
-        $id = '1';
-        //$user = new Ml_user;
-        //$list = $user->getUser($id);
-        //dump($list['u_id']);
-        //dump($list[0]['ud_id']);
-
-        $user = new User();
-        $list = $user->with('user_detail')->find($id)->toArray();
-        dump($list);
-        //return view('index/personal', [
-        //    'list'=>$list,
-        //]);
+        //
+        return view('index/shop-cart');
     }
 
     /**
