@@ -2,16 +2,22 @@
 namespace app\admin\controller;
 
 use think\Controller;
+use think\Request;
+use think\Db;
 
-class Index extends Controller
+class Index extends Admin
 {
-    public function index()
+    public function index(Request $request)
     {
-        //测试数据库连接
-        //dump(db('user')->find(1));
 
-        //加载,模板
+
         return view('index/index');
+    }
+
+    public function exit(Request $request)
+    {
+        $request->session(null);
+        $this->redirect('admin/login/index','已退出登录');
     }
 
 }

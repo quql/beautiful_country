@@ -1,0 +1,102 @@
+<{extend name="index/index"}
+{block name="main"}
+<!-- main content start-->
+<!--<div class="main-content" >-->
+
+
+<!-- page heading start-->
+<!--<div class="page-heading">-->
+<!--Page Tittle goes here-->
+<!--</div>-->
+<!-- page heading end-->
+
+<!--body wrapper start-->
+<div class="wrapper">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <div class="profile-desk">
+                                <h1>管理员角色修改</h1>
+                                <form action="{:url('admin/cate/update',['id'=>$role['id']])}" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="_method" value="PUT">
+                                    <input type="hidden" name="id" value="{$role.id}">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">管理员角色</label>
+                                        <input type="text" name="name" value="{$role['name']}" class="form-control" id="exampleInputEmail1" >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">管理员描述</label>
+                                        <input type="text" name="remark" value="{$role['remark']}" class="form-control" id="exampleInputPassword1">
+                                    </div>
+
+                                    <button type="submit" class="btn btn-default">提交</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+<!--body wrapper end-->
+
+<!--footer section start-->
+<footer class="">
+    2014 &copy; AdminEx by <a href="http://www.tcode.me/" target="_blank">淘代码</a>
+</footer>
+<!--footer section end-->
+
+
+</div>
+<!-- main content end-->
+{/block}
+
+{block name="myjs"}
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="/static/app/admin/js/jquery-1.10.2.min.js"></script>
+<script src="/static/app/admin/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="/static/app/admin/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/static/app/admin/js/bootstrap.min.js"></script>
+<script src="/static/app/admin/js/modernizr.min.js"></script>
+<script src="/static/app/admin/js/jquery.nicescroll.js"></script>
+
+<!--Sparkline Chart-->
+<script src="/static/app/admin/js/sparkline/jquery.sparkline.js"></script>
+<script src="/static/app/admin/js/sparkline/sparkline-init.js"></script>
+
+<!--google map-->
+<!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&AMP;sensor=false"></script>-->
+
+
+<!--common scripts for all pages-->
+<script src="/static/app/admin/js/scripts.js"></script>
+
+<script>
+
+    //google map
+    //    function initialize() {
+    //        var myLatlng = new google.maps.LatLng(-37.815207, 144.963937);
+    //        var mapOptions = {
+    //            zoom: 15,
+    //            scrollwheel: false,
+    //            center: myLatlng,
+    //            mapTypeId: google.maps.MapTypeId.ROADMAP
+    //        }
+    //        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    //        var marker = new google.maps.Marker({
+    //            position: myLatlng,
+    //            map: map,
+    //            title: 'Hello World!'
+    //        });
+    //    }
+    //    google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+{/block}
