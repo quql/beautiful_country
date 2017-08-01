@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+{extend name="index/index"}
+{block name="main"}
+<!--&lt;!&ndash; main content start&ndash;&gt;-->
+<!--<div class="main-content" >-->
+
+<button  class=" btn-primary btn-lg" data-toggle="modal" data-target="#myModal">添加管理员角色</button>
+<!--body wrapper start-->
+<div class="wrapper">
+    <div class="row">
+        <div class="col-sm-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    管理员列表
+                    <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                         </span>
+                </header>
+                <div class="panel-body">
+                    <table class="table  table-hover general-table">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th class="hidden-phone">管理员角色</th>
+                            <th>描述</th>
+                            <th>删除此角色</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {volist name="data" id="vo" key="k"}
+                        <tr>
+                            <td>
+                                {$k}
+                            </td>
+                            <td class="hidden-phone">{$vo['name']}</td>
+                            <td>{$vo['remark']}</td>
+                            <td>
+                                <button class="btn btn-danger del-btn" data-id="{$vo['id']}">删除</button>
+                                <a href="{:url('admin/cate/edit',['id'=>$vo['id']])}" class="btn btn-primary"><font color="white">编辑</font></a>
+                                <a href="{:url('admin/cate/read',['id'=>$vo['id']])}" class="btn btn-success"><font color="white">权限设置</font></a>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            {/volist}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<!--body wrapper end-->
+
+<!--footer section start-->
+<footer>
+    2014 &copy; AdminEx by <a href="#" target="_blank">美丽乡村</a>
+</footer>
+<!--footer section end-->
+
+
+</div>
+<!-- main content end-->
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">添加管理员角色</h4>
+            </div>
+            <div class="modal-body">
+                <form action="{:url('admin/cate/save')}" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">管理员角色名称</label>
+                        <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="请输入管理员角色名称">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">角色描述</label>
+                        <input type="text" name="remark" class="form-control" id="exampleInputPassword1" placeholder="请输入角色描述">
+                    </div>
+
+
+                    <button type="submit" class="btn btn-default">提交</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="myjs"}
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="/static/app/admin/js/jquery-1.10.2.min.js"></script>
+<script src="/static/app/admin/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="/static/app/admin/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/static/app/admin/js/bootstrap.min.js"></script>
+<script src="/static/app/admin/js/modernizr.min.js"></script>
+<script src="/static/app/admin/js/jquery.nicescroll.js"></script>
+
+<!--common scripts for all pages-->
+<script src="/static/app/admin/js/scripts.js"></script>
+<script src="/static/app/admin/js/toastr.min.js"></script>
+
+<script>
+    $(function () {
+        //触发用户的删除操作
+        $('.del-btn').click(function () {
+            var ac_id = $(this).attr('data-id');
+
+            if (confirm('你确定要 [ 删除 ] 该用户么?')) {
+                var obj = $(this).parents('tr');
+                //console.log(obj);
+                delAjax(ac_id, obj);// 调用执行AJAX删除
+            }
+        });
+    });
+
+
+
+
+    // 设置弹框参数
+    toastr.options = {
+        closeButton: true,//是否显示关闭按钮
+        progressBar: true,//实现显示计时条
+        timeOut: "3000",//自动关闭时间
+        positionClass: "toast-top-right"//提示位置
+        // toast-top-full-width 顶端，宽度铺满整个屏幕
+        // toast-top-right  顶端右边
+    };
+
+    // 执行AJAX删除
+    function delAjax(id, obj) {
+        $.ajax({
+            type: 'delete', // DELETE请求方式
+            url: '/admincate/' + id,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                if (data.status) {
+                    toastr.success(data.info);
+                    // 将当前的节点删除掉
+                    obj.remove();
+                } else {
+                    toastr.error(data.info, 'FBI WARNING:');
+                }
+            },
+            error: function () {
+                // AJAX操作失败
+                alert('AJAX操作失败');
+            }
+        });
+    }
+
+
+</script>
+</script>
+
+{/block}
+
