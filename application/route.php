@@ -13,6 +13,15 @@ use think\Route;
 Route::get('/','index/index/index');
 Route::get('admin','admin/index/index');
 
+//商户注册
+Route::post('busDoRegister','index/BusRegister/doregister');
+//商户登陆的页面
+Route::get('busLogin','admin/BusLogin/index');
+//商户登陆的操作
+Route::post('busDoLogin','admin/BusLogin/doLogin');
+//商户注销的操作
+Route::get('busLoginOut','admin/BusLogin/loginOut');
+
 
 
 return [
