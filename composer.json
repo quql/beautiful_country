@@ -18,7 +18,8 @@
     "require": {
         "php": ">=5.4.0",
         "topthink/framework": "^5.0",
-        "topthink/think-captcha": "^1.0"
+        "topthink/think-captcha": "^1.0",
+        "sostuts/Vcode":"1.1.1"
     },
     "extra": {
         "think-path": "thinkphp"
@@ -26,4 +27,6 @@
     "config": {
         "preferred-install": "dist"
     }
+
+
 }

@@ -12,7 +12,13 @@
 use think\Route;
 Route::post('nodeedit','admin/cate/nodeedit');
 Route::get('/','index/index/index');
+//分类管理
 Route::resource('category','admin/Category');
+//定义主页
+Route::get('index/login/index','index/login/index');
+
+//用户注册
+Route::post('UserRegister','index/Register/doregister');
 
 
 //商户注册
@@ -24,7 +30,7 @@ Route::post('busDoLogin','admin/BusLogin/doLogin');
 //商户注销的操作
 Route::get('busLoginOut','admin/BusLogin/loginOut');
 
-Route::get('exit','admin/index/exit');
+Route::get('exit','admin/index/loginexit');
 Route::get('admin','admin/index/index');
 Route::resource('adminuser', 'admin/User');
 Route::resource('adminnode', 'admin/Node');
