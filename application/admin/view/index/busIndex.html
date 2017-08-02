@@ -8,7 +8,7 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="#" type="image/png">
 
-    <title>{$res['b_name']}</title>
+    <title>{$bus_res['b_name']}</title>
 
     <!--icheck-->
     <link href="/static/app/admin/js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
@@ -94,7 +94,7 @@
                 </li>
                 <li class="menu-list"><a href=""><i class="fa fa-cogs"></i> <span>店铺信息管理</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="grids.html"> 店铺基本信息</a></li>
+                        <li><a href="{:url('admin/BusInfo/index')}"> 店铺基本信息</a></li>
                         <li><a href="gallery.html"> 修改密码</a></li>
                         <li><a href="calendar.html"> Calendar</a></li>
                         <li><a href="tree_view.html"> Tree View</a></li>
@@ -366,7 +366,7 @@
                     <li>
                         <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             <img src="/static/app/admin/images/photos/user-avatar.png" alt="" />
-                            放logo{$res['b_logo']}{$res['b_name']}
+                            放logo{$bus_res['b_logo']}{$bus_res['b_name']}
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
@@ -382,7 +382,7 @@
 
         </div>
         <!-- header section end-->
-
+        {block name='main'}
         <!-- page heading start-->
         <div class="page-heading">
             <h3>
@@ -878,7 +878,7 @@
             </div>
         </div>
         <!--body wrapper end-->
-
+        {/block}
         <!--footer section start-->
         <footer>
             2017 &copy; AdminEx by <a href="{:url('index/index/index')}" target="_blank">魅丽乡村</a>
@@ -931,7 +931,9 @@
 
 <!--Dashboard Charts-->
 <script src="/static/app/admin/js/dashboard-chart-init.js"></script>
-
+{block name='myjs'}
+<script></script>
+{/block}
 
 </body>
 </html>

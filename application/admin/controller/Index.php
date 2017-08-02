@@ -14,7 +14,7 @@ class Index extends Admin
         return view('index/index');
     }
 
-    public function exit(Request $request)
+    public function loginexit(Request $request)
     {
         session(null);
         $this->redirect('admin/login/index','已退出登录');
