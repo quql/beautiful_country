@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns: xmlns:>
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +23,7 @@
   </head>
 
 <body>
-  <!--gt Wrapper Start-->  
+  <!--gt Wrapper Start-->
   <div class="gt_wrapper">
     <!--Header Wrap Start-->
     <header>
@@ -187,7 +187,7 @@
       </div>
     </header>
     <!--Header Wrap End-->
-
+    <!--{block name="main"}-->
     <!--Sub Banner Wrap Start -->
     <div class="gt_sub_banner_bg default_width">
         <div class="container">
@@ -216,7 +216,7 @@
       <!--Classes Wrap Start-->
       <section class="gt_courses_bg">
         <div class="container">
-          
+
           <!-- Dashboard Side Bar Wrap Start -->
             {volist name="list" id="v"}
           <div class="col-md-4">
@@ -229,19 +229,18 @@
                   </figure>
                 </div>
                 <div class="gt_d_author_pic_des">
-                  <h5>{$v['u_username']}</h5>
+                  <h5>{$v['username']}</h5>
                   <span class="gt_hdg_span"></span>
                   <p>会员编号</p>
-                  <label>{$v['u_id']}</label>
+                  <label>{$v['id']}</label>
                 </div>
                 <div class="gt_d_author_sbj">
                   <h6>会员类型</h6>
-                  <span>{$v[0]['ud_type']==0?'普通会员':'超级会员'}</span>
+                  <span>{$v['type']==0?'普通会员':'超级会员'}</span>
                   <h6>积分</h6>
-                  <span>{$v[0]['point']}</span>
+                  <span>{$v['point']}</span>
                 </div>
               </div>
-                <!--<div class="mt30"></div>-->
               <div class="gt-usser-account-list">
                 <ul>
                   <li class="active"><a href="javascript:void(0);" id="showInformation"><i class="fa fa-user-circle-o gt-color glyphicon glyphicon-user"></i>基本信息</a></li>
@@ -271,14 +270,14 @@
                                 <li>
                                     <span>用户名:</span>
                                     <p>
-                                        {$v['u_username']}
+                                        {$v['username']}
                                     </p>
                                 </li>
                                 <li>
                                     <span>性别:</span>
                                     <p>
-                                        {if condition="$v[0]['ud_type'] eq 1"} 男
-                                        {elseif condition="$v[0]['ud_type'] eq 0"/}女
+                                        {if condition="$v['sex'] eq 1"} 男
+                                        {elseif condition="$v['sex'] eq 0"/}女
                                         {else /} 保密
                                         {/if}
                                     </p>
@@ -286,13 +285,13 @@
                                 <li>
                                     <span>手机:</span>
                                     <p>
-                                        {$v['u_phone']}
+                                        {$v['phone']}
                                     </p>
                                 </li>
                                 <li>
                                     <span>邮箱:</span>
                                     <p>
-                                        {$v[0]['ud_email']}
+                                        {$v['email']}
                                     </p>
                                 </li>
                             </ul>
@@ -301,109 +300,27 @@
                     <div class="gt_d_about_author default_width">
                         <h4 class="gt_d_title">个性签名</h4>
                         <p class="d_bold">
-                            {$v[0]['ud_text']}
+                            {$v['text']}
                         </p>
                     </div>
                 </div>
                 <!--Classes List Wrap End-->
             </div>
-            {/volist}
             <!--</section>-->
             <!--Classes Wrap End-->
-        <!--</div>-->
-          <!--personal-->
-          <div class="col-md-8" id="personal" style="display: none">
+            <!--</div>-->
+            <!--personal-->
+
+            <div class="col-md-8" id="personal" style="display: none">
             <div class="gt_d_classes_wrap default_width">
                 <ul class="nav nav-tabs nav-justified">
                     <li><a href="javascript:void(0);" class="gt_d_title h4" id="per" style="background-color: #ccc">个人信息</a></li>
                     <li><a href="javascript:void(0);" class="gt_d_title h4" id="address">收货地址</a></li>
                 </ul>
-              <div class="gt_classes_wrap mt20" id="perForm" style="display: block">
-                  <form class="form-horizontal mt50">
-                      <div class="form-group">
-                          <label class="col-sm-2 control-label">昵称</label>
-                          <div class="col-sm-10">
-                              <input type="text" class="form-control" placeholder="请输入昵称">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label class="col-sm-2 control-label">性别</label>
-                          <div class="radio col-sm-10">
-                              <label class="col-sm-3">
-                                  <span>
-                                      <input type="radio" name="sex" value="1" checked> 男
-                                  </span>
-                              </label>
-                              <label class="col-sm-3">
-                                  <span>
-                                      <input type="radio" name="sex" value="0" > 女
-                                  </span>
-                              </label>
-                              <label class="col-sm-3">
-                                  <span>
-                                      <input type="radio" name="sex" value="2" > 保密
-                                  </span>
-                              </label>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label class="col-sm-2 control-label">手机</label>
-                          <div class="col-sm-10">
-                              <input type="text" class="form-control" placeholder="请输入手机号">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label class="col-sm-2 control-label">邮箱</label>
-                          <div class="col-sm-10">
-                              <input type="email" class="form-control" placeholder="请输入邮箱">
-                          </div>
-                      </div>
-                      <!--<div class="form-group">-->
-                          <!--<label for="inputPassword3" class="col-sm-2 control-label">Password</label>-->
-                          <!--<div class="col-sm-10">-->
-                              <!--<input type="password" class="form-control" id="inputPassword3" placeholder="Password">-->
-                          <!--</div>-->
-                      <!--</div>-->
-                      <div class="form-group">
-                          <div class="col-sm-offset-2 col-sm-10">
-                              <button type="submit" class="btn btn-success">确认修改</button>
-                          </div>
-                      </div>
-                  </form>
-                  <form class="form-horizontal mt50" action="" method="post">
-                      <div class="form-group">
-                          <label class="col-sm-2 control-label"></label>
-                          <div class="col-sm-3">
-                              <h4><b>修改密码</b></h4>
-                          </div>
-                      </div>
-                      <div class="form-group mt20">
-                          <label class="col-sm-2 control-label">原密码</label>
-                          <div class="col-sm-10">
-                              <input type="text" class="form-control" name="oldpass" placeholder="请输入原密码">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label class="col-sm-2 control-label">新密码</label>
-                          <div class="col-sm-10">
-                              <input type="text" class="form-control" name="oncepass" placeholder="请输入新密码">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label class="col-sm-2 control-label">确认新密码</label>
-                          <div class="col-sm-10">
-                              <input type="text" class="form-control" name="secondpass" placeholder="请再次输入新密码">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <div class="col-sm-offset-2 col-sm-10">
-                              <button type="submit" class="btn btn-success">确认修改</button>
-                          </div>
-                      </div>
-                  </form>
-              </div>
               <div class="gt_classes_wrap mt20" id="addForm" style="display: none">
-                  <form class="form-horizontal mt50">
+                  <form class="form-horizontal mt50" action="index/personal/address" method="post">
+                      <input type="hidden" name="id" value="{$v['id']}">
+                      {/volist}
                       <div class="form-group">
                           <label class="col-sm-2 control-label"></label>
                           <div class="col-sm-3">
@@ -413,13 +330,15 @@
                       <div class="form-group mt20">
                           <label class="col-sm-2 control-label">收货人</label>
                           <div class="col-sm-10">
-                              <input type="text" class="form-control"  style="width: 500px;" placeholder="请输入收货人姓名">
+                              <input type="text" class="form-control"  style="width: 408px;" maxlength="8" placeholder="请输入收货人姓名" name="addname" id="addname">
+                              <span class="ml30" id="tips7"></span>
                           </div>
                       </div>
                       <div class="form-group">
                           <label class="col-sm-2 control-label">手机</label>
                           <div class="col-sm-10">
-                              <input type="text" class="form-control"  style="width: 500px;" placeholder="请输入收货人手机号">
+                              <input type="text" class="form-control"  style="width: 408px;" maxlength="11" placeholder="请输入收货人手机号" name="addphone" id="addphone">
+                              <span class="ml30" id="tips6"></span>
                           </div>
                       </div>
                       <div class="form-group">
@@ -428,8 +347,9 @@
                               <div id="distpicker">
                                   <div class="form-group">
                                       <div style="position: relative;margin-left: 20px;">
-                                          <input id="city-picker3" class="form-control" readonly type="text" value="江苏省/常州市/溧阳市" data-toggle="city-picker" style="width: 400px;">
-                                          <input type="text" class="form-control mt10" style="width: 500px;" name="street" placeholder="请输入详细街道门牌号">
+                                          <input id="city-picker3" class="form-control" readonly type="text" value="江苏省/常州市/溧阳市" data-toggle="city-picker" style="width: 400px;" name="address">
+                                          <input type="text" class="form-control mt10" style="width: 408px;" maxlength="26" name="street" placeholder="请输入详细街道门牌号" id="addstreet">
+                                          <span class="ml30" id="tips8"></span>
                                       </div>
                                   </div>
                               </div>
@@ -443,28 +363,130 @@
                   </form>
                   <hr>
                   <div class="row mt20 col-sm-12">
-                          <table class="table table-striped">
-                              <tr style="line-height: inherit">
-                                  <th style="text-align: center"></th>
-                                  <th style="text-align: center">收货人</th>
-                                  <th style="text-align: center">联系电话</th>
-                                  <th style="text-align: center">收货地址</th>
-                                  <th style="text-align: center">操作</th>
-                              </tr>
-                              <tr style="line-height: 20px">
-                                  <td style="text-align: center;line-height: 31px">1</td>
-                                  <td style="text-align: center;line-height: 31px">刘备</td>
-                                  <td style="text-align: center;line-height: 31px">123</td>
-                                  <td style="text-align: center;line-height: 31px">大街</td>
-                                  <td style="text-align: center;line-height: 31px">
-                                      <button class="btn btn-primary btn-sm">修改</button>
-                                      <button class="btn btn-danger btn-sm">删除</button>
-                                  </td>
-                              </tr>
-                          </table>
-                      </td>
+                      <table class="table table-striped ml20">
+                          <tr style="line-height: inherit">
+                              <th style="text-align: center"></th>
+                              <th style="text-align: center">收货人</th>
+                              <th style="text-align: center">联系电话</th>
+                              <th style="text-align: center">收货地址</th>
+                              <th style="text-align: center">操作</th>
+                          </tr>
+                          <!--<form action="index/personal/editAddress">-->
+                          {volist name="data" id="v"}
+                          <tr style="line-height: 20px">
+                              <td style="text-align: center;line-height: 31px">1</td>
+                              <td style="text-align: center;line-height: 31px">{$v['ua_name']}</td>
+                              <td style="text-align: center;line-height: 31px">{$v['ua_phone']}</td>
+                              <td style="text-align: center;line-height: 31px">{$v['ua_address']}{$v['ua_street']}</td>
+                              <td style="text-align: center;line-height: 31px">
+                                  <!--<input type="hidden" name="ua_name" value="">-->
+                                  <!--<button class="btn btn-primary btn-sm">修改</button>-->
+                                  <a class="btn btn-danger btn-sm" href="{:url('index/personal/delAddress', ['id'=>$v['ua_id']])}">删除</a>
+                              </td>
+                          </tr>
+                          {/volist}
 
+                      </table>
                   </div>
+                </div>
+                <div class="gt_classes_wrap mt20" id="perForm" style="display: block">
+                    {volist name="list" id="v"}
+                    <form class="form-horizontal mt50" action="{:url('index/personal/updateUser'" method="post">
+                        <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="id" value="{$v['id']}">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-3">
+                                <h4><b>修改个人信息</b></h4>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">用户名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" style="width: 300px;" maxlength="8" placeholder="请输入用户名" name="u_username" value="{$v['username']}" id="username">
+                                <span class="ml30" id="tips1"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">性别</label>
+                            <div class="radio col-sm-10">
+                                <label class="col-sm-3">
+                                  <span>
+                                      <input type="radio" name="ud_sex" value="1" {if $v['sex'] == 1}checked{/if}> 男
+                                  </span>
+                                </label>
+                                <label class="col-sm-3">
+                                  <span>
+                                      <input type="radio" name="ud_sex" value="0" {if $v['sex'] == 0}checked{/if}> 女
+                                  </span>
+                                </label>
+                                <label class="col-sm-3">
+                                  <span>
+                                      <input type="radio" name="ud_sex" value="2" {if $v['sex'] == 2}checked{/if}> 保密
+                                  </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">手机</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" style="width: 300px;" maxlength="11" placeholder="请输入手机号" name="u_phone" value="{$v['phone']}" id="phone">
+                                <span class="ml30" id="tips2"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">邮箱</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" style="width: 300px;" placeholder="请输入邮箱" name="ud_email" value="{$v['email']}" id="email">
+                                <span class="ml30" id="tips3"></span>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">-->
+                        <!--</div>-->
+                    </form>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-success">确认修改</button>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <form class="form-horizontal mt50" action="{:url('index/personal/updatePass')}" method="post">
+                        <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="id" value="{$v['id']}">
+                        {/volist}
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-3">
+                                <h4><b>修改密码</b></h4>
+                            </div>
+                        </div>
+                        <div class="form-group mt20">
+                            <label class="col-sm-2 control-label">原密码</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" style="width: 300px;" name="oldpass" placeholder="请输入原密码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">新密码</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" style="width: 300px;" name="oncepass" placeholder="请输入新密码" id="oncepass">
+                                <span class="ml30" id="tips4"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">确认新密码</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" style="width: 300px;" name="secondpass" placeholder="请再次输入新密码" id="secondpass">
+                                <span class="ml30" id="tips5"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">确认修改</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
           </div>
@@ -664,7 +686,6 @@
     <!--</div>-->
   <!--</div>-->
   <!--</div>-->
-
     <!--Footer Wrap Start-->
     <footer class="mt20">
       <!--Newletter Wrap Start-->
@@ -778,7 +799,7 @@
       <!--Copyright Wrap End-->
       <div class="gt_copyright_wrap">
         <div class="container">
-            <div class="gt_copyright_des">  
+            <div class="gt_copyright_des">
                 <p>Copyright © <a href="#">Edu-skill </a> 2016. All rights reserved.</p>
                 <span>Created by: <a href="#">2goodtheme.com</a></span>
               </div>
@@ -793,7 +814,7 @@
         <a href=""><i class="fa fa-angle-up"></i></a>
     </div>
     <!--Back to Top Wrap Start-->
-    
+
   </div>
   <!--gt Wrapper End-->
 
@@ -836,6 +857,90 @@
           $('#perForm').css('display','none');
           $('#addForm').css('display','block');
       });
+
+//      提示信息
+        //        验证用户名
+        $('#username').change(function(){
+            if ($('#username').val().match(/^\w{1,8}$/) == null){
+                $('#tips1').html('用户名格式不正确~');
+                $('#tips1').css('color','#f00');
+            }else{
+                $('#tips1').html('验证通过~');
+                $('#tips1').css('color','#0a0');
+            }
+        });
+        //        验证手机
+        $('#phone').change(function(){
+            if ($('#phone').val().match(/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/) == null){
+                $('#tips2').html('手机格式不正确~');
+                $('#tips2').css('color','#f00');
+            }else{
+                $('#tips2').html('验证通过~');
+                $('#tips2').css('color','#0a0');
+            }
+        });
+        //        验证邮箱
+        $('#email').change(function(){
+            if ($('#email').val().match(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/) == null){
+                $('#tips3').html('邮箱格式不正确~');
+                $('#tips3').css('color','#f00');
+            }else{
+                $('#tips3').html('验证通过~');
+                $('#tips3').css('color','#0a0');
+            }
+        });
+
+//        验证两次密码
+        $('#oncepass').change(function(){
+            if($('#oncepass').val().match(/^\w{6,18}$/) == null){
+                $('#tips4').html('密码格式不正确~');
+                $('#tips4').css('color','#f00');
+            }else{
+                $('#tips4').html('验证通过~');
+                $('#tips4').css('color','#0a0');
+            }
+        });
+        $('#secondpass').change(function(){
+            if ($('#secondpass').val() != $('#oncepass').val()){
+                $('#tips5').html('新旧密码不一致~');
+                $('#tips5').css('color','#f00');
+            }else{
+                $('#tips5').html('验证通过~');
+                $('#tips5').css('color','#0a0');
+            }
+        });
+        //验证收货人姓名
+        $('#addname').change(function(){
+            if ($('#addname').val().match(/^([\u4e00-\u9fa5]){2,8}$/) == null){
+                $('#tips7').html('姓名格式不正确~');
+                $('#tips7').css('color','#f00');
+            }else{
+                $('#tips7').html('验证通过~');
+                $('#tips7').css('color','#0a0');
+            }
+        });
+
+//        验证收货地址手机
+        $('#addphone').change(function(){
+            if ($('#addphone').val().match(/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/) == null){
+                $('#tips6').html('手机格式不正确~');
+                $('#tips6').css('color','#f00');
+            }else{
+                $('#tips6').html('验证通过~');
+                $('#tips6').css('color','#0a0');
+            }
+        });
+
+        //        验证收货地址
+        $('#addstreet').change(function(){
+            if ($('#addstreet').val().match(/[\dA-Za-z\u4E00-\u9FA5]+/) == null){
+                $('#tips8').html('地址格式不正确~');
+                $('#tips8').css('color','#f00');
+            }else{
+                $('#tips8').html('验证通过~');
+                $('#tips8').css('color','#0a0');
+            }
+        });
 
 //      order
       $('#showOrder').click(function(){
