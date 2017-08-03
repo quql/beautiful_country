@@ -13,7 +13,7 @@ class Admin extends Controller
             //跳转到 登陆页
             $this->redirect("admin/login/index");
         }
-
+        //导航显示个人信息数据
         $login_session=input('session.');
         $login_id = $login_session['admin_id'];
         // var_dump($id);
@@ -25,6 +25,9 @@ class Admin extends Controller
         $this->assign('login_role',$myrole);
         $this->assign('login_data',$login_data);
 
+
+
+        //权限设置
         $request = \think\Request::instance();
         $controller = $request->controller(); //获取控制器名
         $action = $request->action(); //获取方法名

@@ -5,7 +5,7 @@ namespace app\admin\controller;
 use think\Controller;
 use think\Request;
 
-class BusInfo extends BusLogin
+class BusIndex extends Bus
 {
     /**
      * 显示资源列表
@@ -14,7 +14,7 @@ class BusInfo extends BusLogin
      */
     public function index()
     {
-        return 'ssadaa';
+        return view('index/busIndex');
     }
 
     /**

@@ -145,7 +145,7 @@ class Cate extends Admin
      */
     public function delete($id)
     {
-        $result = Db::name('role')->delete($id);
+        $result = Db::name('category')->delete($id);
 
         if ($result) {
             $info['status'] = true;

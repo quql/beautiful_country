@@ -10,3 +10,17 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+ function getTree($data,$id=0,$count=0)
+{
+    static $res=array();
+    foreach($data as $val)
+    {
+        if($val['pid']==$id)
+        {
+            $val['count']=$count;
+            $res[]=$val;
+            getTree($data,$val['id'],$count+1);
+        }
+    }
+    return $res;
+}

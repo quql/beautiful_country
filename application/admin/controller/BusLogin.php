@@ -17,6 +17,7 @@ class BusLogin extends Controller
     {
         //加载商家登陆的模板
         return view('login/busLogin');
+
     }
 
 
@@ -32,8 +33,8 @@ class BusLogin extends Controller
         $info = $request->post();
         //dump($info);
         //判断数据是否合法
-        $res = Db::name('business')->where('b_name', $info["b_name"])->find();
         //dump($res);
+        $res = Db::name('business')->where('b_name', $info["b_name"])->find();
         if ($res === null) {
             $this->error('啊偶~~~商铺不存在哦~~~去首页注册开店吧', '/');
         } elseif (md5($info['pass']) !== $res['b_password']) {
@@ -53,12 +54,12 @@ class BusLogin extends Controller
             ];
             //初始化缓存
             cache($options);
+            $b_id=$res['b_id'];
             //设置缓存
-            cache('b_name', $res['b_name'], 3600);
+            cache('b_name', $res['b_name'], 7200);
+            cache('b_id', $b_id, 7200);
             //dump(cache('b_name'));
-            if (cache('b_name') !== null) {
-                return view('index/busIndex', ['res' => $res]);
-            }
+            $this->success('登陆成功','admin/BusIndex/index');
         }
     }
 
@@ -67,11 +68,12 @@ class BusLogin extends Controller
      * @return \think\Response
      * @internal param Request $request
      */
-    public function loginOut()
+    public function loginOut(Request $request)
     {
         //清空缓存
         cache('b_name', NULL);
-        return view('login/busLogin');
+        cache('b_id', NULL);
+        $this->success('已安全退出', 'admin/BusLogin/index');
 
     }
 
