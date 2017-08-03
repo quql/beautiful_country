@@ -21,6 +21,8 @@
         "topthink/think-captcha": "^1.0",
         "topthink/think-worker": "^1.0",
         "workerman/workerman-for-win": "^3.4"
+        "kangkang66/captcha":"1.0",
+        "tp5/captcha":"0.1.1"
     },
     "extra": {
         "think-path": "thinkphp"
@@ -28,4 +30,6 @@
     "config": {
         "preferred-install": "dist"
     }
+
+
 }

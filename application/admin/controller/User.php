@@ -18,12 +18,13 @@ class User extends Admin
     {
         //显示管理员列表
         $userlist = db('admin_user as user,ml_role as role')->where('user.role = role.id')->field('user.*,role.name as rolename')->select();
+        // var_dump($userlist);die;
         $rolelist = Db::name('role')->field('id,name')->select();
+        // var_dump($rolelist);die;
         $this->assign('title','管理员列表');
         $this->assign('list',$userlist);
         $this->assign('rolelist',$rolelist);
         return view('user/index');
-
     }
 
     /**
@@ -196,6 +197,49 @@ class User extends Admin
         return view('user/power');
     }
 
+    public function password(Request $request, $id)
+    {
+        // echo $id;
+         $userlist = db('admin_user as user,ml_role as role')->where('user.role = role.id')->field('user.*,role.name as rolename')->select();
+        // var_dump($userlist);die;
+        $rolelist = Db::name('role')->field('id,name')->select();
+        // var_dump($rolelist);die;
+        $this->assign('title','管理员列表');
+        $this->assign('list',$userlist);
+        $this->assign('rolelist',$rolelist);
 
+        $post = $request->post();
+        $data = Db::table('ml_admin_user')->find($id);
+        // var_dump($post);
+        // echo"<hr>";
+        // var_dump($data);
+        // die;
+        if ($post['pass']!== $post['repass']) {
 
+            echo "<script> alert('两次密码输入不一致，请重新输入'); 
+             </script>";
+            return view('user/index');
+
+            // header('location:/index/user/password');
+        } 
+
+        if($post['oldpass']!==$data['pass']){
+            //密码匹配成功
+            echo "<script> alert('密码输入不正确，请重新输入');
+             </script>";
+            return view('user/index');
+        }
+
+        $password = ['pass' => $post['pass']];
+
+        $result = Db::table('ml_admin_user')->where('id',$id)->update($password);
+        
+        if ($result) {
+            echo "<script> alert('恭喜你，密码修改成功!'); </script>"; 
+            return view('user/index');
+        } else {
+            echo "<script> alert('系统出错，请重试!'); </script>";
+            return view('user/index');
+        }
+    }
 }

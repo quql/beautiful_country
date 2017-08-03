@@ -13,6 +13,17 @@ use think\Route;
 //节点操作
 Route::post('nodeedit','admin/cate/nodeedit');
 Route::get('/','index/index/index');
+<<<<<<< HEAD
+=======
+//分类管理
+Route::resource('category','admin/Category');
+//定义主页
+Route::get('index/login/index','index/login/index');
+
+//用户注册
+Route::post('UserRegister','index/Register/doregister');
+
+>>>>>>> origin/zhangsan
 
 //商户注册
 Route::post('busDoRegister','index/BusRegister/doregister');
@@ -23,11 +34,24 @@ Route::post('busDoLogin','admin/BusLogin/doLogin');
 //商户注销的操作
 Route::get('busLoginOut','admin/BusLogin/loginOut');
 
+<<<<<<< HEAD
 Route::get('loginexit','admin/index/loginexit');
 Route::get('admin','admin/index/index');
 //后台管理员操作
 Route::resource('adminuser', 'admin/User');
 //节点操作
+=======
+Route::get('exit','admin/index/loginexit');
+Route::get('admin','admin/index/index');
+
+Route::resource('adminuser', 'admin/User');
+
+// 管理员密码修改
+
+Route::post('password','admin/User/password');
+
+
+>>>>>>> origin/zhangsan
 Route::resource('adminnode', 'admin/Node');
 Route::get('admin/login','admin/login/index');
 //Route::get('power/[:id]','admin/user/power');

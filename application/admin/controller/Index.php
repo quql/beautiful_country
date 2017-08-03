@@ -9,7 +9,10 @@ class Index extends Admin
 {
     public function index(Request $request)
     {
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/zhangsan
         return view('index/index');
     }
 

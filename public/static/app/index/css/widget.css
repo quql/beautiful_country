@@ -54,9 +54,11 @@
 		  Back to Top Style
 	  ==============================================================
 */
+
 .back-to-top {position: fixed ;right: 20px;bottom: 20px;width: 45px;height: 45px;text-align: center;line-height: 40px;background-color: #DBF271;transform:rotate(45deg);-moz-transform:rotate(45deg);-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);}
 .back-to-top a {color: #fff;font-weight: bold;font-size: 18px;font-weight: bold;display: inline-block;width: 30px;height: 30px;background-color: #DBF271;left: 0px;right: 0px;top: 0px;bottom: 0px;margin: auto;position: absolute;line-height: 30px;}
 /*.back-to-top a>i{transform:rotate(-43deg);-moz-transform:rotate(-43deg);-webkit-transform:rotate(-43deg);-ms-transform:rotate(-43deg);}*/
+
 .back-to-top a:hover {background-color: #333333;}
 /*
 	  ==============================================================
