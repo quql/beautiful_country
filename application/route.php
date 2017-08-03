@@ -36,9 +36,12 @@ Route::post('admin/dologin','admin/login/dologin');
 
 //个人中心
 Route::resource('per', 'index/personal');
+//商品详情页
+Route::get('goodsDetail', 'index/goodsInfo/detail');
+//购物车页面,开启后无法从商品详情页跳转到购物车页
+Route::any('cart', 'index/cart/index', ['method'=>'get|post']);
 
-//购物车页面
-Route::get('cart', 'index/cart/index');
+
 return [
 //    '__pattern__' => [
 //        'name' => '\w+',

@@ -192,8 +192,8 @@
     <div class="gt_sub_banner_bg default_width">
         <div class="container">
             <div class="gt_sub_banner_hdg  default_width">
-                <h2>My Profile</h2>
-                <h6>Welcome To Educskill</h6>
+                <h2>我的首页</h2>
+                <h6>欢迎来到还没确定名字的网站~</h6>
             </div>
         </div>
     </div>
@@ -225,7 +225,32 @@
                 <div class="gt_d_author_pic">
                   <figure>
                     <!--头像-->
-                    <img src="/static/app/index/images/testimonial-01.png" alt="">
+                      <a href="javascript:void(0);" data-toggle="modal" data-target="#imgModal"><img src="/uploads/headPhoto/{$v['photo']}"  alt=""></a>
+                      <div class="modal fade" id="imgModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                      <h4 class="modal-title" id="myModalLabel">更换头像</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                      <div class="form-group">
+                                          <label class="col-sm-2 control-label">选择图片</label>
+                                          <div class="col-sm-10">
+                                              <form action="index/personal/upload" enctype="multipart/form-data" method="post">
+                                                  <input type="hidden" name="id" value="{$v['id']}">
+                                                  <input type="file" name="image" /> <br>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                      <button type="submit" class="btn btn-primary">提交更改</button>
+                                      </form>
+                                  </div>
+                              </div><!-- /.modal-content -->
+                          </div><!-- /.modal -->
+                      </div>
                   </figure>
                 </div>
                 <div class="gt_d_author_pic_des">
@@ -263,7 +288,33 @@
                     <div class="gt_d_profile_wrap default_width">
                         <figure>
                             <!--个性照片-->
-                            <img src="/static/app/index/images/profile-img-01.jpg" alt="">
+                            <!--<img src="/static/app/index/images/profile-img-01.jpg" alt="">-->
+                            <a href="javascript:void(0);" data-toggle="modal" data-target="#picModal"><img src="/uploads/userPic/{$v['picture']}"  width="300" alt=""></a>
+                            <div class="modal fade" id="picModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel">更换个性照片</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">选择图片</label>
+                                                <div class="col-sm-10">
+                                                    <form action="index/personal/upPic" enctype="multipart/form-data" method="post">
+                                                        <input type="hidden" name="id" value="{$v['id']}">
+                                                        <input type="file" name="image" /> <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                            <button type="submit" class="btn btn-primary">提交更改</button>
+                                            </form>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal -->
+                            </div>
                         </figure>
                         <div class="gt_d_profile_detail">
                             <ul>
@@ -381,7 +432,7 @@
                               <td style="text-align: center;line-height: 31px">
                                   <!--<input type="hidden" name="ua_name" value="">-->
                                   <!--<button class="btn btn-primary btn-sm">修改</button>-->
-                                  <a class="btn btn-danger btn-sm" href="{:url('index/personal/delAddress', ['id'=>$v['ua_id']])}">删除</a>
+                                  <a class="btn btn-danger btn-sm glyphicon glyphicon-trash" href="{:url('index/personal/delAddress', ['id'=>$v['ua_id']])}"></a>
                               </td>
                           </tr>
                           {/volist}
@@ -447,10 +498,11 @@
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-success">确认修改</button>
+                            <hr>
                         </div>
                     </div>
 
-                    <hr>
+
                     <form class="form-horizontal mt50" action="{:url('index/personal/updatePass')}" method="post">
                         <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="id" value="{$v['id']}">

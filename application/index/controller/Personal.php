@@ -20,6 +20,7 @@ class Personal extends Controller
         //获取用户基本信息
         $user = model('user');
         $list = $user->getUser($id);
+        //dump($list);
 
         //加载用户收获的地址
         $add = model('userAddress');
@@ -146,4 +147,81 @@ class Personal extends Controller
             //return $this->error('删除失败,请重试~');
         }
     }
+    
+    //用户头像上传
+    public function upload()
+    {
+        // 获取表单上传文件 例如上传了001.jpg
+        $file = request()->file('image');
+        $id = input('post.')['id'];
+        //dump($id);
+        //exit;
+        // 移动到框架应用根目录/public/uploads/ 目录下
+        $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads/headPhoto');
+
+
+        if($info){
+            // 成功上传后 获取上传信息
+            // 输出 jpg
+            //echo $info->getExtension();
+            //echo "<br>";
+            //// 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
+            //echo $info->getSaveName();
+            $old = $info->getSaveName();
+            $new = str_replace("\\", "/", $old);
+            //dump($new);exit;
+            $data = [
+                'ud_photo'=>$new,
+            ];
+            //echo "<br>";
+            //// 输出 42a79759f284b767dfcb2a0197904287.jpg
+            //echo $info->getFilename();
+            //echo "<br>";
+            //dump($data);exit;
+
+            $img = model('userDetail');
+            $res = $img->upPhoto($id, $data);
+            if ($res){
+                return $this->success('上传成功!', url('index/personal/index'));
+            } else {
+                return $this->error('上传失败,请重试~');
+            }
+        }else{
+            // 上传失败获取错误信息
+            //echo $file->getError();
+            return $this->error('上传失败,请重试~');
+        }
+    }
+
+    //用户个性照片上传
+    public function upPic()
+    {
+        // 获取表单上传文件 例如上传了001.jpg
+        $file = request()->file('image');
+        $id = input('post.')['id'];
+
+        // 移动到框架应用根目录/public/uploads/ 目录下
+        $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads/userPic');
+
+        if($info){
+            $old = $info->getSaveName();
+            $new = str_replace("\\", "/", $old);
+            $data = [
+                'ud_picture'=>$new,
+            ];
+
+            $img = model('userDetail');
+            $res = $img->upPhoto($id, $data);
+            if ($res){
+                return $this->success('上传成功!', url('index/personal/index'));
+            } else {
+                return $this->error('上传失败,请重试~');
+            }
+        }else{
+            // 上传失败获取错误信息
+            //echo $file->getError();
+            return $this->error('上传失败,请重试~');
+        }
+    }
 }
+
