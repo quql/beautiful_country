@@ -18,7 +18,9 @@
     "require": {
         "php": ">=5.4.0",
         "topthink/framework": "^5.0",
-        "topthink/think-captcha": "^1.0"
+        "topthink/think-captcha": "^1.0",
+        "kangkang66/captcha":"1.0",
+        "tp5/captcha":"0.1.1"
     },
     "extra": {
         "think-path": "thinkphp"
@@ -26,4 +28,6 @@
     "config": {
         "preferred-install": "dist"
     }
+
+
 }
