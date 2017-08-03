@@ -25,7 +25,64 @@
 
     <!--<link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet" type="text/css" />-->
     <link href="/static/app/index/css/city-picker.css" rel="stylesheet" type="text/css" />
+    <style>
+       
+        #chat{
+            width:200px;
+            height: 300px;
+            display: none;
+            position:fixed;
+            margin-top: 50px;
+            margin-right: 0px;
+            background: lightgreen;
+            z-index: 100;
+        }
+        .headChat{
+            width:200px;
+            height: 30px;
+            border-bottom: 1px solid #5ab5de;
+        }
+        .headChat p{
+            margin-left: 7px;
+            display: inline;
+        }
+        .headChat button{
+            margin-left: 90px;
+            display: inline;
+        }
+        .bodyChat{
+            width:200px;
+            height: 235px;
+            line-height: 10px;
+            font-size: 14px;
+            overflow: scroll;
+        }
+        .footerChat{
+            width:200px;
+            height: 30px;
+            line-height: 30px;
+            border-top: 1px solid #5ab5de;
+            display: inline-block;
+        }
+        .footerChat button{
+            margin-left: 5px;
+            display: inline;
+        }
+        .footerChat input{
+            margin-left: 7px;
+            width:140px;
+            display: inline;
+        }
+        .list-group-item{
+            margin: 2px;
+            margin-left: 50px;
+            width: 150px;
+        }
+        #server{
+            margin: 2px;
+        }
 
+    </style>
 
 
 
@@ -47,8 +104,8 @@
           <div class="container">
             <div class="gt_top_element">
               <ul>
-                <li><button  class="online btn btn-sm" style='background-color:#2dcc70;' ><i class='glyphicon glyphicon-comment'></i>在线咨询</button></li>
-
+                <!--<li><a href="{:url('index/Consultation/index')}" class="online btn btn-sm" style='background-color:#2dcc70;' ><i class='glyphicon glyphicon-comment'></i>在线咨询</a></li>-->
+                  <li><button  class="online btn btn-sm" style='background-color:#2dcc70;' ><i class='glyphicon glyphicon-comment'></i>在线咨询</button></li>
                 <li><button  class="tel btn btn-sm" style='background-color:#2dcc70;' data-toggle="modal" data-target=".bs-example-modal-sm"><i class='fa fa-phone'></i>联系我们</button></li>
 
                 <li><button  class="apply btn btn-sm" style='background-color:#2dcc70;' data-toggle="modal" data-target="#myModal"><i class='fa fa-envelope'></i>申请店铺入驻</button></li>
@@ -1310,9 +1367,21 @@
         <a href="#home">Top</a>
     </div>
     <!--Back to Top Wrap Start-->
+    <!--聊天室-->
+      <div id='chat'>
+          <div  class="headChat"><p>在线咨询</p><button id="closeChat" class="btn btn-danger btn-sm">关闭</button></div>
+          <div class="bodyChat">
+              <ul class="list-group">
+                  <li class="list-group-item " id="server"><b>客服:&nbsp;</b>你好...</li>
+              </ul>
+          </div>
+          <div class="footerChat"><input type="text" id="chatMsg"/><button id="sendMsg" class="btn btn-success btn-sm">发送</button></div>
+      </div>
     
   </div>
-
+<div>
+    <button id="aaa">dsadada</button>
+</div>
 
   <!--gt Wrapper End-->
 
@@ -1347,7 +1416,7 @@
       });
       $('.tel').click(function(){
           $('#smodal').modal('show');
-      })
+      });
 
     })
 
@@ -1491,6 +1560,53 @@
 
 //        alert('恭喜您,申请信息已发送成功,三个工作日内会做出回复,请耐心等待,O(∩_∩)O谢谢！')
     }
+
+    $('.online').click(function(){
+        $('#chat').css('display','block');
+    });
+    $('#closeChat').click(function(){
+        $('#chat').css('display','none');
+    });
+
+
+    // 点击发送消息
+    $('#sendMsg').click(function(){
+        // 把文本框中的内容 发送给服务器
+        var a=$('#chatMsg').val();
+        var html = '<li class="list-group-item text-primary"><b>我:'+a+'</b></li>';
+        $('.list-group').append(html);
+        $('#chatMsg').val('');
+    });
+    // 回车发送消息
+    $('#chatMsg').keydown(function(e){
+        if (e.keyCode == 13){
+            console.log(e.keyCode);
+            var a=$('#chatMsg').val();
+            var html = '<li class="list-group-item text-primary"><b>我:&nbsp;</b>'+a+'</li>';
+            $('.list-group').append(html);
+            $('#chatMsg').val();
+            $('#chatMsg').val('');
+        }
+    });
+//
+//    // 接收服务器返回的信息
+//    socket.on('serverOut',function(serverMsg){
+//        console.log(serverMsg);
+//        // 拼接要输出的信息
+//        var html = '<li class="list-group-item text-primary"><b>'+serverMsg+': </b>'+serverMsg.msg+'</li>';
+//        // 在最前端插入
+//        $('.list-group').prepend(html);
+//
+           ws = new WebSocket("ws://tp.vip:80");
+           ws.onopen = function() {
+               console.log("连接成功");
+               ws.send('tom');
+               console.log("给服务端发送一个字符串：tom");
+           };
+           ws.onmessage = function(e) {
+               console.log("收到服务端的消息：" + e.data);
+           };
+
 
 
 

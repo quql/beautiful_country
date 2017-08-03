@@ -47,6 +47,8 @@ Route::get('busInfo','admin/BusInfo/index');
 Route::get('BusIndex','admin/BusIndex/index');
 //修改商家资料
 Route::post('busEdit/:id','admin/BusInfo/update');
+//在线咨询
+Route::get('consultation','index/Consultation/index');
 
 
 

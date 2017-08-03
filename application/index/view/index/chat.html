@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>聊天室</title>
+    这是一个聊天室
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+        ws = new WebSocket("ws://tp.vip:8888");
+        ws.onopen = function() {
+            console.log("连接成功");
+            ws.send('tom');
+            console.log("给服务端发送一个字符串：tom");
+        };
+        ws.onmessage = function(e) {
+            console.log("收到服务端的消息：" + e.data);
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>
