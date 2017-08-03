@@ -56,8 +56,8 @@ class BusLogin extends Controller
             cache($options);
             $b_id=$res['b_id'];
             //设置缓存
-            cache('b_name', $res['b_name'], 7200);
-            cache('b_id', $b_id, 7200);
+            cache('b_name', $res['b_name'], 72000);
+            cache('b_id', $b_id, 72000);
             //dump(cache('b_name'));
             $this->success('登陆成功','admin/BusIndex/index');
         }
@@ -73,6 +73,7 @@ class BusLogin extends Controller
         //清空缓存
         cache('b_name', NULL);
         cache('b_id', NULL);
+
         $this->success('已安全退出', 'admin/BusLogin/index');
 
     }

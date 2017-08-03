@@ -1,0 +1,103 @@
+{extend name='index/busIndex'}
+
+{block name='main'}
+
+<!--body main-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-1"></div>
+        <div class="col-md-5">
+            <h3>店铺基本信息</h3>
+            <button type="submit" class="btn btn-success" id="edit">修改基本信息</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+            <img src="/static/app/admin/images/1.jpg" class="img-circle" width='250px' height="250px">
+            <table class="table" style="margin-top:50px">
+                <tr>
+                    <td>注册时间:</td>
+                    <td>{$res['b_create_time']}</td>
+                </tr>
+                <tr>
+                    <td>经营状态:</td>
+                    <td>{$res['is_approve']}</td>
+                </tr>
+                <tr>
+                    <td>经营区域:</td>
+                    <td>{$res['b_province']}/{$res['b_city']}/{$res['b_area']}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-5" id="form">
+            <form id="form2">
+                <div class="form-group">
+                    <label for="b_name">店铺名称</label>
+                    <input type="text" class="form-control" id="b_name" value="{$res['b_name']}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="b_username">管理员</label>
+                    <input type="text" class="form-control" id="b_username" value="{$res['b_username']}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="b_password">密码</label>
+                    <input type="text" class="form-control" id="b_password" value="******" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="b_phone">电话</label>
+                    <input type="text" class="form-control" id="b_phone" value="{$res['b_phone']}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="b_type">店铺类型</label>
+                    <input type="text" class="form-control" id="b_type" value="{$res['b_type']}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="b_email">邮箱</label>
+                    <input type="email" class="form-control" id="b_email" value="{$res['b_email']}" readonly>
+                </div>
+            </form>
+            <form id="form1">
+                <div class="form-group">
+                    <label for="b_name">店铺名称</label>
+                    <input type="text" class="form-control" id="b_name" value="{$res['b_name']}">
+                </div>
+                <div class="form-group">
+                    <label for="b_username">管理员</label>
+                    <input type="text" class="form-control" id="b_username" value="{$res['b_username']}">
+                </div>
+                <div class="form-group">
+                    <label for="b_phone">电话</label>
+                    <input type="text" class="form-control" id="b_phone" value="{$res['b_phone']}">
+                </div>
+                <div class="form-group">
+                    <label for="b_type">店铺类型</label>
+                    <input type="text" class="form-control" id="b_type" value="{$res['b_type']}">
+                </div>
+                <div class="form-group">
+                    <label for="b_email">邮箱</label>
+                    <input type="email" class="form-control" id="b_email" value="{$res['b_email']}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputFile">上传logo</label>
+                    <input type="file" id="exampleInputFile">
+                </div>
+                <button type="submit" class="btn btn-success">修改</button>
+            </form>
+        </div>
+    </div>
+</div>
+<!--main end-->
+{/block}
+
+{block name='myjs'}
+<script>
+    $(function(){
+        form2.style.display='none';
+        $('#edit').click(function(){
+            form.replaceChild(form2,form1);
+            form1.style.display='block';
+            //form2.style.display='none';
+        });
+    });
+</script>
+{/block}

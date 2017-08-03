@@ -22,7 +22,11 @@ Route::get('busLogin','admin/BusLogin/index');
 Route::post('busDoLogin','admin/BusLogin/doLogin');
 //商户注销的操作
 Route::get('busLoginOut','admin/BusLogin/loginOut');
+<<<<<<< HEAD
 //平台管理员退出
+=======
+
+>>>>>>> origin/shine
 Route::get('loginexit','admin/index/loginexit');
 Route::get('admin','admin/index/index');
 //后台管理员操作
@@ -35,12 +39,14 @@ Route::resource('admincate','admin/Cate');
 Route::post('admin/dologin','admin/login/dologin');
 
 
+
 //个人中心
 Route::resource('per', 'index/personal');
 
 //购物车页面
 Route::get('cart', 'index/cart/index');
 
+<<<<<<< HEAD
 //住宿管理
 Route::resource('hotel', 'admin/Hotel');
 //查看住宿图片
@@ -53,6 +59,17 @@ Route::resource('HotelCate', 'admin/HotelCate');
 Route::get('/hotelpicfirst/[:id]','admin/HotelPic/first');
 
 Route::get('BusIndex','admin/BusIndex/index');
+=======
+//商户管理中心
+Route::get('busInfo','admin/BusInfo/index');
+//商家后台首页
+Route::get('BusIndex','admin/BusIndex/index');
+//修改商家资料
+Route::post('busEdit/:id','admin/BusInfo/update');
+//在线咨询
+Route::get('consultation','index/Consultation/index');
+
+>>>>>>> origin/shine
 
 
 return [

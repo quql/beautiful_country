@@ -14,8 +14,10 @@ class Bus extends Controller
         }
 
         $res = Db::name('business')->where('b_name', cache('b_name'))->find();
+
         $cate = Db::name('cate')->select();
         $this->assign('bus_res',$res);
         $this->assign('cate',$cate);
+
     }
 }
