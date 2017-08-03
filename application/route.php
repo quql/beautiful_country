@@ -13,8 +13,7 @@ use think\Route;
 //节点操作
 Route::post('nodeedit','admin/cate/nodeedit');
 Route::get('/','index/index/index');
-<<<<<<< HEAD
-=======
+
 //分类管理
 Route::resource('category','admin/Category');
 //定义主页
@@ -23,7 +22,6 @@ Route::get('index/login/index','index/login/index');
 //用户注册
 Route::post('UserRegister','index/Register/doregister');
 
->>>>>>> origin/zhangsan
 
 //商户注册
 Route::post('busDoRegister','index/BusRegister/doregister');
@@ -34,13 +32,13 @@ Route::post('busDoLogin','admin/BusLogin/doLogin');
 //商户注销的操作
 Route::get('busLoginOut','admin/BusLogin/loginOut');
 
-<<<<<<< HEAD
+
 Route::get('loginexit','admin/index/loginexit');
 Route::get('admin','admin/index/index');
 //后台管理员操作
 Route::resource('adminuser', 'admin/User');
 //节点操作
-=======
+
 Route::get('exit','admin/index/loginexit');
 Route::get('admin','admin/index/index');
 
@@ -51,14 +49,22 @@ Route::resource('adminuser', 'admin/User');
 Route::post('password','admin/User/password');
 
 
->>>>>>> origin/zhangsan
+
 Route::resource('adminnode', 'admin/Node');
 Route::get('admin/login','admin/login/index');
 //Route::get('power/[:id]','admin/user/power');
 Route::resource('admincate','admin/Cate');
 Route::post('admin/dologin','admin/login/dologin');
-
-
+//住宿分类管理
+Route::resource('HotelCate', 'admin/HotelCate');
+//住宿管理
+Route::resource('hotel', 'admin/Hotel');
+//查看住宿图片
+Route::get('hotelshow','admin/hotel/show');
+//住宿图片管理
+Route::resource('Hotelpic', 'admin/HotelPic');
+//设置图片封面
+Route::get('/hotelpicfirst/[:id]','admin/HotelPic/first');
 
 //个人中心
 Route::resource('per', 'index/personal');
@@ -72,16 +78,7 @@ Route::any('cart', 'index/cart/index', ['method'=>'get|post']);
 //购物车页面
 Route::get('cart', 'index/cart/index');
 
-//住宿管理
-Route::resource('hotel', 'admin/Hotel');
-//查看住宿图片
-Route::get('hotelshow','admin/hotel/show');
-//住宿图片管理
-Route::resource('Hotelpic', 'admin/HotelPic');
-//住宿分类管理
-Route::resource('HotelCate', 'admin/HotelCate');
-//设置图片封面
-Route::get('/hotelpicfirst/[:id]','admin/HotelPic/first');
+
 
 Route::get('BusIndex','admin/BusIndex/index');
 
