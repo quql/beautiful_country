@@ -71,8 +71,6 @@ Route::resource('per', 'index/personal');
 //商品详情页
 Route::get('goodsDetail', 'index/goodsInfo/detail');
 //购物车页面,开启后无法从商品详情页跳转到购物车页
-Route::any('cart', 'index/cart/index', ['method'=>'get|post']);
-
 
 
 //购物车页面
@@ -80,16 +78,27 @@ Route::get('cart', 'index/cart/index');
 
 
 
-Route::get('BusIndex','admin/BusIndex/index');
-
 //商户管理中心
 Route::get('busInfo','admin/BusInfo/index');
 //商家后台首页
-Route::get('BusIndex','admin/BusIndex/index');
+Route::get('busIndex','admin/BusIndex/index');
 //修改商家资料
 Route::post('busEdit/:id','admin/BusInfo/update');
 //在线咨询
 Route::get('consultation','index/Consultation/index');
+//修改商家密码
+Route::post('busEditPass/:id','admin/BusInfo/pass');
+//特产分类管理
+Route::resource('foodcate', 'admin/FoodCate');
+//特产管理
+Route::resource('foodhandle', 'admin/Food');
+//查看特产图片
+Route::get('foodshow','admin/food/show');
+//特产图片管理
+Route::resource('foodpic', 'admin/FoodPic');
+//设置图片封面
+Route::get('/foodpicfirst/[:id]','admin/FoodPic/first');
+
 
 return [
 //    '__pattern__' => [

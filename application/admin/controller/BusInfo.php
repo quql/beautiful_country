@@ -80,9 +80,30 @@ class BusInfo extends Bus
         ];
         $result = Db::name('business')->where('b_id', $id)->update($data);
         if ($result) {
-            return $this->success('资料修改成功', url('admin/BusInfo/index'));
+            return $this->success('O(∩_∩)O 资料修改成功', url('admin/BusInfo/index'));
         } else {
-            return $this->error('修改失败');
+            return $this->error('%>_<% 修改失败');
+        }
+    }
+
+    public function pass(Request $request, $id)
+    {
+        //获取提交的数据
+        $info = $request->post();
+        //dump($info);
+        $x=Db::name('business')->find($id);
+        if (md5($info['old_pass'])!=$x['b_password']){
+            return $this->error('原密码输入有误,请刷新重试~~~');
+        }
+
+        $data = [
+            'b_password' => md5($info['new_pass'])
+        ];
+        $result = Db::name('business')->where('b_id', $id)->update($data);
+        if ($result) {
+            return $this->success('O(∩_∩)O 密码重置成功', url('admin/BusInfo/index'));
+        } else {
+            return $this->error('%>_<% 修改失败,再来一次');
         }
     }
 
