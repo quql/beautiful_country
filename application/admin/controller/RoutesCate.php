@@ -5,8 +5,8 @@ namespace app\admin\controller;
 use think\Controller;
 use think\Request;
 use think\Db;
-//节点操作
-class Node extends Admin
+
+class RoutesCate extends Bus
 {
     /**
      * 显示资源列表
@@ -15,9 +15,7 @@ class Node extends Admin
      */
     public function index()
     {
-        $data = Db::table('ml_node')->paginate(5);
-        $this->assign('list',$data);
-        return view('node/index');
+
     }
 
     /**
@@ -39,20 +37,22 @@ class Node extends Admin
     public function save(Request $request)
     {
         $p=$request->post();
+        $c_id=$p['c_id'];
+        $h_name=$p['h_name'];
 
-        $data = [
-            'name' => $p['name'],
-            'controller' => ucfirst(strtolower($p['controller'])),
-            'action' => strtolower($p['action']),
-            'status'=>'1'
+        $b_id=cache('b_id');
+        $data=[
+            'c_id'=>$c_id,
+            'h_name'=>$h_name,
+            'bus_id'=>$b_id
         ];
-
-        $result = Db::name('node')->data($data)->insert();
+        $result = Db::name('route_cate')->data($data)->insert();
         if ($result > 0) {
-            return $this->success('添加成功', url('admin/node/index'));
+            return $this->success('添加成功');
         } else {
             return $this->error('添加失败');
         }
+
     }
 
     /**
@@ -63,7 +63,20 @@ class Node extends Admin
      */
     public function read($id)
     {
-        //
+
+        $b_id=cache('b_id');
+        $res = Db::table('ml_route_cate')->where('c_id',$id)->where('bus_id',$b_id)->select();
+        if(empty($res)){
+            $res=array(
+                array(
+                    'id'=>99999999,
+                  'c_id'=>$id,
+                   'h_name'=>'暂无分类'
+                ),
+            );
+        }
+        $this->assign('list',$res);
+        return view ('routes/routescateList');
     }
 
     /**
@@ -74,11 +87,10 @@ class Node extends Admin
      */
     public function edit($id)
     {
-        $data = Db::table('ml_node')->where('id',$id)->select();
-        $data=$data['0'];
-//        var_dump($data);
+        $one = Db::table('ml_route_cate')->where('id',$id)->select();
+        $data = $one['0'];
         $this->assign('data',$data);
-        return view('node/edit');
+        return view('routes/routescateEdit');
     }
 
     /**
@@ -92,14 +104,13 @@ class Node extends Admin
     {
         $p = $request->put();
         $data = [
-            'name' => $p['name'],
-            'controller'=>$p['controller'],
-            'action'=>$p['action'],
-            'status'=>'1'
+            'c_id' => $p['c_id'],
+            'bus_id' => $p['bus_id'],
+            'h_name' => $p['h_name'],
         ];
-        $result = Db::name('node')->where('id', $id)->update($data);
+        $result = Db::name('route_cate')->where('id', $id)->update($data);
         if ($result) {
-            return $this->success('编辑成功', url('admin/node/index'));
+            return $this->success('编辑成功', url('admin/RoutesCate/read',['id'=>$p['c_id']]));
         } else {
             return $this->error('编辑失败');
         }
@@ -113,16 +124,16 @@ class Node extends Admin
      */
     public function delete($id)
     {
-        $result = Db::name('node')->delete($id);
+        $result = Db::name('route_cate')->delete($id);
 
         if ($result) {
             $info['status'] = true;
             $info['id'] = $id;
-            $info['info'] = 'ID为:' . $id . '的节点删除成';
+            $info['info'] = 'ID为:' . $id . '的分类删除成功';
         } else {
             $info['status'] = false;
             $info['id'] = $id;
-            $info['info'] = 'ID为:' . $id . '的节点删除失败,请重试!';
+            $info['info'] = 'ID为:' . $id . '的分类删除失败,请重试!';
         }
         return json($info);
     }

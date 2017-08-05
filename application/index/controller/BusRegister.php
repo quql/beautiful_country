@@ -32,6 +32,10 @@ class BusRegister extends Controller
         }
         //整理添加的数组信息
         $adress = explode('/', $info['adress']);
+
+        if(count($adress)<=2){
+            $adress['2']='　';
+        }
         $date = date('Y-m-d H:i:s');
         $data = [
             'b_type' => $info['b_type'],

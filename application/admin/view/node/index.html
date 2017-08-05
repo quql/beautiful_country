@@ -2,7 +2,7 @@
 {block name="main"}
     <!--&lt;!&ndash; main content start&ndash;&gt;-->
     <!--<div class="main-content" >-->
-
+        <a href="javascript:history.go(-1)" class=" btn-primary btn-lg">返回上一页</a>
         <button  class=" btn-primary btn-lg" data-toggle="modal" data-target="#myModal">添加节点</button>
         <!--body wrapper start-->
         <div class="wrapper">
@@ -46,6 +46,8 @@
                                 </tbody>
                             </table>
                         </div>
+
+                       　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　 {$list->render()}
                     </section>
                 </div>
             </div>
@@ -116,7 +118,7 @@
         $('.del-btn').click(function () {
             var ac_id = $(this).attr('data-id');
 
-            if (confirm('你确定要 [ 删除 ] 该用户么?')) {
+            if (confirm('你确定要 [ 删除 ] 该节点么?')) {
                 var obj = $(this).parents('tr');
                 //console.log(obj);
                 delAjax(ac_id, obj);// 调用执行AJAX删除

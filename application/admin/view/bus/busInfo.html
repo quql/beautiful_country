@@ -11,6 +11,7 @@
             <h2>
                 <button type="submit" class="btn btn-success" id="info">返回</button>
                 <button type="submit" class="btn btn-success" id="edit">修改基本信息</button>
+                <button type="submit" class="btn btn-success" id="editpass">修改密码</button>
             </h2>
 
         </div>
@@ -44,7 +45,7 @@
                     <input type="text" class="form-control"  value="{$res['b_username']}" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="b_password">密码</label>
+                    <label >密码</label>
                     <input type="text" class="form-control"  value="******" readonly>
                 </div>
                 <div class="form-group">
@@ -93,6 +94,25 @@
                 </div>
                 <input type="submit" class="btn btn-success" value="确认修改">
             </form>
+            <form id="form3" method="post" action="{:url('admin/BusInfo/update',['id'=>$res['b_id']])}" enctype="multipart/form-data" onsubmit='return checkPass()'>
+                <input type="hidden" name="__token__" value="{$Request.token}">
+                <div class="form-group">
+                    <label for="b_name">原密码</label>
+                    <input type="text" class="form-control" id="old_pass" name="old_pass">
+                    <p id='p6' style="padding-left: 15px"></p>
+                </div>
+                <div class="form-group">
+                    <label for="b_username">新密码</label>
+                    <input type="text" class="form-control" id="new_pass" name="new_pass">
+                    <p id='p7' style="padding-left: 15px"></p>
+                </div>
+                <div class="form-group">
+                    <label for="b_phone">确认密码</label>
+                    <input type="text" class="form-control" id="re_pass" name="re_pass">
+                    <p id='p8' style="padding-left: 15px"></p>
+                </div>
+                <input type="submit" class="btn btn-success" value="确认修改">
+            </form>
         </div>
     </div>
 </div>
@@ -100,30 +120,82 @@
 {/block}
 
 {block name='myjs'}
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="/static/app/admin/js/jquery-1.10.2.min.js"></script>
+<script src="/static/app/admin/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="/static/app/admin/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/static/app/admin/js/bootstrap.min.js"></script>
+<script src="/static/app/admin/js/modernizr.min.js"></script>
+<script src="/static/app/admin/js/jquery.nicescroll.js"></script>
+
+<!--easy pie chart-->
+<script src="/static/app/admin/js/easypiechart/jquery.easypiechart.js"></script>
+<script src="/static/app/admin/js/easypiechart/easypiechart-init.js"></script>
+
+<!--Sparkline Chart-->
+<script src="/static/app/admin/js/sparkline/jquery.sparkline.js"></script>
+<script src="/static/app/admin/js/sparkline/sparkline-init.js"></script>
+
+<!--icheck -->
+<script src="/static/app/admin/js/iCheck/jquery.icheck.js"></script>
+<script src="/static/app/admin/js/icheck-init.js"></script>
+
+<!-- jQuery Flot Chart-->
+<script src="/static/app/admin/js/flot-chart/jquery.flot.js"></script>
+<script src="/static/app/admin/js/flot-chart/jquery.flot.tooltip.js"></script>
+<script src="/static/app/admin/js/flot-chart/jquery.flot.resize.js"></script>
+
+
+<!--Morris Chart-->
+<script src="/static/app/admin/js/morris-chart/morris.js"></script>
+<script src="/static/app/admin/js/morris-chart/raphael-min.js"></script>
+
+<!--Calendar-->
+<script src="/static/app/admin/js/calendar/clndr.js"></script>
+<script src="/static/app/admin/js/calendar/evnt.calendar.init.js"></script>
+<script src="/static/app/admin/js/calendar/moment-2.2.1.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+<!--common scripts for all pages-->
+<script src="/static/app/admin/js/scripts.js"></script>
+
+<!--Dashboard Charts-->
+<script src="/static/app/admin/js/dashboard-chart-init.js"></script>
+
+<script src="/static/app/admin/js/toastr.min.js"></script>
 <script>
     $(function(){
         form1.style.display='none';
+        form3.style.display='none';
         $('#edit').click(function(){
             form1.style.display='block';
             form2.style.display='none';
+            form3.style.display='none';
         });
         $('#info').click(function(){
             form1.style.display='none';
             form2.style.display='block';
+            form3.style.display='none';
+        });
+        $('#editpass').click(function(){
+            form1.style.display='none';
+            form2.style.display='none';
+            form3.style.display='block';
         });
 
     });
-//    //验证表单更新的数据
-//    //失焦事件
-//    $('#b_name').blur(function(){
-//        console.log($('#b_name').val());
-//        p1.innerHTML = ' × 请输入1-12位的数字、字母或下划线组成的店铺名字';
-//        p1.style.color = 'red';
-//        if($(this).value().match(/^\w{1,12}$/)===null){
-//            p1.innerHTML = ' × 请输入1-12位的数字、字母或下划线组成的店铺名字';
-//            p1.style.color = 'red';
-//        }
-//    });
+    //    //验证表单更新的数据
+    //    //失焦事件
+    //    $('#b_name').blur(function(){
+    //        console.log($('#b_name').val());
+    //        p1.innerHTML = ' × 请输入1-12位的数字、字母或下划线组成的店铺名字';
+    //        p1.style.color = 'red';
+    //        if($(this).value().match(/^\w{1,12}$/)===null){
+    //            p1.innerHTML = ' × 请输入1-12位的数字、字母或下划线组成的店铺名字';
+    //            p1.style.color = 'red';
+    //        }
+    //    });
 
     function checkForm() {
         var name = document.getElementById('b_name').value;
@@ -174,6 +246,31 @@
             }
         }
 
+    }
+    function checkPass(){
+        //密码
+        var pass=document.getElementById('inputPass').value;
+        var p3=document.getElementById('p3');
+        //验证密码是否符合 6-18位的数字
+        if (pass.match(/^\w{6,18}$/)===null) {
+            p3.innerHTML=' × 请输入6-18位的数字、字母或下划线组成的密码';
+            p3.style.color='red';
+            return false;
+        }else{
+            p3.style.color = '#0a0';
+            p3.innerHTML = '√ ';
+        }
+        //确认密码
+        var repass=document.getElementById('inputRepass').value;
+        var p8=document.getElementById('p8');
+        if (pass!==repass) {
+            p8.innerHTML=' × 两次输入不一致';
+            p8.style.color='red';
+            return false;
+        }else{
+            p8.style.color = '#0a0';
+            p8.innerHTML = '√ ';
+        }
     }
 </script>
 {/block}

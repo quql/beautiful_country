@@ -66,13 +66,25 @@ Route::resource('Hotelpic', 'admin/HotelPic');
 //设置图片封面
 Route::get('/hotelpicfirst/[:id]','admin/HotelPic/first');
 
+//旅游线路分类管理
+Route::resource('RoutesCate', 'admin/RoutesCate');
+//旅游线路管理
+Route::resource('Routes', 'admin/Routes');
+//旅游路线图片
+Route::get('routesshow','admin/routes/show');
+//旅游路线图片管理
+Route::resource('Routespic', 'admin/RoutesPic');
+//设置旅游路线图片封面
+Route::get('/routespicfirst/[:id]','admin/RoutesPic/first');
+
 //个人中心
 Route::resource('per', 'index/personal');
 //商品详情页
 Route::get('goodsDetail', 'index/goodsInfo/detail');
 //购物车页面,开启后无法从商品详情页跳转到购物车页
-Route::any('cart', 'index/cart/index', ['method'=>'get|post']);
 
+//所有商铺管理
+Route::resource('buspower', 'admin/Buspower');
 
 
 //购物车页面

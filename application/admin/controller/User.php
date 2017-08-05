@@ -5,7 +5,7 @@ namespace app\admin\controller;
 use think\Controller;
 use think\Request;
 use think\Db;
-
+//管理员操作
 class User extends Admin
 {
 
@@ -216,18 +216,14 @@ class User extends Admin
         // die;
         if ($post['pass']!== $post['repass']) {
 
-            echo "<script> alert('两次密码输入不一致，请重新输入'); 
-             </script>";
-            return view('user/index');
+            return $this->error('两次密码输入不一致，请重新输入','admin/user/index');
 
             // header('location:/index/user/password');
         } 
 
         if($post['oldpass']!==$data['pass']){
             //密码匹配成功
-            echo "<script> alert('密码输入不正确，请重新输入');
-             </script>";
-            return view('user/index');
+            return $this->error('原始密码不正确，请重新输入','admin/user/index');
         }
 
         $password = ['pass' => $post['pass']];
@@ -235,11 +231,9 @@ class User extends Admin
         $result = Db::table('ml_admin_user')->where('id',$id)->update($password);
         
         if ($result) {
-            echo "<script> alert('恭喜你，密码修改成功!'); </script>"; 
-            return view('user/index');
+            return $this->success('恭喜你，密码修改成功!','admin/user/index');
         } else {
-            echo "<script> alert('系统出错，请重试!'); </script>";
-            return view('user/index');
+            return $this->error('两次密码输入不一致，请重新输入','admin/user/index');
         }
     }
 }
