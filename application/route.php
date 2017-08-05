@@ -80,7 +80,7 @@ Route::get('routesshow','admin/routes/show');
 Route::resource('Routespic', 'admin/RoutesPic');
 //设置旅游路线图片封面
 Route::get('/routespicfirst/[:id]','admin/RoutesPic/first');
->>>>>>> origin/qql
+
 
 //个人中心
 Route::resource('per', 'index/personal');

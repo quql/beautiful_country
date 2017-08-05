@@ -28,9 +28,9 @@
     <link href="/static/app/index/css/zzsc.css" rel="stylesheet" type="text/css" />
 
  <!--yjf-->
-<!--     <link href="/static/app/index/css/bootstrap.min.css" rel="stylesheet">
+   <!--  <link href="/static/app/index/css/bootstrap.min.css" rel="stylesheet">
     <script src="/static/app/index/js/jquery-1.8.3.min.js"></script>
-    <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet" type="text/css" /> -->
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet" type="text/css"/> -->
     <link rel="stylesheet" type="text/css" href="/static/app/index/css/login_common.css">
     <link rel="stylesheet" type="text/css" href="/static/app/index/css/login_login.css">
     <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
@@ -146,11 +146,10 @@
     <!--{!&#45;&#45;三级地址联动&#45;&#45;}-->
     <!--{css href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet" type="text/css"}-->
 
-<<<<<<< HEAD
 
 
     <form class="form-horizontal" action="{:url('index/Login/doLogin')}" method="post" name='myUserform' id='myuserform'>
-=======
+
     <!--end-yjf-->
 </head>
 <!--yjf-->
@@ -201,7 +200,7 @@
  
 
     <form class="form-horizontal" action="{:url('index/Login/doLogin')}" method="post" name='myUserform' id='myuserformw'>
->>>>>>> origin/qql
+
       <div class="input_signin">
         <input class="input" id="login_user_name" type="text" aria-label="用户名" placeholder="用户名" name="u_username">
         <div class="hint" >请输入用户名</div>
@@ -222,15 +221,11 @@
   </div>
   <script type="text/javascript" src="/static/app/index/js/login_login.js"></script>
   <script type="text/javascript" src="/static/app/index/js/login_form.js"></script>
-<<<<<<< HEAD
+
 
   <script type="text/javascript" src="/static/app/index/js/login_config.js"></script>
-  <script type="text/javascript" src="/static/app/index/js/login_ajax.js"></script>
+  <script type="text/javascript" src="/static/app/index/js/login_login_ajax.js"></script>
 
-=======
-  <script type="text/javascript" src="/static/app/indexjs/login_config.js"></script>
-  <script type="text/javascript" src="/static/app/index/js/login_ajax.js"></script>
->>>>>>> origin/qql
 </div>
       <!--模态框中的内容结束-->
     </div>
@@ -1562,7 +1557,9 @@
   <script src="/static/app/index/js/city-picker.js"></script>
   <script src="/static/app/index/js/main.js"></script>
   <!--聊天室-->
-  <script type="text/javascript" src="/static/app/index/js/socket.io.js"></script>
+  <!--<script type="text/javascript" src="/static/app/index/js/socket.io.js"></script>-->
+
+  {block name='myjs'}
   <script type="text/javascript">
       $('.online').click(function(){
           $('#chat').css('display','block');
@@ -1642,8 +1639,6 @@
           document.querySelector('#chat_conatiner').innerHTML = '';
       });
   </script>
-
-  {block name='myjs'}
   <script>
     $(function(){
       $('.apply').click(function(){
@@ -1769,18 +1764,18 @@
             p7.innerHTML=' × 请认真阅读并同意入驻规则';
             p7.style.color='red';
             return false;
-//            p7.style.color = '#0a0';
-//            p7.innerHTML = '√ 通过';
+            p7.style.color = '#0a0';
+            p7.innerHTML = '√ 通过';
         }
 
-//        //ajax验证手机号和店铺名称
-//        insertAjax(p1);
-//        function insertAjax(p1){
-//            $.ajax({
-//                type: 'post',
-//                url: '/busDoRegister',
-//                dataType: 'json',
-//                data:$('#myform').serialize(),
+      //ajax验证手机号和店铺名称
+     // insertAjax(p1);
+     //    function insertAjax(p1){
+     //        $.ajax({
+     //            type: 'post',
+     //            url: '/busDoRegister',
+     //           dataType: 'json',
+     //          data:$('#myform').serialize(),
 //                success: function (data) {
 //                    if (data.status) {
 //                        p1.innerHTML = ' × 此商铺名称已有人注册啦,请修改~~~';
@@ -1795,7 +1790,7 @@
 //        }
 
 //        alert('恭喜您,申请信息已发送成功,三个工作日内会做出回复,请耐心等待,O(∩_∩)O谢谢！')
-    }
+    
 
 
 
