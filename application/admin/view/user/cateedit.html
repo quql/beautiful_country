@@ -14,10 +14,13 @@
 <div class="wrapper">
         <div class="col-md-8">
             <div class="row">
+                <a href="javascript:history.go(-1)" class=" btn-primary btn-lg">返回上一页</a>
+                <br>
+                <br>
                 <div class="col-md-12">
                     <div class="panel">
                         <div class="panel-body">
-                            <div class="profile-desk">
+                            <div class="profile-desk" >
                                 <h1>管理员角色修改</h1>
                                 <form action="{:url('admin/cate/update',['id'=>$role['id']])}" method="post" enctype="multipart/form-data">
                                     <input type="hidden" name="_method" value="PUT">

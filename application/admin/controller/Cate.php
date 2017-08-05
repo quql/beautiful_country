@@ -6,6 +6,7 @@ use think\Controller;
 use think\Request;
 use think\Db;
 
+//角色操作
 class Cate extends Admin
 {
     /**
@@ -159,6 +160,7 @@ class Cate extends Admin
         return json($info);
     }
 
+    //修改此角色权限
     public function nodeedit(Request $request)
     {
         $data=$request->post();

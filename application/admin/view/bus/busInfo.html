@@ -10,10 +10,16 @@
         <div class="col-md-5">
             <h1>我的店铺</h1>
             <h2>
-                <button type="submit" class="btn btn-success" id="info">基本信息</button>
+
+                <!-- <button type="submit" class="btn btn-success" id="info">基本信息</button>
                 <button type="submit" class="btn btn-success" id="edit">修改资料</button>
                 <button type="submit" class="btn btn-success" id="editpass">密码重置</button>
-                <a href="{:url('admin/BusIndex/index')}" class="btn btn-success" id="back">店铺首页>>></a>
+                <a href="{:url('admin/BusIndex/index')}" class="btn btn-success" id="back">店铺首页>>></a> -->
+
+                <button type="submit" class="btn btn-success" id="info">返回</button>
+                <button type="submit" class="btn btn-success" id="edit">修改基本信息</button>
+                <button type="submit" class="btn btn-success" id="editpass">修改密码</button>
+
             </h2>
         </div>
     </div>
@@ -96,6 +102,7 @@
                 </div>
                 <input type="submit" class="btn btn-success" value="确认修改">
             </form>
+<<<<<<< HEAD
             <form id="form3" method="post" action="{:url('admin/BusInfo/pass',['id'=>$res['b_id']])}"  onsubmit="return checkPass()">
                 <input type="hidden" name="__token__" value="{$Request.token}">
                 <div class="form-group">
@@ -111,6 +118,23 @@
                 <div class="form-group">
                     <label >确认密码</label>
                     <input type="password" class="form-control" id="re_pass" name="re_pass">
+=======
+            <form id="form3" method="post" action="{:url('admin/BusInfo/update',['id'=>$res['b_id']])}" enctype="multipart/form-data" onsubmit='return checkPass()'>
+                <input type="hidden" name="__token__" value="{$Request.token}">
+                <div class="form-group">
+                    <label for="b_name">原密码</label>
+                    <input type="text" class="form-control" id="old_pass" name="old_pass">
+                    <p id='p6' style="padding-left: 15px"></p>
+                </div>
+                <div class="form-group">
+                    <label for="b_username">新密码</label>
+                    <input type="text" class="form-control" id="new_pass" name="new_pass">
+                    <p id='p7' style="padding-left: 15px"></p>
+                </div>
+                <div class="form-group">
+                    <label for="b_phone">确认密码</label>
+                    <input type="text" class="form-control" id="re_pass" name="re_pass">
+>>>>>>> origin/qql
                     <p id='p8' style="padding-left: 15px"></p>
                 </div>
                 <input type="submit" class="btn btn-success" value="确认修改">
@@ -251,6 +275,7 @@
     }
     function checkPass(){
         //密码
+<<<<<<< HEAD
         var pass=document.getElementById('new_pass').value;
         var p7=document.getElementById('p7');
         //验证密码是否符合 6-18位的数字
@@ -264,6 +289,21 @@
         }
         //确认密码
         var repass=document.getElementById('re_pass').value;
+=======
+        var pass=document.getElementById('inputPass').value;
+        var p3=document.getElementById('p3');
+        //验证密码是否符合 6-18位的数字
+        if (pass.match(/^\w{6,18}$/)===null) {
+            p3.innerHTML=' × 请输入6-18位的数字、字母或下划线组成的密码';
+            p3.style.color='red';
+            return false;
+        }else{
+            p3.style.color = '#0a0';
+            p3.innerHTML = '√ ';
+        }
+        //确认密码
+        var repass=document.getElementById('inputRepass').value;
+>>>>>>> origin/qql
         var p8=document.getElementById('p8');
         if (pass!==repass) {
             p8.innerHTML=' × 两次输入不一致';

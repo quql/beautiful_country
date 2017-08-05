@@ -1,0 +1,219 @@
+{extend name="index/index"}
+{block name="main"}
+<!--&lt;!&ndash; main content start&ndash;&gt;-->
+<!--<div class="main-content" >-->
+
+<br>
+<a href="javascript:history.go(-1)" class=" btn-primary btn-lg">返回上一页</a>
+<hr>
+<div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+       切换审核状态
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><a id="yes">已通过</a></li>
+        <li><a id="no">未通过</a></li>
+    </ul>
+</div>
+<!--body wrapper start-->
+<div class="wrapper" style="display:block" id="data1">
+    <div class="row">
+        <div class="col-sm-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    未通过审核商铺列表
+                    <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                         </span>
+                </header>
+                <div class="panel-body">
+                    <table class="table  table-hover general-table">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th class="hidden-phone">商铺名称</th>
+                            <th>申请人</th>
+                            <th>申请时间</th>
+                            <th>审核状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {volist name="list1" id="vo" key="k"}
+                        <tr>
+                            <td>
+                                {$k}
+                            </td>
+                            <td class="hidden-phone">{$vo['b_name']}</td>
+                            <td class="hidden-phone">{$vo['b_username']}</td>
+                            <td>{$vo['b_create_time']}</td>
+                            <td>{if condition="$vo['is_approve'] eq 'Y'"}已通过
+                                {else /}审核中
+                                {/if}
+                            </td>
+                            <td>
+                                <a href="{:url('admin/buspower/read',['id'=>$vo['b_id']])}" class="btn btn-primary" ><font color="white">查看详情</font></a>
+                                <button class="btn btn-danger del-btn" data-id="{$vo['b_id']}">删除</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            {/volist}
+                        </tbody>
+                    </table>
+                    <div style="margin-right:10 ">
+                        {$list1->render()}
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<!--body wrapper end-->
+<div class="wrapper" style="display:none" id="data2">
+    <div class="row">
+        <div class="col-sm-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    已通过审核商铺列表
+                    <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                         </span>
+                </header>
+                <div class="panel-body">
+                    <table class="table  table-hover general-table">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th class="hidden-phone">商铺名称</th>
+                            <th>申请人</th>
+                            <th>申请时间</th>
+                            <th>审核状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {volist name="list2" id="vo" key="k"}
+                        <tr>
+                            <td>
+                                {$k}
+                            </td>
+                            <td class="hidden-phone">{$vo['b_name']}</td>
+                            <td class="hidden-phone">{$vo['b_username']}</td>
+                            <td>{$vo['b_create_time']}</td>
+                            <td>{if condition="$vo['is_approve'] eq 'Y'"}已通过
+                                {else /}审核中
+                                {/if}
+                            </td>
+                            <td>
+                                <a href="{:url('admin/buspower/read',['id'=>$vo['b_id']])}" class="btn btn-primary" ><font color="white">查看详情</font></a>
+                                <button class="btn btn-danger del-btn" data-id="{$vo['b_id']}">删除</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            {/volist}
+                        </tbody>
+                    </table>
+                        　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　{$list2->render()}
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<!--footer section start-->
+<footer>
+    2014 &copy; AdminEx by <a href="#" target="_blank">美丽乡村</a>
+</footer>
+<!--footer section end-->
+
+
+</div>
+<!-- main content end-->
+<!-- Button trigger modal -->
+<!-- Modal -->
+
+{/block}
+
+{block name="myjs"}
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="/static/app/admin/js/jquery-1.10.2.min.js"></script>
+<script src="/static/app/admin/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="/static/app/admin/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/static/app/admin/js/bootstrap.min.js"></script>
+<script src="/static/app/admin/js/modernizr.min.js"></script>
+<script src="/static/app/admin/js/jquery.nicescroll.js"></script>
+
+<!--common scripts for all pages-->
+<script src="/static/app/admin/js/scripts.js"></script>
+<script src="/static/app/admin/js/toastr.min.js"></script>
+
+<script>
+    $(function () {
+        //触发用户的删除操作
+        $('.del-btn').click(function () {
+            var ac_id = $(this).attr('data-id');
+
+            if (confirm('你确定要 [ 删除 ] 该商铺么?')) {
+                var obj = $(this).parents('tr');
+                //console.log(obj);
+                delAjax(ac_id, obj);// 调用执行AJAX删除
+            }
+        });
+
+        $('#no').click(function(){
+            $('#data1').css('display','block');
+            $('#data2').css('display','none');
+        });
+
+        $('#yes').click(function(){
+            $('#data2').css('display','block');
+            $('#data1').css('display','none');
+        });
+
+    });
+
+
+
+
+    // 设置弹框参数
+    toastr.options = {
+        closeButton: true,//是否显示关闭按钮
+        progressBar: true,//实现显示计时条
+        timeOut: "3000",//自动关闭时间
+        positionClass: "toast-top-right"//提示位置
+        // toast-top-full-width 顶端，宽度铺满整个屏幕
+        // toast-top-right  顶端右边
+    };
+
+    // 执行AJAX删除
+    function delAjax(id, obj) {
+        $.ajax({
+            type: 'delete', // DELETE请求方式
+            url: '/buspower/' + id,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                if (data.status) {
+                    toastr.success(data.info);
+                    // 将当前的节点删除掉
+                    obj.remove();
+                } else {
+                    toastr.error(data.info, '失败');
+                }
+            },
+            error: function () {
+                // AJAX操作失败
+                alert('操作失败');
+            }
+        });
+    }
+
+
+</script>
+</script>
+
+{/block}
+
