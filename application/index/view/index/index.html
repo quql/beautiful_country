@@ -81,7 +81,7 @@
        
         #chat{
             width:200px;
-            height: 300px;
+            height: 340px;
             display: none;
             position:fixed;
             margin-top: 50px;
@@ -108,10 +108,11 @@
             line-height: 10px;
             font-size: 14px;
             overflow: scroll;
+
         }
         .footerChat{
             width:200px;
-            height: 30px;
+            height: 60px;
             line-height: 30px;
             border-top: 1px solid #5ab5de;
             display: inline-block;
@@ -120,9 +121,13 @@
             margin-left: 5px;
             display: inline;
         }
-        .footerChat input{
+        .footerChat div{
+            margin-left: 5px;
+            display: inline;
+        }
+        .footerChat textarea{
             margin-left: 7px;
-            width:140px;
+            width:190px;
             display: inline;
         }
         .list-group-item{
@@ -133,7 +138,7 @@
         #server{
             margin: 2px;
         }
-           </style>
+    </style>
 
     {css href="/static/app/index/css/reset.css"}
     <!--{!&#45;&#45;三级地址联动&#45;&#45;}-->
@@ -163,7 +168,7 @@
   </div>
   <script type="text/javascript" src="/static/app/index/js/login_login.js"></script>
   <script type="text/javascript" src="/static/app/index/js/login_form.js"></script>
-  <script type="text/javascript" src="/static/app/indexjs/login_config.js"></script>
+  <script type="text/javascript" src="/static/app/index/js/login_config.js"></script>
   <script type="text/javascript" src="/static/app/index/js/login_ajax.js"></script>
 </div>
       <!--模态框中的内容结束-->
@@ -1457,18 +1462,21 @@
     <!--聊天室-->
       <div id='chat'>
           <div  class="headChat"><p>在线咨询</p><button id="closeChat" class="btn btn-danger btn-sm">关闭</button></div>
-          <div class="bodyChat">
-              <ul class="list-group">
-                  <li class="list-group-item " id="server"><b>客服:&nbsp;</b>你好...</li>
+          <div class="content bodyChat" id="onchat">
+              <ul class="list-group" id="chat_conatiner">
+                    <li class="list-group-item " id="server"><b>客服:&nbsp;</b>你好...</li>
               </ul>
           </div>
-          <div class="footerChat"><input type="text" id="chatMsg"/><button id="sendMsg" class="btn btn-success btn-sm">发送</button></div>
+          <div class="footerChat">
+              <textarea></textarea>
+              <button class="btn btn-success btn-sm" id="clear">清屏</button>
+              <button class="btn btn-success btn-sm" id="send">发送</button>
+
+
+          </div>
       </div>
-    
   </div>
-<div>
-    <button id="aaa">dsadada</button>
-</div>
+
 
   <!--gt Wrapper End-->
 
@@ -1494,6 +1502,87 @@
   <script src="/static/app/index/js/city-picker.data.js"></script>
   <script src="/static/app/index/js/city-picker.js"></script>
   <script src="/static/app/index/js/main.js"></script>
+  <!--聊天室-->
+  <script type="text/javascript" src="/static/app/index/js/socket.io.js"></script>
+  <script type="text/javascript">
+      $('.online').click(function(){
+          $('#chat').css('display','block');
+      });
+      $('#closeChat').click(function(){
+          $('#chat').css('display','none');
+      });
+
+      var ws = io.connect('http://127.0.0.1:888');
+      var sendMsg = function(msg){
+          ws.emit('send.message', msg);
+      }
+      var addMessage = function(from, msg){
+          var a=$('textarea').val();
+          var html = '<li class="list-group-item text-primary"><b>我:&nbsp;</b>'+a+'</li>';
+          $('#chat_conatiner').append(html);
+
+          // 设置内容区的滚动条到底部
+          document.querySelector('#onchat').scrollTop = document.querySelector('#onchat').scrollHeight;
+
+          // 并设置焦点
+          document.querySelector('textarea').focus();
+
+      }
+
+      var send = function(){
+          var ele_msg = document.querySelector('textarea');
+          var msg = ele_msg.value.replace('\r\n', '').trim();
+          console.log(msg);
+          if(!msg) return;
+          sendMsg(msg);
+          // 添加消息到自己的内容区
+          addMessage('你', msg);
+          ele_msg.value = '';
+      }
+
+//      ws.on('connect', function(){
+//          var nickname = window.prompt('输入你的昵称!');
+//          while(!nickname){
+//              nickname = window.prompt('昵称不能为空，请重新输入!')
+//          }
+//          ws.emit('join', nickname);
+//      });
+//
+//      // 昵称有重复
+//      ws.on('nickname', function(){
+//          var nickname = window.prompt('昵称有重复，请重新输入!');
+//          while(!nickname){
+//              nickname = window.prompt('昵称不能为空，请重新输入!')
+//          }
+//          ws.emit('join', nickname);
+//      });
+
+      ws.on('send.message', function(from, msg){
+          addMessage(from, msg);
+      });
+
+      ws.on('announcement', function(from, msg){
+          addMessage(from, msg);
+      });
+
+      document.querySelector('textarea').addEventListener('keypress', function(event){
+          if(event.which == 13){
+              send();
+          }
+      });
+      document.querySelector('textarea').addEventListener('keydown', function(event){
+          if(event.which == 13){
+              send();
+          }
+      });
+      document.querySelector('#send').addEventListener('click', function(){
+          send();
+      });
+
+      document.querySelector('#clear').addEventListener('click', function(){
+          document.querySelector('#chat_conatiner').innerHTML = '';
+      });
+  </script>
 
   {block name='myjs'}
   <script>
@@ -1649,34 +1738,29 @@
 //        alert('恭喜您,申请信息已发送成功,三个工作日内会做出回复,请耐心等待,O(∩_∩)O谢谢！')
     }
 
-    $('.online').click(function(){
-        $('#chat').css('display','block');
-    });
-    $('#closeChat').click(function(){
-        $('#chat').css('display','none');
-    });
+
 
 
     // 点击发送消息
-    $('#sendMsg').click(function(){
-        // 把文本框中的内容 发送给服务器
-        var a=$('#chatMsg').val();
-        var html = '<li class="list-group-item text-primary"><b>我:'+a+'</b></li>';
-        $('.list-group').append(html);
-        $('#chatMsg').val('');
-    });
-    // 回车发送消息
-    $('#chatMsg').keydown(function(e){
-        if (e.keyCode == 13){
-            console.log(e.keyCode);
-            var a=$('#chatMsg').val();
-            var html = '<li class="list-group-item text-primary"><b>我:&nbsp;</b>'+a+'</li>';
-            $('.list-group').append(html);
-            $('#chatMsg').val();
-            $('#chatMsg').val('');
-        }
-    });
-//
+//    $('#sendMsg').click(function(){
+//        // 把文本框中的内容 发送给服务器
+//        var a=$('#chatMsg').val();
+//        var html = '<li class="list-group-item text-primary"><b>我:'+a+'</b></li>';
+//        $('.list-group').append(html);
+//        $('#chatMsg').val('');
+//    });
+//    // 回车发送消息
+//    $('#chatMsg').keydown(function(e){
+//        if (e.keyCode == 13){
+//            console.log(e.keyCode);
+//            var a=$('#chatMsg').val();
+//            var html = '<li class="list-group-item text-primary"><b>我:&nbsp;</b>'+a+'</li>';
+//            $('.list-group').append(html);
+//            $('#chatMsg').val();
+//            $('#chatMsg').val('');
+//        }
+//    });
+//ds
 //    // 接收服务器返回的信息
 //    socket.on('serverOut',function(serverMsg){
 //        console.log(serverMsg);
@@ -1685,15 +1769,15 @@
 //        // 在最前端插入
 //        $('.list-group').prepend(html);
 //
-           ws = new WebSocket("ws://tp.vip:80");
-           ws.onopen = function() {
-               console.log("连接成功");
-               ws.send('tom');
-               console.log("给服务端发送一个字符串：tom");
-           };
-           ws.onmessage = function(e) {
-               console.log("收到服务端的消息：" + e.data);
-           };
+//           ws = new WebSocket("ws://tp.vip:80");
+//           ws.onopen = function() {
+//               console.log("连接成功");
+//               ws.send('tom');
+//               console.log("给服务端发送一个字符串：tom");
+//           };
+//           ws.onmessage = function(e) {
+//               console.log("收到服务端的消息：" + e.data);
+//           };
 
 
 
