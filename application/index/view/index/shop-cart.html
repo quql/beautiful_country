@@ -1,190 +1,10 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+﻿{extend name="index/index"}
 
-    <title>Edu-Skill - Education Template</title>
-    <!-- Custom Main StyleSheet CSS -->
-    <link href="/static/app/index/css/style.css" rel="stylesheet">
-    <!-- Color CSS -->
-    <link href="/static/app/index/css/color.css" rel="stylesheet">
-    <!-- Responsive CSS -->
-    <link href="/static/app/index/css/responsive.css" rel="stylesheet">
-    <link href="/static/app/index/css/reset.css" rel="stylesheet">
 
-  </head>
 
-  <body>
 
-<!--gt Wrapper Start-->  
-<div class="gt_wrapper">
-	
-    <!--Header Wrap Start-->
-    <header>
-      <div class="gt_top_wrap gt_bg_3 default_width">
-          <div class="container">
-            <div class="gt_top_element">
-              <ul>
-                <li><a href="#">Have A Question?</a></li>
-                <li><i class="fa fa-phone"></i>111-22-333-45</li>
-                <li><i class="fa fa-envelope"></i><a href="#">info@edu-skill.com</a></li>
-              </ul>
-            </div>
-            <div class="gt_login_element">
-              <a href="#"><i class="icon-lock"></i>Login &#38; Register</a>
-            </div>
-          </div>
-      </div>
-      <div class="gt_menu_bg default_width">
-          <div class="container">
-            <!--Logo Wrap Start-->
-            <div class="gt_logo">
-              <a href="#"><img src="images/logo.png" alt=""></a>
-            </div>
-            <!--Logo Wrap End-->
-            <!--Cart Wrap Start-->
-            <div class="gt_cart_wrap">
-              <a href="#"><i class="fa fa-cart-arrow-down"></i></a>
-                <div class="gt_cart_list">
-                  <ul>
-                      <li>
-                          <figure>
-                              <img src="extra-images/product-02.png" alt="">
-                              <i class="fa fa-remove"></i>
-                          </figure>
-                          <div class="gt_cart_item_detail">
-                              <p>Lorem ipsum dolor sit amet</p>
-                              <span>$600</span>
-                          </div>
-                      </li>
-                      <li>
-                          <figure>
-                              <img src="extra-images/product-02.png" alt="">
-                              <i class="fa fa-remove"></i>
-                          </figure>
-                          <div class="gt_cart_item_detail">
-                              <p>Lorem ipsum dolor sit amet</p>
-                              <span>$600</span>
-                          </div>
-                      </li>
-                      <li>
-                          <span class="gt_product">3 Product Added</span>
-                          <span class="gt_product_total">$3000</span>
-                      </li>
-                      <li>
-                          <a class="gt_cart_btn" href="#">View Cart</a>
-                          <a class="gt_cart_btn" href="#">Checkout</a>
-                      </li>
-                  </ul>
-              </div>
-            </div>
-            <!--Logo Wrap End-->
-            <!--Search Wrap Start-->
-            <div class="gt_search_wrap">
-              <span class="search-fld"><i class="fa fa-search"></i></span>
-                <div class="search-wrapper-area">
-                    <form class="search-area">
-                        <input type="text" placeholder="Search Here"/>
-                        <input type="submit" value="Go"/>
-                    </form>
-                    <span class="gt_search_remove_btn"><i class="fa fa-remove"></i></span>
-                </div>
-            </div>
-            <!--Search Wrap End-->
-            <!--Navigation Wrap Start-->
-            <nav class="gt_navigation">
-              <button class="gt_mobile_menu">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-                <ul>
-                  <li><a href="javascript:avoid(0);">Home</a>
-                    <ul>
-                      <li><a href="index.html">Home 01</a></li>
-                      <li><a href="index-02.html">Home 02</a></li>
-                      <li><a href="index-revolution-slider.html">Home Revolution Slider</a></li>
-                      <li><a href="index-static.html">Home Static Background</a></li>
-					  <li><a href="index-static-text-rotation.html">Home Static Text Rotation</a></li>
-                      <li><a href="index-video.html">Home Video Background</a></li>
-                      <li><a href="index-one-page.html">Home One Page</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="about-us.html">About Us</a></li>
-                  <li><a href="javascript:avoid(0);">Events</a>
-                    <ul>
-                      <li><a href="event-grid.html">Event Grid</a></li>
-                      <li><a href="event-list.html">Event List</a></li>
-                      <li><a href="event-detail.html">Event Detail</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="javascript:avoid(0);">Courses</a>
-                    <ul>
-                      <li><a href="course-grid.html">Courses Grid</a></li>
-                      <li><a href="course-grid-style-02.html">Courses Grid Style 02</a></li>
-                      <li><a href="course-grid-with-sidebar.html">Courses Grid With Sidebar</a></li>
-                      <li><a href="course-listing.html">Courses List</a></li>
-                      <li><a href="course-detail.html">Courses Detail</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="javascript:avoid(0);">Blog</a>
-                    <ul>
-                      <li><a href="blog-grid.html">Blog Grid</a></li>
-                      <li><a href="blog-listing.html">Blog List</a></li>
-                      <li><a href="blog-single.html">Blog Single</a></li>
-                      <li><a href="blog-detail.html">Blog Detail</a></li>
-                    </ul>
-                  </li>
-                  <li class="active"><a href="javascript:avoid(0);">Shop</a>
-                    <ul>
-                      <li><a href="shop-product-01.html">Shop Product 01</a></li>
-                      <li><a href="shop-product-02.html">Shop Product 02</a></li>
-                      <li class="active"><a href="shop-detail.html">Shop Detail</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="javascript:avoid(0);">Pages</a>
-                    <ul>
-                      <li><a href="javascript:avoid(0);">404 Pages</a>
-                        <ul>
-                          <li><a href="404-page.html">404 01</a></li>
-                          <li><a href="404-page-2.html">404 02</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="comming-soon.html">Comming Soon</a></li>
-                      <li><a href="classes.html">Classes</a></li>
-                      <li><a href="javascript:avoid(0);">Team Pages</a>
-                        <ul>
-                          <li><a href="team-grid.html">Team Grid</a></li>
-                          <li><a href="team-grid-02.html">Team Grid Style 02</a></li>
-                          <li><a href="team-detail.html">Team Detail</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="javascript:avoid(0);">Dashboard Pages</a>
-                        <ul>
-                          <li><a href="my-profile.html">My Profile</a></li>
-                          <li><a href="profile-setting.html">Profile Setting</a></li>
-                          <li><a href="privacy-setting.html">Privacy Setting</a></li>
-                          <li><a href="report-achievement.html">Reports and Achievement</a></li>
-                          <li><a href="dashboard-classes.html">Dashboard Classes</a></li>
-                          <li><a href="dashboard-courses.html">Dashboard Courses</a></li>
-                          <li><a href="dashboard-fav-courses.html">Dashboard Favorite Courses</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="login-register.html">Login and Register</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="contact-us.html">Contact Us</a></li>
-                </ul>
-            </nav>
-            <!--Navigation Wrap End-->
-          </div>
-      </div>
-    </header>
-    <!--Header Wrap End-->
-    
-    <!--Sub Banner Wrap Start -->
+{block name="main"}
+<!--Sub Banner Wrap Start -->
     <div class="gt_sub_banner_bg default_width">
         <div class="container">
             <div class="gt_sub_banner_hdg  default_width">
@@ -196,224 +16,164 @@
     <!--Sub Banner Wrap End -->
     <!--Breadcrumb Wrap End -->
     <div class="gt_breadcrumb_bg default_width">
-      <div class="container">
-        <div class="gt_breadcrumb_wrap default_width">
-            <ul>
-                <li><a href="{:url('index/index/index')}">首页</a></li>
-                <li><a href="{:url('index/cart/index')}">购物车</a></li>
-            </ul>
+        <div class="container">
+            <div class="gt_breadcrumb_wrap default_width">
+                <ul>
+                    <li><a href="{:url('index/index/index')}">首页</a></li>
+                    <li><a href="{:url('index/cart/index')}">购物车</a></li>
+                </ul>
+            </div>
         </div>
-      </div>
     </div>
     <!--Breadcrumb Wrap End -->
     <div class="gt_main_content_wrap">
         <!--Shop Wrap Start-->
         <section class="gt_shop_detail_bg gt_courses_bg">
             <div class="container">
-        <table class="table table-hover " id="mytable">
-            <tr>
-                <th style="text-align: center;"></th>
-                <th style="text-align: center;">商品图片</th>
-                <th style="text-align: center;">商品名称</th>
-                <th style="text-align: center;">商品类别</th>
-                <th style="text-align: center;">单价 (元)</th>
-                <th class="col-sm-2" style="text-align: center;">数量</th>
-                <th style="text-align: center;">总价 (元)</th>
-                <th style="text-align: center;">操作</th>
-            </tr>
-            <tr>
-                <td style="text-align: center;line-height: 62px;">1</td>
-                <td style="text-align: center;line-height: 62px;">
-                    <img src="/static/app/index/images/profile-img-01.jpg" class="img-rounded" alt="" width="50">
-                </td>
-                <td style="text-align: center;line-height: 62px;">goodsName</td>
-                <td style="text-align: center;line-height: 62px;">goodsType</td>
-                <td style="text-align: center;line-height: 62px;">price</td>
-                <td style="text-align: center;">
-                    <div class="gt_product_left_wrap" style="border-bottom: none;margin-left: 0px;margin: 8px 0px -12px">
-                        <div id="incdec"style="margin-left: 54px;">
-                            <input type="text" value="1" readonly="readonly" id="num"/>
-                            <div class="gt_increment">
-                                <button id="up" >+</button>
-                                <button id="down" > -</button>
+                <table class="table table-hover " id="mytable">
+                    <tr>
+                        <th style="text-align: center;"></th>
+                        <th style="text-align: center;">商品图片</th>
+                        <th style="text-align: center;">商品名称</th>
+                        <th style="text-align: center;">商品类别</th>
+                        <th style="text-align: center;">单价 (元)</th>
+                        <th class="col-sm-2" style="text-align: center;">数量</th>
+                        <th style="text-align: center;">总价 (元)</th>
+                        <th style="text-align: center;">操作</th>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;line-height: 62px;">1</td>
+                        {volist name="photo" id="p"}
+                        <td style="text-align: center;line-height: 62px;">
+                            <img src="/uploads/goodsPhoto/{$p['p0']}" class="img-rounded" alt="" width="100" height="56">
+                        </td>
+                        {/volist}
+                        {volist name="res" id="r"}
+                        <td style="text-align: center;line-height: 62px;">{$r['gd_title']}</td>
+                        <td style="text-align: center;line-height: 62px;">goodsType</td>
+                        {/volist}
+                        {volist name="data" id="d"}
+                        <td style="text-align: center;line-height: 62px;" id="price">{$d['ca_price']}</td>
+                        <td style="text-align: center;">
+                            <div class="gt_product_left_wrap" style="border-bottom: none;margin-left: 0px;margin: 8px 0px -12px">
+                                <div id="incdec"style="margin-left: 54px;">
+                                    <input type="text" value="{$d['ca_num']}" readonly="readonly" id="num"/>
+                                    <div class="gt_increment">
+                                        <button id="up" >+</button>
+                                        <button id="down" > -</button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </td>
-                <td style="text-align: center;line-height: 62px;">total</td>
-                <td style="text-align: center;line-height: 62px;">
-                    <button class="btn btn-danger glyphicon glyphicon-trash"></button>
-                </td>
-            </tr>
-        </table>
-        <div style="margin-left: 850px;">
-            <button class="btn btn-info btn-lg ml30">再去逛逛</button>
-            <button class="btn btn-success btn-lg ml30">去结算</button>
-        </div>
-    </div>
-        <!--Content Wrap Start-->
+                        </td>
+
+                        <td style="text-align: center;line-height: 62px;" id="total"></td>
+                        <td style="text-align: center;line-height: 62px;">
+                            <button class="btn btn-danger glyphicon glyphicon-trash" data-id="{$cid}" id="del"></button>
+                        </td>
+                    </tr>
+                    {/volist}
+                </table>
+                <div style="margin-left: 850px;">
+                    <button class="btn btn-info btn-lg ml30">再去逛逛</button>
+                    <button class="btn btn-success btn-lg ml30">去结算</button>
+                </div>
+            </div>
+            <!--Content Wrap Start-->
         </section>
     </div>
 
     <!--Content Wrap End-->
-    
-    <!--Footer Wrap Start-->
-    <footer>
-      <!--Newletter Wrap Start-->
-      <div class="gt_newsletter_bg default_width">
-        <div class="container">
-          <div class="gt_newsletter_inside_bg default_width">
-            <div class="gt_newsletter_wrap">
-              <h3>STAY TUNED WITH US</h3>
-              <form class="default_width">
-                <input type="text" class="ph_news" placeholder="Your Email address">
-                <input type="submit" value="Subscribe">
-              </form>
-              <p>Get our updates educational materials, new courses and more!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--Newletter Wrap End-->
+{/block}
 
-      <!--Footer List Wrap Start-->
-      <div class="gt_footer1_bg default_width">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-3 col-sm-6">
-              <div class="gt_foo_about gt_widget_hdg">
-                  <h5>Our Sevices</h5>
-                  <ul>
-                      <li><a href="#">Courses</a></li>
-                      <li><a href="#">Events</a></li>
-                      <li><a href="#">Teachers</a></li>
-                      <li><a href="#">Blog</a></li>
-                      <li><a href="#">Gdaducation</a></li>
-                  </ul>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-              <div class="gt_foo_about gt_widget_hdg">
-                  <h5>My Account</h5>
-                  <ul>
-                      <li><a href="#">My Account</a></li>
-                      <li><a href="#">Order History</a></li>
-                      <li><a href="#">Wishlist</a></li>
-                      <li><a href="#">Newsletter</a></li>
-                      <li><a href="#">Special</a></li>
-                  </ul>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-              <div class="gt_foo_about gt_widget_hdg">
-                  <h5>Our Support</h5>
-                  <ul>
-                      <li><a href="#">Contact Us</a></li>
-                      <li><a href="#">Shipping &#38; Taxes</a></li>
-                      <li><a href="#">Return Policy</a></li>
-                      <li><a href="#">Site Map</a></li>
-                      <li><a href="#">Conatct Us</a></li>
-                  </ul>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-              <div class="gt_foo_about gt_widget_hdg">
-                  <h5>Information</h5>
-                  <ul>
-                      <li><a href="#">About Us</a></li>
-                      <li><a href="#">Top Sellers</a></li>
-                      <li><a href="#">Special Products</a></li>
-                      <li><a href="#">Privacy Policy</a></li>
-                      <li><a href="#">Delivery Information</a></li>
-                  </ul>
-              </div>
-            </div>
-          </div>
-
-          <!--Footer Contact Wrap Start-->
-          <div class="gt_foo_contact_wrap">
-            <div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <div class="gt_foo_contact_des">
-                        <i class="icon-phone"></i>
-                          <div class="gt_foo_icon_des">
-                            <h5>(8) 111 22 333 444</h5>
-                              <span>Mon - fri 9am to 5pm </span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-md-4 col-sm-6">
-                    <div class="gt_foo_contact_des">
-                        <i class="icon-tool"></i>
-                          <div class="gt_foo_icon_des">
-                            <h5>info@eduskill.com</h5>
-                              <span>Online information </span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="gt_foo_contact_des">
-                        <i class="icon-pin"></i>
-                          <div class="gt_foo_icon_des">
-                            <h5>New york Usa</h5>
-                            <span>787 New south  way CA </span>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <!--Footer Contact Wrap End-->
-        </div>
-      </div>
-      <!--Footer List Wrap End-->
-
-      <!--Copyright Wrap End-->
-      <div class="gt_copyright_wrap">
-        <div class="container">
-            <div class="gt_copyright_des">  
-                <p>Copyright © <a href="#">Edu-skill </a> 2016. All rights reserved.</p>
-                <span>Created by: <a href="#">2goodtheme.com</a></span>
-              </div>
-          </div>
-      </div>
-      <!--Copyright Wrap Start-->
-    </footer>
-    <!--Footer Wrap End-->
-    <!--Back to Top Wrap Start-->
-    <div class="back-to-top">
-        <a href="#home"><i class="fa fa-angle-up"></i></a>
-    </div>
-    <!--Back to Top Wrap Start-->
-        
-</div>
-<!--gt Wrapper End-->
-
-
-
-  <!--Jquery Library-->
-  <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-  <!--Bootstrap core JavaScript-->
-  <script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
-  <!--Owl Carousel JavaScript-->
-	<script src="/static/app/index/js/owl.carousel.js"></script>
-    <!--Filter able JavaScript-->
-	
-    <!--Custom JavaScript-->
-	<script src="/static/app/index/js/custom.js"></script>
+{block name="myjs"}
+{js href="/static/app/index/js/toastr.min.js"}
 <script>
-    $('#up').click(function(){
-        if($('#num').val() >= 99){
-            $('#num').val() = 99;
+
+
+
+    //    计算总价
+    $(function(){
+//        console.log($('#price').html());
+//        console.log($('#num').val());
+        var num = $('#price').html()*$('#num').val();
+        num = num.toFixed(2)
+        $('#total').html(num);
+//        console.log($('#total').html(num));
+
+        //    点击改变数量
+        $('#up').click(function(){
+            if($('#num').val() >= 99){
+                $('#num').val() = 99;
+            }
+            $('#num').val() + 1;
+            var n = parseInt($('#num').val()) + 1;
+//        console.log(n);
+            var t = $('#price').html()*n;
+//        console.log(t);
+            t = t.toFixed(2);
+            $('#total').html(t);
+//        console.log($('#total').html(t));
+
+        });
+
+
+        $('#down').click(function(){
+            if($('#num').val() <= 1){
+                $('#num').val() = 1;
+            }
+            $('#num').val() - 1;
+            var n = parseInt($('#num').val()) - 1;
+            var t = $('#price').html()*n;
+            t = t.toFixed(2);
+            $('#total').html(t);
+        });
+
+//    执行删除
+        $('#del').click(function(){
+            var gid = $(this).attr('data-id');
+            console.log(gid);
+
+            if (confirm('您确定要狠心删除我吗?(Ｔ▽Ｔ)')){
+                var obj = $(this).parents('tr');
+                console.log(obj);
+                delAjax(gid, obj);
+            }
+        });
+
+        // 设置弹框参数
+        toastr.options = {
+            closeButton: true,//是否显示关闭按钮
+            progressBar: true,//实现显示计时条
+            timeOut: "3000",//自动关闭时间
+            positionClass: "toast-bottom-left"//提示位置
+            // toast-top-full-width 顶端，宽度铺满整个屏幕
+            // toast-top-right  顶端右边
+        };
+
+//    执行ajax删除
+        function delAjax(id, obj){
+            $.ajax({
+                type: 'get',
+                url: "index/cart/delete",
+                data: {"id":id},
+                dataType: 'json',
+                success:function(data){
+//            alert(data);
+                    if (data.status){
+                        toastr.success(data.info);
+                        obj.remove();
+                    }else{
+                        toastr.error(data.info, 'error:');
+                    }
+                },
+                error:function(){
+                    alert('删除失败,请重试~');
+                }
+            });
         }
-        $('#num').val() + 1;
-    });
-    $('#down').click(function(){
-        if($('#num').val() <= 1){
-            $('#num').val() = 1;
-        }
-        $('#num').val() - 1;
     });
 </script>
+{/block}
 
-  </body>
+</body>
 </html>

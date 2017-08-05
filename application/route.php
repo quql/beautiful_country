@@ -66,17 +66,22 @@ Route::resource('Hotelpic', 'admin/HotelPic');
 //设置图片封面
 Route::get('/hotelpicfirst/[:id]','admin/HotelPic/first');
 
+//前台住宿
+Route::resource('hotelDetail', 'index/hotel');
+
 //个人中心
 Route::resource('per', 'index/personal');
 //商品详情页
 Route::get('goodsDetail', 'index/goodsInfo/detail');
 //购物车页面,开启后无法从商品详情页跳转到购物车页
 
+Route::post('cart', 'index/cart/index');
+
+
+
 
 //购物车页面
-Route::get('cart', 'index/cart/index');
-
-
+//Route::get('cart', 'index/cart/index');
 
 //商户管理中心
 Route::get('busInfo','admin/BusInfo/index');
@@ -99,6 +104,18 @@ Route::resource('foodpic', 'admin/FoodPic');
 //设置图片封面
 Route::get('/foodpicfirst/[:id]','admin/FoodPic/first');
 
+
+//商家后台
+//未处理订单
+Route::get('unorder', 'admin/BusOrder/unorder');
+//未发货订单
+Route::get('unDiliver', 'admin/BusOrder/unDiliver');
+//发货中订单
+Route::get('diliver', 'admin/BusOrder/diliver');
+//已完成订单
+Route::get('done', 'admin/BusOrder/done');
+//被取消订单
+Route::get('cancel', 'admin/BusOrder/cancel');
 
 return [
 //    '__pattern__' => [

@@ -61,7 +61,7 @@
                       </div>
                   </div>
                   {volist name="list" id="v"}
-                    <form action="index/cart/index" method="post">
+                    <form action="{:url('index/cart/index')}" method="post">
                     <input type="hidden" name="id" value="{$v['gd_id']}">
                     <input type="hidden" name="price" value="{:round($v['gd_price']*0.8, 2)}">
                   <div class="col-md-6">
