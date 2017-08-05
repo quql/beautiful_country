@@ -1,0 +1,81 @@
+{extend name="index/index"}
+{block name="main"}
+<div class="gt_sub_banner_bg default_width">
+    <div class="container">
+        <div class="gt_sub_banner_hdg  default_width">
+            <h2>酒店预订页</h2>
+            <h6>欢迎来到还没名字的网站~</h6>
+        </div>
+    </div>
+</div>
+<!--Sub Banner Wrap End -->
+<!--Breadcrumb Wrap End -->
+<div class="gt_breadcrumb_bg default_width">
+    <div class="container">
+        <div class="gt_breadcrumb_wrap default_width">
+            <ul>
+                <li><a href="{:url('index/index/index')}">首页</a></li>
+                <li><a href="{:url('index/goodsInfo/detail')}">预订详情页</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="gt_main_content_wrap">
+    <!--Shop Wrap Start-->
+    <section class="gt_shop_detail_bg gt_courses_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7" style="border: 1px solid #2DCC70;">
+                    <form action="">
+                    <div class="" style="padding: 10px;">
+                        <h4 class="h4">酒店名</h4>
+                        <hr>
+                        <h5>预订信息</h5>
+                        <hr>
+                        <div class="">
+                            <span class="col-sm-2">客房类型:</span>
+                            <span></span>
+                        </div>
+                        <br><br>
+                        <div class="">
+                            <span class="col-sm-2">入驻日期:</span>
+                            <span>jq插件</span>
+                        </div>
+                        <br>
+                        <div class="">
+                            <span class="col-sm-2">选择数量:</span>
+                            <span>按钮</span>
+                        </div>
+                        <hr>
+                        <h4>入住信息</h4>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                      <span class="input-group-btn">
+                                        入住人
+                                      </span>
+                                    <input type="text" class="form-control" placeholder="">
+                                </div><!-- /input-group -->
+                            </div><!-- /.col-lg-6 -->
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                      <span class="input-group-btn">
+                                        手机号
+                                      </span>
+                                    <input type="text" class="form-control" placeholder="">
+                                </div><!-- /input-group -->
+                            </div><!-- /.col-lg-6 -->
+                        </div><!-- /.row -->
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+{/block}
+{block name="js"}
+
+{/block}

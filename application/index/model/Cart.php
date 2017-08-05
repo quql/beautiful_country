@@ -6,5 +6,11 @@ use think\Model;
 
 class Cart extends Model
 {
-    //根据商品详情页的id查
+    //删除商品
+    public function delete($id = '')
+    {
+        $db = db('cart');
+        $res = $db->delele($id);
+        return $res;
+    }
 }
