@@ -1,4 +1,4 @@
-(function(){
+ aa = function (){
     var hintText={user_email:{hint:"⚠️邮箱是您登录的唯一账号，请谨慎填写",right:"√邮箱格式正确",wrong:"×邮箱格式有误，请重新输入"},
             user_name:{hint:"⚠️请输入3-12个字符的用户名（包括字母/数字/下划线）",right:"√用户名格式正确",wrong:"×用户名格式有误，请重新输入"},
             name:{hint:"⚠️请输入3-12姓名",right:"√姓名输入正确",wrong:"×姓名输入有误，请重新输入"},
@@ -8,8 +8,6 @@
             id_card:{hint:"⚠️请输入18位身份证号码",right:"√身份证号码输入正确",wrong:"×身份证号码输入有误，请重新输入"},
             password:{hint:"⚠️请输入6位以上密码",right:"√密码格式正确",wrong:"×请输入符合格式的密码"},
             repassword:{hint:"⚠️请再次输入密码",right:"√再次输入密码正确",wrong:"×两次输入不一致或密码格式不正确，请重新输入或密码格式不正确"}};
-
-            
     var regEvent=function(node, event, func){
         if (node.addEventListener)
             node.addEventListener(event, func);
@@ -100,34 +98,25 @@
             regEvent(inputs[i],"blur",function(){
                regValue(id,i);
             });
-        })(j)
+        })(j);
     }
     regEvent(document.getElementById("submit"),"click",function(e){
+        // alert(index);
         if(index!==0){
-            alert(index)
+           // alert(index)
             e.preventDefault();
             alert("您的输入有误，请检查并重新输入！");
             return false;
-        }  
+        }
     });  
     regEvent(document.getElementById("button"),"click",function(e){
         if(index!==0){
             e.preventDefault();
             alert("您的输入有误，请检查并重新输入！");
             return false;
-        }  
-    });  
-})();
+        }
+    });
 
-
-$(function(){
-    $("#user_name").blur(function(){
-        var u_username = $('#user_name').val;
-        $.ajax({
-             type:'post',
-             url:'/Register',
-             dataType: "json",
-             success: function(data){
 
              },
              error:function(data){
@@ -138,3 +127,26 @@ $(function(){
 });
 
 
+}; 
+
+var checkover=aa();
+// var input1 =document.getElementById('user_name').value.length;
+// var input2 =document.getElementById('phone').value.length;
+// var input3 =document.getElementById('password').value.length;
+// var input4 =document.getElementById('repassword').value.length;
+
+
+function checkuserform()
+{
+    var input1 =document.getElementById('user_name').value.length;
+    var input2 =document.getElementById('phone').value.length;
+    var input3 =document.getElementById('password').value.length;
+    var input4 =document.getElementById('repassword').value.length;
+
+    if(input1==0 || input2==0 || input3==0 || input4==0){
+        alert('每项数据不能为空');
+        return false;
+    }else{
+        return true;
+    }
+}
