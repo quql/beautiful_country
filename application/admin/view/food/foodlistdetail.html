@@ -1,0 +1,229 @@
+{extend name="index/index"}
+
+{block name="main"}
+<!-- page heading start-->
+
+<div class="page-heading">
+    <h3>
+        产品详细信息
+    </h3>
+    <ul class="breadcrumb">
+        <li>
+            <a href="{:url('admin/BusIndex/index')}">店铺首页</a>
+        </li>
+        <li>
+            <a href="{:url('admin/Foodhandle')}">产品列表</a>
+        </li>
+
+    </ul>
+</div>
+<!-- page heading end-->
+
+<!--body wrapper start-->
+<div class="wrapper">
+    <div class="row">
+        <div class="col-sm-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    分类操作
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-down"></a>
+                        <a href="javascript:;" class="fa fa-times"></a>
+                     </span>
+                </header>
+                <div class="panel-body">
+                    <div class="adv-table editable-table ">
+
+                    </div>
+                    <div class="space15"></div>
+                    <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                        <thead>
+                        <tr>
+
+                            <th align="center" valign="middle">商品名称</th>
+                            <th align="center" valign="middle">商品简介</th>
+                            <th align="center" valign="middle">商品详细描述</th>
+                            <th align="center" valign="middle">商品价格</th>
+                            <th align="center" valign="middle">库存</th>
+                            <th align="center" valign="middle">折扣价</th>
+                            <th align="center" valign="middle">历史销量</th>
+                            <th align="center" valign="middle">浏览量</th>
+                            <th align="center" valign="middle">是否热销</th>
+                            <th align="center" valign="middle">是否上架</th>
+                            <th align="center" valign="middle">操作</th>
+
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td align="center">{$data1.gd_title}</td>
+                            <td align="center" >{$data1.gd_abstract}</td>
+                            <td align="center" >{$data2.gd_details}</td>
+                            <td align="center" >{$data2.gd_price}</td>
+                            <td align="center" >{$data2.gd_store}</td>
+                            <td align="center" >{$data2.gd_discount}</td>
+                            <td align="center" >{$data2.gd_num}</td>
+                            <td align="center" >{$data2.gd_view}</td>
+
+                            <td align="center" >
+                                {if condition="$data1.gd_hot eq '1'" }是
+                                {else /}否
+                                {/if}
+                            </td>
+                            <td align="center" >
+                                {if condition="$data1.gd_is_sale eq '1'" }是
+                                {else /}否
+                                {/if}
+                            </td>
+
+                            <td>
+                                <button  class=" btn-info btn-sm" data-toggle="modal" data-target="#myModal">编辑商品</button>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+
+    </div>
+
+    <!--body wrapper end-->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">商品修改</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="{:url('admin/food/update',['id'=>$data1.id])}" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="id" value="{$data1.id}">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">商品名称</label>
+                            <input type="text" name="gd_title" class="form-control" id="exampleInputEmail1" value="{$data1.gd_title}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">商品简介</label>
+                            <input type="text" name="gd_abstract" class="form-control" id="exampleInputPassword1" value="{$data1.gd_abstract}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">商品详细描述</label>
+                            <input type="text" name="gd_details" class="form-control" id="exampleInputPassword1" value="{$data2.gd_details}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">商品价格</label>
+                            <input type="text" name="gd_price" class="form-control" id="exampleInputPassword1" value="{$data2.gd_price}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">商品库存</label>
+                            <input type="text" name="gd_store" class="form-control" id="exampleInputPassword1" value="{$data2.gd_store}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">折扣价</label>
+                            <input type="text" name="gd_discount" class="form-control" id="exampleInputPassword1" value="{$data2.gd_discount}">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3">
+                            <span>
+                                <input type="checkbox" name="is_hot"  {if condition="$data1.gd_hot eq 1" }checked{/if}> 是否热卖
+                            </span>
+                            </label>
+                            <label class="col-sm-3">
+                            <span>
+                                <input type="checkbox" name="is_sale" {if condition="$data1.gd_is_sale eq 1" }checked{/if}> 是否上架
+                            </span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-success">提交</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- main content end-->
+    {/block}
+
+
+    {block name="myjs"}
+    <!-- Placed js at the end of the document so the pages load faster -->
+    <script src="/static/app/admin/js/jquery-1.10.2.min.js"></script>
+    <script src="/static/app/admin/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="/static/app/admin/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/app/admin/js/bootstrap.min.js"></script>
+    <script src="/static/app/admin/js/modernizr.min.js"></script>
+    <script src="/static/app/admin/js/jquery.nicescroll.js"></script>
+
+    <!--data table-->
+    <script type="text/javascript" src="/static/app/admin/js/data-tables/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="/static/app/admin/js/data-tables/DT_bootstrap.js"></script>
+
+    <!--common scripts for all pages-->
+    <script src="/static/app/admin/js/scripts.js"></script>
+
+    <!--script for editable table-->
+    <script src="/static/app/admin/js/editable-table.js"></script>
+    <script src="/static/app/admin/js/toastr.min.js"></script>
+
+    <!-- END JAVASCRIPTS -->
+
+
+    <script>
+        $(function () {
+            //触发用户的删除操作
+            $('.del-btn').click(function () {
+                var ac_id = $(this).attr('goods-id');
+
+                if (confirm('你确定要 [ 删除 ] 该产品么?')) {
+                    var obj = $(this).parents('tr');
+                    //console.log(obj);
+                    delAjax(ac_id, obj);// 调用执行AJAX删除
+                }
+            });
+        });
+
+
+
+
+        // 设置弹框参数
+        toastr.options = {
+            closeButton: true,//是否显示关闭按钮
+            progressBar: true,//实现显示计时条
+            timeOut: "3000",//自动关闭时间
+            positionClass: "toast-top-right"//提示位置
+            // toast-top-full-width 顶端，宽度铺满整个屏幕
+            // toast-top-right  顶端右边
+        };
+
+        // 执行AJAX删除
+        function delAjax(id, obj) {
+            $.ajax({
+                type: 'delete', // DELETE请求方式
+                url: '/Goods/' + id,
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    if (data.status) {
+                        toastr.success(data.info);
+                        // 将当前的节点删除掉
+                        obj.remove();
+                    } else {
+                        toastr.error(data.info, 'FBI WARNING:');
+                    }
+                },
+                error: function () {
+                    // AJAX操作失败
+                    alert('AJAX操作失败');
+                }
+            });
+        }
+
+
+    </script>
+    {/block}

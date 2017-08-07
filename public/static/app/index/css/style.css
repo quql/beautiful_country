@@ -1421,7 +1421,7 @@ ul.gt_blog_meta li>a{color: #3a4d6a;display: inline-block;}
 */
 .gt_product_bg {padding-bottom: 40px;}
 .gt_product_outer_wrap {float: left;width: 100%;position: relative;border: 1px solid #d4d4d4;background-color: #e9e9e9;overflow: hidden;margin: 0px 0px 30px;}
-.gt_product_outer_wrap figure img {width: auto;height: auto;}
+/*.gt_product_outer_wrap figure img {width: auto;height: auto;}*/
 .gt_product_img_des {width: 100%;top: 50%;margin: -75px 0px 0px;text-align: center;position: absolute;left: 0px;padding: 5px 15px;transform: scale(0);-webkit-transform: scale(0);-moz-transform: scale(0);}
 .gt_product_img_des p {color: #fff;}
 ul.gt_product_ui_element {float: left;width: 100%;}

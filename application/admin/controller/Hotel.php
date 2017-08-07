@@ -17,7 +17,7 @@ class Hotel extends Bus
     {
         $b_id = cache('b_id');
         $list = Db::table('ml_hotel')->where('bus_id',$b_id)->select();
-        $catelist = Db::table('ml_h_cate')->where('bus_id',$b_id)->select();
+        $catelist = Db::table('ml_h_cate')->select();
 //        var_dump($list);
 //        die;
 //       var_dump($catelist);
@@ -84,6 +84,18 @@ class Hotel extends Bus
             $sale=1;
         }
 
+        if(empty($p['is_wifi'])){
+            $wifi=0;
+        }else{
+            $wifi=1;
+        }
+
+        if(empty($p['is_park'])){
+            $park=0;
+        }else{
+            $park=1;
+        }
+
 
         $data1 = [
             'c_id' =>'4',
@@ -92,7 +104,8 @@ class Hotel extends Bus
             'gd_hot'=>$hot,
             'gd_is_sale'=>$sale,
             'bus_id'=>$bus_id,
-            'h_cate'=>$p['h_cate']
+            'h_cate'=>$p['h_cate'],
+            'price' => $p['gd_price']
 
         ];
 
@@ -112,6 +125,8 @@ class Hotel extends Bus
             'gd_store' => $p['gd_store'],
             'gd_discount' => $p['gd_discount'],
             'gd_num'=>'0',
+            'is_wifi'=>$wifi,
+            'is_park'=>$park,
             'gd_view'=>'0'
         ];
         $data3 = [
@@ -187,12 +202,25 @@ class Hotel extends Bus
             $sale=1;
         }
 
+        if(empty($info['is_wifi'])){
+            $wifi=0;
+        }else{
+            $wifi=1;
+        }
+
+        if(empty($info['is_park'])){
+            $park=0;
+        }else{
+            $park=1;
+        }
+
 
         $newInfo1 = [
             'gd_title' => $info['gd_title'],
             'gd_abstract' => $info['gd_abstract'],
             'gd_hot'=>$hot,
             'gd_is_sale'=>$sale,
+            'price' => $info['gd_price']
         ];
 
         $newInfo2 = [
@@ -200,6 +228,8 @@ class Hotel extends Bus
             'gd_price' => $info['gd_price'],
             'gd_store' => $info['gd_store'],
             'gd_discount' => $info['gd_discount'],
+            'is_wifi'=>$wifi,
+            'is_park'=>$park
         ];
 
         $result1 =Db::table('ml_hotel')->where('id',$id)->update($newInfo1);

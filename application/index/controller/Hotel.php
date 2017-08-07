@@ -5,7 +5,7 @@ namespace app\index\controller;
 use think\Controller;
 use think\Request;
 
-class Hotel extends Controller
+class Hotel extends Base
 {
     /**
      * 显示酒店详情页

@@ -15,7 +15,7 @@ class Index extends Admin
 
     public function loginexit(Request $request)
     {
-        session(null);
+        session('admin_id',null);
         $this->redirect('admin/login/index','已退出登录');
     }
 

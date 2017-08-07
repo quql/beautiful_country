@@ -17,7 +17,7 @@ class Food extends Bus
     {
         $b_id = cache('b_id');
         $list = Db::table('ml_food')->where('bus_id',$b_id)->select();
-        $catelist = Db::table('ml_food_cate')->where('bus_id',$b_id)->select();
+        $catelist = Db::table('ml_food_cate')->select();
 //        var_dump($list);
 //        die;
 //       var_dump($catelist);
@@ -85,13 +85,14 @@ class Food extends Bus
 
 
         $data1 = [
-            'c_id' =>'4',
+            'c_id' =>'6',
             'gd_title' => $p['gd_title'],
             'gd_abstract' => $p['gd_abstract'],
             'gd_hot'=>$hot,
             'gd_is_sale'=>$sale,
             'bus_id'=>$bus_id,
-            'h_cate'=>$p['h_cate']
+            'h_cate'=>$p['h_cate'],
+            'price' => $p['gd_price'],
 
         ];
 
@@ -191,7 +192,8 @@ class Food extends Bus
             'gd_title' => $info['gd_title'],
             'gd_abstract' => $info['gd_abstract'],
             'gd_hot'=>$hot,
-            'gd_is_sale'=>$sale
+            'gd_is_sale'=>$sale,
+            'price' => $info['gd_price'],
         ];
 
         $newInfo2 = [

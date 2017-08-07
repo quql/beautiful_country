@@ -7,7 +7,7 @@ use app\index\model\User;
 use think\Controller;
 use think\Request;
 
-class Personal extends Controller
+class Personal extends
 {
     /**
      * 显示个人中心页面

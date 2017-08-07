@@ -102,7 +102,7 @@
                 </div>
                 <input type="submit" class="btn btn-success" value="确认修改">
             </form>
-<<<<<<< HEAD
+
             <form id="form3" method="post" action="{:url('admin/BusInfo/pass',['id'=>$res['b_id']])}"  onsubmit="return checkPass()">
                 <input type="hidden" name="__token__" value="{$Request.token}">
                 <div class="form-group">
@@ -118,7 +118,7 @@
                 <div class="form-group">
                     <label >确认密码</label>
                     <input type="password" class="form-control" id="re_pass" name="re_pass">
-=======
+
             <form id="form3" method="post" action="{:url('admin/BusInfo/update',['id'=>$res['b_id']])}" enctype="multipart/form-data" onsubmit='return checkPass()'>
                 <input type="hidden" name="__token__" value="{$Request.token}">
                 <div class="form-group">
@@ -134,7 +134,7 @@
                 <div class="form-group">
                     <label for="b_phone">确认密码</label>
                     <input type="text" class="form-control" id="re_pass" name="re_pass">
->>>>>>> origin/qql
+
                     <p id='p8' style="padding-left: 15px"></p>
                 </div>
                 <input type="submit" class="btn btn-success" value="确认修改">
@@ -275,7 +275,7 @@
     }
     function checkPass(){
         //密码
-<<<<<<< HEAD
+
         var pass=document.getElementById('new_pass').value;
         var p7=document.getElementById('p7');
         //验证密码是否符合 6-18位的数字
@@ -289,7 +289,7 @@
         }
         //确认密码
         var repass=document.getElementById('re_pass').value;
-=======
+
         var pass=document.getElementById('inputPass').value;
         var p3=document.getElementById('p3');
         //验证密码是否符合 6-18位的数字
@@ -303,7 +303,7 @@
         }
         //确认密码
         var repass=document.getElementById('inputRepass').value;
->>>>>>> origin/qql
+
         var p8=document.getElementById('p8');
         if (pass!==repass) {
             p8.innerHTML=' × 两次输入不一致';

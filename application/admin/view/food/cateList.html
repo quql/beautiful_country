@@ -1,4 +1,4 @@
-{extend name="index/busIndex"}
+{extend name="index/index"}
 
 {block name="main"}
 <!-- page heading start-->
@@ -146,7 +146,7 @@
         function delAjax(id, obj) {
             $.ajax({
                 type: 'delete', // DELETE请求方式
-                url: '/foodCate/' + id,
+                url: '/foodcate/' + id,
                 dataType: 'json',
                 success: function (data) {
                     console.log(data);

@@ -5,7 +5,7 @@ namespace app\index\controller;
 use think\Controller;
 use think\Request;
 
-class GoodsInfo extends Controller
+class GoodsInfo extends Base
 {
     public function detail()
     {

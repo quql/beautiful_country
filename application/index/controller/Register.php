@@ -5,7 +5,7 @@ use think\Controller;
 use think\Request;
 use think\Db;
 
-class Register extends Controller
+class Register extends Base
 {
     public function doRegister(Request $request)
     { 

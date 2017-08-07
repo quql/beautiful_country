@@ -6,7 +6,7 @@ use think\Controller;
 use think\Request;
 use think\Db;
 
-class BusRegister extends Controller
+class BusRegister extends Base
 {
     /**
      * 保存注册信息

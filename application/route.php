@@ -56,11 +56,15 @@ Route::get('admin/login','admin/login/index');
 Route::resource('admincate','admin/Cate');
 Route::post('admin/dologin','admin/login/dologin');
 //住宿分类管理
-Route::resource('HotelCate', 'admin/HotelCate');
+Route::resource('Hotelcate', 'admin/Hotelcate');
 //住宿管理
 Route::resource('hotel', 'admin/Hotel');
+//后台住宿管理
+Route::resource('hotellist', 'admin/Hotellist');
 //查看住宿图片
 Route::get('hotelshow','admin/hotel/show');
+//后台查看图片
+Route::get('hotelshowpic','admin/hotellist/show');
 //住宿图片管理
 Route::resource('Hotelpic', 'admin/HotelPic');
 //设置图片封面
@@ -71,11 +75,15 @@ Route::get('/hotelpicfirst/[:id]','admin/HotelPic/first');
 Route::resource('hotelDetail', 'index/hotel');
 
 //旅游线路分类管理
-Route::resource('RoutesCate', 'admin/RoutesCate');
+Route::resource('Routescate', 'admin/Routescate');
 //旅游线路管理
 Route::resource('Routes', 'admin/Routes');
+//后台旅游线路管理
+Route::resource('Routeslist', 'admin/Routeslist');
 //旅游路线图片
 Route::get('routesshow','admin/routes/show');
+//后台查看图片
+Route::get('routesshowpic','admin/routeslist/show');
 //旅游路线图片管理
 Route::resource('Routespic', 'admin/RoutesPic');
 //设置旅游路线图片封面
@@ -112,18 +120,39 @@ Route::get('consultation','index/Consultation/index');
 //修改商家密码
 Route::post('busEditPass/:id','admin/BusInfo/pass');
 //特产分类管理
-Route::resource('foodcate', 'admin/FoodCate');
+Route::resource('foodcate', 'admin/Foodcate');
 //特产管理
 Route::resource('foodhandle', 'admin/Food');
+//后台特产管理
+Route::resource('foodlist', 'admin/Foodlist');
 //查看特产图片
-Route::get('foodshow','admin/food/show');
+Route::get('foodshow','admin/Food/show');
+//后台查看图片
+Route::get('foodpicshow','admin/Foodlist/show');
 //特产图片管理
 Route::resource('foodpic', 'admin/FoodPic');
 //设置图片封面
 Route::get('/foodpicfirst/[:id]','admin/FoodPic/first');
 
+//景区分类管理
+Route::resource('scenerycate', 'admin/Scenerycate');
+//景区管理
+Route::resource('scenery', 'admin/Scenery');
 
+//后台管理景区
+Route::resource('scenerylist', 'admin/Scenerylist');
+//查看景区图片
+Route::get('sceneryshow','admin/scenery/show');
+//后台查看图片
+Route::get('sceneryshowpic','admin/scenerylist/show');
+//景区图片管理
+Route::resource('scenerypic', 'admin/SceneryPic');
+//设置图片封面
+Route::get('/Scenerypicfirst/[:id]','admin/SceneryPic/first');
 //商家后台
+
+
+
 //未处理订单
 Route::get('unorder', 'admin/BusOrder/unorder');
 //未发货订单
@@ -134,6 +163,9 @@ Route::get('diliver', 'admin/BusOrder/diliver');
 Route::get('done', 'admin/BusOrder/done');
 //被取消订单
 Route::get('cancel', 'admin/BusOrder/cancel');
+
+//显示列表页
+Route::get('/shoplist/[:id]', 'index/Index/read');
 
 return [
 //    '__pattern__' => [

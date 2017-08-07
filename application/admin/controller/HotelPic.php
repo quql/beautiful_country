@@ -44,6 +44,7 @@ class HotelPic extends Bus
     public function save(Request $request)
     {
         $file = request()->file('img');
+
         if(empty($file)){
             $pic='1.jpg';
         }else{
@@ -56,7 +57,6 @@ class HotelPic extends Bus
 // 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
                 $pic= $info->getSaveName();
 // 输出 42a79759f284b767dfcb2a0197904287.jpg
-
             }else{
 // 上传失败获取错误信息
                 return $this->error('头像上传失败');

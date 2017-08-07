@@ -6,7 +6,7 @@ use think\Controller;
 use think\Request;
 use think\Db;
 
-class HotelCate extends Bus
+class Foodcate extends Admin
 {
     /**
      * 显示资源列表
@@ -44,9 +44,8 @@ class HotelCate extends Bus
         $data=[
             'c_id'=>$c_id,
             'h_name'=>$h_name,
-            'bus_id'=>$b_id
         ];
-        $result = Db::name('h_cate')->data($data)->insert();
+        $result = Db::name('food_cate')->data($data)->insert();
         if ($result > 0) {
             return $this->success('添加成功');
         } else {
@@ -64,19 +63,19 @@ class HotelCate extends Bus
     public function read($id)
     {
 
-        $b_id=cache('b_id');
-        $res = Db::table('ml_h_cate')->where('c_id',$id)->where('bus_id',$b_id)->select();
-        if(empty($res)){
-            $res=array(
-                array(
-                    'id'=>99999999,
-                  'c_id'=>$id,
-                   'h_name'=>'暂无分类'
-                ),
-            );
-        }
+        $res = Db::table('ml_food_cate')->select();
+//        if(empty($res)){
+//            $res=array(
+//                array(
+//                    'id'=>99999999,
+//                  'c_id'=>$id,
+//                   'h_name'=>'此栏目下暂无分类,去添加吧~~~'
+//                ),
+//            );
+//        }
+        //dump($res);
         $this->assign('list',$res);
-        return view ('hotel/hotelcateList');
+        return view ('food/cateList');
     }
 
     /**
@@ -87,10 +86,11 @@ class HotelCate extends Bus
      */
     public function edit($id)
     {
-        $one = Db::table('ml_h_cate')->where('id',$id)->select();
+        $one = Db::table('ml_food_cate')->where('id',$id)->select();
         $data = $one['0'];
+        //dump($data);
         $this->assign('data',$data);
-        return view('hotel/hotelcateEdit');
+        return view('food/cateEdit');
     }
 
     /**
@@ -108,9 +108,9 @@ class HotelCate extends Bus
             'bus_id' => $p['bus_id'],
             'h_name' => $p['h_name'],
         ];
-        $result = Db::name('h_cate')->where('id', $id)->update($data);
+        $result = Db::name('food_cate')->where('id', $id)->update($data);
         if ($result) {
-            return $this->success('编辑成功', url('admin/HotelCate/read',['id'=>$p['c_id']]));
+            return $this->success('编辑成功', url('admin/FoodCate/read',['id'=>$p['c_id']]));
         } else {
             return $this->error('编辑失败');
         }
@@ -124,16 +124,16 @@ class HotelCate extends Bus
      */
     public function delete($id)
     {
-        $result = Db::name('h_cate')->delete($id);
+        $result = Db::name('food_cate')->delete($id);
 
         if ($result) {
             $info['status'] = true;
             $info['id'] = $id;
-            $info['info'] = 'ID为:' . $id . '的分类删除成功';
+            $info['info'] = '此分类删除成功';
         } else {
             $info['status'] = false;
             $info['id'] = $id;
-            $info['info'] = 'ID为:' . $id . '的分类删除失败,请重试!';
+            $info['info'] = '此分类删除失败,请刷新重试!';
         }
         return json($info);
     }

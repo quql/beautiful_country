@@ -6,7 +6,7 @@ use think\Controller;
 use think\Request;
 use think\Db;
 
-class Login extends Controller
+class Login extends Base
 {
     public function dologin(Request $request)
     {
@@ -25,7 +25,6 @@ class Login extends Controller
         $id = $has['0']['u_id'];
 
         if( $data['u_password']==$pass){
-            session_start();
             session('u_id',"$id");
             $this->success('登录成功','/');
         }else{

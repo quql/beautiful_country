@@ -5,7 +5,7 @@ namespace app\index\controller;
 use think\Controller;
 use think\Request;
 
-class Cart extends Controller
+class Cart extends Base
 {
     /**
      * 显示购物车页面

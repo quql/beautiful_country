@@ -17,7 +17,7 @@ class Routes extends Bus
     {
         $b_id = cache('b_id');
         $list = Db::table('ml_route')->where('bus_id',$b_id)->select();
-        $catelist = Db::table('ml_route_cate')->where('bus_id',$b_id)->select();
+        $catelist = Db::table('ml_route_cate')->select();
 //        var_dump($list);
 //        die;
 //       var_dump($catelist);
@@ -92,7 +92,8 @@ class Routes extends Bus
             'gd_hot'=>$hot,
             'gd_is_sale'=>$sale,
             'bus_id'=>$bus_id,
-            'h_cate'=>$p['h_cate']
+            'h_cate'=>$p['h_cate'],
+            'price' => $p['gd_price']
 
         ];
 
@@ -193,6 +194,7 @@ class Routes extends Bus
             'gd_abstract' => $info['gd_abstract'],
             'gd_hot'=>$hot,
             'gd_is_sale'=>$sale,
+            'price' => $info['gd_price']
         ];
 
         $newInfo2 = [
