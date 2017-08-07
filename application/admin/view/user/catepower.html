@@ -18,14 +18,14 @@
 
 <div class="col-lg-12">
 
-        <section class="panel">
-            <header class="panel-heading">
-                权限节点选项
-                <span class="tools pull-right">
+    <section class="panel">
+        <header class="panel-heading">
+            权限节点选项
+            <span class="tools pull-right">
                             <a class="fa fa-chevron-down" href="javascript:;"></a>
                             <a class="fa fa-times" href="javascript:;"></a>
                          </span>
-            </header>
+
             <button onclick="ck(1)">全选</button>　
             <button onclick="ck(2)">全取消</button>　
             <button onclick="ck(3)">反选</button>　
@@ -53,6 +53,8 @@
                 <br>
                 <br>
             </form>
+            </header>
+        </section>
 
 </div>
 
@@ -113,7 +115,12 @@
                 case 2:check[i].checked=false;break;
                 case 3:check[i].checked=!check[i].checked;break;
             }
+
+            console.log(i);
+            console.log(check[i]);
+
         }
     }
 </script>
 {/block}
+

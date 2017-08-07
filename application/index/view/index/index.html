@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,6 +36,7 @@
 
     <!--end-yjf-->
 
+<<<<<<< HEAD
 <!--yjf-->
  <!-- 会员登录注册 Modal -->
 <!-- Middle modal -->
@@ -78,6 +78,9 @@
         <!--</br>-->
       <!--</div>-->
     <!--</form>-->
+=======
+
+>>>>>>> origin/shine
 
     <style>
 
@@ -147,6 +150,7 @@
     <!--{css href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet" type="text/css"}-->
 </head>
 
+<<<<<<< HEAD
 
 
 
@@ -221,24 +225,10 @@
   </div>
   <script type="text/javascript" src="/static/app/index/js/login_login.js"></script>
   <script type="text/javascript" src="/static/app/index/js/login_form.js"></script>
+=======
+</head>
+>>>>>>> origin/shine
 
-
-  <script type="text/javascript" src="/static/app/index/js/login_config.js"></script>
-  <script type="text/javascript" src="/static/app/index/js/login_login_ajax.js"></script>
-
-</div>
-      <!--模态框中的内容结束-->
-    </div>
-  </div>
-</div>
-<!--yjf-->
-
-<!--<style>
-    #body{
-      background: url('images/bk.png');
-      background-size: 100% 5000px;
-    }
-</style>-->
 
 <body>
   <!--gt Wrapper Start-->  
@@ -449,6 +439,7 @@
                 <span class="icon-bar"></span>
               </button>
                 <ul>
+<<<<<<< HEAD
                   <li class="active"><a href="{:url('index/index/index')}">首页</a>
                     <!-- <ul>
                       <li><a href="index.html">Home 01</a></li>
@@ -459,6 +450,9 @@
                       <li><a href="index-video.html">Home Video Background</a></li>
                       <li><a href="index-one-page.html">Home One Page</a></li>
                     </ul> -->
+=======
+                  <li class="active"><a href="javascript:avoid(0);">首页</a>
+>>>>>>> origin/shine
                   </li>
 
                   <li><a href="{:url('/shoplist/4')}">住宿</a>
@@ -1564,7 +1558,12 @@
   <!--聊天室-->
 
   {block name='myjs'}
+<<<<<<< HEAD
   <!--<script type="text/javascript" src="/static/app/index/js/socket.io.js"></script>-->
+=======
+  <!--聊天室-->
+  <script type="text/javascript" src="/static/app/index/js/socket.io.js"></script>
+>>>>>>> origin/shine
   <script type="text/javascript">
       $('.online').click(function(){
           $('#chat').css('display','block');
@@ -1698,80 +1697,81 @@
             p1.innerHTML = ' × 请输入1-12位的数字、字母或下划线组成的店铺名字';
             p1.style.color = 'red';
             return false;
-        }else{
+        } else {
             p1.style.color = '#0a0';
             p1.innerHTML = '√ ';
         }
 
-        var person=document.getElementById('inputPerson').value;
-        var p2=document.getElementById('p2');
+        var person = document.getElementById('inputPerson').value;
+        var p2 = document.getElementById('p2');
         //验证负责人是否符合 6-12位的数字字母下划线
-        if (person.match(/^\w{1,12}$/)===null) {
-            p2.innerHTML='× 请输入1-12位的数字、字母或下划线组成的名字';
-            p2.style.color='red';
+        if (person.match(/^\w{1,12}$/) === null) {
+            p2.innerHTML = '× 请输入1-12位的数字、字母或下划线组成的名字';
+            p2.style.color = 'red';
             return false;
-        }else{
+        } else {
             p2.style.color = '#0a0';
             p2.innerHTML = '√ ';
         }
         //密码
-        var pass=document.getElementById('inputPass').value;
-        var p3=document.getElementById('p3');
+        var pass = document.getElementById('inputPass').value;
+        var p3 = document.getElementById('p3');
         //验证密码是否符合 6-18位的数字
-        if (pass.match(/^\w{6,18}$/)===null) {
-            p3.innerHTML=' × 请输入6-18位的数字、字母或下划线组成的密码';
-            p3.style.color='red';
+        if (pass.match(/^\w{6,18}$/) === null) {
+            p3.innerHTML = ' × 请输入6-18位的数字、字母或下划线组成的密码';
+            p3.style.color = 'red';
             return false;
-        }else{
+        } else {
             p3.style.color = '#0a0';
             p3.innerHTML = '√ ';
         }
         //确认密码
-        var repass=document.getElementById('inputRepass').value;
-        var p8=document.getElementById('p8');
-        if (pass!==repass) {
-            p8.innerHTML=' × 两次输入不一致';
-            p8.style.color='red';
+        var repass = document.getElementById('inputRepass').value;
+        var p8 = document.getElementById('p8');
+        if (pass !== repass) {
+            p8.innerHTML = ' × 两次输入不一致';
+            p8.style.color = 'red';
             return false;
-        }else{
+        } else {
             p8.style.color = '#0a0';
             p8.innerHTML = '√ ';
         }
         //手机号
-        var phone=document.getElementById('inputPhone').value;
-        var p4=document.getElementById('p4');
-        if (phone.match(/^\d{11}$/)===null) {
-            p4.innerHTML=' × 请输入11位数字的手机号码';
-            p4.style.color='red';
+        var phone = document.getElementById('inputPhone').value;
+        var p4 = document.getElementById('p4');
+        if (phone.match(/^\d{11}$/) === null) {
+            p4.innerHTML = ' × 请输入11位数字的手机号码';
+            p4.style.color = 'red';
             return false;
-        }else{
+        } else {
             p4.style.color = '#0a0';
             p4.innerHTML = '√ ';
         }
 
         //地区
-        var adress=document.getElementById('city-picker3').value;
-        var p5=document.getElementById('p5');
-        var arr=adress.split('/');
-        if (arr.length<2) {
-            p5.innerHTML=' × 请选择完整的省/市/区';
-            p5.style.color='red';
+        var adress = document.getElementById('city-picker3').value;
+        var p5 = document.getElementById('p5');
+        var arr = adress.split('/');
+        if (arr.length < 2) {
+            p5.innerHTML = ' × 请选择完整的省/市/区';
+            p5.style.color = 'red';
             return false;
-        }else{
+        } else {
             p5.style.color = '#0a0';
             p5.innerHTML = '√ ';
         }
 
         //同意条款
-        var checkbox=document.getElementById('checkbox');
-        var p7=document.getElementById('p7');
+        var checkbox = document.getElementById('checkbox');
+        var p7 = document.getElementById('p7');
         if (!checkbox.checked) {
-            p7.innerHTML=' × 请认真阅读并同意入驻规则';
-            p7.style.color='red';
+            p7.innerHTML = ' × 请认真阅读并同意入驻规则';
+            p7.style.color = 'red';
             return false;
             p7.style.color = '#0a0';
             p7.innerHTML = '√ 通过';
         }
+    }
 
       //ajax验证手机号和店铺名称
      // insertAjax(p1);

@@ -1,0 +1,211 @@
+{extend name="index/index"}
+
+{block name="main"}
+<!-- page heading start-->
+<div class="page-heading">
+    <h3>
+        产品评价管理
+    </h3>
+    <ul class="breadcrumb">
+        <li>
+            <a href="{:url('admin/index/index')}">首页</a>
+        </li>
+        <li class="active"> 评价列表</li>
+    </ul>
+</div>
+<!-- page heading end-->
+
+<!--body wrapper start-->
+<div class="wrapper">
+    <div class="row">
+        <div class="col-sm-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    评价列表
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-down"></a>
+                        <a href="javascript:;" class="fa fa-times"></a>
+                     </span>
+                </header>
+                <div class="panel-body">
+                    {if condition="empty($list)"}
+                    <p style="text-align: center">还没有用户评价哦%>_<%~~~</p>
+                    {else /}
+                    <div class="adv-table editable-table ">
+                    </div>
+                    <div class="space15"></div>
+                    <table class="table table-striped table-hover table-bordered" id="editable-sample" style="text-align: center">
+                        <thead>
+                        <tr >
+                            <th style="text-align: center">编号</th>
+                            <th style="text-align: center">产品</th>
+                            <th style="text-align: center">内容</th>
+                            <th style="text-align: center">状态</th>
+                            <th style="text-align: center">操作</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {volist name="list" id="v" key="k"}
+                        <tr>
+                            <td align="center" valign="middle">{$k}</td>
+                            <td align="center" valign="middle">{$v.c_gid}</td>
+                            <td align="center" valign="middle">
+                                <textarea name="" id="" cols="40" rows="1">{$v.c_text}</textarea>
+                            </td>
+                            <td align="center" valign="middle" id="ban">{if condition='($v.is_ban==0)'}已发布{else /}已禁用{/if}</td>
+                            <td class="col-md-4">
+                                <button class=" btn-info btn-sm" data-toggle="modal" data-target="#myModal">查看详情
+                                </button>
+                                <button class=" btn btn-danger del-btn btn-sm" bin-id="{$v.c_id}">禁用此评论</button>
+                            </td>
+                        </tr>
+                        {/volist}
+                        </tbody>
+                    </table>
+                    {/if}
+                </div>
+            </section>
+        </div>
+
+    </div>
+</div>
+<!--body wrapper end-->
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">评价详情</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>产品名称:</label>{$v.c_gid}
+                </div>
+                <div class="form-group">
+                    <label>用户:</label>{$v.c_uid}
+                </div>
+                <div class="form-group">
+                    <label>评价内容:</label><br>
+                    <textarea cols="30" rows="2">{$v.c_text}</textarea>
+                </div>
+                <div class="form-group">
+                    <label>评分:</label>{$v.c_score}
+                </div>
+                <div class="form-group">
+                    <label>评论时间:</label>{$v.c_time}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- main content end-->
+{/block}
+{block name="myjs"}
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="/static/app/admin/js/jquery-1.10.2.min.js"></script>
+<script src="/static/app/admin/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="/static/app/admin/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/static/app/admin/js/bootstrap.min.js"></script>
+<script src="/static/app/admin/js/modernizr.min.js"></script>
+<script src="/static/app/admin/js/jquery.nicescroll.js"></script>
+
+<!--data table-->
+<script type="text/javascript" src="/static/app/admin/js/data-tables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="/static/app/admin/js/data-tables/DT_bootstrap.js"></script>
+
+<!--common scripts for all pages-->
+<script src="/static/app/admin/js/scripts.js"></script>
+
+<!--script for editable table-->
+<script src="/static/app/admin/js/editable-table.js"></script>
+<script src="/static/app/admin/js/toastr.min.js"></script>
+
+<!-- END JAVASCRIPTS -->
+
+
+<script>
+    $(function () {
+        //触发禁用操作
+        $('.del-btn').click(function () {
+            var id = $(this).attr('bin-id');
+            //console.log($('#ban').html());
+            if ($('#ban').html() == '已禁用') {
+                alert('此评论已是禁用状态');
+                return;
+            } else if (confirm('确定要 [ 禁用 ] 此评论???')) {
+
+               updateAjax(id);
+            }
+        });
+    });
+
+
+    // 设置弹框参数
+    toastr.options = {
+        closeButton: true,
+        progressBar: true,
+        timeOut: "3000",
+        positionClass: "toast-top-full-width"
+    };
+
+    // 执行AJAX删除
+    function updateAjax(id) {
+        $.ajax({
+            type: 'get',
+            url: '/commentedit/' + id,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                if (data.status) {
+                    toastr.success(data.info);
+                    $('#ban').html('已禁用');
+                } else {
+                    toastr.error(data.info, 'FBI WARNING:');
+                }
+            },
+            error: function () {
+                // AJAX操作失败
+                alert('AJAX操作失败');
+            }
+        });
+    }
+
+//    // 执行AJAX查询单条数据
+//    function showAjax(id) {
+//        $.ajax({
+//            type: 'get',
+//            url: '/users/' + id,
+//            dataType: 'json',
+//            async: false,
+//            success: function (data) {
+//                console.log(data);
+//                // 遍历模态框
+//                if (data.status) {
+//                    // 标题填充
+//                    $('.modal-title u').html(data.title);
+//                    // 填充内容信息
+//                    var msg = data.datas.id + '/' + data.datas.name + '/' + data.datas.province;
+//                    $('.modal-body h3').html(msg);
+//                } else {
+//                    $('.modal-title u').html(data.title);
+//                    $('.modal-body h3').html(data.datas);
+//                }
+//
+//            },
+//            error: function () {
+//                // AJAX操作失败
+//                alert('AJAX操作失败');
+//            }
+//        });
+//    }
+//
+
+
+
+
+</script>
+{/block}
