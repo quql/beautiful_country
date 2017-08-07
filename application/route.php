@@ -168,10 +168,10 @@ Route::get('done', 'admin/BusOrder/done');
 //被取消订单
 Route::get('cancel', 'admin/BusOrder/cancel');
 
-<<<<<<< HEAD
+
 //显示列表页
 Route::get('/shoplist/[:id]', 'index/Index/read');
-=======
+
 //评论列表
 Route::get('commentlist','admin/Comment/index');
 Route::get('/commentedit/:id','admin/Comment/edit');
@@ -179,7 +179,6 @@ Route::get('/commentedit/:id','admin/Comment/edit');
 //前台的商家首页展示
 Route::get('busindexshow','index/Bus/index');
 
->>>>>>> origin/shine
 
 return [
 //    '__pattern__' => [

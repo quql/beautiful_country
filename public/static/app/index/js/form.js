@@ -117,16 +117,6 @@
         }
     });
 
-
-             },
-             error:function(data){
-
-             }
-        });
-    });
-});
-
-
 }; 
 
 var checkover=aa();
@@ -134,7 +124,6 @@ var checkover=aa();
 // var input2 =document.getElementById('phone').value.length;
 // var input3 =document.getElementById('password').value.length;
 // var input4 =document.getElementById('repassword').value.length;
-
 
 function checkuserform()
 {
