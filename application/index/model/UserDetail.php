@@ -7,6 +7,14 @@ use think\Model;
 
 class UserDetail extends Model
 {
+    //获取个人基本信息
+    public function getPoint($id = '')
+    {
+        $d = model('user_detail');
+        $point = $d->field('ud_point')->find($id);
+        return $point;
+    }
+
     //修改个人基本信息
     public function updateDetail($id = '', $data = '')
     {
@@ -22,6 +30,8 @@ class UserDetail extends Model
         $res = $img->allowField(true)->update($data,['ud_uid'=>$id]);
         return $res;
     }
+
+
 
 
 }

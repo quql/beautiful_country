@@ -28,45 +28,86 @@
                 <div class="col-sm-7" style="border: 1px solid #2DCC70;">
                     <form action="">
                     <div class="" style="padding: 10px;">
-                        <h4 class="h4">酒店名</h4>
+                        <h4 class="h4">(酒店名)</h4>
                         <hr>
                         <h5>预订信息</h5>
                         <hr>
                         <div class="">
                             <span class="col-sm-2">客房类型:</span>
-                            <span></span>
+                            <span>(标间...)</span>
                         </div>
                         <br><br>
                         <div class="">
-                            <span class="col-sm-2">入驻日期:</span>
-                            <span>jq插件</span>
+                            <span class="col-sm-2">入住日期:</span>
+                            <span>
+                               <form class="form-horizontal">
+                                 <fieldset>
+                                  <div class="control-group">
+                                    <div class="controls">
+                                     <div class="input-prepend input-group">
+                                       <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span><input type="text" readonly style="width: 200px" name="reservation" id="reservation" class="form-control" value="2014-5-21 - 2014-6-21" />
+                                     </div>
+                                    </div>
+                                  </div>
+                                 </fieldset>
+                               </form>
+                            </span>
+                        </div>
+                        <br>
+                        <div class="gt_product_left_wrap ml20" style="border: none;">
+                            <span>数量:</span>
+                            <div id="incdec">
+                                <input type="text" value="1" readonly="readonly" id="num" name="num"/>
+                                <div class="gt_increment">
+                                    <button type="button" id="up" >+</button>
+                                    <button type="button" id="down" > -</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<br>-->
+                        <div class="">
+                            <span class="col-sm-2">合计:</span>
+                            <span>xxx元</span>
                         </div>
                         <br>
                         <div class="">
-                            <span class="col-sm-2">选择数量:</span>
-                            <span>按钮</span>
+                            <span class="col-sm-2">赠送积分:</span>
+                            <span>xxx分</span>
                         </div>
                         <hr>
                         <h4>入住信息</h4>
                         <hr>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="input-group">
-                                      <span class="input-group-btn">
-                                        入住人
-                                      </span>
-                                    <input type="text" class="form-control" placeholder="">
-                                </div><!-- /input-group -->
-                            </div><!-- /.col-lg-6 -->
-                            <div class="col-lg-6">
-                                <div class="input-group">
-                                      <span class="input-group-btn">
-                                        手机号
-                                      </span>
-                                    <input type="text" class="form-control" placeholder="">
-                                </div><!-- /input-group -->
-                            </div><!-- /.col-lg-6 -->
-                        </div><!-- /.row -->
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">入住人</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"  placeholder="请输入联系人姓名">
+                                </div>
+                            </div>
+                            <br><br>
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">手机号码</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="" placeholder="请输入联系人手机号码">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox">同意提交订单即表示接受 《美丽乡村网协议》
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-success">立即支付</button>
+                                </div>
+                            </div>
+                            <br><br><br>
+                        </form>
                     </div>
                     </form>
                 </div>
@@ -76,6 +117,31 @@
 </div>
 
 {/block}
-{block name="js"}
+{block name="myjs"}
+<script type="text/javascript" src="/static/app/index/js/moment.js"></script>
+<script type="text/javascript" src="/static/app/index/js/daterangepicker.js"></script>
+<script>
+    $(function(){
+        $('#up').click(function(){
+            if($('#num').val() >= 99){
+                $('#num').val(99);
+            }
+            $('#num').val() + 1;
+        });
 
+
+        $('#down').click(function(){
+            if($('#num').val() <= 1){
+                $('#num').val(1);
+            }
+            $('#num').val() - 1;
+        });
+
+        $('#reservation').daterangepicker(null, function(start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+        });
+
+
+    })
+</script>
 {/block}

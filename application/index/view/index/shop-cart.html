@@ -1,8 +1,5 @@
 ﻿{extend name="index/index"}
 
-
-
-
 {block name="main"}
 <!--Sub Banner Wrap Start -->
     <div class="gt_sub_banner_bg default_width">
@@ -103,7 +100,7 @@
         //    点击改变数量
         $('#up').click(function(){
             if($('#num').val() >= 99){
-                $('#num').val() = 99;
+                $('#num').val(99);
             }
             $('#num').val() + 1;
             var n = parseInt($('#num').val()) + 1;
@@ -119,7 +116,7 @@
 
         $('#down').click(function(){
             if($('#num').val() <= 1){
-                $('#num').val() = 1;
+                $('#num').val(1);
             }
             $('#num').val() - 1;
             var n = parseInt($('#num').val()) - 1;
@@ -135,7 +132,7 @@
 
             if (confirm('您确定要狠心删除我吗?(Ｔ▽Ｔ)')){
                 var obj = $(this).parents('tr');
-                console.log(obj);
+                // console.log(obj);
                 delAjax(gid, obj);
             }
         });

@@ -22,6 +22,10 @@ class Personal extends Controller
         $list = $user->getUser($id);
         //dump($list);
 
+        $m = model('money');
+        $money = $m->getNum($id);
+        //dump($money);
+
         //加载用户收获的地址
         $add = model('userAddress');
         $data = $add->getAddress($id);
@@ -30,6 +34,7 @@ class Personal extends Controller
         return view('index/personal',[
            'list'=>$list,
            'data'=>$data,
+           'money'=>$money,
         ]);
 
 
@@ -222,6 +227,93 @@ class Personal extends Controller
             //echo $file->getError();
             return $this->error('上传失败,请重试~');
         }
+    }
+
+    //确认用户输入密码
+    public function checkpass()
+    {
+        //$info['status'] = true;
+        //return json($info);
+        //用户id
+        $id = input('get.')['id'];
+        //$p = input('get.')['pass'];
+        //代金券类型
+        $type = input('get.')['type'];
+        //代金券数量
+        $n = input('get.')['n'];
+        //消耗积分
+        $total = input('get.')['total'];
+
+        //$user = model('user');
+        //$pass = $user->getPass($id)['u_password'];
+
+        return json(input('get.'));exit;
+
+        //if ($p == $pass){
+            //更改积分
+            $d = model('userDetail');
+            //获取原积分
+            $point = $d->getPoint($id);
+            $point1 = (int)$point;
+            //减去消耗的积分
+            $p = $point1 - $total;
+            $p1 = [
+                'ud_point'=>$p
+            ];
+            //更改积分数据
+            $pres = $d->updateDetail($id, $p1);
+
+            $m = model('money');
+
+            if($type == 10){
+                //获取代金券信息
+                $num = $m->getNum($id, 'm_ten');
+                $num1 = (int)$num;
+                $rn = $num1 + $n;
+                $data = [
+                  'm_ten'=>$rn
+                ];
+                $mres = $m->updateNum($id, $data);
+            }elseif($type == 20){
+                //获取代金券信息
+                $num = $m->getNum($id, 'm_twenty');
+                $num1 = (int)$num;
+                $rn = $num1 + $n;
+                $data = [
+                    'm_twenty'=>$rn
+                ];
+                $mres = $m->updateNum($id, $data);
+            }elseif($type == 50){
+                //获取代金券信息
+                $num = $m->getNum($id, 'm_fifty');
+                $num1 = (int)$num;
+                $rn = $num1 + $n;
+                $data = [
+                    'm_fifty'=>$rn
+                ];
+                $mres = $m->updateNum($id, $data);
+            }elseif($type == 100){
+                //获取代金券信息
+                $num = $m->getNum($id, 'm_hundred');
+                $num1 = (int)$num;
+                $rn = $num1 + $n;
+                $data = [
+                    'm_hundred'=>$rn
+                ];
+                $mres = $m->updateNum($id, $data);
+            }
+
+            if ($mres){
+                $info['status'] = true;
+            }else{
+                $info['status'] = false;
+            }
+            return json($mres);
+        //}else{
+        //    return $this->error('密码不正确,请重试~');
+        //}
+
+
     }
 }
 

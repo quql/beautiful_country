@@ -71,8 +71,12 @@ Route::resource('hotelDetail', 'index/hotel');
 
 //个人中心
 Route::resource('per', 'index/personal');
-//商品详情页
+//验证密码
+Route::get('money', 'index/personal/checkpass');
+//普通商品详情页
 Route::get('goodsDetail', 'index/goodsInfo/detail');
+//普通商品详情页
+Route::get('routeDetail', 'index/route/index');
 //购物车页面,开启后无法从商品详情页跳转到购物车页
 Route::post('cart', 'index/cart/index');
 
