@@ -5,7 +5,7 @@
     <div class="gt_sub_banner_bg default_width">
         <div class="container">
             <div class="gt_sub_banner_hdg  default_width">
-                <h2>商品详情页</h2>
+                <h2>路线详情页</h2>
                 <h6>欢迎来到还没名字的网站~</h6>
             </div>
         </div>
@@ -17,7 +17,7 @@
         <div class="gt_breadcrumb_wrap default_width">
             <ul>
                 <li><a href="{:url('index/index/index')}">首页</a></li>
-                <li><a href="{:url('index/goodsInfo/detail')}">商品详情页</a></li>
+                <li><a href="{:url('index/goodsInfo/detail')}">路线详情页</a></li>
             </ul>
         </div>
       </div>
@@ -34,16 +34,15 @@
                   <div class="col-md-6">
                       <div class="gt_shop_slider_outer_wrap">
                           <div id="shop_detail_thumnail" class="shop_detail_thumnail">
-                              {volist name="photo" id="p"}
                               <ul class="slides">
                                   <li>
-                                      <img src="/uploads/goodsphoto/{$p['p0']}" width="140" height="140" />
+                                      <img src="/uploads/goodsphoto/" width="140" height="140" />
                                   </li>
                                   <li>
-                                      <img src="/uploads/goodsphoto/{$p['p1']}" width="140" height="140" />
+                                      <img src="/uploads/goodsphoto/" width="140" height="140" />
                                   </li>
                                   <li>
-                                      <img src="/uploads/goodsphoto/{$p['p2']}" width="140" height="140" />
+                                      <img src="/uploads/goodsphoto/" width="140" height="140" />
                                   </li>
                               </ul>
                           </div>
@@ -52,21 +51,19 @@
                               <div id="shop_detaild_slider">
                                   <ul class="slides">
                                       <li>
-                                          <img src="/uploads/goodsphoto/{$p['p3']}" width="470" height="470" />
+                                          <img src="/uploads/goodsphoto/" width="470" height="470" />
                                       </li>
                                   </ul>
                               </div>
-                              {/volist}
                           </div>
                       </div>
                   </div>
-                  {volist name="list" id="v"}
                     <form action="{:url('index/cart/index')}" method="post">
-                    <input type="hidden" name="id" value="{$v['gd_id']}">
-                    <input type="hidden" name="price" value="{:round($v['gd_price']*0.8, 2)}">
+                    <input type="hidden" name="id" value="">
+                    <input type="hidden" name="price" value="">
                   <div class="col-md-6">
                       <div class="gt_shop_detail_banner">
-                          <h4>{$v['gd_title']}</h4>
+                          <h4>路线标题,xx一日游</h4>
                           <div class="gt_shop_rating_wrap">
                               <ul>
                                   <li><a href="#"><i class="fa fa-star-half-full"></i></a></li>
@@ -78,15 +75,18 @@
                               <span>推荐</span>
                           </div>
                           <div class="gt_shop_price_wrap">
-                              <h4>¥{:round($v['gd_price']*0.8, 2)}</h4>
-                              <span>¥{$v['gd_price']}</span>
+                              <h4>¥会员价</h4>
+                              <span>¥原价</span>
                           </div>
                           <div class="gt_product_detail_des">
-                              <h5>商品简介</h5>
-                              <p>{$v['gd_abstract']}... </p>
+                              <h5>路线简介</h5>
+                              <p>..... </p>
+                          </div>
+                          <div class="gt_product_detail_des">
+                              <h5>咨询电话</h5>
+                              <p>021-xxxxxxx </p>
                           </div>
                           <div class="gt_product_left_wrap">
-                              <!--<h6>Avilable: 1 item left in stock</h6>-->
                               <span>数量:</span>
                               <div id="incdec">
                                   <input type="text" value="1" readonly="readonly" id="num" name="num"/>
@@ -125,10 +125,9 @@
                       <div id="my-tab-content" class="tab-content">
                           <div class="tab-pane active" id="product_detail">
                               <div class="gt_shop_tab_des">
-                                  <p>{$v['gd_details']}</p>
+                                  <p>商品详情...</p>
                               </div>
                           </div>
-                          {/volist}
                           <div class="tab-pane" id="sepecfication">
                               <div class="gt_shop_tab_des">
                                   <table class="table table-striped row" style="text-align: center">

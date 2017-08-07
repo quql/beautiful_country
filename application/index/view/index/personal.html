@@ -257,13 +257,60 @@
                   <h5>{$v['username']}</h5>
                   <span class="gt_hdg_span"></span>
                   <p>会员编号</p>
-                  <label>{$v['id']}</label>
+                  <label id="userid">{$v['id']}</label>
                 </div>
                 <div class="gt_d_author_sbj">
                   <h6>会员类型</h6>
                   <span>{$v['type']==0?'普通会员':'超级会员'}</span>
                   <h6>积分</h6>
-                  <span>{$v['point']}</span>
+                  <span><bold id="point">{$v['point']}</bold>分<button class="btn btn-sm btn-success modal-title" style="margin-left: 200px;" data-toggle="modal" data-target="#pointModal">兑换优惠券</button></span>
+                    <!--模态框-->
+                    <div class="modal fade" id="pointModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">选择优惠券</h4>
+                                </div>
+                                <div class="modal-body" style="border: none;">
+                                    <div class="row">
+                                        <div class="col-sm-1">
+                                            <img src="/static/app/index/images/yuan.png" style="max-width: 200%;">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <select class="form-control col-sm-5" style="height: 47px" id="choosePoint">
+                                                <option colum="m_ten" value="10">10元优惠券</option>
+                                                <option colum="m_twenty" value="20">20元优惠券</option>
+                                                <option colum="m_fifty" value="50">50元优惠券</option>
+                                                <option colum="m_hundred" value="100">100元优惠券</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-5 col-sm-offset-1">
+                                            <div class="gt_product_left_wrap ml20" style="border: none;margin: 0px 0px -2px;">
+                                                <span>数量:</span>
+                                                <div id="incdec">
+                                                    <input type="text" value="1" readonly="readonly" id="num" name="num"/>
+                                                    <div class="gt_increment">
+                                                        <button type="button" id="up" >+</button>
+                                                        <button type="button" id="down" > -</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-10 control-label">这将消耗您<strong id="total">10</strong>点积分</label>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="submit" class="btn btn-primary" id="yes">确认</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div>
+                    </div>
                 </div>
               </div>
               <div class="gt-usser-account-list">
@@ -344,6 +391,23 @@
                                     <p>
                                         {$v['email']}
                                     </p>
+                                </li>
+                                </li>
+                                <li>
+                                        <button type="button" class="btn btn-info" id="showCoupon">我的优惠券</button>
+                                        <br>
+                                        <div class="mt20" style="display: none" id="coupon">
+                                            {volist name="money" id="m"}
+                                            <div class="">
+                                                <img src="/static/app/index/images/money/10.png" width="100"> X {$m['m_ten']}
+                                                <img src="/static/app/index/images/money/20.png" width="100"> X {$m['m_twenty']}
+                                            </div>
+                                            <div class="mt20">
+                                                <img src="/static/app/index/images/money/50.png" width="100"> X {$m['m_fifty']}
+                                                <img src="/static/app/index/images/money/100.png" width="100"> X {$m['m_hundred']}
+                                            </div>
+                                            {/volist}
+                                        </div>
                                 </li>
                             </ul>
                         </div>
@@ -909,6 +973,93 @@
           $('#perForm').css('display','none');
           $('#addForm').css('display','block');
       });
+
+        //      优惠券
+        $('#up').click(function(){
+            if($('#num').val() >= 99){
+                $('#num').val(99);
+            }
+            $('#num').val() + 1;
+            var n = parseInt($('#num').val()) + 1;
+            var t = $('#choosePoint').val()*n;
+            $('#total').html(t);
+//            console.log($('#total').html(t));
+        });
+
+
+        $('#down').click(function(){
+            if($('#num').val() <= 1){
+                $('#num').val(1);
+            }
+            $('#num').val() - 1;
+            var n = parseInt($('#num').val()) - 1;
+            var t = $('#choosePoint').val()*n;
+            $('#total').html(t);
+//            console.log($('#total').html(t));
+
+        });
+
+        $('#choosePoint').change(function(){
+            var n = parseInt($('#num').val());
+            var t = $('#choosePoint').val()*n;
+            $('#total').html(t);
+//            console.log(n);
+//            console.log(t);
+        });
+
+//        优惠券模态框点击确认
+        $('#yes').click(function(){
+           if(parseInt($('#total').html()) > parseInt($('#point').html())){
+               alert('您的积分不足哦');
+           }else{
+//               用户id
+               var id = $('#userid').html();
+//               用户在输入框输入的值
+//               var text = prompt("请输入您的账户密码","password");
+//               用户选择的优惠券类型
+               var type = parseInt($('#choosePoint').val());
+//               优惠券数量
+               var n = parseInt($('#num').val());
+//               消耗的总积分
+               var total = parseInt($('#total').html());
+//               console.log(id, typeof(id));
+//               console.log(type, typeof(type));
+//               console.log(n, typeof(n));
+//               console.log(total, typeof(total));
+               checkpass(id, type, n, total);
+           }
+        });
+
+        function checkpass(id, type, n, total){
+            $.ajax({
+                type: 'get',
+                url: "index/personal/checkpass",
+                data: {
+                    "id":id,
+//                    "pass":text,
+                    "type":type,
+                    "n":n,
+                    "total":total
+                },
+                dataType: 'json',
+                success:function(data){
+                    alert(data);
+                    if (data.status){
+                        alert('优惠券兑换成功');
+                    }else{
+                        alert('优惠券兑换失败');
+                    }
+                },
+                error:function(){
+                    alert('操作失败,请重试...');
+                }
+            });
+        }
+
+//        显示现金券
+        $('#showCoupon').click(function(){
+           $('#coupon').slideToggle();
+        });
 
 //      提示信息
         //        验证用户名
