@@ -129,10 +129,10 @@ $(function(){
              dataType: "json",
              success: function(data){
 
-             };
+             },
              error:function(data){
 
-             };
+             }
         });
     });
 });

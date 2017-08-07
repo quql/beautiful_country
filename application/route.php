@@ -135,6 +135,14 @@ Route::get('done', 'admin/BusOrder/done');
 //被取消订单
 Route::get('cancel', 'admin/BusOrder/cancel');
 
+//评论列表
+Route::get('commentlist','admin/Comment/index');
+Route::get('/commentedit/:id','admin/Comment/edit');
+
+//前台的商家首页展示
+Route::get('busindexshow','index/Bus/index');
+
+
 return [
 //    '__pattern__' => [
 //        'name' => '\w+',

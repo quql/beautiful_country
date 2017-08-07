@@ -48,7 +48,7 @@ class FoodCate extends Bus
         ];
         $result = Db::name('food_cate')->data($data)->insert();
         if ($result > 0) {
-            return $this->success('添加成功','admin/FoodCate/read');
+            return $this->success('添加成功');
         } else {
             return $this->error('添加失败');
         }
