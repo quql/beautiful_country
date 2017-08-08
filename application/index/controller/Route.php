@@ -5,7 +5,7 @@ namespace app\index\controller;
 use think\Controller;
 use think\Request;
 
-class Route extends Controller
+class Route extends Base
 {
     /**
      * 显示路线详情
@@ -14,7 +14,42 @@ class Route extends Controller
      */
     public function index()
     {
-        return view('index/routeDetail');
+        //登录用户的id
+        $uid = 1;
+
+        //浏览店铺商家的id
+        $bid = 1;
+
+        //商品的id
+        $cid = 8;
+
+        //获取用户会员类型
+        $u = model('userDetail');
+        $type = $u->getDetail($uid)[0];
+        //dump($type);exit;
+
+        //获取路线的基本信息
+        $r = model('Route');
+        $route = $r->getDetail($cid);
+
+        //获取路线的详细信息
+        $d = model('RouteDetail');
+        $detail = $d->getDetail($cid);
+
+        //获取路线的图片
+        $p = model('RoutePic');
+        $photos = $p->getPhotos($cid);
+
+        //dump($route[0]);
+        //dump($detail[0]);
+        //dump($photos);
+
+        return view('index/routeDetail', [
+            'route'=>$route[0],
+            'detail'=>$detail[0],
+            'photos'=>$photos,
+            'type'=>$type,
+        ]);
     }
 
     /**

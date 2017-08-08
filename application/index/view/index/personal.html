@@ -1032,8 +1032,8 @@
 
         function checkpass(id, type, n, total){
             $.ajax({
-                type: 'get',
-                url: "index/personal/checkpass",
+                type: 'post',
+                url: "/money",
                 data: {
                     "id":id,
 //                    "pass":text,
@@ -1043,15 +1043,16 @@
                 },
                 dataType: 'json',
                 success:function(data){
-                    alert(data);
+//                    console.log(data);
                     if (data.status){
                         alert('优惠券兑换成功');
+                        history.go(0);
                     }else{
-                        alert('优惠券兑换失败');
+                        alert('优惠券兑换失败,请重试');
                     }
                 },
                 error:function(){
-                    alert('操作失败,请重试...');
+                    alert('优惠券兑换失败,请重试');
                 }
             });
         }

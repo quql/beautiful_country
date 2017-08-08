@@ -5,10 +5,10 @@ namespace app\index\controller;
 use think\Controller;
 use think\Request;
 
-class Hotel extends Base
+class Scenery extends Base
 {
     /**
-     * 显示酒店详情页
+     * 显示路线详情
      *
      * @return \think\Response
      */
@@ -18,35 +18,34 @@ class Hotel extends Base
         $uid = 1;
 
         //浏览店铺商家的id
-        $bid = 15;
+        $bid = 1;
 
         //商品的id
-        $cid = 4;
+        $cid = 8;
 
         //获取用户会员类型
         $u = model('userDetail');
         $type = $u->getDetail($uid)[0];
         //dump($type);exit;
 
-        //获取商品基本信息
-        $h = model('hotel');
-        $hotels = $h->getDetail($cid);
+        //获取路线的基本信息
+        $s = model('Scenery');
+        $scenery = $s->getDetail($cid);
 
-        //获取商品详细信息
-        $d = model('hotelDetail');
+        //获取路线的详细信息
+        $d = model('SceneryDetail');
         $detail = $d->getDetail($cid);
 
-        //获取商品图片
-        $p = model('hotelPic');
+        //获取路线的图片
+        $p = model('sceneryPic');
         $photos = $p->getPhotos($cid);
 
-        //dump($hotels[0]);
+        //dump($scenery[0]);
         //dump($detail[0]);
         //dump($photos);
 
-
-        return view('index/hotelDetail', [
-            'hotels'=>$hotels[0],
+        return view('index/sceneryDetail', [
+            'scenerys'=>$scenery[0],
             'detail'=>$detail[0],
             'photos'=>$photos,
             'type'=>$type,
@@ -72,9 +71,6 @@ class Hotel extends Base
     public function save(Request $request)
     {
         //
-        //dump($request);
-        //dump(input('post.'));
-        return view('index/hotelBook');
     }
 
     /**

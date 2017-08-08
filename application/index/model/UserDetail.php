@@ -3,10 +3,21 @@
 namespace app\index\model;
 
 use think\Db;
+use think\db\Query;
 use think\Model;
 
 class UserDetail extends Model
 {
+    //获取个人详细信息
+    public function getDetail($id = '')
+    {
+        $query = new Query();
+        $res = $query->table('ml_user_detail')
+            ->where("ud_uid",$id)
+            ->select();
+        return $res;
+    }
+
     //获取个人基本信息
     public function getPoint($id = '')
     {

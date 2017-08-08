@@ -71,8 +71,7 @@ Route::resource('Hotelpic', 'admin/HotelPic');
 Route::get('/hotelpicfirst/[:id]','admin/HotelPic/first');
 
 
-//前台住宿
-Route::resource('hotelDetail', 'index/hotel');
+
 
 //旅游线路分类管理
 Route::resource('Routescate', 'admin/Routescate');
@@ -93,19 +92,25 @@ Route::get('/routespicfirst/[:id]','admin/RoutesPic/first');
 //个人中心
 Route::resource('per', 'index/personal');
 //验证密码
-Route::get('money', 'index/personal/checkpass');
-//普通商品详情页
-Route::get('goodsDetail', 'index/goodsInfo/detail');
-//普通商品详情页
+Route::post('money', 'index/personal/checkpass');
+
+//详情页
+//食品详情页
+Route::get('foodDetail', 'index/food/detail');
+//酒店详情页
+Route::resource('hotelDetail', 'index/hotel');
+//路线详情页
 Route::get('routeDetail', 'index/route/index');
-//购物车页面,开启后无法从商品详情页跳转到购物车页
+//路线详情页
+Route::get('sceneryDetail', 'index/scenery/index');
+//购物车页面
+Route::post('cart', 'index/cart/index');
 
 
 //所有商铺管理
 Route::resource('buspower', 'admin/Buspower');
 
 
-Route::post('cart', 'index/cart/index');
 
 
 
