@@ -76,7 +76,8 @@ class BusInfo extends Bus
             'b_name' => $info['b_name'],
             'b_phone' => $info['b_phone'],
             'b_logo'=>$pic,
-            'b_email'=> $info['b_email']
+            'b_email'=> $info['b_email'],
+            'b_desc'=>$info['b_desc']
         ];
         $result = Db::name('business')->where('b_id', $id)->update($data);
         if ($result) {
