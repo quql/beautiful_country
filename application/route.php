@@ -178,7 +178,12 @@ Route::get('/commentedit/:id','admin/Comment/edit');
 
 //前台的商家首页展示
 Route::get('busindexshow','index/Bus/index');
-
+//轮播图管理
+Route::get('carousellist','admin/Carousel/index');
+Route::get('/carouseledit/:id','admin/Carousel/edit');
+Route::get('/carouselshow/:id','admin/Carousel/show');
+Route::get('/carouseldel/:id','admin/Carousel/delete');
+Route::post('/carouselupd/:id','admin/Carousel/update');
 
 return [
 //    '__pattern__' => [

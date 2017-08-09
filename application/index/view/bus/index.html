@@ -121,76 +121,33 @@
         <li>
             <div class="cd-full-width">
                 <div class="container-fluid js-tm-page-content" data-page-no="2" data-page-type="gallery">
+
                     <div class="tm-img-gallery-container">
-                        {for start="0" end="$num"}
+                        {volist name="ticket" id="vt" key='k'}
+                        {if condition='!empty($vt)'}
                         <div class="tm-img-gallery gallery-one">
                             <!-- Gallery One pop up connected with JS code below -->
                             <div class="tm-img-gallery-info-container">
-                                <h2 class="tm-text-title tm-gallery-title tm-white"><span class="tm-white">{$cate[$i]}</span></h2>
-                                <p class="tm-text">Curabitur quis tellus sed orci rhoncus fermentum. Praesent sollicitudin scelerisque nunc et vehicula. Sed ex magna, elementum ut volutpat ut, vehicula quis metus.
-                                </p>
+                                <h2 class="tm-text-title tm-gallery-title tm-white"><span class="tm-white">{$cate[$k-1]}</span></h2>
                             </div>
-                            {volist name="ticket[$i]" id="vt"}
+                            {volist name="vt" id="v"}
                             <div class="grid-item">
                                 <figure class="effect-ruby">
-                                    <a href="#"><img  src="/uploads/{$vt.pic}" alt="Image" class="img-fluid tm-img " style="height:420px"></a>
+                                    <a href="#"><img  src="/uploads/{$v.pic}" alt="Image" class="img-fluid tm-img " style="height:420px"></a>
                                     <figcaption>
-                                        <h2 class="tm-figure-title">{$vt.gd_title}</span></h2>
-                                        <p class="tm-figure-description">{$vt.gd_abstract}</p>
-                                        <!--<a href="/uploads/{$vt.pic}">点击查看详情</a>-->
-                                        <a href="{:url('index/goodsInfo/detail',['id'=>$vt.id,'c_id'=>'1'])}"><a href="/uploads/{$vt.pic}">点击查看详情</a></a>
+                                        <h2 class="tm-figure-title">{$v.gd_title}</span></h2>
+                                        <p class="tm-figure-description">{$v.gd_abstract}</p>
+                                        <!--<a href="/uploads/{$v.pic}">点击查看详情</a>-->
+                                        <a href="{:url('index/goodsInfo/detail',['id'=>$v.id,'c_id'=>'1'])}"><a href="/uploads/{$v.pic}">点击查看详情</a></a>
                                     </figcaption>
                                 </figure>
                             </div>
                             {/volist}
                         </div>
-                        {/for}
-                        {if condition='!empty($ticket1)'}
-                        <!--<div class="tm-img-gallery gallery-one">-->
-                            <!--&lt;!&ndash; Gallery One pop up connected with JS code below &ndash;&gt;-->
-                            <!--<div class="tm-img-gallery-info-container">-->
-                                <!--<h2 class="tm-text-title tm-gallery-title tm-white"><span class="tm-white">温泉景区</span></h2>-->
-                                <!--<p class="tm-text">Curabitur quis tellus sed orci rhoncus fermentum. Praesent sollicitudin scelerisque nunc et vehicula. Sed ex magna, elementum ut volutpat ut, vehicula quis metus.-->
-                                <!--</p>-->
-                            <!--</div>-->
-                            <!--{volist name="ticket1" id="vt"}-->
-                            <!--<div class="grid-item">-->
-                                <!--<figure class="effect-ruby">-->
-                                    <!--<a href="#"><img  src="/uploads/{$vt.pic}" alt="Image" class="img-fluid tm-img " style="height:420px"></a>-->
-                                    <!--<figcaption>-->
-                                        <!--<h2 class="tm-figure-title">{$vt.gd_title}</span></h2>-->
-                                        <!--<p class="tm-figure-description">{$vt.gd_abstract}</p>-->
-                                        <!--&lt;!&ndash;<a href="/uploads/{$vt.pic}">点击查看详情</a>&ndash;&gt;-->
-                                        <!--<a href="{:url('index/goodsInfo/detail',['id'=>$vt.id,'c_id'=>'1'])}"><a href="/uploads/{$vt.pic}">点击查看详情</a></a>-->
-                                    <!--</figcaption>-->
-                                <!--</figure>-->
-                            <!--</div>-->
-                            <!--{/volist}-->
-                        <!--</div>-->
                         {/if}
-                        {if condition='!empty($ticket2)'}
-                        <!--<div class="tm-img-gallery gallery-one">-->
-                            <!--&lt;!&ndash; Gallery One pop up connected with JS code below &ndash;&gt;-->
-                            <!--<div class="tm-img-gallery-info-container">-->
-                                <!--<h2 class="tm-text-title tm-gallery-title tm-white"><span class="tm-white">自然风光</span></h2>-->
-                                <!--<p class="tm-text">Curabitur quis tellus sed orci rhoncus fermentum. Praesent sollicitudin scelerisque nunc et vehicula. Sed ex magna, elementum ut volutpat ut, vehicula quis metus.-->
-                                <!--</p>-->
-                            <!--</div>-->
-                            <!--{volist name="ticket2" id="vt2"}-->
-                            <!--<div class="grid-item" >-->
-                                <!--<figure class="effect-ruby">-->
-                                    <!--<a href="#"><img  src="/uploads/{$vt2.pic}" alt="Image" class="img-fluid tm-img" style="height:420px"></a>-->
-                                    <!--<figcaption>-->
-                                        <!--<h2 class="tm-figure-title">{$vt2.gd_title}</span></h2>-->
-                                        <!--<p class="tm-figure-description">{$vt2.gd_abstract}</p>-->
-                                        <!--<a href="/uploads/{$vt2.pic}">View more</a>-->
-                                    <!--</figcaption>-->
-                                <!--</figure>-->
-                            <!--</div>-->
-                            <!--{/volist}-->
-                        <!--</div>-->
-                        {/if}
+                        {/volist}
                     </div>
+
                 </div>
             </div>
         </li>
@@ -199,54 +156,30 @@
         <li>
             <div class="cd-full-width">
                 <div class="container-fluid js-tm-page-content" data-page-no="3" data-page-type="gallery">
+                    {volist name="food" id="vf" key='k'}
+                    {if condition='!empty($vf)'}
                     <div class="tm-img-gallery-container tm-img-gallery-container-2">
-                        {if condition='!empty($food1)'}
                         <div class="tm-img-gallery gallery-two">
                             <!-- Gallery Two pop up connected with JS code below -->
-
                             <div class="tm-img-gallery-info-container">
-                                <h2 class="tm-text-title tm-gallery-title"><span class="tm-white">土特产</span></h2>
-                                <p class="tm-text"><span class="tm-white">Aenean nulla lorem, laoreet eu nibh et, lacinia ullamcorper dui. Nullam ut tincidunt odio. Morbi accumsan diam vel enim cursus, in dapibus eros tristique.</span>
-                                </p>
+                                <h2 class="tm-text-title tm-gallery-title"><span class="tm-white">{$cate_f[$k-1]}</span></h2>
                             </div>
-                            {volist name="food1" id="f1"}
+                            {volist name="vf" id="v"}
                             <div class="grid-item">
                                 <figure class="effect-ruby">
-                                    <a href=""><img src="/uploads/{$f1.pic}" alt="Image" class="img-fluid tm-img"></a>
+                                    <a href=""><img src="/uploads/{$v.pic}" alt="Image" class="img-fluid tm-img" height="300px" ></a>
                                     <figcaption>
-                                        <h2 class="tm-figure-title">{$f1.gd_title}</span></h2>
-                                        <p class="tm-figure-description">{$f1.gd_abstract}</p>
-                                        <a href="/uploads/{$f1.pic}">View more</a>
+                                        <h2 class="tm-figure-title">{$v.gd_title}</span></h2>
+                                        <p class="tm-figure-description">{$v.gd_abstract}</p>
+                                        <a href="/uploads/{$v.pic}">View more</a>
                                     </figcaption>
                                 </figure>
                             </div>
                             {/volist}
                         </div>
-                        {/if}
-                        {if condition='!empty($food2)'}
-                        <div class="tm-img-gallery gallery-two">
-                            <!-- Gallery Two pop up connected with JS code below -->
-
-                            <div class="tm-img-gallery-info-container">
-                                <h2 class="tm-text-title tm-gallery-title"><span class="tm-white">农产品</span></h2>
-                                <p class="tm-text"><span class="tm-white">Aenean nulla lorem, laoreet eu nibh et, lacinia ullamcorper dui. Nullam ut tincidunt odio. Morbi accumsan diam vel enim cursus, in dapibus eros tristique.</span>
-                                </p>
-                            </div>
-                            {volist name="food2" id="f2"}
-                            <div class="grid-item">
-                                <figure class="effect-ruby">
-                                    <a href=""><img src="/uploads/{$f2.pic}" alt="Image" class="img-fluid tm-img" height="400px"></a>
-                                    <figcaption>
-                                        <h2 class="tm-figure-title">{$f2.gd_title}</span></h2>
-                                        <p class="tm-figure-description">{$f2.gd_abstract}</p>
-                                        <a href="/uploads/{$f2.pic}">View more</a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            {/volist}
-                        </div>
-                        {/if}
                     </div>
+                    {/if}
+                    {/volist}
                 </div>
             </div>
         </li>
@@ -256,15 +189,14 @@
             <div class="cd-full-width">
                 <div class="container-fluid js-tm-page-content" data-page-no="4" data-page-type="gallery">
                     <div class="tm-img-gallery-container tm-img-gallery-container-3">
-                        {if condition='!empty($route1)'}
+                        {volist name="route" id="vr" key='k'}
+                        {if condition='!empty($vr)'}
                         <div class="tm-img-gallery gallery-three">
                             <!-- Gallery Two pop up connected with JS code below -->
                             <div class="tm-img-gallery-info-container">
-                                <h2 class="tm-text-title tm-gallery-title"><span class="tm-white">山庄路线</span></h2>
-                                <p class="tm-text"><span class="tm-white">Nulla efficitur, ligula et imperdiet volutpat, lacus tortor tempus massa, eget tempus quam nibh vel nulla. Maecenas purus sem, lobortis id odio in, ultrices scelerisque sapien.</span>
-                                </p>
+                                <h2 class="tm-text-title tm-gallery-title"><span class="tm-white">{$cate_r[$k-1]}</span></h2>
                             </div>
-                            {volist name="route1" id="r1"}
+                            {volist name="vr" id="r1"}
                             <div class="grid-item">
                                 <figure class="effect-ruby">
                                     <img src="/uploads/{$r1.pic}" alt="Image" class="img-fluid tm-img" height="400px">
@@ -278,28 +210,7 @@
                             {/volist}
                         </div>
                         {/if}
-                        {if condition='!empty($route2)'}
-                        <div class="tm-img-gallery gallery-three">
-                            <!-- Gallery Two pop up connected with JS code below -->
-                            <div class="tm-img-gallery-info-container">
-                                <h2 class="tm-text-title tm-gallery-title"><span class="tm-white">渔乡路线</span></h2>
-                                <p class="tm-text"><span class="tm-white">Nulla efficitur, ligula et imperdiet volutpat, lacus tortor tempus massa, eget tempus quam nibh vel nulla. Maecenas purus sem, lobortis id odio in, ultrices scelerisque sapien.</span>
-                                </p>
-                            </div>
-                            {volist name="route2" id="r2"}
-                            <div class="grid-item">
-                                <figure class="effect-ruby">
-                                    <img src="/uploads/{$r2.pic}" alt="Image" class="img-fluid tm-img" height="400px">
-                                    <figcaption>
-                                        <h2 class="tm-figure-title">{$r2.gd_title}</h2>
-                                        <p class="tm-figure-description">{$r2.gd_abstract}</p>
-                                        <a href="/uploads/{$r2.pic}">View more</a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            {/volist}
-                        </div>
-                        {/if}
+                        {/volist}
                     </div>
                 </div>
             </div>
@@ -345,18 +256,17 @@
             <div class="cd-full-width">
                 <div class="container-fluid js-tm-page-content" data-page-no="4" data-page-type="gallery">
                     <div class="tm-img-gallery-container tm-img-gallery-container-3">
-                        {if condition='!empty($hotel1)'}
+                        {volist name="hotel" id="vh" key='k'}
+                        {if condition='!empty($vh)'}
                         <div class="tm-img-gallery gallery-three">
                             <!-- Gallery Two pop up connected with JS code below -->
                             <div class="tm-img-gallery-info-container">
-                                <h2 class="tm-text-title tm-gallery-title"><span class="tm-white">农家乐</span></h2>
-                                <p class="tm-text"><span class="tm-white">Nulla efficitur, ligula et imperdiet volutpat, lacus tortor tempus massa, eget tempus quam nibh vel nulla. Maecenas purus sem, lobortis id odio in, ultrices scelerisque sapien.</span>
-                                </p>
+                                <h2 class="tm-text-title tm-gallery-title"><span class="tm-white">{$cate_h[$k-1]}</span></h2>
                             </div>
-                            {volist name="hotel1" id="h1"}
+                            {volist name="vh" id="h1"}
                             <div class="grid-item">
                                 <figure class="effect-ruby">
-                                    <img src="/uploads/{$h1.pic}" alt="Image" class="img-fluid tm-img" width='500px' height="400px">
+                                    <img src="/uploads/{$h1.pic}" alt="Image" class="img-fluid tm-img" width='500px' height="400px" style="'margin-left:10px">
                                     <figcaption>
                                         <h2 class="tm-figure-title">{$h1.gd_title}</h2>
                                         <p class="tm-figure-description">{$h1.gd_abstract}</p>
@@ -367,50 +277,7 @@
                             {/volist}
                         </div>
                         {/if}
-                        {if condition='!empty($hotel2)'}
-                        <div class="tm-img-gallery gallery-three">
-                            <!-- Gallery Two pop up connected with JS code below -->
-                            <div class="tm-img-gallery-info-container">
-                                <h2 class="tm-text-title tm-gallery-title"><span class="tm-white">酒店</span></h2>
-                                <p class="tm-text"><span class="tm-white">Nulla efficitur, ligula et imperdiet volutpat, lacus tortor tempus massa, eget tempus quam nibh vel nulla. Maecenas purus sem, lobortis id odio in, ultrices scelerisque sapien.</span>
-                                </p>
-                            </div>
-                            {volist name="hotel2" id="h2"}
-                            <div class="grid-item">
-                                <figure class="effect-ruby">
-                                    <img src="/uploads/{$h2.pic}" alt="Image" class="img-fluid tm-img" width='500px' height="400px">
-                                    <figcaption>
-                                        <h2 class="tm-figure-title">{$h2.gd_title}</h2>
-                                        <p class="tm-figure-description">{$h2.gd_abstract}</p>
-                                        <a href="/uploads/{$h2.pic}">View more</a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            {/volist}
-                        </div>
-                        {/if}
-                        {if condition='!empty($hotel3)'}
-                        <div class="tm-img-gallery gallery-three">
-                            <!-- Gallery Two pop up connected with JS code below -->
-                            <div class="tm-img-gallery-info-container">
-                                <h2 class="tm-text-title tm-gallery-title"><span class="tm-white">民宿</span></h2>
-                                <p class="tm-text"><span class="tm-white">Nulla efficitur, ligula et imperdiet volutpat, lacus tortor tempus massa, eget tempus quam nibh vel nulla. Maecenas purus sem, lobortis id odio in, ultrices scelerisque sapien.</span>
-                                </p>
-                            </div>
-                            {volist name="hotel3" id="h3"}
-                            <div class="grid-item">
-                                <figure class="effect-ruby">
-                                    <img src="/uploads/{$h3.pic}" alt="Image" class="img-fluid tm-img" width='500px' height="400px">
-                                    <figcaption>
-                                        <h2 class="tm-figure-title">{$h3.gd_title}</h2>
-                                        <p class="tm-figure-description">{$h3.gd_abstract}</p>
-                                        <a href="/uploads/{$h3.pic}">View more</a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            {/volist}
-                        </div>
-                        {/if}
+                        {/volist}
                     </div>
                 </div>
             </div>
