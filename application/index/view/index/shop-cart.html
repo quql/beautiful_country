@@ -5,8 +5,8 @@
     <div class="gt_sub_banner_bg default_width">
         <div class="container">
             <div class="gt_sub_banner_hdg  default_width">
-                <h2>Shop Detail</h2>
-                <h6>Welcome To Educskill</h6>
+                <h2>我的购物车</h2>
+                <h6>欢迎来到还没名字的网站~</h6>
             </div>
         </div>
     </div>
@@ -27,7 +27,42 @@
         <!--Shop Wrap Start-->
         <section class="gt_shop_detail_bg gt_courses_bg">
             <div class="container">
-                <table class="table table-hover " id="mytable">
+                <div class="row col-sm-12">
+                    <form action="index/order/index" method="post" onsubmit="return check()">
+                        <!--传递用户id-->
+                        <input type="hidden" name="uid" value="{$data[0]['ca_uid']}">
+                        <!--商品id-->
+                        <input type="hidden" name="gid" value="{$data[0]['ca_gdid']}">
+                        <!--商品单价-->
+                        <input type="hidden" name="price" value="{$data[0]['ca_price']}">
+                        <!--传递商品类型-->
+                        <input type="hidden" name="type" value="{$type}">
+                        <!--传递购物车id-->
+                        <input type="hidden" name="cid" value="{$cid}">
+                        <p style="display: none" id="base">{$point}</p>
+                        <!--总积分-->
+                        <input type="hidden" name="point" id="point">
+                    <table class="table table-striped ml20">
+                        <tr style="line-height: inherit">
+                            <th style="text-align: center" class="col-sm-1"></th>
+                            <th style="text-align: center" class="col-sm-3">收货人</th>
+                            <th style="text-align: center" class="col-sm-3">联系电话</th>
+                            <th style="text-align: center">收货地址</th>
+                        </tr>
+                        {volist name="address" id="a"}
+                        <tr style="line-height: 20px">
+                            <td style="text-align: center;line-height: 31px">
+                                <input type="radio" name="aid" value="{$a['ua_id']}" class="rid" checked>
+                            </td>
+                            <td style="text-align: center;line-height: 31px">{$a['ua_name']}</td>
+                            <td style="text-align: center;line-height: 31px">{$a['ua_phone']}</td>
+                            <td style="text-align: center;line-height: 31px">{$a['ua_address']}{$a['ua_street']}</td>
+                        </tr>
+                        {/volist}
+                    </table>
+                </div>
+                <div class="mt20">
+                <table class="table table-hover" id="mytable">
                     <tr>
                         <th style="text-align: center;"></th>
                         <th style="text-align: center;">商品图片</th>
@@ -38,41 +73,45 @@
                         <th style="text-align: center;">总价 (元)</th>
                         <th style="text-align: center;">操作</th>
                     </tr>
+
                     <tr>
                         <td style="text-align: center;line-height: 62px;">1</td>
                         {volist name="photo" id="p"}
                         <td style="text-align: center;line-height: 62px;">
-                            <img src="/uploads/goodsPhoto/{$p['p0']}" class="img-rounded" alt="" width="100" height="56">
+                            <img src="/uploads/{$p['p0']}" class="img-rounded" alt="" width="100" height="56">
                         </td>
                         {/volist}
                         {volist name="res" id="r"}
                         <td style="text-align: center;line-height: 62px;">{$r['gd_title']}</td>
-                        <td style="text-align: center;line-height: 62px;">goodsType</td>
+                        <td style="text-align: center;line-height: 62px;">{$cate}</td>
                         {/volist}
                         {volist name="data" id="d"}
                         <td style="text-align: center;line-height: 62px;" id="price">{$d['ca_price']}</td>
                         <td style="text-align: center;">
                             <div class="gt_product_left_wrap" style="border-bottom: none;margin-left: 0px;margin: 8px 0px -12px">
-                                <div id="incdec"style="margin-left: 54px;">
-                                    <input type="text" value="{$d['ca_num']}" readonly="readonly" id="num"/>
+                                <div id="incdec" style="margin-left: 54px;">
+                                    <!--传递数量-->
+                                    <input type="text" value="{$d['ca_num']}" readonly="readonly" id="num" name="num"/>
                                     <div class="gt_increment">
-                                        <button id="up" >+</button>
-                                        <button id="down" > -</button>
+                                        <button type="button" id="up" >+</button>
+                                        <button type="button" id="down" > -</button>
                                     </div>
                                 </div>
                             </div>
                         </td>
-
+                            <input type="hidden" name="total" id="passtotal">
                         <td style="text-align: center;line-height: 62px;" id="total"></td>
                         <td style="text-align: center;line-height: 62px;">
-                            <button class="btn btn-danger glyphicon glyphicon-trash" data-id="{$cid}" id="del"></button>
+                            <button type="button" class="btn btn-danger glyphicon glyphicon-trash" data-id="{$cid}" id="del"></button>
                         </td>
                     </tr>
                     {/volist}
                 </table>
-                <div style="margin-left: 850px;">
-                    <button class="btn btn-info btn-lg ml30">再去逛逛</button>
-                    <button class="btn btn-success btn-lg ml30">去结算</button>
+                </div>
+                <div style="margin-left: 850px">
+                        <a class="btn btn-info btn-lg ml30">再去逛逛</a>
+                        <button type="submit" class="btn btn-success btn-lg ml30" id="settle">去结算</button>
+                    </form>
                 </div>
             </div>
             <!--Content Wrap Start-->
@@ -86,43 +125,59 @@
 {js href="/static/app/index/js/toastr.min.js"}
 <script>
 
-
-
     //    计算总价
-    $(function(){
+        $(function(){
 //        console.log($('#price').html());
 //        console.log($('#num').val());
         var num = $('#price').html()*$('#num').val();
         num = num.toFixed(2)
         $('#total').html(num);
+        $('#passtotal').val(num);
+//        计算积分
+        var p1 = $('#base').html()*$('#num').val();
+        $('#point').val(p1);
 //        console.log($('#total').html(num));
 
         //    点击改变数量
         $('#up').click(function(){
             if($('#num').val() >= 99){
                 $('#num').val(99);
+            }else{
+                $('#num').val() + 1;
             }
-            $('#num').val() + 1;
-            var n = parseInt($('#num').val()) + 1;
+            var n = parseInt($('#num').val());
 //        console.log(n);
             var t = $('#price').html()*n;
 //        console.log(t);
             t = t.toFixed(2);
             $('#total').html(t);
-//        console.log($('#total').html(t));
-
+            $('#passtotal').val(t);
+//            console.log($('#passtotal').val());
+            var p = $('#base').html();
+            var point = p*n;
+            $('#point').val(point);
+//            console.log(point);
         });
 
 
         $('#down').click(function(){
             if($('#num').val() <= 1){
                 $('#num').val(1);
+            }else{
+                $('#num').val() - 1;
             }
-            $('#num').val() - 1;
-            var n = parseInt($('#num').val()) - 1;
+            var n = parseInt($('#num').val());
+//            console.log(n);
             var t = $('#price').html()*n;
             t = t.toFixed(2);
             $('#total').html(t);
+            $('#passtotal').val(t);
+//            console.log($('#passtotal').val());
+            var p = $('#base').html();
+            var point = p*n;
+            $('#point').val(point);
+//            console.log(point);
+
         });
 
 //    执行删除
@@ -155,7 +210,7 @@
                 data: {"id":id},
                 dataType: 'json',
                 success:function(data){
-//            alert(data);
+//                    alert(data);
                     if (data.status){
                         toastr.success(data.info);
                         obj.remove();
@@ -168,6 +223,37 @@
                 }
             });
         }
+
+
+        function check(){
+//            var v = $('input:[name="aid"]:checked').val();
+//            if (v == null){
+//                alert("收货地址不能为空哦~");
+//                return false;
+//            }
+//            return true;
+
+//            if($("input[name='aid']:checked").size()==0){
+//                alert("收货地址不能为空哦~");
+//                return false;
+//            }else{
+//                return true;
+//            }
+
+//            if($(".rid").is(':checked')) {
+//                return true;
+//            }else{
+//                return false;
+//            }
+
+//              if($('.rid').is(':checked')){
+//                return true;
+//            }else{
+//                return false;
+//            }
+
+        }
+
     });
 </script>
 {/block}

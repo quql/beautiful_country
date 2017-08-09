@@ -30,22 +30,30 @@
     <section class="gt_shop_detail_bg gt_courses_bg">
         <div class="container">
             <div class="gt_product_detail_border_wrap">
-                <div class=""><h3 class="h3">酒店名称</h3></div>
+                <div class=""><h3 class="h3">{$hotels.gd_title}</h3></div>
                 <hr>
                 <div class="">
                     <span class="glyphicon glyphicon-flag"></span>
-                    <span class="ml20">酒店地址</span>
+                    <span class="ml20">{$detail.gd_address}</span>
                 </div>
                 <br>
                 <div class="">
                     <span class="glyphicon glyphicon-earphone"></span>
-                    <span class="ml20">酒店客服联系电话</span>
+                    <span class="ml20">{$detail.gd_phone}</span>
                 </div>
                 <br>
                 <div class="">
                     <span style="color: #2DCC70;">服务</span>
-                    <span class="ml20"><img src="/static/app/index/images/wifi.png" width="20" alt="" style="display: inline"></span>
-                    <span class="ml20"><img src="/static/app/index/images/park.png" width="17" alt="" style="display: inline"></span>
+                    <span class="ml20">
+                        {if condition="$detail.is_wifi eq 1"}
+                        <img src="/static/app/index/images/wifi.png" width="20" alt="" style="display: inline">
+                        {/if}
+                    </span>
+                    <span class="ml20">
+                        {if condition="$detail.is_park eq 1"}
+                        <img src="/static/app/index/images/park.png" width="17" alt="" style="display: inline">
+                        {/if}
+                    </span>
                 </div>
                 <hr>
                 <!--<br>-->
@@ -53,22 +61,19 @@
                 <div class="sec bnspic">
                     <div class="big_pic">
                         <ul>
-                            <li class="on"><a href="javascript:void(0);"><img src="/static/app/index/images/ookamikodomo.jpg" title="" /><span class="txt">酒店房间图片说明1</span></a></li>
-                            <li><a href="javascript:void(0);"><img src="/static/app/index/images/hotarubi.jpg" title="" /><span class="txt">酒店房间图片说明2</span></a></li>
-                            <li><a href="javascript:void(0);"><img src="/static/app/index/images/tsuioku.jpg" title="" /><span class="txt">酒店房间图片说明3</span></a></li>
-                            <li><a href="javascript:void(0);"><img src="/static/app/index/images/tokikake.jpg" title="" /><span class="txt">酒店房间图片说明4</span></a></li>
-                            <li><a href="javascript:void(0);"><img src="/static/app/index/images/aura.jpg" title="" /><span class="txt">酒店房间图片说明5</span></a></li>
-                            <li><a href="javascript:void(0);"><img src="/static/app/index/images/neragaku.jpg" title="" /><span class="txt">酒店房间图片说明6</span></a></li>
+                            {volist name="photos" id="p"}
+                            <li class="on"><a href="javascript:void(0);">
+                                <img src="/uploads/{$p.pic}" title="" />
+                                <span class="txt">酒店房间图片说明2</span></a>
+                            </li>
+                            {/volist}
                         </ul>
                     </div><!-- /big_pic -->
                     <div class="small_pic clearfix">
                         <ul>
-                            <li class="on"><a href="javascript:void(0);"><img src="/static/app/index/images/ookamikodomo_.jpg" alt="图片说明" /></a></li>
-                            <li><a href="javascript:void(0);"><img src="/static/app/index/images/hotarubi_.jpg" alt="图片说明" /></a></li>
-                            <li><a href="javascript:void(0);"><img src="/static/app/index/images/tsuioku_.jpg" alt="图片说明" /></a></li>
-                            <li><a href="javascript:void(0);"><img src="/static/app/index/images/tokikake_.jpg" alt="图片说明" /></a></li>
-                            <li><a href="javascript:void(0);"><img src="/static/app/index/images/aura_.jpg" alt="图片说明" /></a></li>
-                            <li><a href="javascript:void(0);"><img src="/static/app/index/images/neragaku_.jpg" alt="图片说明" /></a></li>
+                            {volist name="photos" id="v"}
+                            <li class="on"><a href="javascript:void(0);"><img src="/uploads/{$v.pic}" alt="图片说明" /></a></li>
+                            {/volist}
                         </ul>
                     </div><!-- /small_pic -->
                 </div><!--图片展示-->
@@ -89,9 +94,9 @@
                             <th class="col-sm-2" style="text-align: center">- 预订 -</th>
                         </tr>
                         <tr>
-                            <td style="text-align: center;line-height: 40px">标准间</td>
-                            <td style="text-align: center;line-height: 40px">¥ 998</td>
-                            <td style="text-align: center;line-height: 40px;color: #FF8C00;">¥ 899</td>
+                            <td style="text-align: center;line-height: 40px">{$hotels['gd_abstract']}</td>
+                            <td style="text-align: center;line-height: 40px">¥ {$detail['gd_price']}</td>
+                            <td style="text-align: center;line-height: 40px;color: #FF8C00;">¥ {$detail['gd_discount']}</td>
                             <td style="text-align: center;line-height: 40px">
                                 <button class="btn" type="submit" style="background-color:#FF8C00;color: #ffffff;">预订</button>
                             </td>
@@ -111,14 +116,14 @@
             <ul id="tabs" data-tabs="tabs">
                 <li class="active"><a data-toggle="tab" href="#product_detail">酒店详情</a></li>
                 <li><a data-toggle="tab" href="#sepecfication">评论</a></li>
-                <li><a data-toggle="tab" href="#customer_review">交通指引</a></li>
+                <!--<li><a data-toggle="tab" href="#customer_review">交通指引</a></li>-->
             </ul>
         </div>
 
         <div id="my-tab-content" class="tab-content">
             <div class="tab-pane active" id="product_detail">
                 <div class="gt_shop_tab_des">
-                    <p>酒店简介...</p>
+                    <p>{$detail['gd_details']}</p>
                 </div>
             </div>
             <div class="tab-pane" id="sepecfication">
@@ -168,7 +173,7 @@
             <div class="tab-pane" id="customer_review">
                 <div class="gt_shop_tab_des">
                     <p>
-                        交通指引信息...
+                        <!--交通指引信息...-->
                     </p>
                 </div>
             </div>

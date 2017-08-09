@@ -16,6 +16,7 @@ class Personal extends Base
      */
     public function index()
     {
+        //用户id
         $id = '1';
         //获取用户基本信息
         $user = model('user');
@@ -31,12 +32,30 @@ class Personal extends Base
         $data = $add->getAddress($id);
         //dump($data);
 
-        return view('index/personal',[
-           'list'=>$list,
-           'data'=>$data,
-           'money'=>$money,
-        ]);
+        //处理订单信息
+        $o = model('order');
+        //加载未发货订单
+        $un = $o->unOrder($id);
+        //dump($un);
 
+        //加载已发货订单
+        $diliver = $o->diliver($id);
+        //dump($diliver);
+
+        //加载已完成订单
+        $done = $o->done($id);
+        dump($done);
+
+
+
+        return view('index/personal',[
+            'list'=>$list,
+            'data'=>$data,
+            'money'=>$money,
+            'un'=>$un,
+            'diliver'=>$diliver,
+            'done'=>$done,
+        ]);
 
 
     }
@@ -232,52 +251,52 @@ class Personal extends Base
     //确认用户输入密码
     public function checkpass()
     {
-        //$info['status'] = true;
-        //return json($info);
         //用户id
-        $id = input('get.')['id'];
-        //$p = input('get.')['pass'];
+        $id = input('post.')['id'];
+        //$p = input('post.')['pass'];
         //代金券类型
-        $type = input('get.')['type'];
+        $type = input('post.')['type'];
         //代金券数量
-        $n = input('get.')['n'];
+        $n = input('post.')['n'];
         //消耗积分
-        $total = input('get.')['total'];
+        $total = input('post.')['total'];
 
         //$user = model('user');
         //$pass = $user->getPass($id)['u_password'];
 
-        return json(input('get.'));exit;
 
         //if ($p == $pass){
-            //更改积分
-            $d = model('userDetail');
-            //获取原积分
-            $point = $d->getPoint($id);
-            $point1 = (int)$point;
-            //减去消耗的积分
-            $p = $point1 - $total;
-            $p1 = [
+        //更改积分
+        $d = model('userDetail');
+        //获取原积分
+        $point = $d->getPoint($id);
+        $point = $point['ud_point'];
+
+        //减去消耗的积分
+        $p = $point - $total;
+        $p1 = [
                 'ud_point'=>$p
             ];
-            //更改积分数据
-            $pres = $d->updateDetail($id, $p1);
+        //更改积分数据
+        $pres = $d->updateDetail($id, $p1);
 
-            $m = model('money');
 
-            if($type == 10){
-                //获取代金券信息
-                $num = $m->getNum($id, 'm_ten');
-                $num1 = (int)$num;
-                $rn = $num1 + $n;
-                $data = [
+        $m = model('money');
+
+        if($type == 10){
+            //获取代金券信息
+            $num = $m->getNum($id, 'm_ten');
+            $num1 = $num[0]['m_ten'];
+            $rn = $num1 + $n;
+            //return json($rn);exit;
+            $data = [
                   'm_ten'=>$rn
                 ];
                 $mres = $m->updateNum($id, $data);
             }elseif($type == 20){
                 //获取代金券信息
                 $num = $m->getNum($id, 'm_twenty');
-                $num1 = (int)$num;
+                $num1 = $num[0]['m_twenty'];
                 $rn = $num1 + $n;
                 $data = [
                     'm_twenty'=>$rn
@@ -286,7 +305,7 @@ class Personal extends Base
             }elseif($type == 50){
                 //获取代金券信息
                 $num = $m->getNum($id, 'm_fifty');
-                $num1 = (int)$num;
+                $num1 = $num[0]['m_fifty'];
                 $rn = $num1 + $n;
                 $data = [
                     'm_fifty'=>$rn
@@ -295,7 +314,7 @@ class Personal extends Base
             }elseif($type == 100){
                 //获取代金券信息
                 $num = $m->getNum($id, 'm_hundred');
-                $num1 = (int)$num;
+                $num1 = $num[0]['m_hundred'];
                 $rn = $num1 + $n;
                 $data = [
                     'm_hundred'=>$rn
@@ -308,7 +327,7 @@ class Personal extends Base
             }else{
                 $info['status'] = false;
             }
-            return json($mres);
+            return json($info);
         //}else{
         //    return $this->error('密码不正确,请重试~');
         //}

@@ -13,7 +13,7 @@
         <!--<li>-->
             <!--<a href="#">Data Table</a>-->
         <!--</li>-->
-        <li class="active">被取消订单</li>
+        <li class="active"><a href="javascript:history.go(-1)" style="color: #65D1C2;">返回上一级</a></li>
     </ul>
 </div>
 <!--body wrapper start-->
@@ -23,33 +23,8 @@
             <section>
                 <div id="bigForm">
                     <div class="gt_d_courses_wrap default_width mt20" style="display: block" id="doneForm">
-                        <table class="table table-hover">
-                            <tr>
-                                <th style="text-align: center">序号</th>
-                                <th style="text-align: center">订单号</th>
-                                <th style="text-align: center">商品</th>
-                                <th style="text-align: center">单价(元)</th>
-                                <th style="text-align: center">数量</th>
-                                <th style="text-align: center">总金额(元)</th>
-                                <th style="text-align: center" class="col-sm-3">操作</th>
-                            </tr>
-                            {volist name="un" id="v"}
-                            <tr style="line-height: 20px">
-                                <td style="text-align: center">1</td>
-                                <td style="text-align: center">{$v['o_order_num']}</td>
-                                <td style="text-align: center">{$v['o_gname']}</td>
-                                <td style="text-align: center">{$v['o_price']}</td>
-                                <td style="text-align: center">{$v['o_num']}</td>
-                                <td style="text-align: center">{$v['o_total']}</td>
-                                <td style="text-align: center">
-                                    <a href="{:url('admin/busorder/showdetail',['aid'=>$v['o_aid']])}" class="btn btn-info btn-sm">查看详细信息</a>
-                                    <!--<button class="btn btn-success btn-sm">转为待发货</button>-->
-                                </td>
-                            </tr>
-                            {/volist}
-                        </table>
-                        <div class="col-sm-offset-1 col-sm-10" style="display: none" style="display: none;background-color: #00a0e9" id="user">
-                            <table class="table" style="background-color: #0a6999;color: white;">
+                        <div class="col-sm-offset-1 col-sm-10">
+                            <table class="table">
                                 <tr>
                                     <th style="text-align: center">用户ID</th>
                                     <th style="text-align: center">用户名</th>
@@ -58,11 +33,11 @@
                                     <th style="text-align: center">详细地址</th>
                                 </tr>
                                 <tr>
-                                    <td style="text-align: center">1</td>
-                                    <td style="text-align: center">老王</td>
-                                    <td style="text-align: center">隔壁老王</td>
-                                    <td style="text-align: center">110</td>
-                                    <td style="text-align: center">大街</td>
+                                    <td style="text-align: center">{$data['u_id']}</td>
+                                    <td style="text-align: center">{$data['u_username']}</td>
+                                    <td style="text-align: center">{$data['ua_name']}</td>
+                                    <td style="text-align: center">{$data['ua_phone']}</td>
+                                    <td style="text-align: center">{$data['ua_address']}{$data['ua_street']}</td>
                                 </tr>
                             </table>
                         </div>

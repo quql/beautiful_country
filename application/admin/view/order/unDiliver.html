@@ -33,39 +33,24 @@
                                 <th style="text-align: center">总金额(元)</th>
                                 <th style="text-align: center" class="col-sm-3">操作</th>
                             </tr>
+                            {volist name="un" id="v"}
                             <tr style="line-height: 20px">
                                 <td style="text-align: center">1</td>
-                                <td style="text-align: center">111</td>
-                                <td style="text-align: center">万代</td>
-                                <td style="text-align: center">888</td>
-                                <td style="text-align: center">1</td>
-                                <td style="text-align: center">888</td>
+                                <td style="text-align: center">{$v['o_order_num']}</td>
+                                <td style="text-align: center">{$v['o_gname']}</td>
+                                <td style="text-align: center">{$v['o_price']}</td>
+                                <td style="text-align: center">{$v['o_num']}</td>
+                                <td style="text-align: center">{$v['o_total']}</td>
                                 <td style="text-align: center">
-                                    <button class="btn btn-info btn-sm" id="show">查看详细信息</button>
-                                    <button class="btn btn-success btn-sm">转为待发货</button>
+                                        <a href="{:url('admin/busorder/showdetail',['aid'=>$v['o_aid']])}" class="btn btn-info btn-sm showUser">查看详细信息</a>
+                                        <p style="display: none" class="oid">{$v['o_id']}</p>
+                                        <button type="button" class="btn btn-success btn-sm change">转为已发货</button>
                                 </td>
                             </tr>
+                            {/volist}
                         </table>
-                        <div class="col-sm-offset-1 col-sm-10" style="display: none" style="display: none;background-color: #00a0e9" id="user">
-                            <table class="table" style="background-color: #0a6999;color: white;">
-                                <tr>
-                                    <th style="text-align: center">用户ID</th>
-                                    <th style="text-align: center">用户名</th>
-                                    <th style="text-align: center">收货人</th>
-                                    <th style="text-align: center">联系方式</th>
-                                    <th style="text-align: center">详细地址</th>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: center">1</td>
-                                    <td style="text-align: center">老王</td>
-                                    <td style="text-align: center">隔壁老王</td>
-                                    <td style="text-align: center">110</td>
-                                    <td style="text-align: center">大街</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <!--</div>-->
                     </div>
+                </div>
             </section>
         </div>
     </div>
@@ -100,9 +85,37 @@
 
 <!-- END JAVASCRIPTS -->
 <script>
-    $('#show').click(function(){
-        $('#user').slideToggle();
+
+    $('.change').click(function(){
+        if(confirm('您确定要将此订单转为已发货吗?')){
+            var oid = $('.oid').html();
+            dochange(oid);
+        }
     });
+
+    function dochange(oid){
+        $.ajax({
+            type:'post',
+            url:"/todiliver",
+            data:{"oid":oid},
+            dataType:'json',
+            success:function(data){
+//                console.log(data);
+                if (data.status){
+                    alert('状态改变成功');
+                    history.go(0);
+                }else{
+                    alert('状态改变失败');
+                }
+            },
+            error:function(){
+//                console.log(data);
+                alert('状态改变失败,请重试~');
+            }
+        });
+    }
+
+
 </script>
 
 {/block}

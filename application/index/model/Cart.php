@@ -10,7 +10,7 @@ class Cart extends Model
     public function delete($id = '')
     {
         $db = db('cart');
-        $res = $db->delele($id);
+        $res = $db->delete($id);
         return $res;
     }
 }

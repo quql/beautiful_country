@@ -72,6 +72,7 @@ Route::resource('Hotelpic', 'admin/HotelPic');
 Route::get('/hotelpicfirst/[:id]','admin/HotelPic/first');
 
 
+
 //活动管理
 //平台对活动类型的增删改查
 Route::resource('ActivitiesAdminCate','admin/ActivitiesAdminCate');
@@ -95,6 +96,7 @@ Route::resource('link','admin/Link');
 
 //前台住宿
 Route::resource('hotelDetail', 'index/hotel');
+
 //旅游线路分类管理
 Route::resource('Routescate', 'admin/Routescate');
 //旅游线路管理
@@ -114,16 +116,24 @@ Route::get('/routespicfirst/[:id]','admin/RoutesPic/first');
 //个人中心
 Route::resource('per', 'index/personal');
 //验证密码
-Route::get('money', 'index/personal/checkpass');
-//普通商品详情页
-Route::get('goodsDetail', 'index/goodsInfo/detail');
-//普通商品详情页
+Route::post('money', 'index/personal/checkpass');
+
+//详情页
+//食品详情页
+Route::get('foodDetail', 'index/food/detail');
+//酒店详情页
+Route::resource('hotelDetail', 'index/hotel');
+//路线详情页
 Route::get('routeDetail', 'index/route/index');
-//购物车页面,开启后无法从商品详情页跳转到购物车页
+//路线详情页
+Route::get('sceneryDetail', 'index/scenery/index');
+//购物车页面
+Route::post('cart', 'index/cart/index');
 
 
 //所有商铺管理
 Route::resource('buspower', 'admin/Buspower');
+
 
 
 Route::post('cart', 'index/cart/index');
@@ -134,6 +144,7 @@ Route::get('searchover/:search','index/Index/searchover');
 //前台搜索框
 Route::post('search','index/Index/search');
 //前台搜索触发
+
 
 //购物车页面
 //Route::get('cart', 'index/cart/index');
@@ -191,6 +202,14 @@ Route::get('diliver', 'admin/BusOrder/diliver');
 Route::get('done', 'admin/BusOrder/done');
 //被取消订单
 Route::get('cancel', 'admin/BusOrder/cancel');
+//订单对应详情
+Route::get('orderdetail/[:aid]', 'admin/BusOrder/showDetail');
+//改变订单状态为已发货
+Route::post('todiliver','admin/BusOrder/todiliver');
+//改变订单状态为已完成
+Route::post('todone','admin/BusOrder/todone');
+//改变订单状态为取消
+Route::post('tocancel','admin/BusOrder/tocancel');
 
 //显示不同分类列表页
 Route::get('/listshow/:id/:cid', 'index/Index/listshow');
