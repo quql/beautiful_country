@@ -62,6 +62,10 @@
                     <label for="b_email">邮箱</label>
                     <input type="email" class="form-control"  value="{$res['b_email']}" readonly>
                 </div>
+                <div class="form-group">
+                    <label for="b_desc">店铺简介</label>
+                    <input type="email" class="form-control"  value="{$res['b_desc']}" readonly>
+                </div>
             </form>
             <form id="form1" method="post" action="{:url('admin/BusInfo/update',['id'=>$res['b_id']])}" enctype="multipart/form-data" onsubmit='return checkForm()'>
                 <input type="hidden" name="__token__" value="{$Request.token}">
@@ -91,29 +95,15 @@
                     <p id='p5' style="padding-left: 15px"></p>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputFile">上传logo</label>
+                    <label for="b_desc">店铺简介<small style="color:pink">店铺简介会在前台的店铺首页中展示哦~~~</small></label>
+                    <textarea id="b_desc" class="form-control" name="b_desc" cols="54" rows="3">{$res['b_desc']}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputFile">上传店铺logo</label>
                     <input type="file" name="b_logo" id="exampleInputFile">
                 </div>
                 <input type="submit" class="btn btn-success" value="确认修改">
             </form>
-
-            <form id="form3" method="post" action="{:url('admin/BusInfo/pass',['id'=>$res['b_id']])}"  onsubmit="return checkPass()">
-                <input type="hidden" name="__token__" value="{$Request.token}">
-                <div class="form-group">
-                    <label >原密码</label>
-                    <input type="password" class="form-control" id="old_pass" name="old_pass">
-                    <p id='p6' style="padding-left: 15px"></p>
-                </div>
-                <div class="form-group">
-                    <label >新密码</label>
-                    <input type="password" class="form-control" id="new_pass" name="new_pass">
-                    <p id='p7' style="padding-left: 15px"></p>
-                </div>
-                <div class="form-group">
-                    <label >确认密码</label>
-                    <input type="password" class="form-control" id="re_pass" name="re_pass">
-
-            <form id="form3" method="post" action="{:url('admin/BusInfo/update',['id'=>$res['b_id']])}" enctype="multipart/form-data" onsubmit='return checkPass()'>
 
             <form id="form3" method="post" action="{:url('admin/BusInfo/pass',['id'=>$res['b_id']])}" enctype="multipart/form-data" onsubmit='return checkPass()'>
 
@@ -130,10 +120,6 @@
                 </div>
                 <div class="form-group">
                     <label for="b_phone">确认密码</label>
-
-                    <input type="text" class="form-control" id="re_pass" name="re_pass">
-
-
                     <input type="password" class="form-control" id="re_pass" name="re_pass">
 
                     <p id='p8' style="padding-left: 15px"></p>
@@ -276,10 +262,6 @@
     }
     function checkPass(){
         //密码
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/shine
         var pass=document.getElementById('new_pass').value;
         var p7=document.getElementById('p7');
         //验证密码是否符合 6-18位的数字
@@ -293,10 +275,6 @@
         }
         //确认密码
         var repass=document.getElementById('re_pass').value;
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/shine
         var pass=document.getElementById('inputPass').value;
         var p3=document.getElementById('p3');
         //验证密码是否符合 6-18位的数字
@@ -310,10 +288,6 @@
         }
         //确认密码
         var repass=document.getElementById('inputRepass').value;
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/shine
         var p8=document.getElementById('p8');
         if (pass!==repass) {
             p8.innerHTML=' × 两次输入不一致';

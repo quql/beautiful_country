@@ -254,7 +254,7 @@ padding: 10px 15px;border-left: 1px solid rgba(255,255,255,0.65);font-size: 13px
 		   Banner 02 CSS
 	  ==============================================================
 */
-.gt_banner ul li:before{content: "";position: absolute;top:0px;left: 0px;width: 100%;height: 100%;background-color: rgba(0,0,0,0.50);}
+.gt_banner ul li:before{content: "";position: absolute;top:0px;left: 0px;width: 100%;height: 100%;/*background-color: rgba(0,0,0,0.50);*/}
 .swiper-container {width: 100%;float: left;position: relative;}
 .gt_banner_text{position: absolute;}
 .gt_banner_text h3{font-size: 30px;color: #fff;line-height: normal;margin: 0px 0px 10px;font-family: inherit;}
@@ -334,7 +334,7 @@ padding: 10px 15px;border-left: 1px solid rgba(255,255,255,0.65);font-size: 13px
 .gt_course_search form input[type="search"]{width: 100%;border-radius: 50px;box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.1);height: 60px;padding: 10px 20px;}
 .gt_course_search form a{position: absolute;top: 0px;right: 0px;height: 60px;width: 40px;line-height: 64px;color: #999999;}
 .gt_courses_wrap figure{overflow: visible;}
-.gt_courses_wrap figure>img{width: 100%;height: auto;}
+.gt_courses_wrap figure>img{width: 100%;}/*height: auto;*/
 .gt_course_img_des{position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;}
 .gt_course_des_holder{position: absolute;bottom: 0px;background-color: rgba(0,0,0,75);width: 100%;padding: 5px 10px;}
 .gt_course_author{position: relative;float: left;}
@@ -347,7 +347,7 @@ ul.gt_rating_star li:before{content: "\f005\f005\f005\f005\f005";position: absol
 ul.gt_rating_star li:hover:before{opacity: 1;}
 ul.gt_rating_star li a{display: inline-block;color: #ff9c00;margin: 0px 0px 0px -4px;}
 .gt_course_cat{position: absolute;top: 12px;left: 0px;color: #ffffff;transform:rotate(-90deg);-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);padding: 5px 10px;border-bottom-left-radius:20px;border-top-left-radius:20px;opacity: 0;}
-.gt_course_des{background-color: #ffffff;padding: 30px 15px 20px;text-align: center;}
+.gt_course_des{background-color: #ffffff;padding: 10px 5px 10px;text-align: center;}
 .gt_course_des span{display: block;color: #222222;margin: 0px 0px 15px;font-weight: 600;}
 .gt_course_des h5>a{display: block;color: #222222;text-transform: uppercase;font-weight: 600;margin: 0px 0px 15px;padding: 0px 0px 15px;position: relative;}
 .gt_course_des h5>a:before{content: "";position: absolute;bottom: 0px;left: 0px;right: 0px;width: 50px;height: 2px;margin: auto;}
@@ -446,7 +446,7 @@ ul.gt_rating_star li a{display: inline-block;color: #ff9c00;margin: 0px 0px 0px 
 	  ==============================================================
 */
 .gt_team_wrap{border: 1px solid #e1e1e1;text-align: center;}
-.gt_team_wrap img{width: 100%;height: auto;}
+.gt_team_wrap img{width: 100%;}/*height: auto;*/
 .gt_team_des{padding: 20px 0px 15px;}
 .gt_team_des h6>a{font-weight: 600;margin: 0px 0px 5px;display: block;text-transform: uppercase;}
 .gt_team_des span{display: block;margin: 0px 0px 12px;text-transform: capitalize;color: #999999;}

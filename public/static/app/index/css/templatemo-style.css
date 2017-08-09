@@ -394,9 +394,9 @@ border-top-color: #f9c922; /* Chrome, Opera 15+, Safari 5+ */ animation: spin 1.
 }
 
 .tm-img {
-	max-width: 320px;
-  	width: 100%;
-  	height: auto;
+	/*max-width: 320px;*/
+  	/*width: 100%;*/
+  	/*height: auto;*/
   	border: none;
   	margin: 0 auto;
 }
@@ -723,9 +723,9 @@ figure.effect-ruby:hover img {
 	.tm-img-gallery-container-2,
 	.tm-img-gallery-container-3 { max-width: 1360px; }
 
-	.grid-item { width: 25%; }
-	.gallery-two .grid-item { width: 33.3333%; }
-	.gallery-three .grid-item { width: 50%; }
+	/*.grid-item { width: 25%;!important }*/
+	/*.gallery-two .grid-item { width: 33.3333%; }*/
+	/*.gallery-three .grid-item { width: 50%; }*/
 	.grid-item figure figcaption { padding: 1em; }
 	.cd-hero-slider .selected .cd-full-width .gallery-one figure.effect-ruby h2.tm-figure-title,
 	.cd-hero-slider .selected .cd-full-width .gallery-two figure.effect-ruby h2.tm-figure-title {
