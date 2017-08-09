@@ -41,11 +41,10 @@ Route::resource('adminuser', 'admin/User');
 
 Route::get('exit','admin/index/loginexit');
 Route::get('admin','admin/index/index');
-
 Route::resource('adminuser', 'admin/User');
 
-// 管理员密码修改
 
+// 管理员密码修改
 Route::post('password','admin/User/password');
 
 
@@ -55,6 +54,8 @@ Route::get('admin/login','admin/login/index');
 //Route::get('power/[:id]','admin/user/power');
 Route::resource('admincate','admin/Cate');
 Route::post('admin/dologin','admin/login/dologin');
+
+
 //住宿分类管理
 Route::resource('Hotelcate', 'admin/Hotelcate');
 //住宿管理
@@ -71,9 +72,29 @@ Route::resource('Hotelpic', 'admin/HotelPic');
 Route::get('/hotelpicfirst/[:id]','admin/HotelPic/first');
 
 
+//活动管理
+//平台对活动类型的增删改查
+Route::resource('ActivitiesAdminCate','admin/ActivitiesAdminCate');
+//商家对活动的增删改查
+Route::resource('Activities', 'admin/Activities');
+//商家对活动图片的增删改查
+Route::resource('ActivitiesBusPic', 'admin/ActivitiesBusPic');
+//商家查看活动图片
+Route::get('ActivitiesShow','admin/Activities/show');
+//设置图片封面
+Route::get('/ActivitiesBusPicfirst/[:id]','admin/ActivitiesBusPic/first');
+//平台对活动的增删改查
+Route::resource('ActivitiesAdminList', 'admin/ActivitiesAdminList');
+//平台查看活动图片
+Route::get('ActivitiesAdminShow','admin/ActivitiesAdminList/show');
+
+//友情链接管理
+Route::resource('link','admin/Link');
+
+
+
 //前台住宿
 Route::resource('hotelDetail', 'index/hotel');
-
 //旅游线路分类管理
 Route::resource('Routescate', 'admin/Routescate');
 //旅游线路管理
@@ -158,7 +179,6 @@ Route::resource('scenerypic', 'admin/SceneryPic');
 //设置图片封面
 Route::get('/Scenerypicfirst/[:id]','admin/SceneryPic/first');
 //商家后台
-
 
 
 //未处理订单
