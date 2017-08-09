@@ -61,6 +61,7 @@
                     <form action="{:url('index/cart/index')}" method="post">
                         <input type="hidden" name="id" value="{$foods['id']}">
                         <input type="hidden" name="type" value="food">
+                        <input type="hidden" name="point" value="{:round($detail['gd_price']/20)}">
                         <input type="hidden" name="price" value='{if condition="$type['ud_type'] eq 0"}{$detail['gd_price']}{else /}{$detail['gd_discount']}{/if}'>
                   <div class="col-md-6">
                       <div class="gt_shop_detail_banner">
@@ -77,7 +78,7 @@
                           </div>
                           <div class="gt_shop_price_wrap">
                               <h4>¥{$detail['gd_discount']}</h4>
-                              <span>¥{$foods['price']}</span>
+                              <span>¥<b id="old">{$detail['gd_price']}</b></span>
                           </div>
                           <div class="gt_product_detail_des">
                               <h5>商品简介</h5>
@@ -106,7 +107,8 @@
                           </div>
                           <div class="gt_product_detail_des">
                               <h5>赠送积分</h5>
-                              <p>价格x数量 分</p>
+                              <p id="point">0</p>
+                              <p id="new" style="display: none"></p>
                           </div>
           								<div class="gt_product_button_wrap">
           									<button type="submit" class="btn btn-success">添加到购物车</button>
@@ -272,15 +274,44 @@
     $('#up').click(function(){
         if($('#num').val() >= 99){
             $('#num').val(99);
+        }else{
+            $('#num').val() + 1;
         }
-        $('#num').val() + 1;
+        var n = parseInt($('#num').val())+1;
+        var p = Math.round($('#old').html()/20);
+        var t = n*p;
+        console.log(p);
+        $('#point').css('display','none');
+        $('#new').css('display','block');
+        $('#new').html(t);
+
     });
-    $('#down').click(function(){
-        if($('#num').val() <= 1){
+    $('#down').click(function() {
+        if ($('#num').val() <= 1) {
             $('#num').val(1);
+        } else {
+            $('#num').val() - 1;
         }
-        $('#num').val() - 1;
-//        console.log($('#num').val());
+        var n = parseInt($('#num').val()) - 1;
+        var p = Math.round($('#old').html() / 20);
+        var t = n * p;
+        console.log(t);
+        $('#point').css('display', 'none');
+        $('#new').css('display', 'block');
+        $('#new').html(t);
     });
+//    $('#up').click(function(){
+//        if($('#num').val() >= 99){
+//            $('#num').val(99);
+//        }
+//        $('#num').val() + 1;
+//    });
+//    $('#down').click(function(){
+//        if($('#num').val() <= 1){
+//            $('#num').val(1);
+//        }
+//        $('#num').val() - 1;
+//        console.log($('#num').val());
+//    });
 </script>
 {/block}

@@ -172,6 +172,14 @@ Route::get('diliver', 'admin/BusOrder/diliver');
 Route::get('done', 'admin/BusOrder/done');
 //被取消订单
 Route::get('cancel', 'admin/BusOrder/cancel');
+//订单对应详情
+Route::get('orderdetail/[:aid]', 'admin/BusOrder/showDetail');
+//改变订单状态为已发货
+Route::post('todiliver','admin/BusOrder/todiliver');
+//改变订单状态为已完成
+Route::post('todone','admin/BusOrder/todone');
+//改变订单状态为取消
+Route::post('tocancel','admin/BusOrder/tocancel');
 
 
 //显示列表页

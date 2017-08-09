@@ -17,6 +17,10 @@ class Cart extends Base
         //用户id
         $uid = 1;
 
+        //加载用户收获的地址
+        $add = model('userAddress');
+        $address = $add->getAddress($uid);
+
         //获取从商品详情页传送的数据
         $info = input('post.');
         //dump($info);exit;
@@ -86,7 +90,7 @@ class Cart extends Base
         //dump($data2);
         //dump($cid);
         //dump($cate);
-        dump($point);
+        //dump($cate);exit;
 
         if ($list){
             return view('index/shop-cart', [
@@ -96,6 +100,8 @@ class Cart extends Base
                 'cid'=>$cid,
                 'cate'=>$cate,
                 'point'=>$point,
+                'address'=>$address,
+                'type'=>$type,
             ]);
         } else {
             return $this->error('添加购物车失败,请重试~');

@@ -16,6 +16,7 @@ class Personal extends Base
      */
     public function index()
     {
+        //用户id
         $id = '1';
         //获取用户基本信息
         $user = model('user');
@@ -31,12 +32,30 @@ class Personal extends Base
         $data = $add->getAddress($id);
         //dump($data);
 
-        return view('index/personal',[
-           'list'=>$list,
-           'data'=>$data,
-           'money'=>$money,
-        ]);
+        //处理订单信息
+        $o = model('order');
+        //加载未发货订单
+        $un = $o->unOrder($id);
+        //dump($un);
 
+        //加载已发货订单
+        $diliver = $o->diliver($id);
+        //dump($diliver);
+
+        //加载已完成订单
+        $done = $o->done($id);
+        dump($done);
+
+
+
+        return view('index/personal',[
+            'list'=>$list,
+            'data'=>$data,
+            'money'=>$money,
+            'un'=>$un,
+            'diliver'=>$diliver,
+            'done'=>$done,
+        ]);
 
 
     }
@@ -232,8 +251,6 @@ class Personal extends Base
     //确认用户输入密码
     public function checkpass()
     {
-        //$info['status'] = true;
-        //return json($info);
         //用户id
         $id = input('post.')['id'];
         //$p = input('post.')['pass'];

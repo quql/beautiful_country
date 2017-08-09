@@ -18,7 +18,7 @@ class UserDetail extends Model
         return $res;
     }
 
-    //获取个人基本信息
+    //获取个人积分
     public function getPoint($id = '')
     {
         $d = model('user_detail');

@@ -27,7 +27,42 @@
         <!--Shop Wrap Start-->
         <section class="gt_shop_detail_bg gt_courses_bg">
             <div class="container">
-                <table class="table table-hover " id="mytable">
+                <div class="row col-sm-12">
+                    <form action="index/order/index" method="post" onsubmit="return check()">
+                        <!--传递用户id-->
+                        <input type="hidden" name="uid" value="{$data[0]['ca_uid']}">
+                        <!--商品id-->
+                        <input type="hidden" name="gid" value="{$data[0]['ca_gdid']}">
+                        <!--商品单价-->
+                        <input type="hidden" name="price" value="{$data[0]['ca_price']}">
+                        <!--传递商品类型-->
+                        <input type="hidden" name="type" value="{$type}">
+                        <!--传递购物车id-->
+                        <input type="hidden" name="cid" value="{$cid}">
+                        <p style="display: none" id="base">{$point}</p>
+                        <!--总积分-->
+                        <input type="hidden" name="point" id="point">
+                    <table class="table table-striped ml20">
+                        <tr style="line-height: inherit">
+                            <th style="text-align: center" class="col-sm-1"></th>
+                            <th style="text-align: center" class="col-sm-3">收货人</th>
+                            <th style="text-align: center" class="col-sm-3">联系电话</th>
+                            <th style="text-align: center">收货地址</th>
+                        </tr>
+                        {volist name="address" id="a"}
+                        <tr style="line-height: 20px">
+                            <td style="text-align: center;line-height: 31px">
+                                <input type="radio" name="aid" value="{$a['ua_id']}" class="rid" checked>
+                            </td>
+                            <td style="text-align: center;line-height: 31px">{$a['ua_name']}</td>
+                            <td style="text-align: center;line-height: 31px">{$a['ua_phone']}</td>
+                            <td style="text-align: center;line-height: 31px">{$a['ua_address']}{$a['ua_street']}</td>
+                        </tr>
+                        {/volist}
+                    </table>
+                </div>
+                <div class="mt20">
+                <table class="table table-hover" id="mytable">
                     <tr>
                         <th style="text-align: center;"></th>
                         <th style="text-align: center;">商品图片</th>
@@ -38,6 +73,7 @@
                         <th style="text-align: center;">总价 (元)</th>
                         <th style="text-align: center;">操作</th>
                     </tr>
+
                     <tr>
                         <td style="text-align: center;line-height: 62px;">1</td>
                         {volist name="photo" id="p"}
@@ -51,16 +87,6 @@
                         {/volist}
                         {volist name="data" id="d"}
                         <td style="text-align: center;line-height: 62px;" id="price">{$d['ca_price']}</td>
-                        <form action="index/order/index" method="post">
-                            <!--传递用户id-->
-                            <input type="hidden" name="uid" value="{$data[0]['ca_uid']}">
-                            <!--商品id-->
-                            <input type="hidden" name="gid" value="{$data[0]['ca_gdid']}">
-                            <!--商品单价-->
-                            <input type="hidden" name="price" value="{$data[0]['ca_price']}">
-                            <p style="display: none" id="base">{$point}</p>
-                            <!--总积分-->
-                            <input type="hidden" name="point" id="point">
                         <td style="text-align: center;">
                             <div class="gt_product_left_wrap" style="border-bottom: none;margin-left: 0px;margin: 8px 0px -12px">
                                 <div id="incdec" style="margin-left: 54px;">
@@ -81,6 +107,7 @@
                     </tr>
                     {/volist}
                 </table>
+                </div>
                 <div style="margin-left: 850px">
                         <a class="btn btn-info btn-lg ml30">再去逛逛</a>
                         <button type="submit" class="btn btn-success btn-lg ml30" id="settle">去结算</button>
@@ -183,7 +210,7 @@
                 data: {"id":id},
                 dataType: 'json',
                 success:function(data){
-//            alert(data);
+//                    alert(data);
                     if (data.status){
                         toastr.success(data.info);
                         obj.remove();
@@ -197,11 +224,36 @@
             });
         }
 
-//        执行付款
-           $('#settle').click(function(){
-              alert('支付成功');
-              location.href('index/index/index');
-           });
+
+        function check(){
+//            var v = $('input:[name="aid"]:checked').val();
+//            if (v == null){
+//                alert("收货地址不能为空哦~");
+//                return false;
+//            }
+//            return true;
+
+//            if($("input[name='aid']:checked").size()==0){
+//                alert("收货地址不能为空哦~");
+//                return false;
+//            }else{
+//                return true;
+//            }
+
+//            if($(".rid").is(':checked')) {
+//                return true;
+//            }else{
+//                return false;
+//            }
+
+//              if($('.rid').is(':checked')){
+//                return true;
+//            }else{
+//                return false;
+//            }
+
+        }
+
     });
 </script>
 {/block}
