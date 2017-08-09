@@ -6,7 +6,7 @@ use think\Controller;
 use think\Request;
 use think\Db;
 
-class Hotelcate extends Admin
+class ActivitiesAdminCate extends Admin
 {
     /**
      * 显示资源列表
@@ -37,15 +37,20 @@ class Hotelcate extends Admin
     public function save(Request $request)
     {
         $p=$request->post();
-        $c_id=$p['c_id'];
-        $h_name=$p['h_name'];
+        // var_dump($p);
+        // die;
+
+        $p_id=$p['p_id'];
+
+        $ac_name=$p['ac_name'];
 
         $data=[
-            'c_id'=>$c_id,
-            'h_name'=>$h_name,
+            'p_id'=>$p_id,
+            'ac_name'=>$ac_name,
 
         ];
-        $result = Db::name('h_cate')->data($data)->insert();
+
+        $result = Db::table('ml_ac_cate')->data($data)->insert();
         if ($result > 0) {
             return $this->success('添加成功');
         } else {
@@ -63,10 +68,9 @@ class Hotelcate extends Admin
     public function read($id)
     {
 
-
-        $res = Db::table('ml_h_cate')->select();
+        $res = Db::table('ml_ac_cate')->select();
         $this->assign('list',$res);
-        return view ('hotel/hotelcateList');
+        return view('activities/ActivitiesAdminCate');
     }
 
     /**
@@ -77,10 +81,14 @@ class Hotelcate extends Admin
      */
     public function edit($id)
     {
-        $one = Db::table('ml_h_cate')->where('id',$id)->select();
+        $one = Db::table('ml_ac_cate')->where('id',$id)->select();
+        // var_dump($one);
+        // die;
         $data = $one['0'];
+        // var_dump($data);
         $this->assign('data',$data);
-        return view('hotel/hotelcateEdit');
+
+        return view('activities/ActivitiesAdminCateEdit');
     }
 
     /**
@@ -92,14 +100,16 @@ class Hotelcate extends Admin
      */
     public function update(Request $request, $id)
     {
+        // echo $id;
+        // die;
         $p = $request->put();
         $data = [
-            'c_id' => $p['c_id'],
-            'h_name' => $p['h_name'],
+            'p_id' => $p['p_id'],
+            'ac_name' => $p['ac_name'],
         ];
-        $result = Db::name('h_cate')->where('id', $id)->update($data);
+        $result = Db::name('ac_cate')->where('id', $id)->update($data);
         if ($result) {
-            return $this->success('编辑成功', url('admin/HotelCate/read',['id'=>$p['c_id']]));
+            return $this->success('编辑成功', url('admin/ActivitiesAdminCate/read',['id'=>$p['p_id']]));
         } else {
             return $this->error('编辑失败');
         }
@@ -113,7 +123,7 @@ class Hotelcate extends Admin
      */
     public function delete($id)
     {
-        $result = Db::name('h_cate')->delete($id);
+        $result = Db::name('ac_cate')->delete($id);
 
         if ($result) {
             $info['status'] = true;

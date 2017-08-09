@@ -1,10 +1,10 @@
-{extend name="index/index"}
+{extend name="index/busIndex"}
 {block name="main"}
 
 <!-- page heading start-->
 <div class="page-heading">
     <h3>
-        修改分类信息
+        Editable Table
     </h3>
     <ul class="breadcrumb">
         <li>
@@ -24,7 +24,7 @@
         <div class="col-sm-12">
             <section class="panel">
                 <header class="panel-heading">
-                    修改分类信息
+                    修改图片
                     <span class="tools pull-right">
                         <a href="javascript:;" class="fa fa-chevron-down"></a>
                         <a href="javascript:;" class="fa fa-times"></a>
@@ -39,15 +39,20 @@
                     </div>
                     <div class="space15"></div>
 
-                    <form action="{:url('admin/HotelCate/update',['id'=>$data.id])}" method="post" enctype="multipart/form-data">
+                    <form action="{:url('admin/ActivitiesBusPic/update',['id'=>$pic.id])}" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_method" value="PUT">
-                        <input type="hidden" name="id" value="{$data.id}">
+                        <input type="hidden" name="id" value="{$pic.id}">
+
+
                         <div class="form-group">
-                            <label for="exampleInputEmail1">分类名称</label>
-                            <input type="text" name="h_name" class="form-control" id="exampleInputEmail1" value="{$data.h_name}">
-                            <input type="hidden" name="c_id"  value="{$data.c_id}">
-                           
+                            <label for="exampleInputPassword1">原图片</label>
+                            <img src="/uploads/{$pic.pic}" width="300" height="240">
                         </div>
+                        <div class="form-group">
+                            <!--<label for="exampleInputFile">请上传头像:</label>-->
+                            请上传更改图片:<input type="file" name="img" id="exampleInputFile">
+                        </div>
+
                         <button type="submit" class="btn btn-default">提交</button>
                     </form>
 
