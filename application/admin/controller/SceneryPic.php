@@ -43,6 +43,12 @@ class SceneryPic extends Bus
      */
     public function save(Request $request)
     {
+        $gid = $request->post();
+        $gid =$gid['gid'];
+        $num = Db::name('scenery_pic')->where('gid',$gid)->count();
+        if($num>=4){
+            return $this->error('此景区图片数量已达上限');
+        }
         $file = request()->file('img');
         if(empty($file)){
             $pic='1.jpg';
@@ -62,8 +68,7 @@ class SceneryPic extends Bus
                 return $this->error('头像上传失败');
             }
         }
-        $gid = $request->post();
-        $gid =$gid['gid'];
+
         $data=[
             'gid'=>$gid,
             'pic'=>$pic,

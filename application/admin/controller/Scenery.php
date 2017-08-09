@@ -112,7 +112,8 @@ class Scenery extends Bus
             'gd_store' => $p['gd_store'],
             'gd_discount' => $p['gd_discount'],
             'gd_num'=>'0',
-            'gd_view'=>'0'
+            'gd_view'=>'0',
+            'gd_phone'=>$p['gd_phone']
         ];
         $data3 = [
             'gid'=>$result,
@@ -200,7 +201,8 @@ class Scenery extends Bus
             'gd_details' => $info['gd_details'],
             'gd_price' => $info['gd_price'],
             'gd_store' => $info['gd_store'],
-            'gd_discount' => $info['gd_discount']
+            'gd_discount' => $info['gd_discount'],
+            'gd_phone'=>$info['gd_phone']
         ];
 
         $result1 =Db::table('ml_scenery')->where('id',$id)->update($newInfo1);

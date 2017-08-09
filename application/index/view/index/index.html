@@ -451,7 +451,7 @@
                   <li><a href="{:url('/shoplist/4')}">住宿</a>
                     <ul>
                        {volist name='hotel' id="v"}
-                         <li><a href="{:url('/shoplist/4')}">{$v.h_name}</a></li>
+                         <li><a href="{:url('/listshow/4/'.$v.id)}">{$v.h_name}</a></li>
                         {/volist}
                     </ul>
                   </li>
@@ -459,14 +459,14 @@
                   <li><a href="{:url('/shoplist/5')}">旅游线路</a>
                     <ul>
                         {volist name='routes' id="v"}
-                        <li><a href="event-grid.html">{$v.h_name}</a></li>
+                        <li><a href="{:url('/listshow/5/'.$v.id)}">{$v.h_name}</a></li>
                         {/volist}
                     </ul>
                   </li>
                   <li><a href="{:url('/shoplist/1')}">景区</a>
                     <ul>
                         {volist name='scenery' id="v"}
-                        <li><a href="event-grid.html">{$v.h_name}</a></li>
+                        <li><a href="{:url('/listshow/1/'.$v.id)}">{$v.h_name}</a></li>
                         {/volist}
                     </ul>
                   </li>
@@ -474,7 +474,7 @@
                     <li><a href="{:url('/shoplist/6')}">特产美食</a>
                         <ul>
                             {volist name='food' id="v"}
-                            <li><a href="event-grid.html">{$v.h_name}</a></li>
+                            <li><a href="{:url('/listshow/6/'.$v.id)}">{$v.h_name}</a></li>
                             {/volist}
                         </ul>
                     </li>
@@ -610,23 +610,17 @@
           <div class="row">
             <div class="col-md-9 col-sm-8">
               <div class="gt_course_search default_width">
-                <form>
-                  <input type="search" placeholder="Search Courses">
-                  <a href="#"><i class="fa fa-search"></i></a>
+                <form method="get" action="{:url('index/index/souover')}">
+                  <input type="search" name="search" placeholder="Search 关键字" id="inputString" autocomplete="off">
+                  <!--<a href="#"><i class="fa fa-search"></i></a href="#">-->
+                    <div class="suggestionsBox" id="suggestions" style="display: block;width:600px;overflow: hidden;background-color:#FFFFFF;z-index:99px;border:1px solid grey">
+
+                    </div>
+                    <button><i class="fa fa-search"></button>
                 </form>
               </div>
             </div>
-            <div class="col-md-3 col-sm-4">
-              <div class="gt_sort_wrap">
-                  <span>Sort by:</span>
-                  <label class="fa fa-angle-down"></label>
-                  <select>
-                    <option>Popular</option>
-                    <option>Popular</option>
-                    <option>Popular</option>
-                  </select>
-                </div>
-            </div>
+
           </div>
           <!--Search Wrap End-->
 
@@ -778,7 +772,8 @@
       <!--Explore All Courses Wrap Start-->
 
       <!--Explore All Courses Search Wrap Start-->
-      <section class="gt_course_search_bg">
+
+        <section class="gt_course_search_bg">
         <!--Heading Wrap Start-->
         <div class="gt_hdg_1 white_color default_width">
           <h3>理想目的地</h3>
@@ -1556,7 +1551,7 @@
 
     {block name="myjs"}
   <!--聊天室-->
-  <script type="text/javascript" src="/static/app/index/js/socket.io.js"></script>
+  <!--<script type="text/javascript" src="/static/app/index/js/socket.io.js"></script>-->
 
   <script type="text/javascript">
 
@@ -1647,16 +1642,18 @@
           $('#smodal').modal('show');
       });
 
-    })
+    });
 
     // 文字滚动
-        setInterval(function (){6
+    var jchd = document.getElementById('jchd');
+    var msg = document.getElementById('msg');
+        setInterval(function (){
             var str = msg.innerHTML;
             var arr = str.split("");
             arr.push(arr.shift()); 
             msg.innerHTML = arr.join("");
         },100);
-        setInterval(function (){6
+        setInterval(function (){
             var str = jchd.innerHTML;
             var arr = str.split("");
             arr.push(arr.shift());
@@ -1865,7 +1862,76 @@
 <!--yjf end-->
 
 
-  {/block}
+    <!--搜索JS-->
+<script type="text/javascript"  charset="UTF-8">
+        $('#suggestions').hide();
+        $('#inputString').keyup(function(){
+            var str = $(this).val();
+            $.ajax({
+               type:"post",
+                url:"/search",
+                data:{search:str},
+                success:function(data){
+                    $('#suggestions').hide();
+                    $('#suggestions').empty();
+                    if(data.length>0){
+                        var lists = "<ul>";
+                        $.each(data, function () {
+                            lists += "<li class='li'>"+this.gd_title+"</li>";//遍历出每一条返回的数据
+                        });
+                        lists+="</ul>";
+                        //展示搜索结果
+                        $("#suggestions").html(lists).show();
+                        //绑定参数
+                        dataRead(data);
+
+                        //绑定点击事件
+                        $("li").click(function(){
+                            $("#inputString").val($(this).text());//点击某个li就会获取当前的值
+                            $("#suggestions").hide();
+                            //请求搜索
+                            var str = $(this).text();
+
+                            doSearch(str);
+                        });
+
+                        $("li").mouseover(function(){
+                            $(this).css('backgroundColor','#F5F5F5');
+                        });
+                        $("li").mouseout(function(){
+                            $(this).css('backgroundColor','');
+                        });
+                    }
+                },
+                error:function(){
+                    $('#suggestions').hide();
+                }
+            });
+        });
+
+        //参数绑定id,cid
+        function dataRead(data){
+          var lis=document.getElementsByClassName('li');
+            for(var i=0;i<data.length;i++){
+                (function(i){
+                    lis[i].setAttribute('data-id',data[i].id);
+                    lis[i].setAttribute('cid',data[i].c_id);
+                })(i);
+            }
+        }
+
+        function doSearch(str){
+            var arr = str.substr(0,2);
+           window.location = "/searchover/"+arr;
+        }
+
+
+
+    </script>
+
+    <!--搜索JS END-->
+
+    {/block}
 
 </body>
 </html>

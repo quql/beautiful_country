@@ -43,6 +43,12 @@ class HotelPic extends Bus
      */
     public function save(Request $request)
     {
+        $gid = $request->post();
+        $gid =$gid['gid'];
+        $num = Db::name('hotel_pic')->where('gid',$gid)->count();
+           if($num>=6){
+            return $this->error('此住宿图片数量已达上限');
+            }
         $file = request()->file('img');
 
         if(empty($file)){
@@ -59,11 +65,10 @@ class HotelPic extends Bus
 // 输出 42a79759f284b767dfcb2a0197904287.jpg
             }else{
 // 上传失败获取错误信息
-                return $this->error('头像上传失败');
+                return $this->error('图片上传失败');
             }
         }
-        $gid = $request->post();
-        $gid =$gid['gid'];
+
         $data=[
             'gid'=>$gid,
             'pic'=>$pic,

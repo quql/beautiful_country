@@ -106,9 +106,13 @@ Route::resource('buspower', 'admin/Buspower');
 
 
 Route::post('cart', 'index/cart/index');
-
-
-
+//回车触发搜素
+Route::get('souover','index/Index/souover');
+//点击触发搜索
+Route::get('searchover/:search','index/Index/searchover');
+//前台搜索框
+Route::post('search','index/Index/search');
+//前台搜索触发
 
 //购物车页面
 //Route::get('cart', 'index/cart/index');
@@ -168,9 +172,12 @@ Route::get('done', 'admin/BusOrder/done');
 //被取消订单
 Route::get('cancel', 'admin/BusOrder/cancel');
 
-
+//显示不同分类列表页
+Route::get('/listshow/:id/:cid', 'index/Index/listshow');
 //显示列表页
 Route::get('/shoplist/[:id]', 'index/Index/read');
+
+
 
 //评论列表
 Route::get('commentlist','admin/Comment/index');

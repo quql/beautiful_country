@@ -95,7 +95,6 @@ class Routescate extends Admin
         $p = $request->put();
         $data = [
             'c_id' => $p['c_id'],
-            'bus_id' => $p['bus_id'],
             'h_name' => $p['h_name'],
         ];
         $result = Db::name('route_cate')->where('id', $id)->update($data);

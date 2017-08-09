@@ -63,7 +63,7 @@ class Hotel extends Bus
 
             }else{
 // 上传失败获取错误信息
-                return $this->error('头像上传失败');
+                return $this->error('图片上传失败');
             }
         }
 
@@ -127,7 +127,9 @@ class Hotel extends Bus
             'gd_num'=>'0',
             'is_wifi'=>$wifi,
             'is_park'=>$park,
-            'gd_view'=>'0'
+            'gd_view'=>'0',
+            'gd_phone'=>$p['gd_phone'],
+            'gd_address'=>$p['gd_address']
         ];
         $data3 = [
             'gid'=>$result,
@@ -229,7 +231,9 @@ class Hotel extends Bus
             'gd_store' => $info['gd_store'],
             'gd_discount' => $info['gd_discount'],
             'is_wifi'=>$wifi,
-            'is_park'=>$park
+            'is_park'=>$park,
+            'gd_phone'=>$p['gd_phone'],
+            'gd_address'=>$p['gd_address']
         ];
 
         $result1 =Db::table('ml_hotel')->where('id',$id)->update($newInfo1);

@@ -48,6 +48,8 @@
                             <th align="center" valign="middle">折扣价</th>
                             <th align="center" valign="middle">历史销量</th>
                             <th align="center" valign="middle">浏览量</th>
+                            <th align="center" valign="middle">联系方式</th>
+                            <th align="center" valign="middle">地址</th>
                             <th align="center" valign="middle">是否热销</th>
                             <th align="center" valign="middle">是否上架</th>
 
@@ -64,6 +66,8 @@
                             <td align="center" >{$data2.gd_discount}</td>
                             <td align="center" >{$data2.gd_num}</td>
                             <td align="center" >{$data2.gd_view}</td>
+                            <td align="center" >{$data2.gd_phone}</td>
+                            <td align="center" >{$data2.gd_address}</td>
 
                             <td align="center" >
                                 {if condition="$data1.gd_hot eq '1'" }是
@@ -75,9 +79,6 @@
                                 {else /}否
                                 {/if}
                             </td>
-
-
-
                         </tr>
                         </tbody>
                     </table>
@@ -85,7 +86,10 @@
         </div>
 
     </div>
-
+    <br>
+    <br>
+    <br>
+    <br>
     <!--body wrapper end-->
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

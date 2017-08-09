@@ -15,6 +15,7 @@ class Base extends Controller
      */
     public function _initialize()
     {
+        session_start();
         $hotel = Db::name('h_cate')->select();
         $routes = Db::name('route_cate')->select();
         $scenery = Db::name('scenery_cate')->select();

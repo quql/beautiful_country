@@ -43,6 +43,12 @@ class FoodPic extends Bus
      */
     public function save(Request $request)
     {
+        $gid = $request->post();
+        $gid =$gid['gid'];
+        $num = Db::name('food_pic')->where('gid',$gid)->count();
+        if($num>=4){
+            return $this->error('此商品图片数量已达上限');
+        }
         $file = request()->file('img');
         if(empty($file)){
             $pic='1.jpg';
@@ -59,11 +65,10 @@ class FoodPic extends Bus
 
             }else{
 // 上传失败获取错误信息
-                return $this->error('头像上传失败');
+                return $this->error('图片上传失败');
             }
         }
-        $gid = $request->post();
-        $gid =$gid['gid'];
+
         $data=[
             'gid'=>$gid,
             'pic'=>$pic,

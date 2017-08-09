@@ -5,7 +5,7 @@ namespace app\index\controller;
 use think\Controller;
 use think\Request;
 
-class Bus extends Controller
+class Bus extends Base
 {
     /**
      * 显示资源列表

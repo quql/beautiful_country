@@ -159,7 +159,7 @@ class User extends Admin
         ];
         $result = Db::name('admin_user')->where('id', $id)->update($data);
         if ($result) {
-            return $this->success('编辑成功', url('admin/user/index'));
+            return $this->success('编辑成功');
         } else {
             return $this->error('编辑失败');
         }
