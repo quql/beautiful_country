@@ -6,7 +6,7 @@ use think\Controller;
 use think\Request;
 use think\Db;
 
-class ActivitiesBusPic extends Admin
+class Activitiesbuspic extends Admin
 {
     /**
      * 显示资源列表

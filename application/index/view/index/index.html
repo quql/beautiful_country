@@ -449,6 +449,7 @@
                     </ul>
                   </li>
 
+
                   <li><a href="{:url('/shoplist/5')}">旅游线路</a>
                     <ul>
                         {volist name='routes' id="v"}
@@ -471,7 +472,17 @@
                             {/volist}
                         </ul>
                     </li>
-                  <li><a href="javascript:avoid(0);">资讯</a>
+
+                    <li><a href="{:url('/shoplist/7')}">精彩活动</a>
+                        <ul>
+                            {volist name='activities' id="v"}
+                            <li><a href="{:url('/listshow/7/'.$v.id)}">{$v.ac_name}</a></li>
+                            {/volist}
+                        </ul>
+                    </li>
+
+
+             <!--      <li><a href="javascript:avoid(0);">资讯</a>
                     <ul>
                       <li><a href="comming-soon.html">Comming Soon</a></li>
                       <li><a href="classes.html">Classes</a></li>
@@ -495,7 +506,7 @@
                       </li>
                       <li><a href="login-register.html">Login and Register</a></li>
                     </ul>
-                  </li>
+                  </li> -->
                   <li><a href="about-us.html">关于我们</a></li>
                 </ul>
             </nav>
@@ -1058,86 +1069,24 @@
         </div>
 
           <!--Gallery List Wrap Start-->
+           {volist name="activities" id="v"}
           <div class="col-md-3 col-sm-6 no_padding">
             <div class="gt_gallery_style1">
               <figure>
-                <img src="/static/app/index/images/a1.jpg"  height='507px' alt="">
+                <img src="/uploads/{$v['pic']}" style="height:250px" alt="">
               </figure>
               <div class="gt_gallery_style1_des">
                 <ul>
                   <li><a href="#"><i class="fa fa-link"></i></a></li>
                   <li><a href="/static/app/index/images/a1.jpg" data-rel="prettyPhoto"><i class="fa fa-search"></i></a></li>
                 </ul>
-                <h3>北寨活动照片</h3>
+                <h3>{$v['ac_title']}</h3>
               </div>
             </div>
           </div>
-          <div class="col-md-3 col-sm-6 no_padding">
-            <div class="gt_gallery_style1">
-              <figure>
-                <img src="/static/app/index/extra-images/gallery-02.jpg" alt="">
-              </figure>
-              <div class="gt_gallery_style1_des">
-                <ul>
-                  <li><a href="#"><i class="fa fa-link"></i></a></li>
-                  <li><a href="/static/app/index/extra-images/gallery-01.jpg" data-rel="prettyPhoto"><i class="fa fa-search"></i></a></li>
-                </ul>
-                <h3>Business Conference UK</h3>
-              </div>
-            </div>
-            <div class="gt_gallery_style1">
-              <figure>
-                <img src="/static/app/index/extra-images/gallery-03.jpg" alt="">
-              </figure>
-              <div class="gt_gallery_style1_des">
-                <ul>
-                  <li><a href="#"><i class="fa fa-link"></i></a></li>
-                  <li><a href="/static/app/index/extra-images/gallery-01.jpg" data-rel="prettyPhoto"><i class="fa fa-search"></i></a></li>
-                </ul>
-                <h3>Business Conference UK</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6 no_padding">
-            <div class="gt_gallery_style1">
-              <figure>
-                <img src="/static/app/index/extra-images/gallery-04.jpg" alt="">
-              </figure>
-              <div class="gt_gallery_style1_des">
-                <ul>
-                  <li><a href="#"><i class="fa fa-link"></i></a></li>
-                  <li><a href="/static/app/index/extra-images/gallery-01.jpg" data-rel="prettyPhoto"><i class="fa fa-search"></i></a></li>
-                </ul>
-                <h3>Business Conference UK</h3>
-              </div>
-            </div>
-            <div class="gt_gallery_style1">
-              <figure>
-                <img src="/static/app/index/extra-images/gallery-05.jpg" alt="">
-              </figure>
-              <div class="gt_gallery_style1_des">
-                <ul>
-                  <li><a href="#"><i class="fa fa-link"></i></a></li>
-                  <li><a href="/static/app/index/extra-images/gallery-01.jpg" data-rel="prettyPhoto"><i class="fa fa-search"></i></a></li>
-                </ul>
-                <h3>Business Conference UK</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6 no_padding">
-            <div class="gt_gallery_style1">
-              <figure>
-                <img src="/static/app/index/extra-images/gallery-06.jpg" alt="">
-              </figure>
-              <div class="gt_gallery_style1_des">
-                <ul>
-                  <li><a href="#"><i class="fa fa-link"></i></a></li>
-                  <li><a href="/static/app/index/extra-images/gallery-01.jpg" data-rel="prettyPhoto"><i class="fa fa-search"></i></a></li>
-                </ul>
-                <h3>Business Conference UK</h3>
-              </div>
-            </div>
-          </div>
+          {/volist}
+
+
           <!--Gallery List Wrap End-->
       </section>
       <!--Campus Life and Activities Wrap End-->
@@ -1442,9 +1391,71 @@
               </div>
             </div>
           </div>
+          <!--Footer List Wrap end-->
+          <style type="text/css">
+
+            .gt_foo_contact_wrap0 {
+              float: left;
+              width: 100%;
+              position: relative;
+              margin: 20px 0px 0px 0px;
+              padding: 60px 0px 0px;
+              border-top: 1px solid #383d41;
+          }
+
+            .gt_foo_contact_wrap1 {
+              float: left;
+              width: 100%;
+              position: relative; 
+              margin: 10px 0px 0px; 
+              padding: 10px 0px 0px; 
+              border-top: 1px solid #383d41;
+          }
+            .gt_foo_contact_wrap1 h5{
+              color: #ffffff;
+              font-weight: 600;
+              font-size: 20px;
+              text-transform: uppercase;
+              position: relative;
+          }
+
+          .linkworld{
+             margin: 10px 0px 0px 10px; 
+          }
+
+          .gt_copyright_wrap {
+              float: left;
+              width: 100%;
+              position: relative;
+              background-color: #121011;
+              margin-top: 50px;
+              padding: 15px 0px;
+            }
+
+          </style>
 
           <!--Footer Contact Wrap Start-->
-          <div class="gt_foo_contact_wrap">
+
+          <div class="gt_foo_contact_wrap1">
+            <h5>友情链接</h5>
+          </div>
+          <div class="gt_foo_contact_wrap1">
+           {volist name='link' id="v"}
+             <div class="col-md-4">
+                <div class="linkworld"><a href='{$v.l_url}' target='_blank'><img src="/uploads/{$v['l_logo']}" alt="{$v.l_name}" style="width:250px; height:150px;"  /></a></div>
+             </div>
+             {/volist}
+          </div>
+          <!-- <div class="gt_foo_contact_wrap1">
+            <h5>友情链接</h5>
+          </div> -->
+          <!-- <div class="gt_foo_contact_wrap2">
+            
+          </div> -->
+          <!--Footer Contact Wrap End-->
+
+           <!--Footer Contact Wrap Start-->
+          <div class="gt_foo_contact_wrap0">
             <div class="row">
                 <div class="col-md-4 col-sm-6">
                     <div class="gt_foo_contact_des">
@@ -1476,6 +1487,7 @@
             </div>
           </div>
           <!--Footer Contact Wrap End-->
+
       </div>
       <!--Footer List Wrap End-->
 

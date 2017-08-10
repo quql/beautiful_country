@@ -74,19 +74,22 @@ Route::get('/hotelpicfirst/[:id]','admin/HotelPic/first');
 
 //活动管理
 //平台对活动类型的增删改查
-Route::resource('ActivitiesAdminCate','admin/ActivitiesAdminCate');
+Route::resource('Activitiesadmincate','admin/Activitiesadmincate');
 //商家对活动的增删改查
 Route::resource('Activities', 'admin/Activities');
 //商家对活动图片的增删改查
-Route::resource('ActivitiesBusPic', 'admin/ActivitiesBusPic');
+Route::resource('Activitiesbuspic', 'admin/Activitiesbuspic');
+
+//平台对活动图片的删除
+Route::resource('Activitiesadminpic', 'admin/Activitiesadminpic');
 //商家查看活动图片
-Route::get('ActivitiesShow','admin/Activities/show');
+Route::get('Activitiesshow','admin/Activities/show');
 //设置图片封面
-Route::get('/ActivitiesBusPicfirst/[:id]','admin/ActivitiesBusPic/first');
+Route::get('/Activitiesbuspicfirst/[:id]','admin/Activitiesbuspic/first');
 //平台对活动的增删改查
-Route::resource('ActivitiesAdminList', 'admin/ActivitiesAdminList');
+Route::resource('Activitiesadminlist', 'admin/Activitiesadminlist');
 //平台查看活动图片
-Route::get('ActivitiesAdminShow','admin/ActivitiesAdminList/show');
+Route::get('Activitiesadminshow','admin/Activitiesadminlist/show');
 
 //友情链接管理
 Route::resource('link','admin/Link');
@@ -215,6 +218,7 @@ Route::post('tocancel','admin/BusOrder/tocancel');
 
 //显示不同分类列表页
 Route::get('/listshow/:id/:cid', 'index/Index/listshow');
+
 //显示列表页
 Route::get('/shoplist/[:id]', 'index/Index/read');
 
