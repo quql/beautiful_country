@@ -53,7 +53,7 @@
                             <td align="center" valign="middle">
                                 <textarea name="" id="" cols="40" rows="1">{$v.c_text}</textarea>
                             </td>
-                            <td align="center" valign="middle" id="ban">{if condition='($v.is_ban==0)'}已发布{else /}已禁用{/if}</td>
+                            <td align="center" valign="middle" id="ban{$v.c_id}">{if condition='($v.is_ban==0)'}已发布{else /}已禁用{/if}</td>
                             <td class="col-md-4">
                                 <button class=" btn-info btn-sm" data-toggle="modal" data-target="#myModal">查看详情
                                 </button>
@@ -133,7 +133,7 @@
         $('.del-btn').click(function () {
             var id = $(this).attr('bin-id');
             //console.log($('#ban').html());
-            if ($('#ban').html() == '已禁用') {
+            if ($('#ban'+id).html() == '已禁用') {
                 alert('此评论已是禁用状态');
                 return;
             } else if (confirm('确定要 [ 禁用 ] 此评论???')) {
@@ -162,7 +162,7 @@
                 console.log(data);
                 if (data.status) {
                     toastr.success(data.info);
-                    $('#ban').html('已禁用');
+                    $('#ban'+id).html('已禁用');
                 } else {
                     toastr.error(data.info, 'FBI WARNING:');
                 }

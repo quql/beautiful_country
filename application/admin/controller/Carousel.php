@@ -2,7 +2,6 @@
 
 namespace app\admin\controller;
 
-use think\Controller;
 use think\Request;
 use think\Db;
 
@@ -16,7 +15,7 @@ class Carousel extends Admin
     public function index()
     {
         //加载模板
-        $list=Db::name('pic')->select();
+        $list=Db::name('pic')->paginate(5);
         //dump($list);
         return view('carousel/index',['list'=>$list]);
     }
@@ -50,6 +49,8 @@ class Carousel extends Admin
         $res = $request->post();
         if(!isset($res['is_show'])){
             $res['is_show']='0';
+        }else{
+            $res['is_show']='1';
         }
         //dump($res);
         $data=[
@@ -122,24 +123,39 @@ class Carousel extends Admin
     public function update(Request $request, $id)
     {
         $file = request()->file('pic');
-        $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
-        if($info){
-            $pic= $info->getSaveName();
+        if ($file!==null){
+            $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
+            if($info){
+                $pic= $info->getSaveName();
+            }else{
+                return $this->error('图片修改失败');
+            }
+            $res = $request->post();
+            if(!isset($res['is_show'])){
+                $res['is_show']='0';
+            }else{
+                $res['is_show']='1';
+            }
+            //dump($res);
+            $data=[
+                'desc'=>$res['desc'],
+                'pic'=>$pic,
+                'is_show'=>$res['is_show']
+            ];
         }else{
-            return $this->error('图片修改失败');
+            $res = $request->post();
+            if(!isset($res['is_show'])){
+                $res['is_show']='0';
+            }else{
+                $res['is_show']='1';
+            }
+            //dump($res);
+            $data=[
+                'desc'=>$res['desc'],
+                'is_show'=>$res['is_show']
+            ];
         }
-        $res = $request->post();
-        if(!isset($res['is_show'])){
-            $res['is_show']='0';
-        }else{
-            $res['is_show']='1';
-        }
-        //dump($res);
-        $data=[
-            'desc'=>$res['desc'],
-            'pic'=>$pic,
-            'is_show'=>$res['is_show']
-        ];
+
         $result = Db::name('pic')->where('id', $id)->update($data);
         if ($result) {
             return $this->success('修改成功');

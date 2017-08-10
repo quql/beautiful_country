@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>魅丽乡村---暂离繁华喧嚣.回归恬淡静谧</title>
+    <title>美丽乡村---暂离繁华喧嚣.回归恬淡静谧</title>
     <!-- Animation CSS -->
     <link href="/static/app/index/css/animate.css" rel="stylesheet">
     <!-- Pretty Photo CSS -->
@@ -37,7 +37,9 @@
     <script src="/static/app/index/js/gVerify.js"></script>
     <!--end-yjf-->
     <style>
-
+        .fixed{
+            position: fixed;
+        }
         #chat{
             width:200px;
             height: 340px;
@@ -46,7 +48,7 @@
             margin-top: 50px;
             margin-right: 0px;
             background: lightgreen;
-            z-index: 100;
+            z-index: 10001;
         }
         .headChat{
             width:200px;
@@ -228,12 +230,11 @@
 
   <div class="gt_wrapper">
     <!-- Header Wrap Start -->
-    <header>
+    <header id="fixed">
       <div class="gt_top_wrap gt_bg_3 default_width">
           <div class="container">
             <div class="gt_top_element">
               <ul>
-                <!--<li><a href="{:url('index/Consultation/index')}" class="online btn btn-sm" style='background-color:#2dcc70;' ><i class='glyphicon glyphicon-comment'></i>在线咨询</a></li>-->
                   <li><button  class="online btn btn-sm" style='background-color:#2dcc70;' ><i class='glyphicon glyphicon-comment'></i>在线咨询</button></li>
                 <li><button  class="tel btn btn-sm" style='background-color:#2dcc70;' data-toggle="modal" data-target=".bs-example-modal-sm"><i class='fa fa-phone'></i>联系我们</button></li>
 
@@ -241,25 +242,6 @@
 
               </ul>
             </div>
-            <!-- online -->
-            <!-- 在线咨询 Modal -->
-            <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
-              <!--<div class="modal-dialog" role="document">-->
-                <!--<div class="modal-content">-->
-                  <!--<div class="modal-header">-->
-                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-                    <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
-                  <!--</div>-->
-                  <!--<div class="modal-body">-->
-                    <!--...-->
-                  <!--</div>-->
-                  <!--<div class="modal-footer">-->
-                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                    <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
             <!-- 联系电话 Small modal -->
             <div class="modal fade bs-example-modal-sm" id='smodel' tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
               <div class="modal-dialog modal-sm" role="document">
@@ -334,6 +316,13 @@
                                           <input type="radio"  name='b_type' value="3">景区
                                       </div>
                                   </div>
+                                  <!--<div class="form-group">-->
+                                      <!--<label  class="col-sm-2 control-label">邮箱验证</label>-->
+                                      <!--<div class="col-sm-10">-->
+                                          <!--<input type="text" class="form-control" id="inputEmail" name="b_email" placeholder="请输入您的邮箱">-->
+                                          <!--<button class="btn-default btn-sm btn_email">获取验证码</button>-->
+                                      <!--</div>-->
+                                  <!--</div>-->
 
 
                                   <div class="form-group">
@@ -434,17 +423,6 @@
                 <ul>
 
                   <li class="active"><a href="{:url('index/index/index')}">首页</a>
-                    <!-- <ul>
-                      <li><a href="index.html">Home 01</a></li>
-                      <li><a href="index-02.html">Home 02</a></li>
-                      <li><a href="index-revolution-slider.html">Home Revolution Slider</a></li>
-                      <li><a href="index-/static.html">Home /static Background</a></li>
-            <li><a href="index-/static-text-rotation.html">Home /static Text Rotation</a></li>
-                      <li><a href="index-video.html">Home Video Background</a></li>
-                      <li><a href="index-one-page.html">Home One Page</a></li>
-                    </ul> -->
-
-
                   </li>
 
                   <li><a href="{:url('/shoplist/4')}">住宿</a>
@@ -512,41 +490,26 @@
     <!--Header Wrap End-->
 {block name='main'}
     <!--Banner Wrap Start-->
+      {if condition="!empty($pics)"}
     <div class="gt_banner default_width">
       <div class="swiper-container" id="swiper-container">
          <ul class="swiper-wrapper">
+             {volist name="pics" id="pic"}
             <li class="swiper-slide">
-                <img src="/static/app/index/images/1.jpg" width='100%' height='667px' alt="">
-                <div class="gt_banner_text gt_slide_1">
-                  <h3>What would you like to learn</h3>
-                  <h2>Complete Education Solution</h2>
-                  <p>Aenean commodo ligal geate dolor. Aenan massa. Loren ipsum dolor sit amet,color dolor sit amet</p>
-                  <a href="#">see More<i class="fa fa-arrow-right"></i></a>
+                <img src="/uploads/{$pic['pic']}" width='100%' height='667px' alt="">
+                <div class="gt_banner_text gt_slide_1"> <!--文字进入gt_slide_1 gt_slide_2 gt_slide_3-->
+                  <h3>{$pic['desc']}</h3>
+                  <h2>{$pic['desc']}</h2>
+                  <p>{$pic['desc']}</p>
                 </div>
             </li>
-            <li class="swiper-slide">
-                <img src="/static/app/index/images/2.jpg" width='100%' height='667px' alt="">
-                <div class="gt_banner_text gt_slide_2">
-                  <h3>What would you like to learn</h3>
-                  <h2>Complete Education Solution</h2>
-                  <p>Aenean commodo ligal geate dolor. Aenan massa. Loren ipsum dolor sit amet,color dolor sit amet</p>
-                  <a href="#">see More<i class="fa fa-arrow-right"></i></a>
-                </div>
-            </li>
-            <li class="swiper-slide">
-                <img src="/static/app/index/images/3.jpg" width='100%' height='667px' alt="">
-                <div class="gt_banner_text gt_slide_3">
-                  <h3>What would you like to learn</h3>
-                  <h2>Complete Education Solution</h2>
-                  <p>Aenean commodo ligal geate dolor. Aenan massa. Loren ipsum dolor sit amet,color dolor sit amet</p>
-                  <a href="#">see More<i class="fa fa-arrow-right"></i></a>
-                </div>
-            </li>
+             {/volist}
          </ul>
        </div>
       <div class="swiper-button-next"><i class="fa fa-angle-right"></i></div>
       <div class="swiper-button-prev"><i class="fa fa-angle-left"></i></div>
     </div>
+      {/if}
     <!--Banner Wrap End-->
 
     <!--Main Content Wrap Start-->
@@ -601,12 +564,8 @@
             <div class="col-md-9 col-sm-8">
               <div class="gt_course_search default_width">
                 <form method="get" action="{:url('index/index/souover')}">
-                  <input type="search" name="search" placeholder="Search 关键字" id="inputString" autocomplete="off">
-                  <!--<a href="#"><i class="fa fa-search"></i></a href="#">-->
-                    <div class="suggestionsBox" id="suggestions" style="display: block;width:600px;overflow: hidden;background-color:#FFFFFF;z-index:99px;border:1px solid grey">
-
-                    </div>
-                    <button><i class="fa fa-search"></button>
+                  <input type="search" name="search" placeholder="Search 关键字" id="inputString" autocomplete="off"/>
+                    <button class="gt_search_remove_btn btn-sm" style="background: white;padding-top:3px;padding-left:10px"><i class="fa fa-search"></i></button>
                 </form>
               </div>
             </div>
@@ -1227,13 +1186,17 @@
             <div class="item">
               <div class="gt_team_wrap default_width">
                 <figure>
-                  <img src="/uploads/{$vfood['pic']}" alt="" height="278px">
+                    <a href=""><img src="/uploads/{$vfood['pic']}" alt="" height="278px"></a>
                 </figure>
+
                 <div class="gt_team_des default_width">
                   <h6><a href="#">{$vfood['gd_title']}</a></h6>
-                  <span>{$vfood['gd_abstract']}</span><span>店铺:{$vfood['b_name']}</span>
-                  <p>￥{$vfood['price']} </p>
+                  <span>{$vfood['gd_abstract']}</span>
                 </div>
+                  <div class="gt_course_bottom default_width">
+                      <h5>￥{$vfood['price']}<span></span></h5>
+                      <a href="#">来自:{$vfood['b_name']}</a>
+                  </div>
               </div>
             </div>
               {/volist}
@@ -1453,7 +1416,7 @@
             </div>
             <div class="col-md-3 col-sm-6">
               <div class="gt_foo_about gt_widget_hdg">
-                  <h5>关于魅村</h5>
+                  <h5>关于美村</h5>
                   <ul>
                       <li><a href="#">关于我们</a></li>
                       <li><a href="#">诚聘英才</a></li>
@@ -1494,7 +1457,7 @@
                           </div>
                       </div>
                   </div>
-              </div>
+            </div>
           </div>
           <!--Footer Contact Wrap End-->
       </div>
@@ -1510,11 +1473,13 @@
           </div>
       </div>
       <!--Copyright Wrap Start-->
+      </div>
     </footer>
     <!--Footer Wrap End-->
 
       {/block}
     <!--Back to Top Wrap Start-->
+
     <div class="back-to-top" >
         <a href="#home">Top</a>
     </div>
@@ -1524,19 +1489,21 @@
           <div  class="headChat"><p>在线咨询</p><button id="closeChat" class="btn btn-danger btn-sm">关闭</button></div>
           <div class="content bodyChat" id="onchat">
               <ul class="list-group" id="chat_conatiner">
-                    <li class="list-group-item " id="server"><b>客服:&nbsp;</b>你好...</li>
+                  <li class="list-group-item " id="server"><b>客服:&nbsp;</b>你好...</li>
               </ul>
           </div>
           <div class="footerChat">
               <textarea></textarea>
               <button class="btn btn-success btn-sm" id="clear">清屏</button>
               <button class="btn btn-success btn-sm" id="send">发送</button>
+
+
           </div>
       </div>
   </div>
 
 
-  <!--gt Wrapper End-->
+<!--gt Wrapper End-->
 
   <!--Jquery Library-->
   <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
@@ -1567,13 +1534,15 @@
 
 {block name="myjs"}
   <!--聊天室-->
-  <!--<script type="text/javascript" src="/static/app/index/js/socket.io.js"></script>-->
+  <script type="text/javascript" src="/static/app/index/js/socket.io.js"></script>
 
   <script type="text/javascript">
 
       $('.online').click(function(){
+          //console.log('12234');
           $('#chat').css('display','block');
-      });
+
+        });
       $('#closeChat').click(function(){
           $('#chat').css('display','none');
       });
@@ -1581,10 +1550,10 @@
       var ws = io.connect('http://127.0.0.1:888');
       var sendMsg = function(msg){
           ws.emit('send.message', msg);
-      }
+      };
       var addMessage = function(from, msg){
           var a=$('textarea').val();
-          var html = '<li class="list-group-item text-primary"><b>我:&nbsp;</b>'+a+'</li>';
+          var html = '<li class="list-group-item text-primary"><b>我:　&nbsp;</b>'+a+'</li>';
           $('#chat_conatiner').append(html);
 
           // 设置内容区的滚动条到底部
@@ -1593,7 +1562,7 @@
           // 并设置焦点
           document.querySelector('textarea').focus();
 
-      }
+      };
 
       var send = function(){
           var ele_msg = document.querySelector('textarea');
@@ -1604,7 +1573,7 @@
           // 添加消息到自己的内容区
           addMessage('你', msg);
           ele_msg.value = '';
-      }
+      };
 
 //      ws.on('connect', function(){
 //          var nickname = window.prompt('输入你的昵称!');
@@ -1660,6 +1629,19 @@
 
     });
 
+    // 检测滚动事件
+    window.onscroll = function (){
+        // 导航条 位置判断
+        //console.log(document.body.scrollTop);
+        var top = document.body.scrollTop || document.documentElement.scrollTop;
+        if (top > 0) {
+            var he = document.getElementById('fixed');
+            he.style.position = 'fixed';
+            he.style.top = '0px';
+            he.style.zIndex='10000';
+        }
+    }
+
     // 文字滚动
     var jchd = document.getElementById('jchd');
     var msg = document.getElementById('msg');
@@ -1682,18 +1664,8 @@
             document.title = estr + fstr;
         },500);
 
-        // 检测滚动事件
-        // window.onscroll = function (){
-        //     // 导航条 位置判断
-        //     if (document.body.scrollTop > 50) {
-        //         var nav=document.getElementById('nav');
-        //         nav.style.position = 'fixed';
-        //         nav.style.top = '0px';
-        //     }else{
-        //         nav.style.position = '';
-        //         nav.style.top = '50px';
-        //     }
-        // }
+    //邮箱获取验证码
+
 
       //验证商户注册的表单
     function checkForm() {
@@ -1781,53 +1753,6 @@
         }
     }
 
-      //ajax验证手机号和店铺名称
-     // insertAjax(p1);
-     //    function insertAjax(p1){
-     //        $.ajax({
-     //            type: 'post',
-     //            url: '/busDoRegister',
-     //           dataType: 'json',
-     //          data:$('#myform').serialize(),
-//                success: function (data) {
-//                    if (data.status) {
-//                        p1.innerHTML = ' × 此商铺名称已有人注册啦,请修改~~~';
-//                        p1.style.color = 'red';
-//                    }
-//                },
-//                error: function () {
-//                    // AJAX操作失败
-//                    alert('AJAX操作失败');
-//                }
-//            });
-//        }
-
-//        alert('恭喜您,申请信息已发送成功,三个工作日内会做出回复,请耐心等待,O(∩_∩)O谢谢！')
-    
-
-
-
-
-    // 点击发送消息
-//    $('#sendMsg').click(function(){
-//        // 把文本框中的内容 发送给服务器
-//        var a=$('#chatMsg').val();
-//        var html = '<li class="list-group-item text-primary"><b>我:'+a+'</b></li>';
-//        $('.list-group').append(html);
-//        $('#chatMsg').val('');
-//    });
-//    // 回车发送消息
-//    $('#chatMsg').keydown(function(e){
-//        if (e.keyCode == 13){
-//            console.log(e.keyCode);
-//            var a=$('#chatMsg').val();
-//            var html = '<li class="list-group-item text-primary"><b>我:&nbsp;</b>'+a+'</li>';
-//            $('.list-group').append(html);
-//            $('#chatMsg').val();
-//            $('#chatMsg').val('');
-//        }
-//    });
-//ds
 //    // 接收服务器返回的信息
 //    socket.on('serverOut',function(serverMsg){
 //        console.log(serverMsg);
@@ -1877,8 +1802,7 @@
   </script>
 <!--yjf end-->
 
-
-    <!--搜索JS-->
+      <!--搜索JS-->
 <script type="text/javascript"  charset="UTF-8">
         $('#suggestions').hide();
         $('#inputString').keyup(function(){
@@ -1948,6 +1872,5 @@
     <!--搜索JS END-->
 
     {/block}
-
 </body>
 </html>
