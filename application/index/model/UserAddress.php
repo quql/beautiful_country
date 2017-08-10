@@ -33,7 +33,7 @@ class UserAddress extends Model
     {
         //dump($id);
         $del = db('user_address');
-        $res = $del->delete('ua_id',$id);
+        $res = $del->where('ua_id',$id)->delete();
         return $res;
     }
 }

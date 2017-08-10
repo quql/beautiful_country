@@ -40,7 +40,11 @@
                 <div class="gt_d_author_pic">
                   <figure>
                     <!--头像-->
+<<<<<<< HEAD
                       <a href="javascript:void(0);" data-toggle="modal" data-target="#imgModal"><img src="/uploads/headPhoto/{$v['photo']}" style="height: 82px;width:82px;"></a>
+=======
+                      <a href="javascript:void(0);" data-toggle="modal" data-target="#imgModal"><img src="/uploads/headPhoto/{$v['photo']}"  alt="" width="82" style="height: 82px"></a>
+>>>>>>> origin/darcy
                       <div class="modal fade" id="imgModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                           <div class="modal-dialog">
                               <div class="modal-content">
@@ -321,7 +325,7 @@
                 </div>
                 <div class="gt_classes_wrap mt20" id="perForm" style="display: block">
                     {volist name="list" id="v"}
-                    <form class="form-horizontal mt50" action="{:url('index/personal/updateUser'" method="post">
+                    <form class="form-horizontal mt50" action="{:url('index/personal/updateUser')}" method="post">
                         <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="id" value="{$v['id']}">
                         <div class="form-group">
@@ -371,15 +375,13 @@
                                 <span class="ml30" id="tips3"></span>
                             </div>
                         </div>
-                        <!--<div class="form-group">-->
-                        <!--</div>-->
-                    </form>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-success">确认修改</button>
                             <hr>
                         </div>
                     </div>
+                    </form>
 
 
                     <form class="form-horizontal mt50" action="{:url('index/personal/updatePass')}" method="post">
@@ -455,11 +457,12 @@
                                   <td style="text-align: center">{$v['o_total']}</td>
                                   <td style="text-align: center">
                                       <button class="btn btn-info btn-sm show01">查看</button>
-                                      <button class="btn btn-danger btn-sm">删除</button>
+                                      <button class="btn btn-danger btn-sm delOrder" oid="{$v['o_id']}">删除</button>
                                   </td>
                               </tr>
                               {/volist}
                           </table>
+                          　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　{$done->render()}
                           {volist name="done" id="v"}
                           <!--<div class="" id="showDetail" style="display: block">-->
                           <figure class="show11" style="display: none">
@@ -508,11 +511,12 @@
                                   <td style="text-align: center">{$v['o_total']}</td>
                                   <td style="text-align: center">
                                       <button class="btn btn-info btn-sm show02">查看</button>
-                                      <button class="btn btn-danger btn-sm">退货</button>
+                                      <button class="btn btn-danger btn-sm cancel">退货</button>
                                   </td>
                               </tr>
                               {/volist}
                           </table>
+                          　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　{$diliver->render()}
                           {volist name="diliver" id="v"}
                           <!--<div class="" id="showDetail" style="display: block">-->
                           <figure class="show21" style="display: none">
@@ -561,11 +565,12 @@
                                   <td style="text-align: center">{$v['o_total']}</td>
                                   <td style="text-align: center">
                                       <button class="btn btn-info btn-sm show03">查看</button>
-                                      <button class="btn btn-danger btn-sm">退货</button>
+                                      <button class="btn btn-danger btn-sm cancel">退货</button>
                                   </td>
                               </tr>
-                                {/volist}
+                              {/volist}
                           </table>
+                          　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　{$un->render()}
                           {volist name="un" id="v"}
                           <figure class="show31" style="display: none">
                               <img src="/uploads/{$v['o_photo']}" style="width: 60%;">
@@ -573,7 +578,8 @@
                                   Paid
                               </figcaption>
                           </figure>
-                          <div class="gt_d_classes_des show32" style="display: none">
+
+                          <div class="gt_d_classes_des show32" style="display: none">　　　　　　　　　　　　　　　　　　　　　
                               <h6><a href="#">{$v['o_gname']}</a></h6>
                               <ul>
                                   <li>
@@ -895,7 +901,7 @@
 //      提示信息
         //        验证用户名
         $('#username').change(function(){
-            if ($('#username').val().match(/^\w{1,8}$/) == null){
+            if ($('#username').val().match(/^[A-Za-z0-9_\u4e00-\u9fa5]{1,16}$/) == null){
                 $('#tips1').html('用户名格式不正确~');
                 $('#tips1').css('color','#f00');
             }else{
@@ -1075,10 +1081,43 @@
 
         }
 
+//        删除已完成订单
+        $('.delOrder').click(function(){
+            var oid = $(this).attr('oid');
+            if(confirm('您确定要删除此订单记录吗?')){
+                var obj = $(this).parents('tr');
+//                alert('订单删除成功');
+//                obj.remove();
+                delOrder(oid, obj);
+            }
+        });
+//
+        function delOrder(id, obj){
+            $.ajax({
+               type:'get',
+                url:'index/Order/delete',
+                data:{'id':id},
+                dataType:'json',
+                success:function(data){
+//                    alert(data);
+                    if (data.status){
+                        alert('订单删除成功');
+                        obj.remove();
+                    }else{
+                        alert('订单删除失败,请重试~');
+                    }
+                },
+                error:function(){
+                    alert('订单删除失败,请重试~');
+                }
+            });
+        }
 
-//        $('#show03').click(function(){
-//            $('#show31,#show32').slideToggle();
-//        });
+//        退货
+        $('.cancel').click(function(){
+           alert('您的退货申请卖家已收到,请耐心等待商家联系');
+        });
+
 
 //      favorite
       $('#showFavorite').click(function(){

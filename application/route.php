@@ -121,14 +121,17 @@ Route::post('money', 'index/personal/checkpass');
 //食品详情页
 Route::get('foodDetail', 'index/food/detail');
 //酒店详情页
-Route::resource('hotelDetail', 'index/hotel');
+Route::get('hotelDetail', 'index/hotel/index');
+//酒店订单
+Route::post('hotelBook', 'index/hotel/update');
 //路线详情页
 Route::get('routeDetail', 'index/route/index');
 //路线详情页
 Route::get('sceneryDetail', 'index/scenery/index');
 //购物车页面
 Route::post('cart', 'index/cart/index');
-
+//游客购物车
+Route::get('showCart', 'index/cart/show');
 
 //所有商铺管理
 Route::resource('buspower', 'admin/Buspower');

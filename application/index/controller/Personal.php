@@ -44,7 +44,11 @@ class Personal extends Base
 
         //加载已完成订单
         $done = $o->done($id);
+<<<<<<< HEAD
 //        dump($done);
+=======
+        //dump($done);
+>>>>>>> origin/darcy
 
 
 
@@ -158,8 +162,8 @@ class Personal extends Base
     //删除用户收获的地址
     public function delAddress()
     {
-        $id = input('param.');
-        //dump($id);
+        $id = input('param.')['id'];
+        //dump($id);exit;
 
         $user = model('userAddress');
         $res = $user->del($id);

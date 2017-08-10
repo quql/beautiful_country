@@ -29,17 +29,15 @@
             <div class="container">
                 <div class="row col-sm-12">
                     <form action="index/order/index" method="post" onsubmit="return check()">
-                        <!--传递用户id-->
-                        <input type="hidden" name="uid" value="{$uid}">
                         <!--商品id-->
-                        <input type="hidden" name="gid" value="{$gid}">
+                        <input type="hidden" name="gid" value="">
                         <!--商品单价-->
-                        <input type="hidden" name="price" value="{$result[0]['ca_price']}">
+                        <input type="hidden" name="price" value="">
                         <!--传递商品类型-->
-                        <input type="hidden" name="type" value="{$result[0]['type']}">
+                        <input type="hidden" name="type" value="">
                         <!--传递购物车id-->
-                        <input type="hidden" name="cid" value="{$cid}">
-                        <p style="display: none" id="base">{$point}</p>
+                        <input type="hidden" name="cid" value="">
+
                         <!--总积分-->
                         <input type="hidden" name="point" id="point">
                     <table class="table table-striped ml20">
@@ -70,41 +68,48 @@
                         <th style="text-align: center;">商品类别</th>
                         <th style="text-align: center;">单价 (元)</th>
                         <th class="col-sm-2" style="text-align: center;">数量</th>
-                        <th style="text-align: center;">总价 (元)</th>
+                        <!--<th style="text-align: center;">总价 (元)</th>-->
                         <th style="text-align: center;">操作</th>
                     </tr>
-                    {volist name="result" id="r" key="k"}
+                    {volist name="list" id="v" key="k"}
+                    <p style="display: none" id="base">{$v['ca_point']}</p>
                     <tr>
                         <td style="text-align: center;line-height: 62px;">{$k}</td>
                         <td style="text-align: center;line-height: 62px;">
-                            <img src="/uploads/{$r['photo']}" class="img-rounded" alt="" width="100" height="56">
+                            <img src="/uploads/{$v['ca_photo']}" class="img-rounded" alt="" width="100" height="56">
                         </td>
-                        <td style="text-align: center;line-height: 62px;">{$r['title']}</td>
-                        <td style="text-align: center;line-height: 62px;">{$r['type']}</td>
-                        <td style="text-align: center;line-height: 62px;" id="price">{$r['ca_price']}</td>
+                        <td style="text-align: center;line-height: 62px;">{$v['ca_gname']}</td>
+                        <td style="text-align: center;line-height: 62px;">{$v['ca_gtype']}</td>
+                        <td style="text-align: center;line-height: 62px;" class="price">{$v['ca_price']}</td>
                         <td style="text-align: center;">
                             <div class="gt_product_left_wrap" style="border-bottom: none;margin-left: 0px;margin: 8px 0px -12px">
                                 <div id="incdec" style="margin-left: 54px;">
                                     <!--传递数量-->
-                                    <input type="text" value="{$r['ca_num']}" readonly="readonly" id="num" name="num"/>
+                                    <input type="text" value="1" readonly="readonly" class="num" name="num"/>
                                     <div class="gt_increment">
-                                        <button type="button" id="up" >+</button>
-                                        <button type="button" id="down" > -</button>
+                                        <button type="button" id="up" class="plus">+</button>
+                                        <button type="button" id="down" class="minus"> -</button>
                                     </div>
                                 </div>
                             </div>
                         </td>
-                        <input type="hidden" name="total" id="passtotal">
-                        <td style="text-align: center;line-height: 62px;" id="total"></td>
+                        <!--<input type="hidden" name="total" class="passtotal">-->
+                        <!--<td style="text-align: center;line-height: 62px;" class="total"></td>-->
                         <td style="text-align: center;line-height: 62px;">
                             <button type="button" class="btn btn-danger glyphicon glyphicon-trash del" data-id="{$v['ca_id']}"></button>
                         </td>
                     </tr>
-
                     {/volist}
+                    <tr>
+                        <td colspan="7" style="text-align: right">
+                            总价
+                            <span id="total">0</span>
+                            元
+                        </td>
+                    </tr>
                 </table>
                 </div>
-                <div style="margin-left: 850px">
+                <div style="margin-left: 850px" class="mt50">
                         <a href="{:url('index/index/index')}" class="btn btn-info btn-lg ml30">再去逛逛</a>
                         <button type="submit" class="btn btn-success btn-lg ml30" id="settle">去结算</button>
                     </form>
@@ -123,58 +128,52 @@
 
     //    计算总价
         $(function(){
-//        console.log($('#price').html());
-//        console.log($('#num').val());
-        var num = $('#price').html()*$('#num').val();
-        num = num.toFixed(2)
-        $('#total').html(num);
-        $('#passtotal').val(num);
-//        计算积分
-        var p1 = $('#base').html()*$('#num').val();
-        $('#point').val(p1);
-//        console.log($('#total').html(num));
-
-        //    点击改变数量
-        $('#up').click(function(){
-            if($('#num').val() >= 99){
-                $('#num').val(99);
-            }else{
-                $('#num').val() + 1;
-            }
-            var n = parseInt($('#num').val());
-//        console.log(n);
-            var t = $('#price').html()*n;
-//        console.log(t);
-            t = t.toFixed(2);
-            $('#total').html(t);
-            $('#passtotal').val(t);
-//            console.log($('#passtotal').val());
-            var p = $('#base').html();
-            var point = p*n;
-            $('#point').val(point);
-//            console.log(point);
-        });
-
-
-        $('#down').click(function(){
-            if($('#num').val() <= 1){
-                $('#num').val(1);
-            }else{
-                $('#num').val() - 1;
-            }
-            var n = parseInt($('#num').val());
+//            var n = parseInt($('.num').val());
+//            var d = 0;
+//            d += parseInt($('.price').text());
 //            console.log(n);
-            var t = $('#price').html()*n;
-            t = t.toFixed(2);
-            $('#total').html(t);
-            $('#passtotal').val(t);
-//            console.log($('#passtotal').val());
-            var p = $('#base').html();
-            var point = p*n;
-            $('#point').val(point);
-//            console.log(point);
+//            console.log(d);
+//            初始总价
+//            $('#total').text(d);
+//            加
+            $('.plus').click(function(){
+//                数量
+               var num = $(this).parent().prev();
+               num.text(parseInt(num.val()+1));
+//               setTotal();
+//                单价
+               var p = parseInt($(this).parents('tr').children('.price').text());
+////                总价
+//                var t = num.text()*p;
+                $('#total').text(parseInt($('#total').text()) + p);
+               console.log(t);
+            });
 
-        });
+//            减
+            $('.minus').click(function(){
+                var num = $(this).parent().prev();
+                if(parseInt(num.val()) <= 1){
+                    num.val(1);
+                }else{
+                    num.text(parseInt(num.val()-1));
+//                    setTotal();
+                    var p = parseInt($(this).parents('tr').children('.price').text());
+                    $('#total').text(parseInt($('#total').text()) - p);
+                }
+            });
+
+//            function setTotal(){
+//                var s = 0;
+//                $('#mytable td').each(function(){
+//                   s += parseInt($(this).find('input[class*=num]').val())*parseFloat($(this).find('td[class*=price]').text());
+////                   console.log(parseInt($(this).find('input[class*=num]').val()));
+////                   console.log(parseFloat($(this).find('td[class*=price]').text()));
+//                   console.log(s);
+//                });
+//                $('#total').html(s.toFixed(2));
+//
+//            }
+//            setTotal();
 
 //    执行删除
         $('.del').click(function(){

@@ -157,8 +157,21 @@ class Order extends Controller
      * @param  int  $id
      * @return \think\Response
      */
-    public function delete($id)
+    public function delete()
     {
-        //
+        $id = input('get.')['id'];
+        //dump($id);
+        //$g = model('cart');
+        //$good = $g->delete($id);
+
+        $good = db('order')->delete($id);
+
+        if ($good){
+            $info['status'] = true;
+        }else{
+            $info['status'] = false;
+        }
+        return json($info);
+        //return json($good);
     }
 }

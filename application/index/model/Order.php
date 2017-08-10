@@ -21,27 +21,27 @@ class Order extends Model
         $query = new Query();
         $res = $query->table('ml_order')
             ->where(['o_uid'=>$id,'o_status'=>0])
-            ->select();
+            ->paginate(3);
         return $res;
     }
 
-    //获取未发货订单
+    //获取已发货订单
     public function diliver($id = '')
     {
         $query = new Query();
         $res = $query->table('ml_order')
             ->where(['o_uid'=>$id,'o_status'=>1])
-            ->select();
+            ->paginate(3);
         return $res;
     }
 
-    //获取未发货订单
+    //获取已完成订单
     public function done($id = '')
     {
         $query = new Query();
         $res = $query->table('ml_order')
             ->where(['o_uid'=>$id,'o_status'=>2])
-            ->select();
+            ->paginate(3);
         return $res;
     }
 }
