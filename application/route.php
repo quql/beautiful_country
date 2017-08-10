@@ -229,6 +229,11 @@ Route::get('/carouseledit/:id','admin/Carousel/edit');
 Route::get('/carouselshow/:id','admin/Carousel/show');
 Route::get('/carouseldel/:id','admin/Carousel/delete');
 Route::post('/carouselupd/:id','admin/Carousel/update');
+//后台用户列表
+Route::get('userslist','admin/Users/index');
+Route::resource('usersmg', 'admin/Users');
+//邮箱验证
+Route::get('email','index/index/email');
 
 //显示详情页
 Route::get('goodsdetail','index/GoodsDetail/index');

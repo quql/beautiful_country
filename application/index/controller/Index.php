@@ -5,11 +5,14 @@ use think\Controller;
 use think\Request;
 use think\Url;
 use think\Db;
+use phpmailer\phpmailer;
 
 class Index extends Base
 {
     public function index()
     {
+        //查询轮播图
+        $pic=Db::name('pic')->where('is_show','1')->select();
         //查询特产美食数据
         $sql="select ml_food.*,ml_food_pic.pic,ml_business.b_name from ml_food LEFT JOIN ml_food_pic ON ml_food.id=ml_food_pic.gid LEFT JOIN ml_business ON ml_food.bus_id=ml_business.b_id  where ml_food_pic.is_first='1' and  ml_food.gd_is_sale='1'";
         $food=Db::query($sql);
@@ -17,7 +20,8 @@ class Index extends Base
         //exit;
 
         return view('index/index',[
-            'foods'=>$food
+            'foods'=>$food,
+            'pics'=>$pic
         ]);
     }
 
@@ -228,4 +232,37 @@ class Index extends Base
         return view ('index/list');
     }//
 
+    public function email()
+    {
+        $toemail = 'xxx@qq.com';//定义收件人的邮箱
+
+        $mail = new PHPMailer(); //建立邮件发送类
+        $mail->CharSet = "UTF-8";
+        $address ="13127573831@163.com";
+        $mail->IsSMTP(); // 使用SMTP方式发送
+        $mail->Host = "smtp.163.com"; // 您的企业邮局域名
+        $mail->SMTPAuth = true; // 启用SMTP验证功能
+        $mail->Username = "13127573831@163.com"; // 邮局用户名(请填写完整的email地址)
+        $mail->Password = "shanshan123"; // 邮局密码
+        $mail->Port=25;
+        $mail->From = "13127573831@163.com"; //邮件发送者email地址
+        $mail->FromName = "在线Q聊";
+        $mail->AddAddress($toemail, "邮箱测试");//收件人地址，可以替换成任何想要接收邮件的email信箱,格式是AddAddress("收件人email","收件人姓名")
+        //$mail->AddReplyTo("", "");//设置回复人信息
+
+        //$mail->AddAttachment("/var/tmp/file.tar.gz"); // 添加附件
+        $mail->IsHTML(true); // set email format to HTML //是否使用HTML格式
+
+        $mail->Subject = "邮箱测试"; //邮件标题
+        $mail->Body = "您的验证码是:8888 "; //邮件内容，上面设置HTML，则可以是HTML
+
+        if(!$mail->Send())
+        {
+            echo "邮件发送失败. <p>";
+            echo "错误原因: " . $mail->ErrorInfo;
+            exit;
+        }else{
+            echo '发送成功';
+        }
+    }
 }

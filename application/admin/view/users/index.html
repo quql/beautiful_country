@@ -4,13 +4,13 @@
 <!-- page heading start-->
 <div class="page-heading">
     <h3>
-        轮播图管理
+        用户管理
     </h3>
     <ul class="breadcrumb">
         <li>
             <a href="{url('admin/index/index')}">首页</a>
         </li>
-    <li class="active"> 图片列表</li>
+        <li class="active"> 用户列表</li>
     </ul>
 </div>
 <!-- page heading end-->
@@ -21,16 +21,16 @@
         <div class="col-sm-12">
             <section class="panel">
                 <header class="panel-heading">
-                    图片列表
-                    <button  class=" btn-info btn-sm" data-toggle="modal" data-target="#myModal1">添加图片</button>
+                    用户列表
+                    <!--<button  class=" btn-info btn-sm" data-toggle="modal" data-target="#myModal1">添加图片</button>-->
                     <span class="tools pull-right">
                         <a href="javascript:;" class="fa fa-chevron-down"></a>
                         <a href="javascript:;" class="fa fa-times"></a>
                      </span>
                 </header>
                 <div class="panel-body">
-                    {if condition="empty($list)"}
-                    <p style="text-align: center">啊偶~~还没有添加图片%>_<%~~~</p>
+                    {if condition="empty($p)"}
+                    <p style="text-align: center">啊偶~~还没有用户注册%>_<%~~~</p>
                     {else /}
                     <div class="adv-table editable-table ">
                     </div>
@@ -39,28 +39,38 @@
                         <thead>
                         <tr >
                             <th style="text-align: center">编号</th>
-                            <th style="text-align: center">图片</th>
-                            <th style="text-align: center">简述</th>
-                            <th style="text-align: center">状态</th>
+                            <th style="text-align: center">用户名</th>
+                            <th style="text-align: center">性别</th>
+                            <th style="text-align: center">手机号</th>
+                            <th style="text-align: center">邮箱</th>
+                            <th style="text-align: center">订单总量</th>
+                            <th style="text-align: center">消费总额</th>
+                            <th style="text-align: center">注册时间</th>
+                            <th style="text-align: center">评论状态</th>
                             <th style="text-align: center">操作</th>
 
                         </tr>
                         </thead>
                         <tbody>
-                        {volist name="list" id="v" key="k"}
+                        <!--{volist name="list" id="v" key="k"}-->
+                        {volist name='$p->data' id='v' key="k"}
                         <tr>
                             <td align="center" valign="middle">{$k}</td>
-                            <td align="center" valign="middle"><img data-toggle="modal" data-target="#myModal" src="/uploads/{$v.pic}" width="60px"></td>
-                            <td align="center" valign="middle">
-                                <textarea name="" id="" cols="40" rows="1" placeholder="图片覆盖层描述信息">{$v.desc}</textarea>
-                            </td>
-                            <td align="center" valign="middle" id="ban{$v.id}">{if condition='($v.is_show==1)'}首页展示{else /}首页禁用{/if}</td>
+                            <td align="center" valign="middle">{$v.u_username}</td>
+                            <td align="center" valign="middle">{if condition='($v.ud_sex==1)'}男{else /}女{/if}</td>
+                            <td align="center" valign="middle">{$v.u_phone}</td>
+                            <td align="center" valign="middle">{$v.ud_email}</td>
+                            <td align="center" valign="middle">订单总量</td>
+                            <td align="center" valign="middle">消费总额</td>
+                            <td align="center" valign="middle">{:date('Y-m-d',$v.u_create_time)}</td>
+                            <td align="center" valign="middle" id="ban{$v.u_id}">{if condition='($v.is_comment==0)'}开放{else /}禁言{/if}</td>
+
+
                             <td class="col-md-4">
                                 <!--<button class=" btn-info btn-sm" data-toggle="modal" data-target="#myModal">查看大图</button>-->
-                                <a class=" btn btn-info btn-sm" data-toggle="modal" data-target="#myModal2" href="{:url('admin/carousel/update',['id'=>$v['id']])}">编辑</a>
-                                <button class=" btn btn-success use-btn btn-sm" use-id="{$v.id}">使用</button>
-                                <button class=" btn btn-warning bin-btn btn-sm" bin-id="{$v.id}">禁用</button>
-                                <button class=" btn btn-danger del-btn btn-sm" del-id="{$v.id}" >删除</button>
+                                <button class=" btn btn-info btn-sm" data-toggle="modal" data-target="#myModal2">查看</button>
+                                <button class=" btn btn-warning bin-btn btn-sm" bin-id="{$v.u_id}">禁言</button>
+                                <button class=" btn btn-danger del-btn btn-sm" del-id="{$v.u_id}" >删除</button>
 
                             </td>
                         </tr>
@@ -69,8 +79,9 @@
                     </table>
                     {/if}
                 </div>
-                <div style="text-align:center">{$list->render()}</div>
-
+                <!--{$p->render}-->
+                <div style="text-align:center">{$p->render}</div>
+                <!--<div style="text-align:center">共{$p->total}条 第{$p->page}页 共{$p->pageNum}页</div>-->
             </section>
 
         </div>
@@ -78,71 +89,26 @@
     </div>
 </div>
 <!--body wrapper end-->
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <!--<div class="modal-header">-->
-                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span-->
-                        <!--aria-hidden="true">&times;</span></button>-->
-            <!--</div>-->
-            <div class="modal-body" style="padding:0px">
-                <!--<div class="form-group">-->
-                    <img src="/uploads/{$v.pic}" width="600px">
-                <!--</div>-->
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">添加图片</h4>
-            </div>
-            <div class="modal-body">
-                <form action="{:url('admin/carousel/save')}" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label >图片描述:</label>
-                        <input type="text" name="desc" class="form-control"  placeholder="请输入图片描述信息">
-                        <br>请添加图片:<input type="file" name="pic">
-                    </div>
-                    <div class="form-group">
-                        <label >
-                            <input type="checkbox" name="is_show"  checked> 首页展示
-                        </label>
-                    </div>
-                    <button type="submit" class="btn btn-success btn-lg">提交</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel2">编辑图片</h4>
+                <h4 class="modal-title" id="myModalLabel2">查看用户资料</h4>
             </div>
             <div class="modal-body">
-                <form action="{:url('/carouselupd/'.$v.id)}" method="post" enctype="multipart/form-data">
+                <form action="" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label>原图:</label><br><img src="/uploads/{$v.pic}" width="450px"><br>
-                        <label >描述:</label><br>
-                        <input type="text" name="desc" class="form-control" value="{$v.desc}" >
-                        <br>请添加图片:<input type="file" name="pic" id="exampleInputFile">
+                        <label>用户名:</label><br>
+                        <input type="text" class="form-control" value="{$v.u_username}" >
+                        <label >电话:</label><br>
+                        <input type="text" class="form-control" value="{$v.u_phone}" >
+                        <label >邮箱:</label><br>
+                        <input type="text" class="form-control" value="{$v.ud_email}" >
+
                     </div>
-                    <div class="form-group">
-                        <label >
-                            <input type="checkbox" name="is_show" checked> 首页展示
-                        </label>
-                    </div>
-                    <button type="submit" class="btn btn-success btn-lg">提交</button>
+
                 </form>
             </div>
         </div>
@@ -180,32 +146,20 @@
         $('.bin-btn').click(function () {
             var id = $(this).attr('bin-id');
             //console.log($('#ban').html());
-            if ($('#ban'+id).html() == '首页禁用') {
-                alert('此图片已是禁用状态');
+            if ($('#ban'+id).html() == '禁言') {
+                alert('此用户已是禁止评论状态');
                 return;
-            } else if (confirm('确定要 [ 禁用 ] 此图片???')) {
+            } else if (confirm('确定要限制此用户的评论权限')) {
+                //console.log(id);
                 updateAjax(id);
             }
         });
 
-        //触发使用操作
-        $('.use-btn').click(function () {
-            var id = $(this).attr('use-id');
-            //console.log(id);
-            //console.log($('#ban'+id).html());
-            if ($('#ban'+id).html() == '首页展示') {
-                alert('此图片已是展示状态');
-                return;
-            } else {
-
-                showAjax(id);
-            }
-        });
         //删除
         $('.del-btn').click(function () {
             var id = $(this).attr('del-id');
 
-            if (confirm('确定要 [ 删除 ] 这张图片么?')) {
+            if (confirm('小主,确定要 [ 删除 ] 此用户么,请三思啊?')) {
                 var obj = $(this).parents('tr');
                 delAjax(id, obj);// 调用执行AJAX删除
             }
@@ -215,43 +169,22 @@
     toastr.options = {
         closeButton: true,
         progressBar: true,
-        timeOut: "3000",
+        timeOut: "1500",
         positionClass: "toast-top-full-width"
     };
     // 执行AJAX
     function updateAjax(id) {
         $.ajax({
-            type: 'get',
-            url: '/carouseledit/' + id,
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-                if (data.status) {
-                    toastr.success(data.info);
-                    $('#ban'+id).html('首页禁用');
-                } else {
-                    toastr.error(data.info, 'FBI WARNING:');
-                }
-            },
-            error: function () {
-                // AJAX操作失败
-                alert('AJAX操作失败');
-            }
-        });
-    }
-    //使用
-    function showAjax(id) {
-        $.ajax({
-            type: 'get',
-            url: '/carouselshow/' + id,
+            type: 'put',
+            url: '/usersmg/' + id,
             dataType: 'json',
             success: function (data) {
                 //console.log(data);
                 if (data.status) {
                     toastr.success(data.info);
-                    $('#ban'+id).html('首页展示');
+                    $('#ban'+id).html('禁言');
                 } else {
-                    toastr.error(data.info, 'FBI WARNING:');
+                    toastr.error(data.info, 'WARNING:');
                 }
             },
             error: function () {
@@ -259,11 +192,12 @@
             }
         });
     }
+
     //删除
     function delAjax(id, obj) {
         $.ajax({
-            type: 'get',
-            url: '/carouseldel/' + id,
+            type: 'delete',
+            url: '/usersmg/' + id,
             dataType: 'json',
             success: function (data) {
                 console.log(data);
