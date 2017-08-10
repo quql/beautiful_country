@@ -155,7 +155,8 @@
     function delAjax(id, obj) {
         $.ajax({
             type: 'delete', // DELETE请求方式
-            url: '/ActivitiesBusPic/' + id,
+            // url: '/ActivitiesBusPic/' + id,
+            url: '/Activitiesadminpic/' + id,
             dataType: 'json',
             success: function (data) {
                 console.log(data);

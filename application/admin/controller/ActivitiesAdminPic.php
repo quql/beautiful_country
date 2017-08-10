@@ -5,7 +5,7 @@ use think\Controller;
 use think\Request;
 use think\Db;
 
-class ActivitiesAdminCate extends Admin
+class Activitiesadminpic extends Admin
 {
     /**
      * 显示资源列表
@@ -49,7 +49,7 @@ class ActivitiesAdminCate extends Admin
 
         ];
 
-        $result = Db::table('ml_ac_cate')->data($data)->insert();
+        $result = Db::table('ml_ac_pic')->data($data)->insert();
         if ($result > 0) {
             return $this->success('添加成功');
         } else {
@@ -67,7 +67,7 @@ class ActivitiesAdminCate extends Admin
     public function read($id)
     {
 
-        $res = Db::table('ml_ac_cate')->select();
+        $res = Db::table('ml_ac_pic')->select();
         $this->assign('list',$res);
         return view('activities/ActivitiesAdminCate');
     }
@@ -122,7 +122,7 @@ class ActivitiesAdminCate extends Admin
      */
     public function delete($id)
     {
-        $result = Db::name('ac_cate')->delete($id);
+        $result = Db::name('ac_pic')->delete($id);
 
         if ($result) {
             $info['status'] = true;

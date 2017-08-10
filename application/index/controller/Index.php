@@ -13,11 +13,24 @@ class Index extends Base
         //查询特产美食数据
         $sql="select ml_food.*,ml_food_pic.pic,ml_business.b_name from ml_food LEFT JOIN ml_food_pic ON ml_food.id=ml_food_pic.gid LEFT JOIN ml_business ON ml_food.bus_id=ml_business.b_id  where ml_food_pic.is_first='1' and  ml_food.gd_is_sale='1'";
         $food=Db::query($sql);
-        //dump($food);
-        //exit;
+        // dump($food);
+        // exit;
+
+        //查询友情链接数据
+        $link = Db::name('link')->select();
+
+        //查询精彩活动的数据
+        $linksql = "select * from ml_activities
+        LEFT JOIN ml_ac_pic ON ml_activities.id=ml_ac_pic.acid
+        LEFT JOIN ml_ac_cate ON ml_activities.ac_cate=ml_ac_cate.id";
+        // where ml_ac_pic.is_first='1'
+        $activities = Db::query($linksql);
+        // var_dump($activities);die;
 
         return view('index/index',[
-            'foods'=>$food
+            'foods'=>$food,
+            'link' =>$link,
+            'activities' =>$activities
         ]);
     }
 
@@ -123,8 +136,10 @@ class Index extends Base
         }else{
             return '暂无数据';
         }
-//        var_dump($list);
-//        die;
+
+       // var_dump($list);
+       // die;
+
         $this->assign('list',$list);
         return view ('index/list');
     }

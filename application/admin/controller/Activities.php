@@ -53,6 +53,13 @@ class Activities extends Admin
     {
         //商家提交活动表单
         $p=$request->post();
+
+        if (empty($p['ac_status'])) {
+            $p['ac_status'] = '0';
+        } else {
+            $p['ac_status'] = '1';
+        }
+
         $b_id = cache('b_id');
         // var_dump($p);
         // die;
@@ -165,10 +172,10 @@ class Activities extends Admin
      */
     public function delete($id)
     {
-        $res = Db::name('activities')->delete($id);
-        $res =Db::name('ac_pic')->where('acid',$id)->delete();
+        $res1 = Db::name('activities')->delete($id);
+        $res2 =Db::name('ac_pic')->where('acid',$id)->delete();
 
-        if ($res) {
+        if ($res1 || $res2 ) {
             $info['status'] = true;
             $info['id'] = $id;
             $info['info'] = 'ID为:' . $id . '的活动删除成功';
