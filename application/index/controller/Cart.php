@@ -12,6 +12,9 @@ class Cart extends Base
     {
         //用户id
         $uid = input('session.u_id');
+        if(empty($uid)){
+            $this->error('请先登录哦~~~~','index/index/index');
+        }
 
         //加载用户收获的地址
         $add = model('userAddress');
@@ -19,7 +22,8 @@ class Cart extends Base
 
         //详情表传递数据
         $i = input('post.');
-        //dump($i);
+        dump($i);
+        die;
 
         //每个商品可以得到的积分
         //$point = $i['point'];
@@ -52,7 +56,9 @@ class Cart extends Base
     {
         //用户id
         $uid = input('session.u_id');
-
+        if(empty($uid)){
+            $this->error('请先登录哦~~~~','index/index/index');
+        }
         //加载用户收获的地址
         $add = model('userAddress');
         $address = $add->getAddress($uid);
@@ -60,8 +66,8 @@ class Cart extends Base
         $c = model('cart');
 
         $list = $c->getCart($uid);
-        //dump($list);
-
+//        dump($list);
+//        die;
         return view('index/shopCart',[
             'list'=>$list,
             'address'=>$address,

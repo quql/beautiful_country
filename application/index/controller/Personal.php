@@ -44,15 +44,7 @@ class Personal extends Base
 
         //加载已完成订单
         $done = $o->done($id);
-<<<<<<< HEAD
-//        dump($done);
-=======
-        //dump($done);
->>>>>>> origin/darcy
-
-
-
-        return view('index/personal',[
+      return view('index/personal',[
             'list'=>$list,
             'data'=>$data,
             'money'=>$money,

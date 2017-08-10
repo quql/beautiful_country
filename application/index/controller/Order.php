@@ -16,10 +16,12 @@ class Order extends Controller
     {
 
         $info = input('post.');
-        //dump($info);exit;
 
         //获取用户id
-        $uid = $info['uid'];
+        $uid = input('session.u_id');
+        if(empty($uid)){
+            $this->error('请先登录哦~~~~','index/index/index');
+        }
 
         $d = model('userDetail');
         //获取原积分

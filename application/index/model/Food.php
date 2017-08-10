@@ -14,7 +14,7 @@ class Food extends Model
         $res = $query->table('ml_food')
             ->where("id",$cid)
             ->select();
-        var_dump($res);
+        //var_dump($res);
         return $res;
     }
 }

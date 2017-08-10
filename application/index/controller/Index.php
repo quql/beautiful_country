@@ -32,7 +32,7 @@ class Index extends Base
 
         return view('index/index',[
             'foods'=>$food,
-            'pics'=>$pic
+            'pics'=>$pic,
             'link' =>$link,
             'activities' =>$activities
 

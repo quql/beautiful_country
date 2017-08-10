@@ -29,14 +29,6 @@
             <div class="container">
                 <div class="row col-sm-12">
                     <form action="index/order/index" method="post" onsubmit="return check()">
-                        <!--商品id-->
-                        <input type="hidden" name="gid" value="">
-                        <!--商品单价-->
-                        <input type="hidden" name="price" value="">
-                        <!--传递商品类型-->
-                        <input type="hidden" name="type" value="">
-                        <!--传递购物车id-->
-                        <input type="hidden" name="cid" value="">
 
                         <!--总积分-->
                         <input type="hidden" name="point" id="point">
@@ -72,6 +64,14 @@
                         <th style="text-align: center;">操作</th>
                     </tr>
                     {volist name="list" id="v" key="k"}
+                    <!--商品id-->
+                    <input type="hidden" name="gid" value="{$v.ca_gdid}">
+                    <!--商品单价-->
+                    <input type="hidden" name="price" value="{$v.ca_price}">
+                    <!--传递商品类型-->
+                    <input type="hidden" name="type" value="{$v.ca_gtype}">
+                    <!--传递购物车id-->
+                    <input type="hidden" name="cid" value="{$v.cid}">
                     <p style="display: none" id="base">{$v['ca_point']}</p>
                     <tr>
                         <td style="text-align: center;line-height: 62px;">{$k}</td>

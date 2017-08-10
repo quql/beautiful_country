@@ -592,6 +592,9 @@
               <div class="gt_course_search default_width">
                 <form method="get" action="{:url('index/index/souover')}">
                   <input type="search" name="search" placeholder="Search 关键字" id="inputString" autocomplete="off"/>
+                  <div class="suggestionsBox" id="suggestions" style="display: block;width:600px;overflow: hidden;background-color:#FFFFFF;z-index:99px;border:1px solid grey">
+
+                    </div>
                     <button class="gt_search_remove_btn btn-sm" style="background: white;padding-top:3px;padding-left:10px"><i class="fa fa-search"></i></button>
                 </form>
               </div>
@@ -1592,33 +1595,33 @@
 
       };
 
-      var send = function(){
-          var ele_msg = document.querySelector('textarea');
-          var msg = ele_msg.value.replace('\r\n', '').trim();
-          console.log(msg);
-          if(!msg) return;
-          sendMsg(msg);
-          // 添加消息到自己的内容区
-          addMessage('你', msg);
-          ele_msg.value = '';
-      };
+      // var send = function(){
+      //     var ele_msg = document.querySelector('textarea');
+      //     var msg = ele_msg.value.replace('\r\n', '').trim();
+      //     console.log(msg);
+      //     if(!msg) return;
+      //     sendMsg(msg);
+      //     // 添加消息到自己的内容区
+      //     addMessage('你', msg);
+      //     ele_msg.value = '';
+      // };
 
-//      ws.on('connect', function(){
-//          var nickname = window.prompt('输入你的昵称!');
-//          while(!nickname){
-//              nickname = window.prompt('昵称不能为空，请重新输入!')
-//          }
-//          ws.emit('join', nickname);
-//      });
-//
-//      // 昵称有重复
-//      ws.on('nickname', function(){
-//          var nickname = window.prompt('昵称有重复，请重新输入!');
-//          while(!nickname){
-//              nickname = window.prompt('昵称不能为空，请重新输入!')
-//          }
-//          ws.emit('join', nickname);
-//      });
+     ws.on('connect', function(){
+         var nickname = window.prompt('输入你的昵称!');
+         while(!nickname){
+             nickname = window.prompt('昵称不能为空，请重新输入!')
+         }
+         ws.emit('join', nickname);
+     });
+
+     // 昵称有重复
+     ws.on('nickname', function(){
+         var nickname = window.prompt('昵称有重复，请重新输入!');
+         while(!nickname){
+             nickname = window.prompt('昵称不能为空，请重新输入!')
+         }
+         ws.emit('join', nickname);
+     });
 
       ws.on('send.message', function(from, msg){
           addMessage(from, msg);
@@ -1851,7 +1854,7 @@
                         //展示搜索结果
                         $("#suggestions").html(lists).show();
                         //绑定参数
-                        dataRead(data);
+                        // dataRead(data);
 
                         //绑定点击事件
                         $("li").click(function(){
@@ -1878,15 +1881,15 @@
         });
 
         //参数绑定id,cid
-        function dataRead(data){
-          var lis=document.getElementsByClassName('li');
-            for(var i=0;i<data.length;i++){
-                (function(i){
-                    lis[i].setAttribute('data-id',data[i].id);
-                    lis[i].setAttribute('cid',data[i].c_id);
-                })(i);
-            }
-        }
+        // function dataRead(data){
+        //   var lis=document.getElementsByClassName('li');
+        //     for(var i=0;i<data.length;i++){
+        //         (function(i){
+        //             lis[i].setAttribute('data-id',data[i].id);
+        //             lis[i].setAttribute('cid',data[i].c_id);
+        //         })(i);
+        //     }
+        // }
 
         function doSearch(str){
             var arr = str.substr(0,2);
