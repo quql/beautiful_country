@@ -46,79 +46,74 @@ class Hotel extends Base
 
 
         return view('index/hotelDetail', [
-            'hotels'=>$hotels[0],
-            'detail'=>$detail[0],
-            'photos'=>$photos,
-            'type'=>$type,
+            'hotels' => $hotels[0],
+            'detail' => $detail[0],
+            'photos' => $photos,
+            'type' => $type,
+            //'cid'=>$cid
         ]);
     }
 
-    /**
-     * 显示创建资源表单页.
-     *
-     * @return \think\Response
-     */
-    public function create()
+    public function save()
     {
-        //
+        $info = input('post.');
+        dump($info);
+        $uid = input('session.u_id');
+        $u = model('userDetail');
+        $res = $u->getDetail($uid);
+        $utype = $res[0]['ud_type'];
+        //dump($res);
+
+
+        return view('index/hotelBook', [
+            'data' => $info,
+            'utype'=>$utype,
+        ]);
     }
 
-    /**
-     * 保存新建的资源
-     *
-     * @param  \think\Request  $request
-     * @return \think\Response
-     */
-    public function save(Request $request)
-    {
-        //
-        //dump($request);
-        //dump(input('post.'));
-        return view('index/hotelBook');
-    }
-
-    /**
-     * 显示指定的资源
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function read($id)
-    {
-        //
-    }
-
-    /**
-     * 显示编辑资源表单页.
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * 保存更新的资源
      *
-     * @param  \think\Request  $request
-     * @param  int  $id
+     * @param  \think\Request $request
+     * @param  int $id
      * @return \think\Response
      */
-    public function update(Request $request, $id)
+    public function update()
     {
-        //
+        $i = input('post.');
+        //dump($i);exit;
+
+        //订单生成时间
+        $time = date('Y-m-d H:i:s',time());
+
+        //生成订单号
+        $orderNum = time().rand(10e8,90e8);
+
+        $data = [
+            'o_bid'=>$i['bid'],
+            'o_gid'=>$i['cid'],
+            'o_uid'=>input('session.u_id'),
+            'o_time'=>$time,
+            'o_status'=>0,
+            'o_num'=>$i['num'],
+            'o_order_num'=>$orderNum,
+            'o_price'=>$i['dan'],
+            'o_total'=>$i['total'],
+            'o_gname'=>$i['roomtype'],
+            'o_photo'=>$i['photo'],
+            'intime'=>$i['time'],
+            'inname'=>$i['name'],
+            'inphone'=>$i['phone'],
+        ];
+        $o = model('order');
+        $res = $o->insert($data);
+        if($res){
+            $this->success('支付成功','index/index/index');
+        }else{
+            $this->error('支付失败,请重试');
+        }
     }
 
-    /**
-     * 删除指定资源
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function delete($id)
-    {
-        //
-    }
+
 }

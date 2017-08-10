@@ -36,23 +36,6 @@ class Food extends Base
         $p = model('foodPic');
         $photos = $p->getPhotos($cid);
 
-        //dump($food);
-        //dump($detail);
-        //dump($photos);
-
-        //$list = $photos['pic'];
-        //dump($plist);
-
-        //把二维数组转为一维数组
-        //$photo = [[
-        //  'p0'=>$photos[0]['gp_photo'],
-        //  'p1'=>$photos[1]['gp_photo'],
-        //  'p2'=>$photos[2]['gp_photo'],
-        //  'p3'=>$photos[3]['gp_photo'],
-        //]];
-
-        //dump($photo);exit;
-
         return view('index/foodDetail', [
             'foods'=>$food[0],
             'detail'=>$detail[0],
