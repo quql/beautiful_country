@@ -33,9 +33,16 @@ class Register extends Base
         ];
 
         //添加进数据库
-        $result = Db::table('ml_user')->data($data)->insert();
+        $result = Db::table('ml_user')->insertGetId($data);
+        $data1 = [
+          'ud_uid'=>$result,
+          'ud_type'=>'0',
+          'ud_photo'=>'tou1.jpg',
+          'ud_picture'=>'tou2.jpg'
+        ];
+        $res = Db::table('ml_user_detail')->data($data1)->insert();
         //dump($result);
-        if ($result > 0) {
+        if ($result > 0 && $res>0) {
             //如果添加成功 重定向到首页
             $this->success('恭喜你注册成功，请点击登录', '/');
         } else {

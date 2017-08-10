@@ -27,6 +27,7 @@
     <link href="/static/app/index/css/city-picker.css" rel="stylesheet" type="text/css" />
     <link href="/static/app/index/css/zzsc.css" rel="stylesheet" type="text/css" />
 
+
     <!--yjf-->
     <!-- <link href="/static/app/index/css/bootstrap.min.css" rel="stylesheet">
     <script src="/static/app/index/js/jquery-1.8.3.min.js"></script>
@@ -153,6 +154,9 @@
   </style>
 
     {css href="/static/app/index/css/reset.css"}
+    {css href="/static/app/index/css/dashboard.css"}
+    {css href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet" type="text/css"}
+    {css href="/static/app/index/css/city-picker.css" rel="stylesheet" type="text/css"}
     <!--{!&#45;&#45;三级地址联动&#45;&#45;}-->
     <!--{css href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet" type="text/css"}-->
     <!--end-yjf-->
@@ -218,6 +222,12 @@
           </div>
         </form>
 
+              <br>
+              <font>　　—————其他方式登录—————</font>
+              <br>　　　　　　　　　　
+              　<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101416221&redirect_uri=http://qqlong.top/qqlogin">
+                <img src="/static/app/index/images/qqu.png" class="img-circle" width="30" id="qqimg"　width="30"></a>
+               <br>
         </div>
       </div>
       <!--模态框中的内容结束-->
@@ -1942,7 +1952,13 @@
         }
 
 
-
+        var qqimg=document.getElementById('qqimg');
+        qqimg.onmouseover=function(){
+            qqimg.src='/static/app/index/images/qq.png';
+        }
+        qqimg.onmouseout=function(){
+            qqimg.src='/static/app/index/images/qqu.png';
+        }
     </script>
 
     <!--搜索JS END-->

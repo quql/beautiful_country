@@ -72,7 +72,6 @@ Route::resource('Hotelpic', 'admin/HotelPic');
 Route::get('/hotelpicfirst/[:id]','admin/HotelPic/first');
 
 
-
 //活动管理
 //平台对活动类型的增删改查
 Route::resource('ActivitiesAdminCate','admin/ActivitiesAdminCate');
@@ -230,6 +229,14 @@ Route::get('/carouseledit/:id','admin/Carousel/edit');
 Route::get('/carouselshow/:id','admin/Carousel/show');
 Route::get('/carouseldel/:id','admin/Carousel/delete');
 Route::post('/carouselupd/:id','admin/Carousel/update');
+
+//显示详情页
+Route::get('goodsdetail','index/GoodsDetail/index');
+
+//QQ登录
+Route::get('qqlogin','index/Login/qqlogin');
+//QQ资料完善
+Route::post('qqlogin','index/Login/doqqlogin');
 
 return [
 //    '__pattern__' => [

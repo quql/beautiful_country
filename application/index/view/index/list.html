@@ -10,19 +10,7 @@
             </div>
         </div>
     </div>
-    <!--Sub Banner Wrap End -->
-    <!--Breadcrumb Wrap End -->
-    <!--<div class="gt_breadcrumb_bg default_width">-->
-        <!--<div class="container">-->
-            <!--<div class="gt_breadcrumb_wrap default_width">-->
-                <!--<ul>-->
-                    <!--<li><a href="#">Home</a></li>-->
-                    <!--<li><a href="#">Shop Product 02</a></li>-->
-                <!--</ul>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--Breadcrumb Wrap End -->
+
 
     <!--Content Wrap Start-->
     <div class="gt_main_content_wrap">
@@ -49,7 +37,7 @@
                                 </figcaption>
                             </figure>
                             <div class="gt_product_des_wrap">
-                                <h5><a href="#">{$list.gd_title}</a></h5>
+                                <h5><a href="{:url('/goodsdetail',['id'=>$list.id,'bus_id'=>$list.bus_id,'cid'=>$list.c_id])}">{$list.gd_title}</a></h5>
 
                                 <ul class="gt_rating_start">
                                     <li><a href="#"><i class="fa fa-star"></i></a></li>

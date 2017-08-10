@@ -62,10 +62,19 @@
                       </div>
                   </div>
                     <form action="{:url('index/cart/index')}" method="post">
-                    <input type="hidden" name="id" value="{$route['id']}">
-                    <input type="hidden" name="type" value="route">
+
+                        <input type="hidden" name="id" value="{$route['id']}">
+                        <input type="hidden" name="type" value="旅游路线">
                         <input type="hidden" name="point" value="{:round($detail['gd_price']/20)}">
-                    <input type="hidden" name="price" value='{if condition="$type['ud_type'] eq 0"}{$detail['gd_price']}{else /}{$detail['gd_discount']}{/if}'>
+                        <input type="hidden" name="price" value='{if condition="$type['ud_type'] eq 0"}{$detail['gd_price']}{else /}{$detail['gd_discount']}{/if}'>
+                        {volist name="photos" id="p"}
+                        {if condition='$p.is_first eq 1'}
+                        <input type="hidden" name="photo" value="{$p.pic}">
+                        {/if}
+                        {/volist}
+                        <input type="hidden" name="gname" value="{$route['gd_title']}">
+
+
                   <div class="col-md-6">
                       <div class="gt_shop_detail_banner">
                           <h4>{$route['gd_title']}</h4>

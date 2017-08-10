@@ -1,0 +1,182 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ol,ul {list-style: none;}
+a:link,a:visited,a:hover,a:active{text-decoration:none;} 
+.mt10{margin-top:10px;}
+.mt20{margin-top:20px;}
+.mt30{margin-top:30px;}
+.mt40{margin-top:40px;}
+.mt50{margin-top:50px;}
+.p10{padding: 10px;}
+.p20{padding: 20px;}
+.p30{padding: 30px;}
+.p40{padding: 40px;}
+.p50{padding: 50px;}
+
+
+.row div[class*='col-md']{
+  /*border: 1px solid #000;
+    background-color: #f5f5f5;*/
+}
+#nav{
+	margin:0;
+	height:50px;
+}
+#nav1{
+	background-color:#333333;
+	color:grey;
+	font-size:10px;
+	height:50px;
+}
+
+#nav1 ul li a:hover{
+	color:white;
+}
+#navright{
+	width:300px;
+	height:50px;
+	float:right;
+	line-height:50px;
+}
+#navright ul li a{
+	text-decoration: none;
+	font-size: 15px;
+	color:grey;
+}
+#navright ul li{
+	float:left;
+	padding:5px;
+}
+#gou{
+	background-color:#424242;
+	height:49px;
+}
+#gou:hover{
+	background:white;
+}
+#che{
+	transition:all 2s;
+	position: absolute;
+	top:50px;
+	right:63px;
+	width:250px;
+	height:0px;
+	overflow:hidden;
+	line-height: 60px;
+	text-align: center;
+	box-shadow:1px 1px 1px;
+	z-index:99;
+	background-color: white;
+	/*display:none;*/
+}
+
+#gou:hover #che{
+	height:60px;
+}
+#nva{
+	height: 60px;
+}
+.left{
+	margin-left:50px;
+	margin-top:20px; 
+	height:50px; 
+	float:left;
+}
+.middle{
+	width:750px;
+	height:100px;
+	float:left;
+	line-height:100px;
+}
+.middle ul li{
+	text-align: center;
+	width:80px;
+	/*padding:0 13px; */
+	height:100px;
+	float:left;
+}
+.middle a{
+	font-size: 15px;
+	color:#333333;
+	width:30px;
+}
+.middle ul li:hover a{
+	color:#FF6801;
+}
+.input-group{
+	margin-top:30px;
+	width:300px;
+	float:left;
+}
+.lunbo{
+	margin-top:50px;
+}
+ #banner{
+            width: 1200px;
+            margin: 0 auto;
+            margin-top: 50px;
+            z-index:0;
+        }
+         #banner img{
+            width: 1200px;
+            height: 500px;
+        }
+        #play{
+            z-index:10;
+            width: 300px;
+            height: 500px;
+            position: relative;
+        }
+        #iconlist{
+            position: absolute;
+            right:-800px;
+            bottom:10px;
+        }
+        #iconlist li{
+            float: left;
+            width: 25px;
+            height: 25px;
+            background-color: rgba(0,0,0,0.3);
+            text-align: center;
+            margin-right: 10px;
+            border-radius: 13px;
+            color: #fff;
+            cursor: pointer;
+        }
+	.mune{
+		position: absolute;
+		top:50px;
+		left:90px;
+		width:240px;
+		height:500px;
+		background-color:rgba(72,64,59,0.3);
+		z-index:99;
+	}
+	.mune a{
+		color: white;
+		font-size: 16px;
+	}
+	.mune ul{
+		width: 240px;
+		height:460px;
+		margin-top:30px;
+	}
+	.mune li{
+		width:240px;
+		height:45px;
+		line-height: 45px;
+	}
+	.top:hover{
+		background: #FF6700;
+	}
+	.top ul{
+		position: absolute;
+		top:-30px;
+		left:240px;
+		width:400px;
+		height:500px;
+		background: white;
+		border:1px solid grey;
+	}

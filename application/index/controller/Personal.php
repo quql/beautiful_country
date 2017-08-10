@@ -17,7 +17,7 @@ class Personal extends Base
     public function index()
     {
         //用户id
-        $id = '1';
+        $id = input('session.u_id');
         //获取用户基本信息
         $user = model('user');
         $list = $user->getUser($id);
@@ -44,7 +44,7 @@ class Personal extends Base
 
         //加载已完成订单
         $done = $o->done($id);
-        dump($done);
+//        dump($done);
 
 
 

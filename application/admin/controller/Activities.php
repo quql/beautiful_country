@@ -26,7 +26,7 @@ class Activities extends Admin
         $this->assign('cate',$cate);
 
         //店铺活动首页 
-        $list = Db::table('ml_activities')->select();
+        $list = Db::table('ml_activities')->where('bus_id', cache('b_id'))->select();
         $catelist = Db::table('ml_ac_cate')->select();
         $this->assign('list',$list);
         $this->assign('catelist',$catelist );

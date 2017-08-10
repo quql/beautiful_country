@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>QQ登录</title>
+
+    <!-- Bootstrap -->
+    <link href="/static/app/index/public/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="/static/app/index/public/js/html5shiv.min.js"></script>
+    <script src="/static/app/index/public/js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="/static/app/index/public/reset.css">
+    <link rel="stylesheet" href="/static/app/index/public/registered.css">
+</head>
+<body>
+   <div class="row" id="row1">
+       <div class="col-md-2 col-md-offset-1" >
+        <img src="/static/app/index/pic/meili.jpg" class="img-rounded">
+       </div>
+       <div class="col-md-9"></div>
+   </div>
+   <div class="row" id="row2">
+       <div class="col-md-12" >
+        <img src="/static/app/index/pic/xmad_14975874886877_BtyPE.jpg" class="img-rounded" width='100%'>
+       </div>
+   </div>
+   <div class="row">
+       <div class="col-md-4 col-md-offset-3" id="q">
+            <font size="6" color='#F56600'>　请完善您的资料　</font>
+       </div>
+   </div>
+   <div class="row" id="row3">
+       <div class="col-md-4 col-md-offset-3" id="box">
+            <img src="{$photo}">
+            <form action="{:url('/qqlogin')}" method="post" onsubmit="return checkPhone()" >
+
+            <div class="form-group">
+            用户名:<input type="text" name="username" class="form-control" id="exampleInputPassword1" value="{$username}" readonly>
+            </div> 
+            <div class="form-group">
+            手机号码:<input type="phone" name="phone" class="form-control" id="exampleInputEmail1" placeholder="手机号">
+            <p id="p"></p>
+            </div>
+                <input type="hidden" name="photo" value="{$photo}">
+            <button type="submit" class="btn btn-warning btn-block" id="btn">确认添加</button>
+            <br>
+            <br>
+            <br>
+            </form>
+           
+           <br>
+           <br>
+    </div>
+   </div>
+        
+
+        </script>
+<script src="/static/app/index/public/js/jquery.min.js"></script>
+<!-- Bootstrap 的JS文件必须在JQ类库文件之后引入,依赖与JQ-->
+<script src="/static/app/index/public/js/bootstrap.min.js"></script>
+<script>
+    function checkPhone(){
+        var phone = document.getElementById('exampleInputEmail1').value;
+        if(!(/^1[34578]\d{9}$/.test(phone))){
+            alert("手机号码有误，请重填");
+            return false;
+        }
+    }
+        
+
+</script>
+</body>
+</html>
