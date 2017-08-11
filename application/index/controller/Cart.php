@@ -22,8 +22,8 @@ class Cart extends Base
 
         //详情表传递数据
         $i = input('post.');
-        dump($i);
-        die;
+        //dump($i);
+        //die;
 
         //每个商品可以得到的积分
         //$point = $i['point'];
@@ -37,6 +37,7 @@ class Cart extends Base
             'ca_gname'=>$i['gname'],
             'ca_gtype'=>$i['type'],
             'ca_point'=>$i['point'],
+            'bid'=>$i['bid'],
             'cid'=>6,
         ];
 
@@ -44,10 +45,19 @@ class Cart extends Base
         $res = $c->insert($data);
 
         $list = $c->getCart($uid);
-        //dump($list);
+
+        cache('list',$list,3600);
+        cache('address',$address,3600);
+        $this->redirect('index/cart/showindex');
+    }
+
+    public function showindex()
+    {
+        $list = cache('list');
+        $address = cache('address');
 
         return view('index/shopCart',[
-           'list'=>$list,
+            'list'=>$list,
             'address'=>$address,
         ]);
     }

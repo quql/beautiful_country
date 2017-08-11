@@ -28,7 +28,7 @@
         <section class="gt_shop_detail_bg gt_courses_bg">
             <div class="container">
                 <div class="row col-sm-12">
-                    <form action="index/order/index" method="post" onsubmit="return check()">
+                    <form action="{:url('/confirm')}" method="post" onsubmit="return check()">
 
                         <!--总积分-->
                         <input type="hidden" name="point" id="point">
@@ -65,8 +65,9 @@
                     </tr>
                     {volist name="list" id="v" key="k"}
                     <!--商品id-->
-                    <input type="hidden" name="gid" value="{$v.ca_gdid}">
-                    <!--商品单价-->
+                    <!--<input type="hidden" name="gid" value="{$v.ca_gdid}">-->
+                    <p style="display: none" class="gnum" value="{$v['ca_gdid']}"></p>
+                    <!--/*&lt;!&ndash;商品单价&ndash;&gt;*/-->
                     <input type="hidden" name="price" value="{$v.ca_price}">
                     <!--传递商品类型-->
                     <input type="hidden" name="type" value="{$v.ca_gtype}">
@@ -74,39 +75,22 @@
                     <input type="hidden" name="cid" value="{$v.cid}">
                     <p style="display: none" id="base">{$v['ca_point']}</p>
                     <tr>
-                        <td style="text-align: center;line-height: 62px;">{$k}</td>
+                        <td style="text-align: center;line-height: 62px;">
+                            <input type="checkbox" name="{$v['ca_id']}">
+                        </td>
                         <td style="text-align: center;line-height: 62px;">
                             <img src="/uploads/{$v['ca_photo']}" class="img-rounded" alt="" width="100" height="56">
                         </td>
                         <td style="text-align: center;line-height: 62px;">{$v['ca_gname']}</td>
                         <td style="text-align: center;line-height: 62px;">{$v['ca_gtype']}</td>
                         <td style="text-align: center;line-height: 62px;" class="price">{$v['ca_price']}</td>
-                        <td style="text-align: center;">
-                            <div class="gt_product_left_wrap" style="border-bottom: none;margin-left: 0px;margin: 8px 0px -12px">
-                                <div id="incdec" style="margin-left: 54px;">
-                                    <!--传递数量-->
-                                    <input type="text" value="1" readonly="readonly" class="num" name="num"/>
-                                    <div class="gt_increment">
-                                        <button type="button" id="up" class="plus">+</button>
-                                        <button type="button" id="down" class="minus"> -</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <!--<input type="hidden" name="total" class="passtotal">-->
-                        <!--<td style="text-align: center;line-height: 62px;" class="total"></td>-->
+                        <td style="text-align: center;line-height: 62px;">{$v['ca_num']}</td>
                         <td style="text-align: center;line-height: 62px;">
                             <button type="button" class="btn btn-danger glyphicon glyphicon-trash del" data-id="{$v['ca_id']}"></button>
                         </td>
                     </tr>
                     {/volist}
-                    <tr>
-                        <td colspan="7" style="text-align: right">
-                            总价
-                            <span id="total">0</span>
-                            元
-                        </td>
-                    </tr>
+
                 </table>
                 </div>
                 <div style="margin-left: 850px" class="mt50">
@@ -128,13 +112,6 @@
 
     //    计算总价
         $(function(){
-//            var n = parseInt($('.num').val());
-//            var d = 0;
-//            d += parseInt($('.price').text());
-//            console.log(n);
-//            console.log(d);
-//            初始总价
-//            $('#total').text(d);
 //            加
             $('.plus').click(function(){
 //                数量
@@ -162,18 +139,6 @@
                 }
             });
 
-//            function setTotal(){
-//                var s = 0;
-//                $('#mytable td').each(function(){
-//                   s += parseInt($(this).find('input[class*=num]').val())*parseFloat($(this).find('td[class*=price]').text());
-////                   console.log(parseInt($(this).find('input[class*=num]').val()));
-////                   console.log(parseFloat($(this).find('td[class*=price]').text()));
-//                   console.log(s);
-//                });
-//                $('#total').html(s.toFixed(2));
-//
-//            }
-//            setTotal();
 
 //    执行删除
         $('.del').click(function(){
@@ -186,16 +151,6 @@
                 delAjax(gid, obj);
             }
         });
-
-        // 设置弹框参数
-        toastr.options = {
-            closeButton: true,//是否显示关闭按钮
-            progressBar: true,//实现显示计时条
-            timeOut: "3000",//自动关闭时间
-            positionClass: "toast-bottom-left"//提示位置
-            // toast-top-full-width 顶端，宽度铺满整个屏幕
-            // toast-top-right  顶端右边
-        };
 
 //    执行ajax删除
         function delAjax(id, obj){
@@ -220,7 +175,7 @@
         }
 
 
-        function check(){
+//        function check(){
 //            var v = $('input:[name="aid"]:checked').val();
 //            if (v == null){
 //                alert("收货地址不能为空哦~");
@@ -247,7 +202,8 @@
 //                return false;
 //            }
 
-        }
+//        }
+
 
     });
 </script>
