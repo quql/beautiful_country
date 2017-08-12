@@ -134,6 +134,35 @@
 <script>
     $(function(){
         $('#up').click(function(){
+           var month1 = parseInt($('#calendar2').val().substr(5,2));
+           var month2 = parseInt($('#calendar2').val().substr(19,2));
+           var start =  parseInt($('#calendar2').val().substr(8,2));
+           var over = parseInt($('#calendar2').val().substr(22,2));
+           var year = parseInt($('#calendar2').val().substr(0,4));
+//            console.log(year);
+           if(month1 == month2 && start<over){
+               var days = over - start;
+           }
+
+           if(start>over){
+               if(month1==2 && year%4==0){
+                   var days = (29-start) + over;
+               }else{
+                   var days = (28-start) + over;
+               }
+               if(month1==4 || month1==6 || month1==9 || month1==11){
+//                   console.log(over,start);
+                   var days = (30-start) + over;
+               }else{
+                   var days = (31-start) + over;
+               }
+           }
+
+           if(month1 == month2 && start == over){
+               var days = 1;
+           }
+
+
             if($('#num').val() >= 99){
                 $('#num').val(99);
             }else{
@@ -150,7 +179,7 @@
             $('#finalPoint').val(t);
 //            改变总价
             var price = parseInt($('#old').html());
-            var total = n*price;
+            var total = n*price*days;
             $('#oldprice').css('display', 'none');
             $('#newprice').css('display', 'block');
             $('#new1').html(total);

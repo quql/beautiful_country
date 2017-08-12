@@ -116,7 +116,7 @@ Route::get('/routespicfirst/[:id]','admin/RoutesPic/first');
 
 
 //个人中心
-Route::resource('per', 'index/personal');
+Route::resource('per', 'index/Personal');
 //验证密码
 Route::post('money', 'index/personal/checkpass');
 

@@ -21,7 +21,8 @@ class Personal extends Base
         //获取用户基本信息
         $user = model('user');
         $list = $user->getUser($id);
-        //dump($list);
+//        var_dump($list);
+//        die;
 
         $m = model('money');
         $money = $m->getNum($id);

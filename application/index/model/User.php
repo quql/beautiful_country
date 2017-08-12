@@ -14,7 +14,7 @@ class User extends Model
         $query = new Query();
         $lsit = $query->table('ml_user user,ml_user_detail detail')
             ->where("user.u_id=detail.ud_uid and user.u_id=$id")
-            ->field('user.u_id as id,user.u_username as username,user.u_phone as phone,detail.ud_photo as photo,detail.ud_sex as sex,detail.ud_type as type,detail.ud_point as point,detail.ud_picture as picture,detail.ud_email as email,detail.ud_text as text')
+            ->field('user.u_id as id,user.u_username as username,user.u_phone as phone,detail.ud_photo as photo,detail.ud_sex as sex,detail.ud_type as type,detail.ud_point as point,detail.ud_picture as picture,detail.ud_email as email,detail.ud_text as text,detail.qqphoto')
             ->select();
 
         return $lsit;

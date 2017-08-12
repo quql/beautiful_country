@@ -28,7 +28,6 @@
                                 <img src="/uploads/{$list.pic}" width="300" height="240">
                                 <div class="gt_overlay_wrap"></div>
                                 <figcaption class="gt_product_img_des">
-
                                     <p>{$list.gd_abstract}</p>
                                     <ul class="gt_product_ui_element">
                                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -37,8 +36,9 @@
                                 </figcaption>
                             </figure>
                             <div class="gt_product_des_wrap">
-                                <h5><a href="{:url('/goodsdetail',['id'=>$list.id,'bus_id'=>$list.bus_id,'cid'=>$list.c_id])}">{$list.gd_title}</a></h5>
-
+                                <a href="{:url('/goodsdetail',['id'=>$list.id,'bus_id'=>$list.bus_id,'cid'=>$list.c_id])}">
+                                <h5>{$list.gd_title}</h5>
+                                </a>
                                 <ul class="gt_rating_start">
                                     <li><a href="#"><i class="fa fa-star"></i></a></li>
                                     <li><a href="#"><i class="fa fa-star"></i></a></li>

@@ -33,7 +33,7 @@
         <div class="container">
 
           <!-- Dashboard Side Bar Wrap Start -->
-            {volist name="list" id="v"}
+         {volist name="list" id="v"}
           <div class="col-md-4">
             <div class="gt-user-sidebar">
               <div class="gt_d_author_wrap">
@@ -41,7 +41,13 @@
                   <figure>
                     <!--头像-->
 
-                      <a href="javascript:void(0);" data-toggle="modal" data-target="#imgModal"><img src="/uploads/headPhoto/{$v['photo']}"  alt="" width="82" style="height: 82px"></a>
+                      <a href="javascript:void(0);" data-toggle="modal" data-target="#imgModal">
+                          {if condition="$v.photo eq '0'"}
+                          <img src="{$v.qqphoto}">
+                          {else /}
+                           <img src="/uploads/headPhoto/{$v['photo']}"  alt="" width="82" style="height: 82px">
+                          {/if}
+                      </a>
 
                       <div class="modal fade" id="imgModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                           <div class="modal-dialog">
