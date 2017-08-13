@@ -68,7 +68,7 @@
 
                             <td class="col-md-4">
                                 <!--<button class=" btn-info btn-sm" data-toggle="modal" data-target="#myModal">查看大图</button>-->
-                                <button class=" btn btn-info btn-sm" data-toggle="modal" data-target="#myModal2">查看</button>
+                                <button class=" btn btn-info btn-sm find-btn" show-id='{$v.u_id}' data-toggle="modal" data-target="#myModal2">查看</button>
                                 <button class=" btn btn-warning bin-btn btn-sm" bin-id="{$v.u_id}">禁言</button>
                                 <button class=" btn btn-danger del-btn btn-sm" del-id="{$v.u_id}" >删除</button>
 
@@ -100,12 +100,11 @@
             <div class="modal-body">
                 <form action="" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label>用户名:</label><br>
-                        <input type="text" class="form-control" value="{$v.u_username}" >
-                        <label >电话:</label><br>
-                        <input type="text" class="form-control" value="{$v.u_phone}" >
-                        <label >邮箱:</label><br>
-                        <input type="text" class="form-control" value="{$v.ud_email}" >
+                        <label>头像:</label><br>　<img src="" alt="" class="img">
+                        <br><label>用户:</label>　<span class="span1"></span>
+                        <br><label>性别:</label>　<span class="span2"></span>
+                        <br><label >电话:</label>　<span class="span3"></span>
+                        <br><label >邮箱:</label>　<span class="span4"></span>
 
                     </div>
 
@@ -142,6 +141,13 @@
 
 <script>
     $(function () {
+        //查看
+        $('.find-btn').click(function () {
+            var id = $(this).attr('show-id');
+            console.log(id);
+            findAjax(id);
+        });
+
         //触发禁用操作
         $('.bin-btn').click(function () {
             var id = $(this).attr('bin-id');
@@ -215,35 +221,43 @@
         });
     }
 
-    //    // 执行AJAX查询单条数据
-    //    function showAjax(id) {
-    //        $.ajax({
-    //            type: 'get',
-    //            url: '/users/' + id,
-    //            dataType: 'json',
-    //            async: false,
-    //            success: function (data) {
-    //                console.log(data);
-    //                // 遍历模态框
-    //                if (data.status) {
-    //                    // 标题填充
-    //                    $('.modal-title u').html(data.title);
-    //                    // 填充内容信息
-    //                    var msg = data.datas.id + '/' + data.datas.name + '/' + data.datas.province;
-    //                    $('.modal-body h3').html(msg);
-    //                } else {
-    //                    $('.modal-title u').html(data.title);
-    //                    $('.modal-body h3').html(data.datas);
-    //                }
-    //
-    //            },
-    //            error: function () {
-    //                // AJAX操作失败
-    //                alert('AJAX操作失败');
-    //            }
-    //        });
-    //    }
-    //
+    // 执行AJAX查询单条数据
+    function findAjax(id) {
+        $.ajax({
+            type: 'get',
+            url: '/usersmg/' + id,
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+
+                // 遍历模态框
+                if (data.status) {
+                    var data=data[0];
+                    console.log(data);
+                    // 图片填充
+                    $('.img').attr('src','/uploads/'+data.ud_photo);
+                    $('.span1').html(data.u_username);
+                    if (data.ud_sex){
+                        $('.span2').html('男');
+                    }else{
+                        $('.span2').html('女');
+                    }
+                    $('.span4').html(data.ud_email);
+                    $('.span3').html(data.u_phone);
+
+
+                } else {
+                    alert('数据可能丢失了~~~~');
+                }
+
+            },
+            error: function () {
+                // AJAX操作失败
+                alert('AJAX操作失败');
+            }
+        });
+
+    }
 
 
 

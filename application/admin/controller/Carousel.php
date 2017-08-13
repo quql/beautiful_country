@@ -21,16 +21,6 @@ class Carousel extends Admin
     }
 
     /**
-     * 显示创建资源表单页.
-     *
-     * @return \think\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * 保存新建的资源
      *
      * @param  \think\Request  $request
@@ -110,6 +100,25 @@ class Carousel extends Admin
             $info['info'] = '展示失败,请刷新重试!';
         }
         return json($info);
+
+    }
+    /**
+     * 显示单条数据.
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function find($id)
+    {
+        $result = Db::table('ml_pic')->where('id',$id)->find();
+        //var_dump($result);
+        if ($result) {
+            $result['status'] = true;
+        } else {
+            $result['status'] = false;
+        }
+
+        return json($result);
 
     }
 

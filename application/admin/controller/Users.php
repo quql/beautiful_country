@@ -75,4 +75,24 @@ class Users extends Admin
         }
         return json($info);
     }
+    /**
+     * 显示单条数据.
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function read($id)
+    {
+        $sql='select * from ml_user LEFT JOIN ml_user_detail ON ml_user.u_id=ml_user_detail.ud_uid where u_id='.$id;
+        $result = Db::query($sql);
+        //var_dump($result);
+        if ($result) {
+            $result['status'] = true;
+        } else {
+            $result['status'] = false;
+        }
+
+        return json($result);
+
+    }
 }

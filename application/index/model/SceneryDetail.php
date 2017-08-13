@@ -15,6 +15,8 @@ class SceneryDetail extends Model
         $res = $query->table('ml_scenery_detail')
             ->where("c_gid",$cid)
             ->select();
+        //dump($res);
+        //die;
         $view = $res['0']['gd_view'];
         $view = (int)$view;
         $view++;

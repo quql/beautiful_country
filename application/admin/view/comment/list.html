@@ -51,11 +51,11 @@
                             <td align="center" valign="middle">{$k}</td>
                             <td align="center" valign="middle">{$v.c_gid}</td>
                             <td align="center" valign="middle">
-                                <textarea name="" id="" cols="40" rows="1">{$v.c_text}</textarea>
+                                <textarea name="" id="" cols="40" rows="1" readonly="readonly">{$v.c_text}</textarea>
                             </td>
                             <td align="center" valign="middle" id="ban{$v.c_id}">{if condition='($v.is_ban==0)'}已发布{else /}已禁用{/if}</td>
                             <td class="col-md-4">
-                                <button class=" btn-info btn-sm" data-toggle="modal" data-target="#myModal">查看详情
+                                <button class=" btn-info btn-sm find-btn" show-id='{$v.c_id}' data-toggle="modal" data-target="#myModal">查看详情
                                 </button>
                                 <button class=" btn btn-danger del-btn btn-sm" bin-id="{$v.c_id}">禁用此评论</button>
                             </td>
@@ -82,20 +82,20 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>产品名称:</label>{$v.c_gid}
+                    <label>产品名称:</label><span class="span1"></span>
                 </div>
                 <div class="form-group">
-                    <label>用户:</label>{$v.c_uid}
+                    <label>用户:</label><span class="span2"></span>
                 </div>
                 <div class="form-group">
                     <label>评价内容:</label><br>
-                    <textarea cols="30" rows="2">{$v.c_text}</textarea>
+                    <textarea cols="30" rows="2" class="textarea"></textarea>
                 </div>
                 <div class="form-group">
-                    <label>评分:</label>{$v.c_score}
+                    <label>评分:</label><span class="span3"></span>
                 </div>
                 <div class="form-group">
-                    <label>评论时间:</label>{$v.c_time}
+                    <label>评论时间:</label><span class="span4"></span>
                 </div>
             </div>
         </div>
@@ -129,6 +129,13 @@
 
 <script>
     $(function () {
+        //查看 编辑
+        $('.find-btn').click(function () {
+            var id = $(this).attr('show-id');
+            //console.log(id);
+            findAjax(id);
+        });
+
         //触发禁用操作
         $('.del-btn').click(function () {
             var id = $(this).attr('bin-id');
@@ -174,37 +181,36 @@
         });
     }
 
-//    // 执行AJAX查询单条数据
-//    function showAjax(id) {
-//        $.ajax({
-//            type: 'get',
-//            url: '/users/' + id,
-//            dataType: 'json',
-//            async: false,
-//            success: function (data) {
-//                console.log(data);
-//                // 遍历模态框
-//                if (data.status) {
-//                    // 标题填充
-//                    $('.modal-title u').html(data.title);
-//                    // 填充内容信息
-//                    var msg = data.datas.id + '/' + data.datas.name + '/' + data.datas.province;
-//                    $('.modal-body h3').html(msg);
-//                } else {
-//                    $('.modal-title u').html(data.title);
-//                    $('.modal-body h3').html(data.datas);
-//                }
-//
-//            },
-//            error: function () {
-//                // AJAX操作失败
-//                alert('AJAX操作失败');
-//            }
-//        });
-//    }
-//
+    // 执行AJAX查询单条数据
+    function findAjax(id) {
+        $.ajax({
+            type: 'get',
+            url: '/commentfind/' + id,
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                console.log(data);
+                // 遍历模态框
+                if (data.status) {
+                    // 图片填充
+                    $('.span1').html(data.c_gid);
+                    $('.span2').html(data.c_uid);
+                    $('.span3').html(data.c_score);
+                    $('.span4').html(data.c_time);
+                    $('.textarea').html(data.c_text);
 
+                } else {
+                    alert('数据可能丢失了~~~~');
+                }
 
+            },
+            error: function () {
+                // AJAX操作失败
+                alert('AJAX操作失败');
+            }
+        });
+
+    }
 
 
 </script>

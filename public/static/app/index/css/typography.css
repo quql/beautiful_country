@@ -28,7 +28,7 @@ ol ol {margin-left: 20px;}
 ol li {list-style: decimal;width: 100%;}
 figure {float:left;width:100%;position: relative;overflow:hidden;}
 .clear {clear: both;font-size: 0;line-height: 0;}
-img {max-width: 100%;}
+/*img {max-width: 100%;}*/
 strong {color: #3d3d3d;}
 iframe {border: none;float: left;width: 100%;}
 /* Form Input Typo */

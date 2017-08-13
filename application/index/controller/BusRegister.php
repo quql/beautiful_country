@@ -5,6 +5,7 @@ namespace app\index\controller;
 use think\Controller;
 use think\Request;
 use think\Db;
+use think\Session;
 
 class BusRegister extends Base
 {
@@ -19,6 +20,13 @@ class BusRegister extends Base
         //处理接收到的数据
         $info = $request->post();
         //dump($info);
+        //dump(cache('vcode'));
+        //exit;
+        if (!cache('vcode')){
+            $this->error('验证码已过期,请重新获取~~~');
+        }else if (cache('vcode')!==$info['vcode']){
+            $this->error('验证码输入有误~~~');
+        }
 
         //判断店铺名字和手机号的唯一
         $res = Db::name('business')->where('b_name', $info["b_name"])->find();
@@ -38,6 +46,7 @@ class BusRegister extends Base
         }
         $date = date('Y-m-d H:i:s');
         $data = [
+            'b_email'=>$info['b_email'],
             'b_type' => $info['b_type'],
             'b_username' => $info['b_username'],
             'b_name' => $info['b_name'],

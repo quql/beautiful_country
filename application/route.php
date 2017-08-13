@@ -227,6 +227,7 @@ Route::get('/shoplist/[:id]', 'index/Index/read');
 //评论列表
 Route::get('commentlist','admin/Comment/index');
 Route::get('/commentedit/:id','admin/Comment/edit');
+Route::get('/commentfind/:id','admin/Comment/find');
 
 //前台的商家首页展示
 Route::get('busindexshow','index/Bus/index');
@@ -236,11 +237,12 @@ Route::get('/carouseledit/:id','admin/Carousel/edit');
 Route::get('/carouselshow/:id','admin/Carousel/show');
 Route::get('/carouseldel/:id','admin/Carousel/delete');
 Route::post('/carouselupd/:id','admin/Carousel/update');
+Route::get('/carouselfind/:id','admin/Carousel/find');
 //后台用户列表
 Route::get('userslist','admin/Users/index');
 Route::resource('usersmg', 'admin/Users');
 //邮箱验证
-Route::get('email','index/index/email');
+Route::get('email/:email','index/index/email');
 
 //显示详情页
 Route::get('goodsdetail','index/GoodsDetail/index');

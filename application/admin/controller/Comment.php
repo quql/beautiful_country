@@ -44,4 +44,23 @@ class Comment extends Admin
         return json($info);
     }
 
+    /**
+     * 显示单条数据.
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function find($id)
+    {
+        $result = Db::table('ml_comment')->where('c_id',$id)->find();
+        //var_dump($result);
+        if ($result) {
+            $result['status'] = true;
+        } else {
+            $result['status'] = false;
+        }
+
+        return json($result);
+
+    }
 }

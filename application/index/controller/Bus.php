@@ -13,11 +13,11 @@ class Bus extends Base
      *
      * @return \think\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         //根据接收到的id显示不同的商家页面
-        $b_id = $request->get('id');
-        //$b_id =15;
+        $b_id = input('id');
+        //dump($b_id);
         //查询店铺信息，用于首页展示
         $data = Db::name('business')->where('b_id', $b_id)->select();
         //dump($data);
@@ -38,7 +38,7 @@ class Bus extends Base
             }
 //            dump(count($x));
 //            dump($cate_name);
-//            dump($ticket);
+            //dump($ticket);
         }
 
         //查看特产美食下的分类
@@ -90,9 +90,30 @@ class Bus extends Base
             //dump($hotel);
         }
 
+        //查看活动下的数据
+        $cate_a = Db::name('ac_cate')->select();
+        //dump($cate_a);
+        if (!empty($cate_a)) {
+            //二级分类的id
+            foreach ($cate_a as $v) {
+                $a[] = $v['id'];
+                $cate_ac[] = $v['ac_name'];
+            }
+            for ($i = 0; $i < count($a); $i++) {
+                //分类对应的商品
+                $sql = "select * from ml_activities LEFT JOIN ml_ac_pic ON ml_activities.id=ml_ac_pic.acid where ml_ac_pic.is_first='1' and ml_activities.ac_cate={$a[$i]} and ml_activities.bus_id={$b_id} and ml_activities.ac_status='1'";
+                $activities[] = Db::query($sql);
+            }
+//            dump($a);
+//            dump($cate_ac);
+           // dump($activities);
+        }
+
+
 
         //加载页面
         return view('bus/index', [
+            'b_id'=>$b_id,
             'list' => $data,
             'cate' => $cate_name,
             'ticket' => $ticket,
@@ -101,73 +122,10 @@ class Bus extends Base
             'cate_r' => $cate_route,
             'route' => $route,
             'cate_h' => $cate_hotel,
-            'hotel' => $hotel
+            'hotel' => $hotel,
+            'cate_a' => $cate_ac,
+            'activities' => $activities
+
         ]);
-    }
-
-    /**
-     * 显示创建资源表单页.
-     *
-     * @return \think\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * 保存新建的资源
-     *
-     * @param  \think\Request $request
-     * @return \think\Response
-     */
-    public function save(Request $request)
-    {
-        //
-    }
-
-    /**
-     * 显示指定的资源
-     *
-     * @param  int $id
-     * @return \think\Response
-     */
-    public function read()
-    {
-
-    }
-
-    /**
-     * 显示编辑资源表单页.
-     *
-     * @param  int $id
-     * @return \think\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * 保存更新的资源
-     *
-     * @param  \think\Request $request
-     * @param  int $id
-     * @return \think\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * 删除指定资源
-     *
-     * @param  int $id
-     * @return \think\Response
-     */
-    public function delete($id)
-    {
-        //
     }
 }
