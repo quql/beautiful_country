@@ -20,22 +20,18 @@ class Index extends Base
         // exit;
 
         //查询友情链接数据
-        $link = Db::name('link')->select();
+        // $link = Db::name('link')->select();
 
         //查询精彩活动的数据
-        $linksql = "select * from ml_activities
-        LEFT JOIN ml_ac_pic ON ml_activities.id=ml_ac_pic.acid
-        LEFT JOIN ml_ac_cate ON ml_activities.ac_cate=ml_ac_cate.id";
+        $activitiessql = "select ml_activities.id as activities_id,ml_activities.ac_title,ml_activities.ac_abstract,ml_activities.ac_opentime,ml_activities.ac_closetime,ml_activities.ac_spot,ml_activities.ac_spot,ml_activities.ac_host,ml_activities.ac_cate,ml_activities.ac_details,ml_activities.ac_price,ml_activities.ac_status,ml_activities.ac_contain,ml_activities.bus_id,ml_ac_cate.id as ac_cate_id,ml_ac_cate.ac_name,ml_ac_cate.p_id,ml_ac_pic.id as ac_pic_id,ml_ac_pic.acid,ml_ac_pic.pic from ml_activities LEFT JOIN ml_ac_pic ON ml_activities.id=ml_ac_pic.acid LEFT JOIN ml_ac_cate ON ml_activities.ac_cate=ml_ac_cate.id where ml_ac_pic.is_first='1' and  ml_activities.ac_status='1'";
         // where ml_ac_pic.is_first='1'
-        $activities = Db::query($linksql);
-        // var_dump($activities);die;
-
+        $activitiesindex = Db::query($activitiessql);
+        // var_dump( $activitiesindex);die;
+        // var_dump($activitiesindex);die;
         return view('index/index',[
             'foods'=>$food,
             'pics'=>$pic,
-            'link' =>$link,
-            'activities' =>$activities
-
+            'activitiesindex'=>$activitiesindex
         ]);
     }
 

@@ -473,13 +473,15 @@
                         </ul>
                     </li>
 
-                    <li><a href="{:url('/shoplist/7')}">精彩活动</a>
+                    <li><a href="{:url('index/activities/index')}">精彩活动</a>
                         <ul>
                             {volist name='activities' id="v"}
-                            <li><a href="{:url('/listshow/7/'.$v.id)}">{$v.ac_name}</a></li>
+                            <li><a href="{:url('/activitieslistshow/'.$v.id)}">{$v.ac_name}</a></li>
                             {/volist}
                         </ul>
                     </li>
+
+                   <!--  Route::get('/:id/','index/Activities'); -->
 
 
              <!--      <li><a href="javascript:avoid(0);">资讯</a>
@@ -1072,7 +1074,7 @@
         </div>
 
           <!--Gallery List Wrap Start-->
-           {volist name="activities" id="v"}
+           {volist name="activitiesindex" id="v"}
           <div class="col-md-3 col-sm-6 no_padding">
             <div class="gt_gallery_style1">
               <figure>
@@ -1080,8 +1082,8 @@
               </figure>
               <div class="gt_gallery_style1_des">
                 <ul>
-                  <li><a href="#"><i class="fa fa-link"></i></a></li>
-                  <li><a href="/static/app/index/images/a1.jpg" data-rel="prettyPhoto"><i class="fa fa-search"></i></a></li>
+                  <li><a href="{:url('/activitiesdetailsshow/'.$v.activities_id)}"><i class="fa fa-link"></i></a></li>
+                  <li><a href="/uploads/{$v['pic']}" data-rel="prettyPhoto"><i class="glyphicon glyphicon-eye-open"></i></a></li>
                 </ul>
                 <h3>{$v['ac_title']}</h3>
               </div>

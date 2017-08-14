@@ -6,7 +6,7 @@ use think\Controller;
 use think\Request;
 use think\Db;
 
-class Activities extends Admin
+class Activities extends Bus
 {
     /**
      * 显示资源列表
@@ -17,9 +17,6 @@ class Activities extends Admin
     public function index()
     {   
         //店铺后台展示
-        if (cache('b_name') == null) {
-            $this->redirect("admin/BusLogin/index");
-        }
         $res = Db::name('business')->where('b_name', cache('b_name'))->find();
         $cate = Db::name('cate')->select();
         $this->assign('bus_res',$res);
@@ -75,6 +72,7 @@ class Activities extends Admin
             'ac_contain' => $p['ac_contain'],
             'ac_status' => $p['ac_status'],
             'ac_details' => $p['ac_details'],
+            'ac_contact' => $p['ac_contact'],
             'bus_id' => $b_id
         ];
 
@@ -139,6 +137,12 @@ class Activities extends Admin
         $p = $request->put();
         // var_dump($p);
         // die;
+        if (empty($p['ac_status'])) {
+            $p['ac_status'] = "0";
+        } else {
+            $p['ac_status'] = "1";
+        }
+        
         $ActivitiesData = [
             'ac_cate' => $p['ac_cate'],
             'ac_title' => $p['ac_title'],
@@ -150,9 +154,10 @@ class Activities extends Admin
             'ac_price' => $p['ac_price'],
             'ac_contain' => $p['ac_contain'],
             'ac_status' => $p['ac_status'],
-            'ac_details' => $p['ac_details']
+            'ac_details' => $p['ac_details'],
+            'ac_contact' => $p['ac_contact']
         ];
-
+        // var_dump($ActivitiesData);die;
 
         $result =Db::table('ml_activities')->where('id',$id)->update($ActivitiesData);
         if($result){

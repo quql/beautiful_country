@@ -46,6 +46,7 @@ class ActivitiesAdminList extends Admin
         $p=$request->post();
         // var_dump($p);
         // die;
+
         $ActivitiesData = [
             'ac_cate' => $p['ac_cate'],
             'ac_title' => $p['ac_title'],

@@ -23,13 +23,16 @@ class Base extends Controller
 
         //查询友情链接数据
         $link = Db::name('link')->select();
+        $activities = Db::name('ac_cate')->select();
+       // var_dump( $activities);
+       // die;
 
         //查询精彩活动的数据
-        $linksql = "select * from ml_activities
-        LEFT JOIN ml_ac_pic ON ml_activities.id=ml_ac_pic.acid
-        LEFT JOIN ml_ac_cate ON ml_activities.ac_cate=ml_ac_cate.id";
+        // $linksql = "select * from ml_activities
+        // LEFT JOIN ml_ac_pic ON ml_activities.id=ml_ac_pic.acid
+        // LEFT JOIN ml_ac_cate ON ml_activities.ac_cate=ml_ac_cate.id";
         // where ml_ac_pic.is_first='1'
-        $activities = Db::query($linksql);
+        // $activities = Db::query($linksql);
         // var_dump($activities);die;
 
         $this->assign('link',$link);
