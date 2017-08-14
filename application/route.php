@@ -22,7 +22,6 @@ Route::get('index/login/index','index/login/index');
 //用户注册
 Route::post('UserRegister','index/Register/doregister');
 
-
 //商户注册
 Route::post('busDoRegister','index/BusRegister/doregister');
 //商户登陆的页面
@@ -46,7 +45,6 @@ Route::resource('adminuser', 'admin/User');
 
 // 管理员密码修改
 Route::post('password','admin/User/password');
-
 
 
 Route::resource('adminnode', 'admin/Node');
@@ -91,8 +89,18 @@ Route::resource('Activitiesadminlist', 'admin/Activitiesadminlist');
 //平台查看活动图片
 Route::get('Activitiesadminshow','admin/Activitiesadminlist/show');
 
+
 //友情链接管理
 Route::resource('link','admin/Link');
+
+
+//活动管理前台
+//活动列表页
+Route::get('activitieslist','index/activities/index');
+//显示不同分类列表页
+Route::get('/activitieslistshow/:id','index/activities/activitieslistshow');
+//活动详情页
+Route::get('/activitiesdetailsshow/:id','index/activities/activitiesdetailsshow');
 
 
 
