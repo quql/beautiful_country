@@ -1,99 +1,63 @@
 {extend name="index/index"}
 {block name="main"}
-
-    <!--Sub Banner Wrap Start -->
-    <div class="gt_sub_banner_bg default_width">
-        <div class="container">
-            <div class="gt_sub_banner_hdg  default_width">
-                <h2>乡村旅游</h2>
-                <h6>开始的地方</h6>
-            </div>
+    <!--Main Content Wrap Start-->
+<div class="gt_sub_banner_bg default_width">
+    <div class="container">
+        <div class="gt_sub_banner_hdg  default_width">
+            <h2>乡村旅游</h2>
+            <h6>开始的地方</h6>
         </div>
     </div>
-
-
-    <!--Content Wrap Start-->
-    <div class="gt_main_content_wrap">
-
-        <!--Our Latest Product Wrap Start-->
-        <section class="gt_courses_bg">
+</div>
+    <div class="gt_content_wrap">
+        <!--Course Grid Wrap Start-->
+        <section>
             <div class="container">
-                <!--Product List Wrap Start-->
-                <!--Product List Style 2 Wrap Start-->
                 <div class="row">
-                   {volist name="list" id="list"}
-                    <div class="col-md-3 col-sm-6">
-                        <div class="gt_product_outer_wrap gt_shop_style_2_wrap">
-                            <figure>
-                                <img src="/uploads/{$list.pic}" width="300" height="240">
-                                <div class="gt_overlay_wrap"></div>
-                                <figcaption class="gt_product_img_des">
-                                    <p>{$list.gd_abstract}</p>
-                                    <ul class="gt_product_ui_element">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    </ul>
-                                </figcaption>
-                            </figure>
-                            <div class="gt_product_des_wrap">
-                                <a href="{:url('/goodsdetail',['id'=>$list.id,'bus_id'=>$list.bus_id,'cid'=>$list.c_id])}">
-                                <h5>{$list.gd_title}</h5>
-                                </a>
-                                <ul class="gt_rating_start">
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="gt_cart_element_wrap">
-                                <a class="gt_retweet_link" href="#"><i class="fa fa-retweet"></i></a>
-                                <a class="gt_add_to_cart" href="#"> <p>￥{$list.price}</p></a>
-                                <a class="gt_whishlist" href="#"><i class="fa fa-heart"></i></a>
+                    {volist name="list" id="list"}
+                    <div class="col-md-4 mb30">
+                        <div class="item flip_container">
+                            <div class="gt_flip_effect">
+
+                                <div class="gt_team2_wrap">
+                                    <img src="/uploads/{$list.pic}" width="300" height="240">
+                                    <div class="gt_team2_name">
+                                        <h6>美丽乡村</h6>
+                                        <h6>名称:{$list.gd_title}</h6>
+                                        <span>简介:{$list.gd_abstract}</span>
+                                        <p>单价:￥{$list.price}</p>
+                                    </div>
+                                </div>
+
+                                <div class="gt_team2_des_wrap">
+                                    <div class="gt_team2_align_center">
+                                        <h6>{$list.gd_title}</h6>
+                                        <span>{$list.gd_abstract}</span>
+                                        <p> <a href="{:url('/goodsdetail',['id'=>$list.id,'bus_id'=>$list.bus_id,'cid'=>$list.c_id])}"><h4>点击查看详情</h4></a></p>
+                                        <!--<ul class="gt_scl_icon">-->
+                                            <!--<li><a class="bg_fb" href="#"><i class="fa fa-facebook"></i></a></li>-->
+                                            <!--<li><a class="bg_twitter" href="#"><i class="fa fa-twitter"></i></a></li>-->
+                                            <!--<li><a class="bg_gp" href="#"><i class="fa fa-google-plus"></i></a></li>-->
+                                            <!--<li><a class="bg_linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>-->
+                                            <!--<li><a class="bg_behance" href="#"><i class="fa fa-behance"></i></a></li>-->
+                                        <!--</ul>-->
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                {/volist}
-                <!--Product List Style 2 Wrap End-->
-
-                <!--<div class="gt_pagination_outer_wrap">-->
-                    <!--<ul>-->
-                        <!--<li><a href="#"><i class="fa fa-angle-double-left"></i></a></li>-->
-                        <!--<li class="active"><a href="#">1</a></li>-->
-                        <!--<li><a href="#">2</a></li>-->
-                        <!--<li><a href="#">3</a></li>-->
-                        <!--<li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-                <!--Product List Wrap End-->
-
-            </div>
-        </section>
-        <!--Our Latest Product Wrap End-->
-    </div>
-
-    <!--Footer Wrap End-->
-    <!--Back to Top Wrap Start-->
-    <div class="back-to-top">
-        <a href="#home"><i class="fa fa-angle-up"></i></a>
-    </div>
-    <!--Back to Top Wrap Start-->
-
+                    {/volist}
 {/block}
+
+
 <!--gt Wrapper End-->
-
-
 {block name="myjs"}
 <!--Jquery Library-->
 <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 <!--Bootstrap core JavaScript-->
 <script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
-<!--Owl Carousel JavaScript-->
-<script src="js/owl.carousel.js"></script>
-<!--Filter able JavaScript-->
-
+<!--Chosen JavaScript-->
+<script src="js/chosen.jquery.min.js"></script>
 <!--Custom JavaScript-->
-<script src="/static/app/index/js/custom.js"></script>
+<script src="js/custom.js"></script>
 {/block}
-

@@ -1,7 +1,10 @@
 ﻿{extend name="index/index"}
 
     
-{block name="main"}    <!--Sub Banner Wrap Start -->
+{block name="main"}<!--Sub Banner Wrap Start -->
+<style type="text/css">
+    #big{width:200px;height:200px;margin-left:100px;margin-top:10px;overflow:hidden;position:absolute;top:70px;left:350px;display:none;z-index:99}
+</style>
     <div class="gt_sub_banner_bg default_width">
         <div class="container">
             <div class="gt_sub_banner_hdg  default_width">
@@ -23,7 +26,7 @@
       </div>
     </div>
     <!--Breadcrumb Wrap End -->
-    
+
     <!--Content Wrap Start-->
     <div class="gt_main_content_wrap">
     	  <!--Shop Wrap Start-->
@@ -50,9 +53,12 @@
                               <div id="shop_detaild_slider">
                                   <ul class="slides">
                                       <li>
-                                          <img src="/uploads/{if condition='$p.is_first eq 1'}{$p.pic}{/if}" width="421" height="470" />
+                                          <img src="/uploads/{if condition='$p.is_first eq 1'}{$p.pic}{/if}" width="421" height="470" id="small"/>
                                       </li>
                                   </ul>
+                                  <div id="big">
+                                      <img src="/uploads/{$p.pic}" width="2000"/>
+                                  </div>
                               </div>
 
                           </div>
@@ -127,7 +133,6 @@
                   </div> 
                 </div>
               </div>
-                
               <!--Product Tab Des Wrap Start-->
               <div class="gt_product_detail_border_wrap">
                   <div class="gt_shop_tab_outer_wrap">
@@ -320,5 +325,22 @@
 //        $('#num').val() - 1;
 //        console.log($('#num').val());
 //    });
+
+</script>
+<script>
+    var big = document.getElementById('big');
+    var small = document.getElementById('small');
+
+    small.onmousemove = function(e){
+        var x = e.clientX - this.offsetLeft;
+        var y = e.clientY - this.offsetTop;
+        big.scrollTop = y * 5 - 570;
+        big.scrollLeft = x * 5 - 1400;
+        big.style.display = 'block';
+    }
+
+    small.onmouseout = function(){
+        big.style.display = 'none';
+    }
 </script>
 {/block}
