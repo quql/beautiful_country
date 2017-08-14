@@ -160,6 +160,48 @@
       color: #eee;
     }
   </style>
+    <!--Footer List Wrap end-->
+    <style type="text/css">
+
+        .gt_foo_contact_wrap0 {
+            float: left;
+            width: 100%;
+            position: relative;
+            margin: 20px 0px 0px 0px;
+            padding: 60px 0px 0px;
+            border-top: 1px solid #383d41;
+        }
+
+        .gt_foo_contact_wrap1 {
+            float: left;
+            width: 100%;
+            position: relative;
+            margin: 10px 0px 0px;
+            padding: 10px 0px 0px;
+            border-top: 1px solid #383d41;
+        }
+        .gt_foo_contact_wrap1 h5{
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 20px;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .linkworld{
+            margin: 10px 0px 0px 10px;
+        }
+
+        .gt_copyright_wrap {
+            float: left;
+            width: 100%;
+            position: relative;
+            background-color: #121011;
+            margin-top: 50px;
+            padding: 15px 0px;
+        }
+
+    </style>
 
     {css href="/static/app/index/css/reset.css"}
     {css href="/static/app/index/css/dashboard.css"}
@@ -321,6 +363,26 @@
 
                                       </div>
                                   </div>
+                                  <!--<form action="{:url('index/index/email')}" method="post">-->
+                                  <div class="form-inline">
+                                      <label  class="col-sm-2 control-label">邮箱验证</label>
+                                      <div class="col-sm-10">
+                                          <input type="text" class="form-control" id="inputEmail" name="b_email" placeholder="请输入您的邮箱">
+
+                                          <p id='p9' style="padding-left: 15px"></p>
+                                          <button style="display: inline-block;width: 100px" class="btn-default btn-sm btn_email">获取验证码</button>
+                                      </div>
+
+
+                                  </div>
+                                  <!--</form>-->
+                                  <div class="form-inline">
+                                      <label  class="col-sm-2 control-label">验证码</label>
+                                      <div class="col-sm-10">
+                                          <input type="text" class="form-control" id="inputVcode" name="vcode" placeholder="请输入邮箱验证码">
+                                          <p id='p10' style="padding-left: 15px"></p>
+                                      </div>
+                                  </div>
                                   <div class="form-inline">
                                       <label  class="col-sm-2 control-label">店铺类型</label>
                                       <div class="col-sm-10">
@@ -330,22 +392,12 @@
                                           <input type="radio"  name='b_type' value="3">景区
                                       </div>
                                   </div>
-                                  <!--<div class="form-group">-->
-                                      <!--<label  class="col-sm-2 control-label">邮箱验证</label>-->
-                                      <!--<div class="col-sm-10">-->
-                                          <!--<input type="text" class="form-control" id="inputEmail" name="b_email" placeholder="请输入您的邮箱">-->
-                                          <!--<button class="btn-default btn-sm btn_email">获取验证码</button>-->
-                                      <!--</div>-->
-                                  <!--</div>-->
-
-
                                   <div class="form-group">
                                       <div class=" col-sm-9">
                                           <div class="checkbox">
-                                              <label>
-                                                  <input type="checkbox" name="checkbox" id="checkbox" checked/> 我已阅读并同意相关规则
-                                                  <p id='p7' style="padding-left: 15px"></p>
-                                              </label>
+                                              <label class=" control-label"></label>
+                                              <input type="checkbox" name="checkbox" id="checkbox" checked/> 我已阅读并同意相关规则
+                                              <p id='p7' style="padding-left: 15px"></p>
                                           </div>
                                       </div>
                                   </div>
@@ -577,7 +629,7 @@
           <div class="gt_hdg_1 default_width">
             <h3>从这里开启您的旅程......</h3>
             <p id='msg'>生活中从不缺少美,而是缺少发现美的眼睛.——罗丹 </p>
-            <p >just do what you want </p>
+            <p >just SEARCH what you want </p>
               <span class="gt_hdg_left"></span>
               <i class="icon-school"></i>
               <span class="gt_hdg_right"></span>
@@ -590,7 +642,7 @@
               <div class="gt_course_search default_width">
                 <form method="get" action="{:url('index/index/souover')}">
                   <input type="search" name="search" placeholder="Search 关键字" id="inputString" autocomplete="off"/>
-                  <div class="suggestionsBox" id="suggestions" style="display: block;width:600px;overflow: hidden;background-color:#FFFFFF;z-index:99px;border:1px solid grey">
+                  <div class="suggestionsBox" id="suggestions" style="display: block;width:600px;overflow: hidden;background-color:#FFFFFF;z-index:99;border:1px solid grey">
 
                     </div>
                     <button class="gt_search_remove_btn btn-sm" style="background: white;padding-top:3px;padding-left:10px"><i class="fa fa-search"></i></button>
@@ -600,51 +652,26 @@
 
           </div>
           <!--Search Wrap End-->
-
+{if condition="!empty($hotroute)"}
+            <div class="gt_hdg_1 default_width">
+                <h3>热门线路TOP10</h3>
+                <p >HOT<i class="glyphicon glyphicon-fire">HOT</i> HOT<i class="glyphicon glyphicon-fire">HOT</i> HOT <i class="glyphicon glyphicon-fire">HOT</i>HOT</p>
+                <span class="gt_hdg_left"></span>
+                <i class="icon-school"></i>
+                <span class="gt_hdg_right"></span>
+            </div>
           <!--Courses List Wrap Start-->
           <div class="gt_courses_slider" id="gt_courses_slider">
-            <div class="item">
-              <div class="gt_courses_wrap default_width">
-                <figure>
-                  <img src="/static/app/index/images/r1.jpg" alt="" width="360px" height="300px">
-                  <figcaption class="gt_course_img_des">
-                    <div class="gt_course_des_holder">
-                      <div class="gt_course_author">
-                        <img src="/static/app/index/images/r1.jpg" alt="" >
-                        <a href="#"><i class="fa fa-user"></i>店铺名字</a>
-                      </div>
-                      <ul class="gt_rating_star">
-                        <li>
-                          <a href="#"><i class="fa fa-star"></i></a>
-                          <a href="#"><i class="fa fa-star"></i></a>
-                          <a href="#"><i class="fa fa-star"></i></a>
-                          <a href="#"><i class="fa fa-star"></i></a>
-                          <a href="#"><i class="fa fa-star"></i></a>
-                        </li>
-                      </ul>
-                    </div>
-                    <!--<div class="gt_course_cat gt_bg_4">New</div>-->
-                  </figcaption>
-                </figure>
-                <div class="gt_course_des default_width">
-                  <h5><a href="#">标题</a></h5>
-                  <p>描述</p>
-                </div>
-                <div class="gt_course_bottom default_width">
-                  <h5>￥价格<span></span></h5>
-                    <a href="#">收藏</a>
-                </div>
-              </div>
-            </div>
+{volist name='hotroute' id='vroute'}
               <div class="item">
                   <div class="gt_courses_wrap default_width">
                       <figure>
-                          <img src="/static/app/index/images/r1.jpg" alt="" width="360px" height="300px">
+                          <img src="/uploads/{$vroute.pic}" alt="" width="360px" height="300px">
                           <figcaption class="gt_course_img_des">
                               <div class="gt_course_des_holder">
                                   <div class="gt_course_author">
-                                      <img src="/static/app/index/images/r1.jpg" alt="" >
-                                      <a href="#"><i class="fa fa-user"></i>店铺名字</a>
+                                      <img src="/uploads/{$vroute.pic}" alt="" >
+                                      <a href="{:url('/busindexshow',['id'=>$vroute.bus_id])}"><i class="fa fa-user"></i>{$vroute.b_name}</a>
                                   </div>
                                   <ul class="gt_rating_star">
                                       <li>
@@ -660,318 +687,91 @@
                           </figcaption>
                       </figure>
                       <div class="gt_course_des default_width">
-                          <h5><a href="#">标题</a></h5>
-                          <p>描述</p>
+                          <h5><a href="{:url('/goodsdetail',['id'=>$vroute.c_gid,'bus_id'=>$vroute.bus_id,'cid'=>$vroute.c_id])}">{$vroute.gd_title}</a></h5>
+                          <p>{$vroute.gd_abstract}</p>
                       </div>
                       <div class="gt_course_bottom default_width">
-                          <h5>￥价格<span></span></h5>
-                          <a href="#">收藏</a>
+                          <h5>￥{$vroute.gd_price}<span></span></h5>
+                          <a href="#">收藏店铺</a>
                       </div>
                   </div>
               </div>
-              <div class="item">
-                  <div class="gt_courses_wrap default_width">
-                      <figure>
-                          <img src="/static/app/index/images/r1.jpg" alt="" width="360px" height="300px">
-                          <figcaption class="gt_course_img_des">
-                              <div class="gt_course_des_holder">
-                                  <div class="gt_course_author">
-                                      <img src="/static/app/index/images/r1.jpg" alt="" >
-                                      <a href="#"><i class="fa fa-user"></i>店铺名字</a>
-                                  </div>
-                                  <ul class="gt_rating_star">
-                                      <li>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                      </li>
-                                  </ul>
-                              </div>
-                              <!--<div class="gt_course_cat gt_bg_4">New</div>-->
-                          </figcaption>
-                      </figure>
-                      <div class="gt_course_des default_width">
-                          <h5><a href="#">标题</a></h5>
-                          <p>描述</p>
-                      </div>
-                      <div class="gt_course_bottom default_width">
-                          <h5>￥价格<span></span></h5>
-                          <a href="#">收藏</a>
-                      </div>
-                  </div>
-              </div>
-              <div class="item">
-                  <div class="gt_courses_wrap default_width">
-                      <figure>
-                          <img src="/static/app/index/images/r1.jpg" alt="" width="360px" height="300px">
-                          <figcaption class="gt_course_img_des">
-                              <div class="gt_course_des_holder">
-                                  <div class="gt_course_author">
-                                      <img src="/static/app/index/images/r1.jpg" alt="" >
-                                      <a href="#"><i class="fa fa-user"></i>店铺名字</a>
-                                  </div>
-                                  <ul class="gt_rating_star">
-                                      <li>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                      </li>
-                                  </ul>
-                              </div>
-                              <!--<div class="gt_course_cat gt_bg_4">New</div>-->
-                          </figcaption>
-                      </figure>
-                      <div class="gt_course_des default_width">
-                          <h5><a href="#">标题</a></h5>
-                          <p>描述</p>
-                      </div>
-                      <div class="gt_course_bottom default_width">
-                          <h5>￥价格<span></span></h5>
-                          <a href="#">收藏</a>
-                      </div>
-                  </div>
-              </div>
-              <div class="item">
-                  <div class="gt_courses_wrap default_width">
-                      <figure>
-                          <img src="/static/app/index/images/r1.jpg" alt="" width="360px" height="300px">
-                          <figcaption class="gt_course_img_des">
-                              <div class="gt_course_des_holder">
-                                  <div class="gt_course_author">
-                                      <img src="/static/app/index/images/r1.jpg" alt="" >
-                                      <a href="#"><i class="fa fa-user"></i>店铺名字</a>
-                                  </div>
-                                  <ul class="gt_rating_star">
-                                      <li>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                      </li>
-                                  </ul>
-                              </div>
-                              <!--<div class="gt_course_cat gt_bg_4">New</div>-->
-                          </figcaption>
-                      </figure>
-                      <div class="gt_course_des default_width">
-                          <h5><a href="#">标题</a></h5>
-                          <p>描述</p>
-                      </div>
-                      <div class="gt_course_bottom default_width">
-                          <h5>￥价格<span></span></h5>
-                          <a href="#">收藏</a>
-                      </div>
-                  </div>
-              </div>
-              <div class="item">
-                  <div class="gt_courses_wrap default_width">
-                      <figure>
-                          <img src="/static/app/index/images/r1.jpg" alt="" width="360px" height="300px">
-                          <figcaption class="gt_course_img_des">
-                              <div class="gt_course_des_holder">
-                                  <div class="gt_course_author">
-                                      <img src="/static/app/index/images/r1.jpg" alt="" >
-                                      <a href="#"><i class="fa fa-user"></i>店铺名字</a>
-                                  </div>
-                                  <ul class="gt_rating_star">
-                                      <li>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                      </li>
-                                  </ul>
-                              </div>
-                              <!--<div class="gt_course_cat gt_bg_4">New</div>-->
-                          </figcaption>
-                      </figure>
-                      <div class="gt_course_des default_width">
-                          <h5><a href="#">标题</a></h5>
-                          <p>描述</p>
-                      </div>
-                      <div class="gt_course_bottom default_width">
-                          <h5>￥价格<span></span></h5>
-                          <a href="#">收藏</a>
-                      </div>
-                  </div>
-              </div>
-              <div class="item">
-                  <div class="gt_courses_wrap default_width">
-                      <figure>
-                          <img src="/static/app/index/images/r1.jpg" alt="" width="360px" height="300px">
-                          <figcaption class="gt_course_img_des">
-                              <div class="gt_course_des_holder">
-                                  <div class="gt_course_author">
-                                      <img src="/static/app/index/images/r1.jpg" alt="" >
-                                      <a href="#"><i class="fa fa-user"></i>店铺名字</a>
-                                  </div>
-                                  <ul class="gt_rating_star">
-                                      <li>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                      </li>
-                                  </ul>
-                              </div>
-                              <!--<div class="gt_course_cat gt_bg_4">New</div>-->
-                          </figcaption>
-                      </figure>
-                      <div class="gt_course_des default_width">
-                          <h5><a href="#">标题</a></h5>
-                          <p>描述</p>
-                      </div>
-                      <div class="gt_course_bottom default_width">
-                          <h5>￥价格<span></span></h5>
-                          <a href="#">收藏</a>
-                      </div>
-                  </div>
-              </div>
-              <div class="item">
-                  <div class="gt_courses_wrap default_width">
-                      <figure>
-                          <img src="/static/app/index/images/r1.jpg" alt="" width="360px" height="300px">
-                          <figcaption class="gt_course_img_des">
-                              <div class="gt_course_des_holder">
-                                  <div class="gt_course_author">
-                                      <img src="/static/app/index/images/r1.jpg" alt="" >
-                                      <a href="#"><i class="fa fa-user"></i>店铺名字</a>
-                                  </div>
-                                  <ul class="gt_rating_star">
-                                      <li>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                      </li>
-                                  </ul>
-                              </div>
-                              <!--<div class="gt_course_cat gt_bg_4">New</div>-->
-                          </figcaption>
-                      </figure>
-                      <div class="gt_course_des default_width">
-                          <h5><a href="#">标题</a></h5>
-                          <p>描述</p>
-                      </div>
-                      <div class="gt_course_bottom default_width">
-                          <h5>￥价格<span></span></h5>
-                          <a href="#">收藏</a>
-                      </div>
-                  </div>
-              </div>
-              <div class="item">
-                  <div class="gt_courses_wrap default_width">
-                      <figure>
-                          <img src="/static/app/index/images/r1.jpg" alt="" width="360px" height="300px">
-                          <figcaption class="gt_course_img_des">
-                              <div class="gt_course_des_holder">
-                                  <div class="gt_course_author">
-                                      <img src="/static/app/index/images/r1.jpg" alt="" >
-                                      <a href="#"><i class="fa fa-user"></i>店铺名字</a>
-                                  </div>
-                                  <ul class="gt_rating_star">
-                                      <li>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                          <a href="#"><i class="fa fa-star"></i></a>
-                                      </li>
-                                  </ul>
-                              </div>
-                              <!--<div class="gt_course_cat gt_bg_4">New</div>-->
-                          </figcaption>
-                      </figure>
-                      <div class="gt_course_des default_width">
-                          <h5><a href="#">标题</a></h5>
-                          <p>描述</p>
-                      </div>
-                      <div class="gt_course_bottom default_width">
-                          <h5>￥价格<span></span></h5>
-                          <a href="#">收藏</a>
-                      </div>
-                  </div>
-              </div>
+              {/volist}
           </div>
+            {/if}
           <!--Courses List Wrap End-->
         </div>
+
       </section>
       <!--Explore All Courses Wrap Start-->
 
       <!--Explore All Courses Search Wrap Start-->
 
-        <section class="gt_course_search_bg">
+       <!--<section class="gt_course_search_bg">-->
         <!--Heading Wrap Start-->
-        <div class="gt_hdg_1 white_color default_width">
-          <h3>理想目的地</h3>
-          <p>Aenean commodo ligal geate dolor. Aenan massa. Loren ipsum dolor sit amet,color<br>tetuer adiois elit, aliquam eget nibh etibra</p>
-        </div>
+        <!--<div class="gt_hdg_1 white_color default_width">-->
+          <!--<h3>理想目的地</h3>-->
+          <!--<p>Aenean commodo ligal geate dolor. Aenan massa. Loren ipsum dolor sit amet,color<br>tetuer adiois elit, aliquam eget nibh etibra</p>-->
+        <!--</div>-->
         <!--Heading Wrap End-->
         <!--Explore Search Wrap Start-->
-        <div class="container">
-          <div class="gt_explore_search_wrap default_width">
-            <form class="default_width">
-               <div class="col-md-3 col-sm-6">
-                   <div class="gt_explore_search">
-                       <select class="find_course_search">
-                           <option>Category</option>
-                           <option>2</option>
-                           <option>3</option>
-                           <option>4</option>
-                       </select>
-                   </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                   <div class="gt_explore_search">
-                       <select class="find_course_search">
-                           <option>Duration</option>
-                           <option>2</option>
-                           <option>3</option>
-                           <option>4</option>
-                       </select>
-                   </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                   <div class="gt_explore_search">
-                       <select class="find_course_search">
-                           <option>Level</option>
-                           <option>2</option>
-                           <option>3</option>
-                           <option>4</option>
-                       </select>
-                   </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                   <div class="gt_explore_search">
-                       <select class="find_course_search">
-                           <option>Keyword</option>
-                           <option>2</option>
-                           <option>3</option>
-                           <option>4</option>
-                       </select>
-                   </div>
-               </div>
-               <div class="col-md-12">
-                   <div class="gt_explore_search align_center">
-                       <input type="submit" value="Search Courses" />
-                   </div>
-               </div>
-           </form>
-          </div>
-        </div>
+           <!--<div class="container">
+            <div class="gt_explore_search_wrap default_width">
+              <form class="default_width">
+                 <div class="col-md-3 col-sm-6">
+                     <div class="gt_explore_search">
+                         <select class="find_course_search">
+                             <option>Category</option>
+                             <option>2</option>
+                             <option>3</option>
+                             <option>4</option>
+                         </select>
+                     </div>
+                 </div>
+                 <div class="col-md-3 col-sm-6">
+                     <div class="gt_explore_search">
+                         <select class="find_course_search">
+                             <option>Duration</option>
+                             <option>2</option>
+                             <option>3</option>
+                             <option>4</option>
+                         </select>
+                     </div>
+                 </div>
+                 <div class="col-md-3 col-sm-6">
+                     <div class="gt_explore_search">
+                         <select class="find_course_search">
+                             <option>Level</option>
+                             <option>2</option>
+                             <option>3</option>
+                             <option>4</option>
+                         </select>
+                     </div>
+                 </div>
+                 <div class="col-md-3 col-sm-6">
+                     <div class="gt_explore_search">
+                         <select class="find_course_search">
+                             <option>Keyword</option>
+                             <option>2</option>
+                             <option>3</option>
+                             <option>4</option>
+                         </select>
+                     </div>
+                 </div>
+                 <div class="col-md-12">
+                     <div class="gt_explore_search align_center">
+                         <input type="submit" value="Search Courses" />
+                     </div>
+                 </div>
+             </form>
+            </div>
+          </div>-->
         <!--Explore Search Wrap End-->
-      </section>
+      <!--</section>-->
       <!--Explore All Courses Search Wrap End-->
 
       <!--Why Choose Us Wrap Start-->
+        <!--{if condition="!empty($hotscenery)"}-->
       <section class="gt_choose_bg">
         <div class="container">
           <!--Heading Wrap Start-->
@@ -988,60 +788,20 @@
           <div class="row">
             <div class="col-md-8">
               <div class="row">
+                  <!--gt_bg_9/10/11/12/13-->
+                  {volist name='hotscenery' id="vsc"}
                 <div class="col-md-6 col-sm-6">
                   <div class="gt_choose_wrap gt_bg_9 default_width">
-                    <span class="gt_bg_5"><i class="icon-learning"></i></span>
+                    <span class="gt_bg_5"><a href="{:url('/goodsdetail',['id'=>$vsc.c_gid,'bus_id'=>$vsc.bus_id,'cid'=>$vsc.c_id])}"><img src="/uploads/{$vsc.pic}" alt="" width="200px" height="100%"></a></span>
                     <div class="gt_choose_des">
-                      <h6><a href="#">Learn on any Device</a></h6>
-                      <p>Nibh vel velit auctor aliquet aenean sollicitudin.Nibh vel velit auctor aliquet aenean sollicitudin.</p>
+                      <h6><a href="{:url('/goodsdetail',['id'=>$vsc.c_gid,'bus_id'=>$vsc.bus_id,'cid'=>$vsc.c_id])}">{$vsc.gd_title}</a></h6>
+                      <p>{$vsc.gd_abstract}</p>
+                        <p>位于:　{$vsc.b_province}/{$vsc.b_city}/{$vsc.b_area}　<a href="{:url('/busindexshow',['id'=>$vsc.bus_id])}">{$vsc.b_name}</a></p>
+
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="gt_choose_wrap gt_bg_13 default_width">
-                    <span class="gt_bg_3"><i class="icon-nature"></i></span>
-                    <div class="gt_choose_des">
-                      <h6><a href="#">Certification Courses</a></h6>
-                      <p>Nibh vel velit auctor aliquet aenean sollicitudin.Nibh vel velit auctor aliquet aenean sollicitudin.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="gt_choose_wrap gt_bg_10 default_width">
-                    <span class="gt_bg_6"><i class="icon-education-1"></i></span>
-                    <div class="gt_choose_des">
-                      <h6><a href="#">Advance Web Analytic</a></h6>
-                      <p>Nibh vel velit auctor aliquet aenean sollicitudin.Nibh vel velit auctor aliquet aenean sollicitudin.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="gt_choose_wrap gt_bg_12 default_width">
-                    <span class="gt_bg_8"><i class="icon-sports"></i></span>
-                    <div class="gt_choose_des">
-                      <h6><a href="#">Superfast Support</a></h6>
-                      <p>Nibh vel velit auctor aliquet aenean sollicitudin.Nibh vel velit auctor aliquet aenean sollicitudin.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="gt_choose_wrap gt_bg_11 default_width">
-                    <span class="gt_bg_7"><i class="icon-technology"></i></span>
-                    <div class="gt_choose_des">
-                      <h6><a href="#">Advance Web Analytic</a></h6>
-                      <p>Nibh vel velit auctor aliquet aenean sollicitudin.Nibh vel velit auctor aliquet aenean sollicitudin.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="gt_choose_wrap gt_bg_9 default_width">
-                    <span class="gt_bg_5"><i class="icon-books-stack-from-top-view"></i></span>
-                    <div class="gt_choose_des">
-                      <h6><a href="#">Advance Web Analytic</a></h6>
-                      <p>Nibh vel velit auctor aliquet aenean sollicitudin.Nibh vel velit auctor aliquet aenean sollicitudin.</p>
-                    </div>
-                  </div>
-                </div>
+                {/volist}
               </div>
             </div>
             <div class="col-md-3">
@@ -1053,6 +813,8 @@
           <!--Choose Us List Wrap End-->
         </div>
       </section>
+        <!--{/if}-->
+
       <!--Why Choose Us Wrap End-->
 
       <!--Campus Life and Activities Wrap Start-->
@@ -1078,8 +840,8 @@
               </figure>
               <div class="gt_gallery_style1_des">
                 <ul>
-                  <li><a href="#"><i class="fa fa-link"></i></a></li>
-                  <li><a href="/static/app/index/images/a1.jpg" data-rel="prettyPhoto"><i class="fa fa-search"></i></a></li>
+                  <li><a href="{:url('/activitiesdetailsshow',['id'=>$v.id])}"><i class="fa fa-link"></i></a></li>
+                  <li><a href="/uploads/{$v['pic']}" data-rel="prettyPhoto"><i class="fa fa-search"></i></a></li>
                 </ul>
                 <h3>{$v['ac_title']}</h3>
               </div>
@@ -1152,16 +914,16 @@
             <div class="item">
               <div class="gt_team_wrap default_width">
                 <figure>
-                    <a href=""><img src="/uploads/{$vfood['pic']}" alt="" height="278px"></a>
+                    <a href="{:url('/goodsdetail',['id'=>$vfood.id,'bus_id'=>$vfood.bus_id,'cid'=>$vfood.c_id])}"><img src="/uploads/{$vfood['pic']}" alt="" height="278px"></a>
                 </figure>
 
                 <div class="gt_team_des default_width">
-                  <h6><a href="#">{$vfood['gd_title']}</a></h6>
+                  <h6><a href="{:url('/goodsdetail',['id'=>$vfood.id,'bus_id'=>$vfood.bus_id,'cid'=>$vfood.c_id])}">{$vfood['gd_title']}</a></h6>
                   <span>{$vfood['gd_abstract']}</span>
                 </div>
                   <div class="gt_course_bottom default_width">
                       <h5>￥{$vfood['price']}<span></span></h5>
-                      <a href="#">来自:{$vfood['b_name']}</a>
+                      <a href="{:url('/busindexshow',['id'=>$vfood.bus_id])}">来自:{$vfood['b_name']}</a>
                   </div>
               </div>
             </div>
@@ -1392,48 +1154,7 @@
               </div>
             </div>
           </div>
-          <!--Footer List Wrap end-->
-          <style type="text/css">
 
-            .gt_foo_contact_wrap0 {
-              float: left;
-              width: 100%;
-              position: relative;
-              margin: 20px 0px 0px 0px;
-              padding: 60px 0px 0px;
-              border-top: 1px solid #383d41;
-          }
-
-            .gt_foo_contact_wrap1 {
-              float: left;
-              width: 100%;
-              position: relative; 
-              margin: 10px 0px 0px; 
-              padding: 10px 0px 0px; 
-              border-top: 1px solid #383d41;
-          }
-            .gt_foo_contact_wrap1 h5{
-              color: #ffffff;
-              font-weight: 600;
-              font-size: 20px;
-              text-transform: uppercase;
-              position: relative;
-          }
-
-          .linkworld{
-             margin: 10px 0px 0px 10px; 
-          }
-
-          .gt_copyright_wrap {
-              float: left;
-              width: 100%;
-              position: relative;
-              background-color: #121011;
-              margin-top: 50px;
-              padding: 15px 0px;
-            }
-
-          </style>
 
           <!--Footer Contact Wrap Start-->
 
@@ -1593,33 +1314,33 @@
 
       };
 
-      // var send = function(){
-      //     var ele_msg = document.querySelector('textarea');
-      //     var msg = ele_msg.value.replace('\r\n', '').trim();
-      //     console.log(msg);
-      //     if(!msg) return;
-      //     sendMsg(msg);
-      //     // 添加消息到自己的内容区
-      //     addMessage('你', msg);
-      //     ele_msg.value = '';
-      // };
+       var send = function(){
+           var ele_msg = document.querySelector('textarea');
+           var msg = ele_msg.value.replace('\r\n', '').trim();
+           console.log(msg);
+           if(!msg) return;
+           sendMsg(msg);
+           // 添加消息到自己的内容区
+           addMessage('你', msg);
+           ele_msg.value = '';
+       };
 
-     ws.on('connect', function(){
-         var nickname = window.prompt('输入你的昵称!');
-         while(!nickname){
-             nickname = window.prompt('昵称不能为空，请重新输入!')
-         }
-         ws.emit('join', nickname);
-     });
-
-     // 昵称有重复
-     ws.on('nickname', function(){
-         var nickname = window.prompt('昵称有重复，请重新输入!');
-         while(!nickname){
-             nickname = window.prompt('昵称不能为空，请重新输入!')
-         }
-         ws.emit('join', nickname);
-     });
+//     ws.on('connect', function(){
+//         var nickname = window.prompt('输入你的昵称!');
+//         while(!nickname){
+//             nickname = window.prompt('昵称不能为空，请重新输入!')
+//         }
+//         ws.emit('join', nickname);
+//     });
+//
+//     // 昵称有重复
+//     ws.on('nickname', function(){
+//         var nickname = window.prompt('昵称有重复，请重新输入!');
+//         while(!nickname){
+//             nickname = window.prompt('昵称不能为空，请重新输入!')
+//         }
+//         ws.emit('join', nickname);
+//     });
 
       ws.on('send.message', function(from, msg){
           addMessage(from, msg);
@@ -1657,17 +1378,62 @@
       });
 
     });
+//    $(selecter).colsest(parent);
+//    var email = document.getElementById('inputEmail').value;
+//    var p9 = document.getElementById('p9');
+//    if (email.match(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/) === null) {
+//        p9.innerHTML = ' × 请填写合法的邮箱地址';
+//        p9.style.color = 'red';
+//        return false;
+//    } else {
+//        p9.style.color = '#0a0';
+//        p9.innerHTML = '√ ';
+        //邮箱获取验证码
+//        $('.btn_email').click(function(){
+//            vemail=document.getElementById("inputEmail");
+//            console.log(vemail);
+//            emailAjax(vemail);
+//            //return false;
+//        });
+
+    //}
+    //ajax请求发送邮箱验证码 传递参数为邮箱地址EMAIL
+    function emailAjax(email){
+        $.ajax({
+            type:'get',
+            url: '/email/' + email,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                if (data.status) {
+                    alert(data['info']);
+                } else {
+                    alert(data['info']);
+                }
+            },
+            error: function () {
+                // AJAX操作失败
+                alert('AJAX操作失败');
+            }
+
+        });
+    }
 
     // 检测滚动事件
     window.onscroll = function (){
         // 导航条 位置判断
         //console.log(document.body.scrollTop);
         var top = document.body.scrollTop || document.documentElement.scrollTop;
-        if (top > 0) {
-            var he = document.getElementById('fixed');
+        var he = document.getElementById('fixed');
+        //console.log(top);
+        if (top >0) {
             he.style.position = 'fixed';
             he.style.top = '0px';
             he.style.zIndex='10000';
+        }else{
+            he.style.position = '';
+            he.style.top = '0px';
+            he.style.zIndex='10';
         }
     }
 
@@ -1692,8 +1458,6 @@
             var estr = str.substr(1);
             document.title = estr + fstr;
         },500);
-
-    //邮箱获取验证码
 
 
       //验证商户注册的表单
@@ -1768,6 +1532,37 @@
         } else {
             p5.style.color = '#0a0';
             p5.innerHTML = '√ ';
+        }
+
+        //邮箱
+        var email = document.getElementById('inputEmail').value;
+        var p9 = document.getElementById('p9');
+        if (email.match(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/) === null) {
+            p9.innerHTML = ' × 请填写合法的邮箱地址';
+            p9.style.color = 'red';
+            return false;
+        } else {
+            p9.style.color = '#0a0';
+            p9.innerHTML = '√ ';
+            $('.btn_email').click(function(){
+                vemail=document.getElementById("inputEmail").value;
+                //console.log(vemail);
+                emailAjax(vemail);
+                return false;
+            });
+        }
+
+        //验证码
+        var vcode = document.getElementById('inputVcode').value;
+        //console.log(vcode);
+        var p10 = document.getElementById('p10');
+        if (vcode==''||vcode==null) {
+            p10.innerHTML = ' × 验证码不能为空';
+            p10.style.color = 'red';
+            return false;
+        } else {
+            p10.style.color = '#0a0';
+            p10.innerHTML = '√ ';
         }
 
         //同意条款
