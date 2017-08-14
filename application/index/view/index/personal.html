@@ -135,6 +135,7 @@
                   <li class="active"><a href="javascript:void(0);" id="showInformation"><i class="fa fa-user-circle-o gt-color glyphicon glyphicon-user"></i>基本信息</a></li>
                   <li><a href="javascript:void(0);" id="showPersonal"><i class="glyphicon glyphicon-th-list"></i>账户信息</a></li>
                   <li><a href="javascript:void(0);" id="showOrder"><i class="icon-book gt-color"></i>我的订单</a></li>
+                  <li><a href="javascript:void(0);" id="showHotel"><i class="glyphicon glyphicon-home"></i>我的住宿</a></li>
                   <li><a href="javascript:void(0);" id="showFavorite"><i class="fa fa-heart gt-color"></i>我的收藏</a></li>
                   <!--<li><a href="report&achievement.html"><i class="icon-business gt-color"></i>Report &#38; Achievement</a></li>-->
                   <!--<li><a href="profile-setting.html"><i class="icon-three gt-color"></i>Profile Setting</a></li>-->
@@ -254,7 +255,7 @@
 
             <div class="col-md-8" id="personal" style="display: none">
             <div class="gt_d_classes_wrap default_width">
-                <ul class="nav nav-tabs nav-justified">
+                <ul class="nav nav-tabs nav-justified" style="background-color: inherit">
                     <li><a href="javascript:void(0);" class="gt_d_title h4" id="per" style="background-color: #ccc">个人信息</a></li>
                     <li><a href="javascript:void(0);" class="gt_d_title h4" id="address">收货地址</a></li>
                 </ul>
@@ -609,10 +610,49 @@
                   </div>
               </div>
           </div>
+            <!--住宿,hotel-->
+            <div class="col-md-8" id="hotel" style="display: none;background-color: white">
+                <div class="row">
+                    <table class="table table-hover">
+                        <caption style="text-align: center"><h3>订单详情</h3></caption>
+                        <tr>
+                            <th style="text-align: center">下单时间<br>订单号</th>
+                            <!--<th style="text-align: center;width: 50px;"></th>-->
+                            <th style="text-align: center">商品</th>
+                            <th style="text-align: center">单价(元)</th>
+                            <th style="text-align: center">数量</th>
+                            <th style="text-align: center">总金额(元)</th>
+                            <th style="text-align: center;width: 150px;">入住时间</th>
+                            <!--<th style="text-align: center">入住人</th>-->
+                            <!--<th style="text-align: center">联系方式</th>-->
+                            <th style="text-align: center">状态</th>
+                            <!--<th style="text-align: center" class="col-sm-1">操作</th>-->
+                        </tr>
+                        {volist name="hotels" id="v"}
+                        <tr style="line-height: 20px">
+                            <td style="text-align: center">{$v['o_time']}<br>{$v['o_order_num']}</td>
+                            <!--<td style="text-align: center;width: 50px;">{$v['o_order_num']}</td>-->
+                            <td style="text-align: center">{$v['o_gname']}</td>
+                            <td style="text-align: center">{$v['o_price']}</td>
+                            <td style="text-align: center">{$v['o_num']}</td>
+                            <td style="text-align: center">{$v['o_total']}</td>
+                            <td style="text-align: center">{$v['intime']}</td>
+                            <!--<td style="text-align: center">{$v['inname']}</td>-->
+                            <!--<td style="text-align: center">{$v['inphone']}</td>-->
+                            <td style="text-align: center">
+                                {if condition="$v['o_status'] eq 0"}未处理
+                                {else}已处理
+                                {/if}
+                            </td>
+                        </tr>
+                        {/volist}
+                    </table>
+                </div>
+            </div>
             <!--收藏,favorite-->
                 <div class="col-md-8" id="favorite" style="display: none">
                     <div class="gt_d_classes_wrap default_width">
-                        <ul class="nav nav-tabs nav-justified">
+                        <ul class="nav nav-tabs nav-justified" style="background-color: inherit">
                             <li><a href="javascript:void(0);" class="gt_d_title h4" id="a" style="background-color: #ccc">收藏商品</a></li>
                             <li><a href="javascript:void(0);" class="gt_d_title h4" id="b">收藏店铺</a></li>
                         </ul>
@@ -796,6 +836,7 @@
           $('#personal').css('display','none');
           $('#order').css('display','none');
           $('#favorite').css('display','none');
+          $('#hotel').css('display','none');
       });
 //      personal
       $('#showPersonal').click(function(){
@@ -803,7 +844,17 @@
           $('#information').css('display','none');
           $('#order').css('display','none');
           $('#favorite').css('display','none');
+          $('#hotel').css('display','none');
       });
+//      hotel
+        $('#showHotel').click(function(){
+            $('#hotel').css('display','block');
+            $('#personal').css('display','none');
+            $('#information').css('display','none');
+            $('#order').css('display','none');
+            $('#favorite').css('display','none');
+        });
+
       $('#per').click(function(){
           $('#per').css('backgroundColor', '#ccc');
           $('#address').css('backgroundColor', '');
@@ -821,11 +872,17 @@
         $('#up').click(function(){
             if($('#num').val() >= 99){
                 $('#num').val(99);
+            }else{
+                $('#num').val(parseInt($('#num').val())+1);
+//                var num = parseInt($('#num').val())+1;
+                console.log($('#num').val());
+//                console.log(num);
+
+//                var n = parseInt($('#num').val());
+//                var t = $('#choosePoint').val()*n;
+//                $('#total').html(t);
             }
-            $('#num').val() + 1;
-            var n = parseInt($('#num').val()) + 1;
-            var t = $('#choosePoint').val()*n;
-            $('#total').html(t);
+
 //            console.log($('#total').html(t));
         });
 
@@ -833,9 +890,10 @@
         $('#down').click(function(){
             if($('#num').val() <= 1){
                 $('#num').val(1);
+            }else{
+                $('#num').val(parseInt($('#num').val())-1);
             }
-            $('#num').val() - 1;
-            var n = parseInt($('#num').val()) - 1;
+            var n = parseInt($('#num').val());
             var t = $('#choosePoint').val()*n;
             $('#total').html(t);
 //            console.log($('#total').html(t));
@@ -995,6 +1053,7 @@
           $('#information').css('display','none');
           $('#personal').css('display','none');
           $('#favorite').css('display','none');
+          $('#hotel').css('display','none');
       });
       $('#done').click(function(){
           $(this).css('backgroundColor', '#ccc');
@@ -1132,6 +1191,7 @@
           $('#information').css('display','none');
           $('#personal').css('display','none');
           $('#order').css('display','none');
+          $('#hotel').css('display','none');
       });
 
   </script>

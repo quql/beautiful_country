@@ -11,6 +11,17 @@ class Index extends Controller
 
         return view('index/index');
     }
+    
+    //显示登录页面
+    public function showLogin()
+    {
+        return view('index/showLogin');
+    }
 
+    //显示注册页面
+    public function showRegister()
+    {
+        return view('index/showRegister');
+    }
 
 }

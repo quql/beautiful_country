@@ -143,11 +143,11 @@
 //    执行删除
         $('.del').click(function(){
             var gid = $(this).attr('data-id');
-            console.log(gid);
+//            console.log(gid);
 
             if (confirm('您确定要狠心删除我吗?(Ｔ▽Ｔ)')){
                 var obj = $(this).parents('tr');
-                // console.log(obj);
+//                 console.log(obj);
                 delAjax(gid, obj);
             }
         });
@@ -156,16 +156,16 @@
         function delAjax(id, obj){
             $.ajax({
                 type: 'get',
-                url: "index/cart/delete",
+                url: "/deleteCart",
                 data: {"id":id},
                 dataType: 'json',
                 success:function(data){
 //                    alert(data);
+                    console.log(data);
                     if (data.status){
-                        toastr.success(data.info);
                         obj.remove();
                     }else{
-                        toastr.error(data.info, 'error:');
+                        alert('删除失败,请重试');
                     }
                 },
                 error:function(){

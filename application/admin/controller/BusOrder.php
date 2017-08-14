@@ -22,23 +22,43 @@ class BusOrder extends Bus
         ]);
     }
 
-    //显示未发货订单
-    public function mUnDiliver()
+    //显示酒店订单
+    public function hotelOrder()
     {
         //获取当前登录商家id
         $bid = cache('b_id');
 
         //处理订单信息
-        $o = model('order');
+        $o = model('hotelOrder');
         //加载未发货订单
-        $un = $o->unOrder($bid);
+        $data = $o->getOrder($bid);
+        //dump($data);die;
 
-        //dump($un);exit;
-        return view('order/unDiliver',[
-            'un'=>$un,
-            //'data'=>$data,
-
+        return view('order/hotelOrder', [
+            'data'=>$data,
         ]);
+    }
+
+    //改变酒店订单状态
+    public function changeStatus()
+    {
+        $info = input();
+        $id = $info['id'];
+
+        $data = [
+            'o_status'=>1,
+        ];
+
+        $o = model('hotelOrder');
+        $status = $o->change($id, $data);
+
+        if($status){
+            $this->success('订单状态修改成功');
+        }else{
+            $this->success('订单状态修改失败');
+        }
+
+
     }
 
     //显示未发货详情订单

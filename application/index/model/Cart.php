@@ -19,9 +19,9 @@ class Cart extends Model
         return $n;
     }
 
+    //添加信息到购物车表
     public function insert($data = '')
     {
-        //添加信息到购物车表
         $cart = db('cart');
         $list = $cart->insert($data);
         return $list;
@@ -37,7 +37,7 @@ class Cart extends Model
     public function delete($id = '')
     {
         $db = db('cart');
-        $res = $db->delete($id);
+        $res = $db->where('ca_id', $id)->delete();
         return $res;
     }
 

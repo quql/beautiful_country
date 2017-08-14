@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/static/mobile/css/amazeui.min.css">
+    <link rel="stylesheet" href="/static/mobile/css/wap.css?2">
+    <link href="/static/mobile/css/user.css" type="text/css" rel="stylesheet" />
+    <title>注册</title>
+</head>
+<body>
+<header data-am-widget="header"
+        class="am-header am-header-default" style="background-color: #2dcc70">
+    <div class="am-header-left am-header-nav">
+        <a href="{:url('/')}" class="">
+
+            <i class="am-header-icon am-icon-home"></i>
+        </a>
+    </div>
+
+    <h1 class="am-header-title">
+        <a href="#title-link" class="">
+            注册
+        </a>
+    </h1>
+
+    <div class="am-header-right am-header-nav">
+        <a href="{:url('/outLogin')}" class="">
+
+            <i class="am-header-icon am-icon-power-off"></i>
+        </a>
+    </div>
+</header>
+<ul class="am-nav am-nav-tabs am-nav-justify">
+    <!--<li class="am-active"><a href="{:url('/')}">首页</a></li>-->
+    <li><a href="{:url('/showLogin')}">登录</a></li>
+    <li><a href="{:url('/showRegister')}">注册</a></li>
+</ul>
+<hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+<form class="am-form am-form-horizontal" action="{:url('/doRegister')}" method="post">
+    <div class="am-form-group">
+        <!--<label class="am-u-sm-1 am-form-label"></label>-->
+        <div class="am-u-sm-8 am-u-sm-offset-2">
+            <input type="text" style="border-radius:5px" id="username" name="username" placeholder="请输入你的用户名">
+            <!--<span class="" id="tips1"></span>-->
+        </div>
+    </div>
+    <div class="am-form-group">
+        <!--<label class="am-u-sm-2 am-form-label"></label>-->
+        <div class="am-u-sm-8 am-u-sm-offset-2">
+            <span id="tips1"></span>
+        </div>
+    </div>
+    <div class="am-form-group">
+        <!--<label class="am-u-sm-2 am-form-label"></label>-->
+        <div class="am-u-sm-8 am-u-sm-offset-2">
+            <input type="text" style="border-radius:5px" id="phone" name="phone" placeholder="请输入你的手机号">
+        </div>
+    </div>
+    <div class="am-form-group">
+        <!--<label class="am-u-sm-2 am-form-label"></label>-->
+        <div class="am-u-sm-8 am-u-sm-offset-2">
+            <span id="tips2"></span>
+        </div>
+    </div>
+    <div class="am-form-group">
+        <!--<label class="am-u-sm-2 am-form-label"></label>-->
+        <div class="am-u-sm-8 am-u-sm-offset-2">
+            <input type="password" style="border-radius:5px" id="pass" name="pass" placeholder="请输入你的密码">
+        </div>
+    </div>
+    <div class="am-form-group">
+        <!--<label class="am-u-sm-2 am-form-label"></label>-->
+        <div class="am-u-sm-8 am-u-sm-offset-2">
+            <span id="tips3"></span>
+        </div>
+    </div>
+    <div class="am-form-group">
+        <!--<label class="am-u-sm-2 am-form-label"></label>-->
+        <div class="am-u-sm-8 am-u-sm-offset-2">
+            <input type="password" style="border-radius:5px" id="secondPass" placeholder="请再次输入你的密码">
+        </div>
+    </div>
+    <div class="am-form-group">
+        <!--<label class="am-u-sm-2 am-form-label"></label>-->
+        <div class="am-u-sm-8 am-u-sm-offset-2">
+            <span id="tips4"></span>
+        </div>
+    </div>
+    <div class="am-form-group">
+        <!--<label class="am-u-sm-2 am-form-label"></label>-->
+        <div class="am-u-sm-8 am-u-sm-offset-2">
+            <label class="form-inline">
+                <div class="form-inline-input" style="padding-left: 0px">
+                    <div class="code-box" id="code-box" style="width:220px">
+                        <!--<input type="text" name="code" class="code-input" />-->
+                        <p></p>
+                        <span>>>></span>
+                    </div>
+                </div>
+            </label>
+        </div>
+    </div>
+    <div class="am-form-group">
+        <div class="am-u-sm-8 am-u-sm-offset-2">
+            <button type="submit" style="border-radius:5px" class="am-btn am-btn-success">注册</button>
+        </div>
+    </div>
+</form>
+
+
+<script src="/static/mobile/js/jquery.min.js"></script>
+<script src="/static/mobile/js/amazeui.min.js"></script>
+<script src="/static/mobile/js/login.js"></script>
+<script>
+    $(function(){
+//        验证用户名格式
+        $('#username').blur(function(){
+            if($('#username').val() == ''){
+                $('#tips1').css('color', '#f00');
+                $('#tips1').text('用户名不能为空');
+            }else if ($('#username').val().match(/^[A-Za-z0-9_\u4e00-\u9fa5]{1,16}$/) == null){
+                $('#tips1').css('color', '#f00');
+                $('#tips1').text('用户名格式不正确');
+            }else{
+                $('#tips1').css('color', '#2dcc70');
+                $('#tips1').text('用户名格式正确');
+            }
+        });
+
+//        验证手机格式
+        $('#phone').blur(function(){
+            if($('#phone').val() == ''){
+                $('#tips2').css('color', '#f00');
+                $('#tips2').text('手机号不能为空');
+            } else if ($('#phone').val().match(/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/) == null){
+                $('#tips2').css('color', '#f00');
+                $('#tips2').text('手机格式不正确')
+            }else{
+                $('#tips2').css('color', '#2dcc70');
+                $('#tips2').text('手机格式正确');
+            }
+        });
+
+        //        验证密码格式
+        $('#pass').blur(function(){
+            if ($('#pass').val() == ''){
+                $('#tips3').css('color', '#f00');
+                $('#tips3').text('密码不能为空')
+            } else if ($('#pass').val().match(/^\w{6,18}$/) == null){
+                $('#tips3').css('color', '#f00');
+                $('#tips3').text('密码格式不正确')
+            }else{
+                $('#tips3').css('color', '#2dcc70');
+                $('#tips3').text('密码格式正确');
+            }
+        });
+
+//        验证2次密码
+        $('#secondPass').blur(function(){
+            if ($('#secondPass').val() == ''){
+                $('#tips4').css('color', '#f00');
+                $('#tips4').text('密码不能为空');
+            }else if($('#secondPass').val() !== $('#pass').val()){
+                $('#tips4').css('color', '#f00');
+                $('#tips4').text('两次密码不一致');
+            }else{
+                $('#tips4').css('color', '#2dcc70');
+                $('#tips4').text('密码一致');
+            }
+        });
+
+//        验证码
+        window.addEventListener('load',function(){
+
+            //code是后台传入的验证字符串
+            var code = "",
+                codeFn = new moveCode(code);
+
+            //获取当前的code值
+            //console.log(codeFn.getCode());
+
+            //改变code值
+            //code = '46asd546as5';
+            //codeFn.setCode(code);
+
+            //重置为初始状态
+            //codeFn.resetCode();
+        });
+
+
+    });
+</script>
+</body>
+</html>
