@@ -7,6 +7,18 @@ use think\Model;
 
 class Cart extends Model
 {
+    public function getMsg($arr = [])
+    {
+        $query = new Query();
+        static $n = array();
+        foreach($arr as $v){
+            $num = $query->table('ml_cart')->where('ca_id', $v)->select();
+            $n[] = $num[0];
+            //dump($n);
+        }
+        return $n;
+    }
+
     public function insert($data = '')
     {
         //添加信息到购物车表

@@ -5,12 +5,12 @@ namespace app\index\model;
 use think\db\Query;
 use think\Model;
 
-class Order extends Model
+class Morder extends Model
 {
     //添加订单
     public function insert($data = '')
     {
-        $add = db('order');
+        $add = db('morder');
         $res = $add->insert($data);
         return $res;
     }
@@ -21,7 +21,7 @@ class Order extends Model
         $query = new Query();
         $res = $query->table('ml_order')
             ->where(['o_uid'=>$id,'o_status'=>0])
-            ->paginate(5);
+            ->paginate(3);
         return $res;
     }
 
@@ -31,7 +31,7 @@ class Order extends Model
         $query = new Query();
         $res = $query->table('ml_order')
             ->where(['o_uid'=>$id,'o_status'=>1])
-            ->paginate(5);
+            ->paginate(3);
         return $res;
     }
 
@@ -41,7 +41,7 @@ class Order extends Model
         $query = new Query();
         $res = $query->table('ml_order')
             ->where(['o_uid'=>$id,'o_status'=>2])
-            ->paginate(5);
+            ->paginate(3);
         return $res;
     }
 }

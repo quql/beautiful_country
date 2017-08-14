@@ -13,7 +13,7 @@
         <!--<li>-->
             <!--<a href="#">Data Table</a>-->
         <!--</li>-->
-        <li class="active">未发货订单</li>
+        <li class="active">未发货订单详情</li>
     </ul>
 </div>
 <!--body wrapper start-->
@@ -42,7 +42,7 @@
                                 <td style="text-align: center">{$v['o_num']}</td>
                                 <td style="text-align: center">{$v['o_total']}</td>
                                 <td style="text-align: center">
-                                        <a href="{:url('admin/busorder/showdetail',['aid'=>$v['o_aid']])}" class="btn btn-info btn-sm showUser">查看详细信息</a>
+                                        <a href="{:url('admin/busorder/showdetail',['aid'=>$v['o_uid']])}" class="btn btn-info btn-sm showUser">查看详细信息</a>
                                         <p style="display: none" class="oid">{$v['o_id']}</p>
                                         <button type="button" class="btn btn-success btn-sm change">转为已发货</button>
                                 </td>

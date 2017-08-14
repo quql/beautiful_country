@@ -135,6 +135,8 @@ Route::get('sceneryDetail', 'index/scenery/index');
 Route::post('cart', 'index/cart/index');
 //游客购物车
 Route::get('showCart', 'index/cart/show');
+//确认订单页
+Route::post('confirm', 'index/order/confirm');
 
 //所有商铺管理
 Route::resource('buspower', 'admin/Buspower');

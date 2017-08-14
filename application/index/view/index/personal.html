@@ -221,14 +221,23 @@
                                         <br>
                                         <div class="mt20" style="display: none" id="coupon">
                                             {volist name="money" id="m"}
-                                            <div class="">
-                                                <img src="/static/app/index/images/money/10.png" width="100"> X {$m['m_ten']}
-                                                <img src="/static/app/index/images/money/20.png" width="100"> X {$m['m_twenty']}
-                                            </div>
-                                            <div class="mt20">
-                                                <img src="/static/app/index/images/money/50.png" width="100"> X {$m['m_fifty']}
-                                                <img src="/static/app/index/images/money/100.png" width="100"> X {$m['m_hundred']}
-                                            </div>
+                                            <nobr style="width: 700px;">
+                                                <span style="float: left;">
+                                                    <img src="/static/app/index/images/money/10.png" style="width: 100px;"> X {$m['m_ten']}
+                                                </span>
+                                                <span style="">
+                                                    <img src="/static/app/index/images/money/20.png" style="width: 100px;"> X {$m['m_twenty']}
+                                                </span>
+                                            </nobr>
+                                            <br>
+                                            <nobr class="mt20">
+                                                <span style="float: left;">
+                                                <img src="/static/app/index/images/money/50.png" style="width: 100px;"> X {$m['m_fifty']}
+                                                </span>
+                                                    <span style="">
+                                                <img src="/static/app/index/images/money/100.png" style="width: 100px;"> X {$m['m_hundred']}
+                                                    </span>
+                                            </nobr>
                                             {/volist}
                                         </div>
                                 </li>
@@ -435,7 +444,7 @@
     <!--Main Content Wrap End-->
           <div class="col-md-8" id="order" style="display: none;">
               <div class="gt_d_classes_wrap default_width" style="display: block">
-                  <ul class="nav nav-tabs nav-justified" id="choose">
+                  <ul class="nav nav-tabs nav-justified" id="choose" style="background-color: inherit">
                       <li><a href="javascript:void(0);" class="gt_d_title h4" id="done" style="background-color: #ccc">已完成</a></li>
                       <li><a href="javascript:void(0);" class="gt_d_title h4" id="shipped">已发货</a></li>
                       <li><a href="javascript:void(0);" class="gt_d_title h4" id="notShipped">未发货</a></li>

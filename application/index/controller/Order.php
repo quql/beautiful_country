@@ -3,16 +3,123 @@
 namespace app\index\controller;
 
 use think\Controller;
+use think\Db;
 use think\Request;
 
-class Order extends Controller
+class Order extends Base
 {
+    //确认订单
+    public function confirm()
+    {
+        $uid = input('session.u_id');
+        $i = input('post.');
+        //dump($i);
+
+        //地址
+        $aid = $i['aid'];
+        $a = model('userAddress');
+        $address = $a->oneAddress($aid);
+
+        static $arr = array();
+        foreach($i as $k =>$v){
+            if($v === 'on'){
+                //dump($v);
+                $arr[] = $k;
+            }
+        }
+        //dump($arr);
+        $c = model('cart');
+        $res = $c->getMsg($arr);
+        //dump($res);
+
+        //总价
+        $s = 0;
+        foreach($res as $k => $v){
+            $s += $v['ca_price']*$v['ca_num'];
+        }
+
+        return view('index/confirm',[
+            'data'=>$res,
+            'address'=>$address[0],
+            's'=>$s,
+        ]);
+    }
+
+    public function index()
+    {
+        $i = input('post.');
+        //dump($i);
+
+        $uid = input('session.u_id');
+        //生成订单时间
+        $time = date('Y-m-d H:i:s',time());
+        //生成订单号
+        $orderNum = time().rand(10e8,90e8);
+
+        //生成主订单表数据
+        $data = [
+          'uid'=>$uid,
+            'aid'=>$i['aid'],
+            'total'=>$i['total'],
+            'time'=>$time,
+        ];
+
+        //添加进主表
+        $o = model('morder');
+        $order = $o->insert($data);
+        //主订单编号
+        $mid = Db::name('morder')->getLastInsID();
+
+        //添加进详情表
+        static $arr = array();
+        foreach($i as $k =>$v){
+            if($v === ''){
+                $arr[] = $k;
+            }
+        }
+        //查询购物车信息
+        $c = model('cart');
+        $res = $c->getMsg($arr);
+        //dump($res);
+
+        $a = array();
+        foreach($res as $k=>$v){
+           $a[$k]['o_gid']=$v['ca_gdid'];
+           $a[$k]['o_uid']=$v['ca_uid'];
+           $a[$k]['o_time']=$time;
+           $a[$k]['o_status']=0;
+           $a[$k]['o_num']=$v['ca_num'];
+           $a[$k]['o_price']=$v['ca_price'];
+           $a[$k]['o_order_num']=$orderNum;
+           $a[$k]['o_total']=$v['ca_num']*$v['ca_price'];
+           $a[$k]['o_gname']=$v['ca_gname'];
+           $a[$k]['o_photo']=$v['ca_photo'];
+           $a[$k]['moid']=$mid;
+           $a[$k]['o_cid']=$v['cid'];
+           $a[$k]['o_bid']=$v['bid'];
+           $c->delete($v['ca_id']);
+        }
+        //dump($a);
+
+        $o=  model('order');
+        $order = $o->saveAll($a);
+
+        //$clean = $c->delete($info['cid']);
+        //exit;
+        if($order){
+            $this->success('支付成功~','index/index/index');
+        }else{
+            $this->error('支付失败,请重试~');
+        }
+        //dump($res);
+
+    }
     /**
      * 处理购物车传递的信息
      *
      * @return \think\Response
      */
-    public function index()
+    public function index100()
     {
 
         $info = input('post.');

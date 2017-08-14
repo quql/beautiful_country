@@ -7,13 +7,22 @@ use think\Model;
 
 class UserAddress extends Model
 {
-    //查询收货地址
+    //查询所有收货地址
     public function getAddress($id = '')
     {
         $query = new Query();
         $res = $query->name('user_address')->where('ua_uid', $id)->select();
         return $res;
     }
+
+    //查询指定收货地址
+    public function oneAddress($id = '')
+    {
+        $query = new Query();
+        $res = $query->name('user_address')->where('ua_id', $id)->select();
+        return $res;
+    }
+
     //添加收货地址
     public function add($data = '')
     {

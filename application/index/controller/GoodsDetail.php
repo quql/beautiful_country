@@ -52,6 +52,7 @@ class GoodsDetail extends Base
                 'detail'=>$detail[0],
                 'photo'=>$photos,
                 'type'=>$type,
+                'bid'=>$bid,
             ]);
 
         }elseif($cid==1){
@@ -76,6 +77,7 @@ class GoodsDetail extends Base
                 'detail'=>$detail[0],
                 'photos'=>$photos,
                 'type'=>$type,
+                'bid'=>$bid,
             ]);
         }elseif($cid==5){
             //获取路线的基本信息
@@ -99,6 +101,7 @@ class GoodsDetail extends Base
                 'detail'=>$detail[0],
                 'photos'=>$photos,
                 'type'=>$type,
+                'bid'=>$bid,
             ]);
         }elseif($cid==4){
             //获取商品基本信息
@@ -123,6 +126,7 @@ class GoodsDetail extends Base
                 'detail'=>$detail[0],
                 'photos'=>$photos,
                 'type'=>$type,
+                'bid'=>$bid,
             ]);
         }
 

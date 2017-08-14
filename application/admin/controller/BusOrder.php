@@ -23,6 +23,25 @@ class BusOrder extends Bus
     }
 
     //显示未发货订单
+    public function mUnDiliver()
+    {
+        //获取当前登录商家id
+        $bid = cache('b_id');
+
+        //处理订单信息
+        $o = model('order');
+        //加载未发货订单
+        $un = $o->unOrder($bid);
+
+        //dump($un);exit;
+        return view('order/unDiliver',[
+            'un'=>$un,
+            //'data'=>$data,
+
+        ]);
+    }
+
+    //显示未发货详情订单
     public function unDiliver()
     {
         //获取当前登录商家id
