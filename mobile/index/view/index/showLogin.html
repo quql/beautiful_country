@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/static/mobile/css/amazeui.min.css">
+    <link rel="stylesheet" href="/static/mobile/css/wap.css?2">
+    <title>登录</title>
+</head>
+<body>
+<header data-am-widget="header"
+        class="am-header am-header-default" style="background-color: #2dcc70">
+    <div class="am-header-left am-header-nav">
+        <a href="{:url('/')}" class="">
+
+            <i class="am-header-icon am-icon-home"></i>
+        </a>
+    </div>
+
+    <h1 class="am-header-title">
+        <a href="#title-link" class="">
+            登录
+        </a>
+    </h1>
+
+    <div class="am-header-right am-header-nav">
+        <a href="{:url('/outLogin')}" class="">
+
+            <i class="am-header-icon am-icon-power-off"></i>
+        </a>
+    </div>
+</header>
+<ul class="am-nav am-nav-tabs am-nav-justify">
+    <!--<li class="am-active"><a href="{:url('/')}">首页</a></li>-->
+    <li><a href="{:url('/showLogin')}">登录</a></li>
+    <li><a href="{:url('/showRegister')}">注册</a></li>
+</ul>
+<hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+<form class="am-form am-form-horizontal" action="{:url('/dologin')}" method="post" onsubmit="return checkMsg()">
+    <div class="am-form-group">
+        <!--<label class="am-u-sm-3 am-form-label">用户名</label>-->
+        <div class="am-u-sm-8 am-u-sm-offset-2">
+            <input type="text" style="border-radius:5px" id="name" name="username" placeholder="请输入你的用户名">
+        </div>
+    </div>
+
+    <div class="am-form-group">
+        <!--<label class="am-u-sm-3 am-form-label">密码</label>-->
+        <div class="am-u-sm-8 am-u-sm-offset-2">
+            <input type="password" style="border-radius:5px" id="pass" name="pass" placeholder="请输入你的密码">
+        </div>
+    </div>
+
+
+    <div class="am-form-group">
+        <div class="am-u-sm-8 am-u-sm-offset-2">
+            <button type="submit"  style="border-radius:5px;width:230px" class="am-btn am-btn-success">登录</button>
+        </div>
+    </div>
+</form>
+<div class="am-u-sm-8 am-u-sm-offset-2" style="position: fixed;bottom: 0px;margin-bottom: 20px;text-align: center">
+    <p>————其他方式登录————</p>
+    <a href="" class="">
+        <a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101416221&redirect_uri=http://qqlong.top/qqlogin">
+            <i class="am-header-icon am-icon-qq am-icon-sm"></i>
+        </a>
+    </a>
+</div>
+
+
+<script src="/static/mobile/js/jquery.min.js"></script>
+<script src="/static/mobile/js/amazeui.min.js"></script>
+<script>
+    function checkMsg(){
+        if($('#name').val() == ''){
+            alert('用户名不能为空');
+            return false;
+        }else if($('#pass').val() == '') {
+            alert('密码不能为空');
+            return false;
+        }else{
+            return true;
+        }
+    }
+</script>
+</body>
+</html>

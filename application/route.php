@@ -163,6 +163,8 @@ Route::post('search','index/Index/search');
 
 //购物车页面
 //Route::get('cart', 'index/cart/index');
+//删除购物车
+Route::get('deleteCart/[:id]', 'index/cart/delete');
 
 //商户管理中心
 Route::get('busInfo','admin/BusInfo/index');
@@ -207,9 +209,11 @@ Route::get('/Scenerypicfirst/[:id]','admin/SceneryPic/first');
 //商家后台
 
 
-//未处理订单
-Route::get('unorder', 'admin/BusOrder/unorder');
+//住宿订单
+Route::get('hotelorder', 'admin/BusOrder/hotelOrder');
+Route::get('changeStatus', 'admin/BusOrder/changeStatus');
 //未发货订单
+Route::get('mUnDiliver', 'admin/BusOrder/mUnDiliver');
 Route::get('unDiliver', 'admin/BusOrder/unDiliver');
 //发货中订单
 Route::get('diliver', 'admin/BusOrder/diliver');

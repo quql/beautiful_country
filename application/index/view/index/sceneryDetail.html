@@ -81,7 +81,7 @@
                         {/volist}
                         <input type="hidden" name="gname" value="{$scenerys['gd_title']}">
                         <input type="hidden" name="bid" value="{$bid}">
-
+                        <input type="hidden" name="cid" value="{$cid}">
 
 
                         <div class="col-md-6">
@@ -107,7 +107,7 @@
                           </div>
                           <div class="gt_product_detail_des">
                               <bold style="color: #222222">库存</bold>
-                              <span style="color: #2DCC9B">{$detail['gd_store']}</span>
+                              <span style="color: #2DCC9B" id="store">{$detail['gd_store']}</span>
                               &nbsp
                               <bold style="color: #222222">销量</bold>
                               <span style="color: #2DCC9B">{$detail['gd_num']}</span>
@@ -122,7 +122,7 @@
                           <div class="gt_product_left_wrap">
                               <span>数量:</span>
                               <div id="incdec">
-                                  <input type="text" value="0" readonly="readonly" id="num" name="num"/>
+                                  <input type="text" value="1" readonly="readonly" id="num" name="num"/>
                                   <div class="gt_increment">
                                       <button type="button" id="up" >+</button>
                                       <button type="button" id="down" > -</button>
@@ -132,13 +132,13 @@
                           <div class="gt_product_detail_des">
                               <h5>赠送积分</h5>
                               <!--<p id="point">{:round($detail['gd_price']/20)}</p>-->
-                              <p id="point">0</p>
+                              <p id="point">{:round($detail['gd_price']/20)}</p>
                               <p id="new" style="display: none"></p>
                           </div>
           								<div class="gt_product_button_wrap">
           									<button type="submit" class="btn btn-success" id="tijiao">添加到购物车</button>
                     </form>
-          									<a class="btn btn-success btn-lg">立即购买</a>
+          									<a href="{:url('/')}"class="btn btn-success btn-lg">再去逛逛</a>
           								</div>
                       </div>
 
@@ -296,37 +296,37 @@
  {/block}
 {block name="myjs"}
 <script>
-    $('#up').click(function(){
-        if($('#num').val() >= 99){
-            $('#num').val(99);
-        }else{
-            $('#num').val() + 1;
-        }
-        var n = parseInt($('#num').val())+1;
-        var p = Math.round($('#old').html()/20);
-        var t = n*p;
-        console.log(p);
-        $('#point').css('display','none');
-        $('#new').css('display','block');
-        $('#new').html(t);
+    $(function(){
+        var store = parseInt($('#store').html());
+        $('#up').click(function(){
+            if($('#num').val() >= store){
+                $('#num').val(store);
+            }else{
+                $('#num').val() + 1;
+            }
+            var n = parseInt($('#num').val());
+            var p = parseInt($('#point').text());
+            var t = n*p;
+            $('#point').css('display','none');
+            $('#new').css('display','block');
+            $('#new').html(t);
 
-    });
-    $('#down').click(function(){
-        if($('#num').val() <= 1){
-            $('#num').val(1);
-        }else{
-            $('#num').val() - 1;
-        }
-        var n = parseInt($('#num').val())-1;
-        var p = Math.round($('#old').html()/20);
-        var t = n*p;
-        console.log(t);
-        $('#point').css('display','none');
-        $('#new').css('display','block');
-        $('#new').html(t);
+        });
+        $('#down').click(function() {
+            if ($('#num').val() <= 1) {
+                $('#num').val(1);
+            } else {
+                $('#num').val() - 1;
+            }
+            var n = parseInt($('#num').val());
+            var p = parseInt($('#point').text());
+            var t = n*p;
+            $('#point').css('display','none');
+            $('#new').css('display','block');
+            $('#new').html(t);
+        });
+    })
 
-//        console.log($('#num').val());
-    });
 
 </script>
 <script>

@@ -86,7 +86,7 @@
                   <h6>会员类型</h6>
                   <span>{$v['type']==0?'普通会员':'超级会员'}</span>
                   <h6>积分</h6>
-                  <span><bold id="point">{$v['point']}</bold>分<button class="btn btn-sm btn-success modal-title" style="margin-left: 200px;" data-toggle="modal" data-target="#pointModal">兑换优惠券</button></span>
+                  <span><bold id="point">{$v['point']}</bold><button class="btn btn-sm btn-success modal-title" style="margin-left: 200px;" data-toggle="modal" data-target="#pointModal">兑换优惠券</button></span>
                     <!--模态框-->
                     <div class="modal fade" id="pointModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -112,7 +112,7 @@
                                             <div class="gt_product_left_wrap ml20" style="border: none;margin: 0px 0px -2px;">
                                                 <span>数量:</span>
                                                 <div id="incdec">
-                                                    <input type="text" value="1" readonly="readonly" id="num" name="num"/>
+                                                    <input type="text" value="1" readonly="readonly" id="nums" name="num"/>
                                                     <div class="gt_increment">
                                                         <button type="button" id="up" >+</button>
                                                         <button type="button" id="down" > -</button>
@@ -141,12 +141,13 @@
                   <li class="active"><a href="javascript:void(0);" id="showInformation"><i class="fa fa-user-circle-o gt-color glyphicon glyphicon-user"></i>基本信息</a></li>
                   <li><a href="javascript:void(0);" id="showPersonal"><i class="glyphicon glyphicon-th-list"></i>账户信息</a></li>
                   <li><a href="javascript:void(0);" id="showOrder"><i class="icon-book gt-color"></i>我的订单</a></li>
+                  <li><a href="javascript:void(0);" id="showHotel"><i class="glyphicon glyphicon-home"></i>我的住宿</a></li>
                   <li><a href="javascript:void(0);" id="showFavorite"><i class="fa fa-heart gt-color"></i>我的收藏</a></li>
                   <!--<li><a href="report&achievement.html"><i class="icon-business gt-color"></i>Report &#38; Achievement</a></li>-->
                   <!--<li><a href="profile-setting.html"><i class="icon-three gt-color"></i>Profile Setting</a></li>-->
                   <!--<li><a href="privacy-setting.html"><i class="icon-lock gt-color"></i>Privacy Setting</a></li>-->
                 </ul>
-                <a href="{:url('index/index/index')}" class="gt-logout"><i class="icon-arrows-2 gt-color"></i>安全退出</a>
+                <a href="{:url('index/index/index')}" class="gt-logout"><i class="icon-arrows-2 gt-color"></i>回到首页</a>
               </div>
             </div>
           </div>
@@ -260,12 +261,12 @@
 
             <div class="col-md-8" id="personal" style="display: none">
             <div class="gt_d_classes_wrap default_width">
-                <ul class="nav nav-tabs nav-justified">
+                <ul class="nav nav-tabs nav-justified" style="background-color: inherit">
                     <li><a href="javascript:void(0);" class="gt_d_title h4" id="per" style="background-color: #ccc">个人信息</a></li>
                     <li><a href="javascript:void(0);" class="gt_d_title h4" id="address">收货地址</a></li>
                 </ul>
               <div class="gt_classes_wrap mt20" id="addForm" style="display: none">
-                  <form class="form-horizontal mt50" action="index/personal/address" method="post">
+                  <form class="form-horizontal mt50" action="index/personal/address" method="post" onsubmit="return checkAddress()">
                       <input type="hidden" name="id" value="{$v['id']}">
                       {/volist}
                       <div class="form-group">
@@ -294,7 +295,7 @@
                               <div id="distpicker">
                                   <div class="form-group">
                                       <div style="position: relative;margin-left: 20px;">
-                                          <input id="city-picker3" class="form-control" readonly type="text" value="江苏省/常州市/溧阳市" data-toggle="city-picker" style="width: 400px;" name="address">
+                                          <input id="city-picker3" class="form-control" readonly type="text" value="江苏省/常州市/溧阳市" data-toggle="city-picker" style="width: 400px;overflow: hidden" name="address">
                                           <input type="text" class="form-control mt10" style="width: 408px;" maxlength="26" name="street" placeholder="请输入详细街道门牌号" id="addstreet">
                                           <span class="ml30" id="tips8"></span>
                                       </div>
@@ -319,9 +320,9 @@
                               <th style="text-align: center">操作</th>
                           </tr>
                           <!--<form action="index/personal/editAddress">-->
-                          {volist name="data" id="v"}
+                          {volist name="data" id="v" key="k"}
                           <tr style="line-height: 20px">
-                              <td style="text-align: center;line-height: 31px">1</td>
+                              <td style="text-align: center;line-height: 31px">{$k}</td>
                               <td style="text-align: center;line-height: 31px">{$v['ua_name']}</td>
                               <td style="text-align: center;line-height: 31px">{$v['ua_phone']}</td>
                               <td style="text-align: center;line-height: 31px">{$v['ua_address']}{$v['ua_street']}</td>
@@ -397,7 +398,7 @@
                     </form>
 
 
-                    <form class="form-horizontal mt50" action="{:url('index/personal/updatePass')}" method="post">
+                    <form class="form-horizontal mt50" name="passform" action="{:url('index/personal/updatePass')}" method="post" onsubmit="return checkPassword()">
                         <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="id" value="{$v['id']}">
                         {/volist}
@@ -615,10 +616,49 @@
                   </div>
               </div>
           </div>
+            <!--住宿,hotel-->
+            <div class="col-md-8" id="hotel" style="display: none;background-color: white">
+                <div class="row">
+                    <table class="table table-hover">
+                        <caption style="text-align: center"><h3>订单详情</h3></caption>
+                        <tr>
+                            <th style="text-align: center">下单时间<br>订单号</th>
+                            <!--<th style="text-align: center;width: 50px;"></th>-->
+                            <th style="text-align: center">商品</th>
+                            <th style="text-align: center">单价(元)</th>
+                            <th style="text-align: center">数量</th>
+                            <th style="text-align: center">总金额(元)</th>
+                            <th style="text-align: center;width: 150px;">入住时间</th>
+                            <!--<th style="text-align: center">入住人</th>-->
+                            <!--<th style="text-align: center">联系方式</th>-->
+                            <th style="text-align: center">状态</th>
+                            <!--<th style="text-align: center" class="col-sm-1">操作</th>-->
+                        </tr>
+                        {volist name="hotels" id="v"}
+                        <tr style="line-height: 20px">
+                            <td style="text-align: center">{$v['o_time']}<br>{$v['o_order_num']}</td>
+                            <!--<td style="text-align: center;width: 50px;">{$v['o_order_num']}</td>-->
+                            <td style="text-align: center">{$v['o_gname']}</td>
+                            <td style="text-align: center">{$v['o_price']}</td>
+                            <td style="text-align: center">{$v['o_num']}</td>
+                            <td style="text-align: center">{$v['o_total']}</td>
+                            <td style="text-align: center">{$v['intime']}</td>
+                            <!--<td style="text-align: center">{$v['inname']}</td>-->
+                            <!--<td style="text-align: center">{$v['inphone']}</td>-->
+                            <td style="text-align: center">
+                                {if condition="$v['o_status'] eq 0"}未处理
+                                {else}已处理
+                                {/if}
+                            </td>
+                        </tr>
+                        {/volist}
+                    </table>
+                </div>
+            </div>
             <!--收藏,favorite-->
                 <div class="col-md-8" id="favorite" style="display: none">
                     <div class="gt_d_classes_wrap default_width">
-                        <ul class="nav nav-tabs nav-justified">
+                        <ul class="nav nav-tabs nav-justified" style="background-color: inherit">
                             <li><a href="javascript:void(0);" class="gt_d_title h4" id="a" style="background-color: #ccc">收藏商品</a></li>
                             <li><a href="javascript:void(0);" class="gt_d_title h4" id="b">收藏店铺</a></li>
                         </ul>
@@ -793,352 +833,407 @@
   <script src="/static/app/index/js/city-picker.js"></script>
   <script src="/static/app/index/js/main.js"></script>
 
-  <!--Custom JavaScript-->
-  <script src="/static/app/index/js/custom.js"></script>
-  <script>
-//      information
-      $('#showInformation').click(function(){
-          $('#information').css('display','block');
-          $('#personal').css('display','none');
-          $('#order').css('display','none');
-          $('#favorite').css('display','none');
-      });
-//      personal
-      $('#showPersonal').click(function(){
-          $('#personal').css('display','block');
-          $('#information').css('display','none');
-          $('#order').css('display','none');
-          $('#favorite').css('display','none');
-      });
-      $('#per').click(function(){
-          $('#per').css('backgroundColor', '#ccc');
-          $('#address').css('backgroundColor', '');
-          $('#perForm').css('display', 'block');
-          $('#addForm').css('display', 'none');
-      });
-      $('#address').click(function(){
-          $('#per').css('backgroundColor', '');
-          $('#address').css('backgroundColor', '#ccc');
-          $('#perForm').css('display','none');
-          $('#addForm').css('display','block');
-      });
+<script>
+    //      information
+    $('#showInformation').click(function(){
+        $('#information').css('display','block');
+        $('#personal').css('display','none');
+        $('#order').css('display','none');
+        $('#favorite').css('display','none');
+        $('#hotel').css('display','none');
+    });
+    //      personal
+    $('#showPersonal').click(function(){
+        $('#personal').css('display','block');
+        $('#information').css('display','none');
+        $('#order').css('display','none');
+        $('#favorite').css('display','none');
+        $('#hotel').css('display','none');
+    });
+    //      hotel
+    $('#showHotel').click(function(){
+        $('#hotel').css('display','block');
+        $('#personal').css('display','none');
+        $('#information').css('display','none');
+        $('#order').css('display','none');
+        $('#favorite').css('display','none');
+    });
 
-        //      优惠券
-        $('#up').click(function(){
-            if($('#num').val() >= 99){
-                $('#num').val(99);
-            }
-            $('#num').val() + 1;
-            var n = parseInt($('#num').val()) + 1;
-            var t = $('#choosePoint').val()*n;
-            $('#total').html(t);
+    $('#per').click(function(){
+        $('#per').css('backgroundColor', '#ccc');
+        $('#address').css('backgroundColor', '');
+        $('#perForm').css('display', 'block');
+        $('#addForm').css('display', 'none');
+    });
+    $('#address').click(function(){
+        $('#per').css('backgroundColor', '');
+        $('#address').css('backgroundColor', '#ccc');
+        $('#perForm').css('display','none');
+        $('#addForm').css('display','block');
+    });
+
+    //      优惠券
+    $('#up').click(function(){
+        if($('#nums').val() >= 99){
+            $('#nums').val(99);
+        }else{
+            $('#nums').val() + 1;
+            console.log($('#nums').val());
+        }
+    });
+
+
+    //            var n = parseInt($('#nums').val());
+    //            var t = $('#choosePoint').val()*n;
+    //            $('#total').html(t);
+
+    //            console.log($('#total').html(t));
+
+
+    $('#down').click(function(){
+        if($('#nums').val() <= 1){
+            $('#nums').val(1);
+        }else{
+            var n = document.getElementById('nums').value;
+//                console.log(n);
+            n = n -1;
+        }
+        var n = parseInt($('#nums').val());
+        var t = $('#choosePoint').val()*n;
+        $('#total').html(t);
 //            console.log($('#total').html(t));
-        });
 
+    });
 
-        $('#down').click(function(){
-            if($('#num').val() <= 1){
-                $('#num').val(1);
-            }
-            $('#num').val() - 1;
-            var n = parseInt($('#num').val()) - 1;
-            var t = $('#choosePoint').val()*n;
-            $('#total').html(t);
-//            console.log($('#total').html(t));
-
-        });
-
-        $('#choosePoint').change(function(){
-            var n = parseInt($('#num').val());
-            var t = $('#choosePoint').val()*n;
-            $('#total').html(t);
+    $('#choosePoint').change(function(){
+        var n = parseInt($('#nums').val());
+        var t = $('#choosePoint').val()*n;
+        $('#total').html(t);
 //            console.log(n);
 //            console.log(t);
-        });
+    });
 
-//        优惠券模态框点击确认
-        $('#yes').click(function(){
-           if(parseInt($('#total').html()) > parseInt($('#point').html())){
-               alert('您的积分不足哦');
-           }else{
+    //        优惠券模态框点击确认
+    $('#yes').click(function(){
+        if(parseInt($('#total').html()) > parseInt($('#point').html())){
+            alert('您的积分不足哦');
+        }else{
 //               用户id
-               var id = $('#userid').html();
+            var id = $('#userid').html();
 //               用户在输入框输入的值
 //               var text = prompt("请输入您的账户密码","password");
 //               用户选择的优惠券类型
-               var type = parseInt($('#choosePoint').val());
+            var type = parseInt($('#choosePoint').val());
 //               优惠券数量
-               var n = parseInt($('#num').val());
+            var n = parseInt($('#nums').val());
 //               消耗的总积分
-               var total = parseInt($('#total').html());
+            var total = parseInt($('#total').html());
 //               console.log(id, typeof(id));
 //               console.log(type, typeof(type));
 //               console.log(n, typeof(n));
 //               console.log(total, typeof(total));
-               checkpass(id, type, n, total);
-           }
-        });
+            checkpass(id, type, n, total);
+        }
+    });
 
-        function checkpass(id, type, n, total){
-            $.ajax({
-                type: 'post',
-                url: "/money",
-                data: {
-                    "id":id,
+    function checkpass(id, type, n, total){
+        $.ajax({
+            type: 'post',
+            url: "/money",
+            data: {
+                "id":id,
 //                    "pass":text,
-                    "type":type,
-                    "n":n,
-                    "total":total
-                },
-                dataType: 'json',
-                success:function(data){
+                "type":type,
+                "n":n,
+                "total":total
+            },
+            dataType: 'json',
+            success:function(data){
 //                    console.log(data);
-                    if (data.status){
-                        alert('优惠券兑换成功');
-                        history.go(0);
-                    }else{
-                        alert('优惠券兑换失败,请重试');
-                    }
-                },
-                error:function(){
+                if (data.status){
+                    alert('优惠券兑换成功');
+                    history.go(0);
+                }else{
                     alert('优惠券兑换失败,请重试');
                 }
-            });
+            },
+            error:function(){
+                alert('优惠券兑换失败,请重试');
+            }
+        });
+    }
+
+    //        显示现金券
+    $('#showCoupon').click(function(){
+        $('#coupon').slideToggle();
+    });
+
+    //      提示信息
+    //        验证用户名
+    $('#username').change(function(){
+        if ($('#username').val().match(/^[A-Za-z0-9_\u4e00-\u9fa5]{1,16}$/) == null){
+            $('#tips1').html('用户名格式不正确~');
+            $('#tips1').css('color','#f00');
+        }else{
+            $('#tips1').html('验证通过~');
+            $('#tips1').css('color','#0a0');
         }
+    });
+    //        验证手机
+    $('#phone').change(function(){
+        if ($('#phone').val().match(/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/) == null){
+            $('#tips2').html('手机格式不正确~');
+            $('#tips2').css('color','#f00');
+        }else{
+            $('#tips2').html('验证通过~');
+            $('#tips2').css('color','#0a0');
+        }
+    });
+    //        验证邮箱
+    $('#email').change(function(){
+        if ($('#email').val().match(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/) == null){
+            $('#tips3').html('邮箱格式不正确~');
+            $('#tips3').css('color','#f00');
+        }else{
+            $('#tips3').html('验证通过~');
+            $('#tips3').css('color','#0a0');
+        }
+    });
 
-//        显示现金券
-        $('#showCoupon').click(function(){
-           $('#coupon').slideToggle();
-        });
+    //        验证两次密码
+    $('#oncepass').change(function(){
+        if($('#oncepass').val().match(/^\w{6,18}$/) == null){
+            $('#tips4').html('密码格式不正确~');
+            $('#tips4').css('color','#f00');
+        }else{
+            $('#tips4').html('验证通过~');
+            $('#tips4').css('color','#0a0');
+        }
+    });
+    $('#secondpass').change(function(){
+        if ($('#secondpass').val() != $('#oncepass').val()){
+            $('#tips5').html('新旧密码不一致~');
+            $('#tips5').css('color','#f00');
+        }else{
+            $('#tips5').html('验证通过~');
+            $('#tips5').css('color','#0a0');
+        }
+    });
+    //验证收货人姓名
+    $('#addname').change(function(){
+        if ($('#addname').val().match(/^([\u4e00-\u9fa5]){2,8}$/) == null){
+            $('#tips7').html('姓名格式不正确~');
+            $('#tips7').css('color','#f00');
+        }else{
+            $('#tips7').html('验证通过~');
+            $('#tips7').css('color','#0a0');
+        }
+    });
 
-//      提示信息
-        //        验证用户名
-        $('#username').change(function(){
-            if ($('#username').val().match(/^[A-Za-z0-9_\u4e00-\u9fa5]{1,16}$/) == null){
-                $('#tips1').html('用户名格式不正确~');
-                $('#tips1').css('color','#f00');
-            }else{
-                $('#tips1').html('验证通过~');
-                $('#tips1').css('color','#0a0');
-            }
-        });
-        //        验证手机
-        $('#phone').change(function(){
-            if ($('#phone').val().match(/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/) == null){
-                $('#tips2').html('手机格式不正确~');
-                $('#tips2').css('color','#f00');
-            }else{
-                $('#tips2').html('验证通过~');
-                $('#tips2').css('color','#0a0');
-            }
-        });
-        //        验证邮箱
-        $('#email').change(function(){
-            if ($('#email').val().match(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/) == null){
-                $('#tips3').html('邮箱格式不正确~');
-                $('#tips3').css('color','#f00');
-            }else{
-                $('#tips3').html('验证通过~');
-                $('#tips3').css('color','#0a0');
-            }
-        });
+    //        验证收货地址手机
+    $('#addphone').change(function(){
+        if ($('#addphone').val().match(/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/) == null){
+            $('#tips6').html('手机格式不正确~');
+            $('#tips6').css('color','#f00');
+        }else{
+            $('#tips6').html('验证通过~');
+            $('#tips6').css('color','#0a0');
+        }
+    });
 
-//        验证两次密码
-        $('#oncepass').change(function(){
-            if($('#oncepass').val().match(/^\w{6,18}$/) == null){
-                $('#tips4').html('密码格式不正确~');
-                $('#tips4').css('color','#f00');
-            }else{
-                $('#tips4').html('验证通过~');
-                $('#tips4').css('color','#0a0');
-            }
-        });
-        $('#secondpass').change(function(){
-            if ($('#secondpass').val() != $('#oncepass').val()){
-                $('#tips5').html('新旧密码不一致~');
-                $('#tips5').css('color','#f00');
-            }else{
-                $('#tips5').html('验证通过~');
-                $('#tips5').css('color','#0a0');
-            }
-        });
-        //验证收货人姓名
-        $('#addname').change(function(){
-            if ($('#addname').val().match(/^([\u4e00-\u9fa5]){2,8}$/) == null){
-                $('#tips7').html('姓名格式不正确~');
-                $('#tips7').css('color','#f00');
-            }else{
-                $('#tips7').html('验证通过~');
-                $('#tips7').css('color','#0a0');
-            }
-        });
+    //        验证收货地址
+    $('#addstreet').change(function(){
+        if ($('#addstreet').val().match(/[\dA-Za-z\u4E00-\u9FA5]+/) == null){
+            $('#tips8').html('地址格式不正确~');
+            $('#tips8').css('color','#f00');
+        }else{
+            $('#tips8').html('验证通过~');
+            $('#tips8').css('color','#0a0');
+        }
+    });
 
-//        验证收货地址手机
-        $('#addphone').change(function(){
-            if ($('#addphone').val().match(/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/) == null){
-                $('#tips6').html('手机格式不正确~');
-                $('#tips6').css('color','#f00');
-            }else{
-                $('#tips6').html('验证通过~');
-                $('#tips6').css('color','#0a0');
-            }
-        });
+    //      order
+    $('#showOrder').click(function(){
+        $('#order').css('display','block');
+        $('#information').css('display','none');
+        $('#personal').css('display','none');
+        $('#favorite').css('display','none');
+        $('#hotel').css('display','none');
+    });
+    $('#done').click(function(){
+        $(this).css('backgroundColor', '#ccc');
+        $("#choose a:not(#done)").css('backgroundColor', '');
+        $('#doneForm').css('display', 'block');
+        $('#bigForm > div:not(#doneForm)').css('display', 'none');
+    });
+    $('#shipped').click(function(){
+        $(this).css('backgroundColor', '#ccc');
+        $("#choose a:not(#shipped)").css('backgroundColor', '');
+        $('#shippedForm').css('display', 'block');
+        $('#bigForm > div:not(#shippedForm)').css('display', 'none');
+    });
+    $('#notShipped').click(function(){
+        $(this).css('backgroundColor', '#ccc');
+        $("#choose a:not(#notShipped)").css('backgroundColor', '');
+        $('#notShippedForm').css('display', 'block');
+        $('#bigForm > div:not(#notShippedForm)').css('display', 'none');
+    });
 
-        //        验证收货地址
-        $('#addstreet').change(function(){
-            if ($('#addstreet').val().match(/[\dA-Za-z\u4E00-\u9FA5]+/) == null){
-                $('#tips8').html('地址格式不正确~');
-                $('#tips8').css('color','#f00');
-            }else{
-                $('#tips8').html('验证通过~');
-                $('#tips8').css('color','#0a0');
-            }
-        });
-
-//      order
-      $('#showOrder').click(function(){
-          $('#order').css('display','block');
-          $('#information').css('display','none');
-          $('#personal').css('display','none');
-          $('#favorite').css('display','none');
-      });
-      $('#done').click(function(){
-          $(this).css('backgroundColor', '#ccc');
-          $("#choose a:not(#done)").css('backgroundColor', '');
-          $('#doneForm').css('display', 'block');
-          $('#bigForm > div:not(#doneForm)').css('display', 'none');
-      });
-      $('#shipped').click(function(){
-          $(this).css('backgroundColor', '#ccc');
-          $("#choose a:not(#shipped)").css('backgroundColor', '');
-          $('#shippedForm').css('display', 'block');
-          $('#bigForm > div:not(#shippedForm)').css('display', 'none');
-      });
-      $('#notShipped').click(function(){
-          $(this).css('backgroundColor', '#ccc');
-          $("#choose a:not(#notShipped)").css('backgroundColor', '');
-          $('#notShippedForm').css('display', 'block');
-          $('#bigForm > div:not(#notShippedForm)').css('display', 'none');
-      });
-
-      $('#show01').click(function(){
-          $('#show11,#show12').slideToggle();
-      });
-      $('#show02').click(function(){
-          $('#show21,#show22').slideToggle();
-      });
-//      $('.show03').click(function(){
-//          $('.show3').slideToggle();
-//      });
+    $('#show01').click(function(){
+        $('#show11,#show12').slideToggle();
+    });
+    $('#show02').click(function(){
+        $('#show21,#show22').slideToggle();
+    });
+    //      $('.show03').click(function(){
+    //          $('.show3').slideToggle();
+    //      });
 
 
-//        控制商品详情框弹出
-      var show03 = document.getElementsByClassName('show03');
-      var show31 = document.getElementsByClassName('show31');
-      var show32 = document.getElementsByClassName('show32');
-//      console.log(show03);
-//      console.log(show31);
-//      console.log(show32);
-      for(var i = 0; i<show03.length; i++){
+    //        控制商品详情框弹出
+    var show03 = document.getElementsByClassName('show03');
+    var show31 = document.getElementsByClassName('show31');
+    var show32 = document.getElementsByClassName('show32');
+    //      console.log(show03);
+    //      console.log(show31);
+    //      console.log(show32);
+    for(var i = 0; i<show03.length; i++){
         (function(i){
             show03[i].onclick = function(){
-               demo3(i);
+                demo3(i);
             };
         })(i);
-      }
+    }
 
-        function demo3(i){
-    //          alert(i);
-            $('.show31').eq(i).slideToggle();
-            $('.show32').eq(i).slideToggle();
+    function demo3(i){
+        //          alert(i);
+        $('.show31').eq(i).slideToggle();
+        $('.show32').eq(i).slideToggle();
 
-        }
+    }
 
-        var show02 = document.getElementsByClassName('show02');
-        var show21 = document.getElementsByClassName('show21');
-        var show22 = document.getElementsByClassName('show22');
+    var show02 = document.getElementsByClassName('show02');
+    var show21 = document.getElementsByClassName('show21');
+    var show22 = document.getElementsByClassName('show22');
 
-        for(var i = 0; i<show02.length; i++){
-            (function(i){
-                show02[i].onclick = function(){
-                    demo2(i);
-                };
-            })(i);
-        }
+    for(var i = 0; i<show02.length; i++){
+        (function(i){
+            show02[i].onclick = function(){
+                demo2(i);
+            };
+        })(i);
+    }
 
-        function demo2(i){
-            //          alert(i);
-            $('.show21').eq(i).slideToggle();
-            $('.show22').eq(i).slideToggle();
+    function demo2(i){
+        //          alert(i);
+        $('.show21').eq(i).slideToggle();
+        $('.show22').eq(i).slideToggle();
 
-        }
+    }
 
-        var show01 = document.getElementsByClassName('show01');
-        var show11 = document.getElementsByClassName('show11');
-        var show12 = document.getElementsByClassName('show12');
-        //      console.log(show01);
-        //      console.log(show11);
-        //      console.log(show12);
-        for(var i = 0; i<show01.length; i++){
-            (function(i){
-                show01[i].onclick = function(){
-                    demo1(i);
-                };
-            })(i);
-        }
+    var show01 = document.getElementsByClassName('show01');
+    var show11 = document.getElementsByClassName('show11');
+    var show12 = document.getElementsByClassName('show12');
+    //      console.log(show01);
+    //      console.log(show11);
+    //      console.log(show12);
+    for(var i = 0; i<show01.length; i++){
+        (function(i){
+            show01[i].onclick = function(){
+                demo1(i);
+            };
+        })(i);
+    }
 
-        function demo1(i){
-            //          alert(i);
-            $('.show11').eq(i).slideToggle();
-            $('.show12').eq(i).slideToggle();
+    function demo1(i){
+        //          alert(i);
+        $('.show11').eq(i).slideToggle();
+        $('.show12').eq(i).slideToggle();
 
-        }
+    }
 
-//        删除已完成订单
-        $('.delOrder').click(function(){
-            var oid = $(this).attr('oid');
-            if(confirm('您确定要删除此订单记录吗?')){
-                var obj = $(this).parents('tr');
+    //        删除已完成订单
+    $('.delOrder').click(function(){
+        var oid = $(this).attr('oid');
+        if(confirm('您确定要删除此订单记录吗?')){
+            var obj = $(this).parents('tr');
 //                alert('订单删除成功');
 //                obj.remove();
-                delOrder(oid, obj);
-            }
-        });
-//
-        function delOrder(id, obj){
-            $.ajax({
-               type:'get',
-                url:'index/Order/delete',
-                data:{'id':id},
-                dataType:'json',
-                success:function(data){
+            delOrder(oid, obj);
+        }
+    });
+    //
+    function delOrder(id, obj){
+        $.ajax({
+            type:'get',
+            url:'index/Order/delete',
+            data:{'id':id},
+            dataType:'json',
+            success:function(data){
 //                    alert(data);
-                    if (data.status){
-                        alert('订单删除成功');
-                        obj.remove();
-                    }else{
-                        alert('订单删除失败,请重试~');
-                    }
-                },
-                error:function(){
+                if (data.status){
+                    alert('订单删除成功');
+                    obj.remove();
+                }else{
                     alert('订单删除失败,请重试~');
                 }
-            });
-        }
-
-//        退货
-        $('.cancel').click(function(){
-           alert('您的退货申请卖家已收到,请耐心等待商家联系');
+            },
+            error:function(){
+                alert('订单删除失败,请重试~');
+            }
         });
+    }
+
+    //        退货
+    $('.cancel').click(function(){
+        alert('您的退货申请卖家已收到,请耐心等待商家联系');
+    });
 
 
-//      favorite
-      $('#showFavorite').click(function(){
-          $('#favorite').css('display','block');
-          $('#information').css('display','none');
-          $('#personal').css('display','none');
-          $('#order').css('display','none');
-      });
+    //      favorite
+    $('#showFavorite').click(function(){
+        $('#favorite').css('display','block');
+        $('#information').css('display','none');
+        $('#personal').css('display','none');
+        $('#order').css('display','none');
+        $('#hotel').css('display','none');
+    });
 
-  </script>
+    //      提交前验证收货地址
+    function checkAddress(){
+        if($('#addname').val() == ''){
+            alert('收货人不能为空');
+            return false;
+        }else if($('#addphone').val() == ''){
+            alert('联系方式不能为空');
+            return false;
+        }else if($('#addstreet').val() == ''){
+            alert('详细地址不能为空');
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    //        验证修改密码
+    function checkPassword(){
+        var oldpass = passform.oldpass.value;
+        var oncepass = passform.oncepass.value;
+        var secondpass = passform.secondpass.value;
+        if (oldpass == ''){
+            alert('原密码不能为空');
+            return false;
+        }else if (oncepass == ''){
+            alert('新密码不能为空');
+            return false;
+        }else if (secondpass == ''){
+            alert('确认密码不能为空');
+            return false;
+        }else{
+            return true;
+        }
+    }
+</script>
+<!--Custom JavaScript-->
+<script src="/static/app/index/js/custom.js"></script>
 {/block}

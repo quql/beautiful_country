@@ -16,20 +16,13 @@ class Cart extends Base
             $this->error('请先登录哦~~~~','index/index/index');
         }
 
-        //加载用户收获的地址
-        $add = model('userAddress');
-        $address = $add->getAddress($uid);
-
         //详情表传递数据
         $i = input('post.');
         //dump($i);
         //die;
 
-        //每个商品可以得到的积分
-        //$point = $i['point'];
-
         $data = [
-          'ca_uid'=>$uid,
+            'ca_uid'=>$uid,
             'ca_gdid'=>$i['id'],
             'ca_num'=>$i['num'],
             'ca_price'=>$i['price'],
@@ -38,16 +31,30 @@ class Cart extends Base
             'ca_gtype'=>$i['type'],
             'ca_point'=>$i['point'],
             'bid'=>$i['bid'],
-            'cid'=>6,
+            'cid'=>$i['cid'],
         ];
+
+        //判断购物车商品是否存在,是则覆盖
+        $old = db('cart')->where(['ca_uid'=>$uid, 'ca_gdid'=>$i['id']])->select();
+        if($old){
+            db('cart')->delete($old[0]['ca_id']);
+        }
+        //dump($old);die;
 
         $c = model('cart');
         $res = $c->insert($data);
 
         $list = $c->getCart($uid);
 
-        cache('list',$list,3600);
-        cache('address',$address,3600);
+        //加载用户收获的地址
+        $add = model('userAddress');
+        $address = $add->getAddress($uid);
+
+        //每个商品可以得到的积分
+        //$point = $i['point'];
+
+        cache('list',$list);
+        cache('address',$address);
         $this->redirect('index/cart/showindex');
     }
 
@@ -218,7 +225,7 @@ class Cart extends Base
         //$good = $g->delete($id);
 
         $good = db('cart')->delete($id);
-
+        //
         if ($good){
             $info['status'] = true;
             $info['id'] = $id;

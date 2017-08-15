@@ -11,9 +11,9 @@
             <a href="#">订单中心</a>
         </li>
         <!--<li>-->
-            <!--<a href="#">Data Table</a>-->
+        <!--<a href="#">Data Table</a>-->
         <!--</li>-->
-        <li class="active">未发货订单</li>
+        <li class="active">住宿订单</li>
     </ul>
 </div>
 <!--body wrapper start-->
@@ -25,26 +25,39 @@
                     <div class="gt_d_courses_wrap default_width mt20" style="display: block" id="doneForm">
                         <table class="table table-hover">
                             <tr>
-                                <th style="text-align: center">序号</th>
+                                <th style="text-align: center"></th>
+                                <th style="text-align: center">下单时间</th>
                                 <th style="text-align: center">订单号</th>
                                 <th style="text-align: center">商品</th>
                                 <th style="text-align: center">单价(元)</th>
                                 <th style="text-align: center">数量</th>
                                 <th style="text-align: center">总金额(元)</th>
-                                <th style="text-align: center" class="col-sm-3">操作</th>
+                                <th style="text-align: center;width: 150px;">入住时间</th>
+                                <th style="text-align: center">入住人</th>
+                                <th style="text-align: center">联系方式</th>
+                                <th style="text-align: center">状态</th>
+                                <th style="text-align: center" class="col-sm-1">操作</th>
                             </tr>
-                            {volist name="un" id="v" key="k"}
+                            {volist name="data" id="v" key="k"}
                             <tr style="line-height: 20px">
                                 <td style="text-align: center">{$k}</td>
+                                <td style="text-align: center">{$v['o_time']}</td>
                                 <td style="text-align: center">{$v['o_order_num']}</td>
                                 <td style="text-align: center">{$v['o_gname']}</td>
                                 <td style="text-align: center">{$v['o_price']}</td>
                                 <td style="text-align: center">{$v['o_num']}</td>
                                 <td style="text-align: center">{$v['o_total']}</td>
+                                <td style="text-align: center">{$v['intime']}</td>
+                                <td style="text-align: center">{$v['inname']}</td>
+                                <td style="text-align: center">{$v['inphone']}</td>
                                 <td style="text-align: center">
-                                        <a href="{:url('admin/busorder/showdetail',['aid'=>$v['o_uid']])}" class="btn btn-info btn-sm showUser">查看详细信息</a>
-                                        <p style="display: none" class="oid">{$v['o_id']}</p>
-                                        <button type="button" class="btn btn-success btn-sm change">转为已发货</button>
+                                    {if condition="$v['o_status'] eq 0"}未处理
+                                    {else}已处理
+                                    {/if}
+                                </td>
+                                <td style="text-align: center">
+                                    <a href="{:url('/changeStatus',['id'=>$v['o_uid']])}" class="btn btn-success btn-sm">转为已处理</a>
+                                    <!--<button type="button" class="btn btn-success btn-sm change">转为已发货</button>-->
                                 </td>
                             </tr>
                             {/volist}

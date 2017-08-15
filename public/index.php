@@ -47,6 +47,7 @@ if(ismobile()){
 }else{
     define('APP_PATH', __DIR__ . '/../application/');
 }
+
 //define('APP_PATH', __DIR__ . '/../mobile/');
 // [ 应用入口文件 ]
 define('EXTEND_PATH', '../extend/');

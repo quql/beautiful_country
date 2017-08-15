@@ -43,6 +43,10 @@ class Personal extends Base
         $diliver = $o->diliver($id);
         //dump($diliver);
 
+        //加载酒店订单
+        $h = model('hotelOrder');
+        $hotels = $h->getOrder($id);
+
         //加载已完成订单
         $done = $o->done($id);
       return view('index/personal',[
@@ -52,6 +56,7 @@ class Personal extends Base
             'un'=>$un,
             'diliver'=>$diliver,
             'done'=>$done,
+            'hotels'=>$hotels,
         ]);
 
 
