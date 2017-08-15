@@ -1,6 +1,5 @@
 <?php
 namespace lib;
-
 class Page
 {
     public $page;   //当前页

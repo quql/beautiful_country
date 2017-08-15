@@ -24,13 +24,15 @@ class Register extends Base
         }
 
       //整理添加的数组信息
-      $time = time();
-        $data = [
-            'u_username' => $info['u_username'],
-            'u_phone' => $info['u_phone'],
-            'u_password' => ($info['u_password']),
-            'u_create_time' => $time,
-        ];
+      $time = date('Y-m-d H:i:s',time());
+      // var_dump($time);die;
+
+      $data = [
+          'u_username' => $info['u_username'],
+          'u_phone' => $info['u_phone'],
+          'u_password' => md5($info['u_password']),
+          'u_create_time' => $time,
+      ];
 
         //添加进数据库
         $result = Db::table('ml_user')->insertGetId($data);

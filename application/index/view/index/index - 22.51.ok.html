@@ -217,7 +217,7 @@
   <div class="modal-dialog modal-md" role="document">
     <div class="modal-content">
 <!--模态框中的内容-->
-<div style="z-index:999">
+<div>
   <div class="login_cont">
     <div class="login_nav">
       <div class="nav_slider">
@@ -229,21 +229,16 @@
         <form class="form-horizontal" action="{:url('index/Register/doregister')}" method="post"  onsubmit="return checkuserform() && return checkVer()">
 
           <div class="input_signup active form-group">
-            <input class="input" id="user_name" type="text" aria-label="用户名（包含字母／数字／下划线" placeholder="用户名" name="u_username">
+            <input class="input" id="user_name" type="text" aria-label="用户名（包含字母／数字／下划线" placeholder="用户名" name="u_username" style="border:1px solid #C1C1C1">
             <div class="hint">请填写符合格式的用户名</div>
 
-            <input class="input" id="phone" type="text" class="account" aria-label="手机号（仅支持中国大陆）" placeholder="手机号（仅支持中国大陆）" name="u_phone" style="width:180px;"><!-- <button type="button"  style="background:white;">获取验证码</button> -->
-            <button style="display: inline-block;width: 100px" id="msmbtn" class="btn-default btn-sm btn_email">获取验证码</button>
-
+            <input class="input" id="phone" type="text" class="account" aria-label="手机号（仅支持中国大陆）" placeholder="手机号（仅支持中国大陆）" name="u_phone" style="border:1px solid #C1C1C1;width:200px;"><button style="display: inline-block;width: 100px" class="btn-default btn-sm btn_email">获取验证码</button>
             <div class="hint">请填写手机号</div>
 
-            <input class="input" id="password" type="password" aria-label="密码" placeholder="请输入短信验证码" name="u_smscode">
+            <input class="input" id="password" type="password" aria-label="密码" placeholder="密码（不少于 6 位）" name="u_password" style="border:1px solid #C1C1C1">
             <div class="hint">请填写符合格式的密码</div>
 
-            <input class="input" id="password" type="password" aria-label="密码" placeholder="密码（不少于 6 位）" name="u_password">
-            <div class="hint">请填写符合格式的密码</div>
-
-            <input class="input" id="repassword" type="password" aria-label="密码" placeholder="再次输入密码" name="u_repassword">
+            <input class="input" id="repassword" type="password" aria-label="密码" placeholder="再次输入密码" name="u_repassword" style="border:1px solid #C1C1C1">
             <div class="hint">请再次输入密码</div>
 
             <input type="submit" id="submit" class="button yjf" name="button" value="注册">
@@ -254,12 +249,12 @@
         <form class="form-horizontal" action="{:url('index/Login/doLogin')}" method="post" name='myUserform' id='myuserformw'onsubmit="return checkuserform() && return checkVer()">
 
           <div class="input_signin">
-            <input class="input" id="login_user_name" type="text" aria-label="用户名" placeholder="用户名" name="u_username">
+            <input class="input" id="login_user_name" type="text" aria-label="用户名" placeholder="用户名" name="u_username" style="border:1px solid #C1C1C1">
             <div class="hint" >请输入用户名</div>
-            <input class="input" id="login_password" type="password" aria-label="密码" placeholder="密码" name="u_password">
+            <input class="input" id="login_password" type="password" aria-label="密码" placeholder="密码" name="u_password" style="border:1px solid #C1C1C1">
             <div class="hint">请输入密码</div>
 
-            <div style="float:left"><input type="text" id="code_input" class="input" aria-label="密码" placeholder="请输入验证码" name="u_repassword" style="width:150px;"></div>
+            <div style="float:left"><input type="text" id="code_input" class="input" aria-label="密码" placeholder="请输入验证码" name="u_repassword" style="border:1px solid #C1C1C1; width:150px;"></div>
             
             <div style="float:left;padding-top:5px;"><a id="v_container" style="padding-left:35px;"></a></div>
             <div class="hint" id="qql">请输入验证码</div>
@@ -271,6 +266,7 @@
           </div>
         </form>
 
+              <br>
               <font>　　—————其他方式登录—————</font>
               <br>　　　　　　　　　　
               　<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101416221&redirect_uri=http://qqlong.top/qqlogin">
@@ -530,6 +526,35 @@
                             {/volist}
                         </ul>
                     </li>
+
+                   <!--  Route::get('/:id/','index/Activities'); -->
+
+
+             <!--      <li><a href="javascript:avoid(0);">资讯</a>
+                    <ul>
+                      <li><a href="comming-soon.html">Comming Soon</a></li>
+                      <li><a href="classes.html">Classes</a></li>
+                      <li><a href="javascript:avoid(0);">Team Pages</a>
+                        <ul>
+                          <li><a href="team-grid.html">Team Grid</a></li>
+                          <li><a href="team-grid-02.html">Team Grid Style 02</a></li>
+                          <li><a href="team-detail.html">Team Detail</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="javascript:avoid(0);">Dashboard Pages</a>
+                        <ul>
+                          <li><a href="my-profile.html">My Profile</a></li>
+                          <li><a href="profile-setting.html">Profile Setting</a></li>
+                          <li><a href="privacy-setting.html">Privacy Setting</a></li>
+                          <li><a href="report-achievement.html">Reports and Achievement</a></li>
+                          <li><a href="dashboard-classes.html">Dashboard Classes</a></li>
+                          <li><a href="dashboard-courses.html">Dashboard Courses</a></li>
+                          <li><a href="dashboard-fav-courses.html">Dashboard Favorite Courses</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="login-register.html">Login and Register</a></li>
+                    </ul>
+                  </li> -->
                   <li><a href="about-us.html">关于我们</a></li>
                 </ul>
             </nav>
@@ -813,14 +838,18 @@
               </figure>
               <div class="gt_gallery_style1_des">
                 <ul>
-                  <li><a href="{:url('/activitiesdetailsshow/'.$v.activities_id)}"><i class="fa fa-link"></i></a></li>
+
+                  <li><a href="{:url('/activitiesdetailsshow',['id'=>$v.activities_id])}"><i class="fa fa-link"></i></a></li>
                   <li><a href="/uploads/{$v['pic']}" data-rel="prettyPhoto"><i class="fa fa-search"></i></a></li>
+
+
                 </ul>
                 <h3>{$v['ac_title']}</h3>
               </div>
             </div>
           </div>
           {/volist}
+
 
           <!--Gallery List Wrap End-->
       </section>
@@ -1437,8 +1466,8 @@
         //获取提交的数据
         var name = document.getElementById('inputName').value;
         var p1 = document.getElementById('p1');
-        //验证店铺名称是否满足正则条件 +出现1次或多次 /^([\u4e00-\u9fa5]){2,8}$/
-        if ((name.match(/^\w{1,12}$/) === null)&&(name.match(/^([\u4e00-\u9fa5]){1,8}$/) === null)) {
+        //验证店铺名称是否满足正则条件 +出现1次或多次
+        if (name.match(/^\w{1,12}$/) === null) {
             p1.innerHTML = ' × 请输入1-12位的数字、字母或下划线组成的店铺名字';
             p1.style.color = 'red';
             return false;
@@ -1450,7 +1479,7 @@
         var person = document.getElementById('inputPerson').value;
         var p2 = document.getElementById('p2');
         //验证负责人是否符合 6-12位的数字字母下划线
-        if ((person.match(/^\w{1,12}$/) === null)&&(person.match(/^([\u4e00-\u9fa5]){2,8}$/) === null)) {
+        if (person.match(/^\w{1,12}$/) === null) {
             p2.innerHTML = '× 请输入1-12位的数字、字母或下划线组成的名字';
             p2.style.color = 'red';
             return false;
@@ -1484,8 +1513,8 @@
         //手机号
         var phone = document.getElementById('inputPhone').value;
         var p4 = document.getElementById('p4');
-        if (phone.match(/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/) === null) {
-            p4.innerHTML = ' × 请输入11位合法的手机号码';
+        if (phone.match(/^\d{11}$/) === null) {
+            p4.innerHTML = ' × 请输入11位数字的手机号码';
             p4.style.color = 'red';
             return false;
         } else {
@@ -1672,36 +1701,6 @@
     </script>
 
     <!--搜索JS END-->
-
-    <script type="text/javascript">
-        //点击按钮 获取短信验证码
-        $('#msmbtn').click(function () {
-          // alert('qqq');
-          msmAjax();
-          return false;
-        });
-
-        function msmAjax() {
-          $.ajax({
-              type: 'get',
-              url: '/sendmsg',
-              dataType: 'json',
-              success: function (data) {
-                
-                  if (data.status) {
-
-                      alert('短信验证码发送成功')
-                  } else {
-                      alert('短信验证码发送失败')
-                  }
-              },
-              error: function () {
-                  alert('AJAX操作失败');
-              }
-          });
-        }
-
-    </script>
 
     {/block}
 </body>
