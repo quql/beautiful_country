@@ -9,6 +9,7 @@ class Index extends Controller
 {
     public function index()
     {
+        $cate = Db::name('cate')->select();
         //查询特产美食数据
         $sql1="select ml_food.*,ml_food_pic.pic,ml_business.b_name from ml_food LEFT JOIN ml_food_pic ON ml_food.id=ml_food_pic.gid LEFT JOIN ml_business ON ml_food.bus_id=ml_business.b_id  where ml_food_pic.is_first='1' and  ml_food.gd_is_sale='1' limit 3";
         $food=Db::query($sql1);
@@ -19,30 +20,30 @@ class Index extends Controller
         $routes = Db::query($sql2);
         //dump($routes);
 
-        //热门景点
-        $sql3="select ml_scenery.*,ml_scenery_pic.pic,ml_scenery.c_id,gd_title,gd_abstract,bus_id,ml_business.b_name,b_province,b_city,b_area from ml_scenery_detail LEFT JOIN ml_scenery ON ml_scenery_detail.c_gid=ml_scenery.id LEFT JOIN ml_business ON ml_scenery.bus_id=ml_business.b_id LEFT JOIN ml_scenery_pic ON ml_scenery.id=ml_scenery_pic.gid WHERE ml_scenery.gd_is_sale='1' and ml_scenery_pic.is_first='1' ORDER BY gd_view desc limit 3";
+        //景点
+        $sql3="select ml_scenery.*,ml_scenery_pic.pic from ml_scenery LEFT JOIN ml_scenery_pic ON ml_scenery.id=ml_scenery_pic.gid  WHERE ml_scenery.gd_is_sale='1' and ml_scenery_pic.is_first='1' LIMIT 3";
         $scenery = Db::query($sql3);
-        //dump($scenery);
+//        dump($scenery);
         //exit;
-
-        //查询友情链接数据
-        $link = Db::name('link')->select();
-
+        //热门景点
+        $hotsql="select ml_scenery.id,ml_scenery.c_id,ml_scenery_pic.pic from ml_scenery LEFT JOIN ml_scenery_detail ON ml_scenery_detail.c_gid=ml_scenery.id LEFT JOIN ml_scenery_pic ON ml_scenery.id=ml_scenery_pic.gid WHERE ml_scenery.gd_is_sale='1' and ml_scenery_pic.is_first='1' ORDER BY ml_scenery_detail.gd_view desc limit 9";
+        $hotscy = Db::query($hotsql);
         //查询精彩活动的数据
-        $activitiessql = "select ml_activities.id as activities_id,ml_activities.ac_title,ml_activities.ac_abstract,ml_activities.ac_opentime,ml_activities.ac_closetime,ml_activities.ac_spot,ml_activities.ac_spot,ml_activities.ac_host,ml_activities.ac_cate,ml_activities.ac_details,ml_activities.ac_price,ml_activities.ac_status,ml_activities.ac_contain,ml_activities.bus_id,ml_ac_cate.id as ac_cate_id,ml_ac_cate.ac_name,ml_ac_cate.p_id,ml_ac_pic.id as ac_pic_id,ml_ac_pic.acid,ml_ac_pic.pic from ml_activities LEFT JOIN ml_ac_pic ON ml_activities.id=ml_ac_pic.acid LEFT JOIN ml_ac_cate ON ml_activities.ac_cate=ml_ac_cate.id where ml_ac_pic.is_first='1' and  ml_activities.ac_status='1'";
+        $activitiessql = "select ml_activities.id as activities_id,ml_activities.ac_title,ml_activities.ac_abstract,ml_activities.ac_opentime,ml_activities.ac_closetime,ml_activities.ac_spot,ml_activities.ac_spot,ml_activities.ac_host,ml_activities.ac_cate,ml_activities.ac_details,ml_activities.ac_price,ml_activities.ac_status,ml_activities.ac_contain,ml_activities.bus_id,ml_ac_cate.id as ac_cate_id,ml_ac_cate.ac_name,ml_ac_cate.p_id,ml_ac_pic.id as ac_pic_id,ml_ac_pic.acid,ml_ac_pic.pic from ml_activities LEFT JOIN ml_ac_pic ON ml_activities.id=ml_ac_pic.acid LEFT JOIN ml_ac_cate ON ml_activities.ac_cate=ml_ac_cate.id where ml_ac_pic.is_first='1' and  ml_activities.ac_status='1' limit 3";
         // where ml_ac_pic.is_first='1'
 
         $activitiesindex = Db::query($activitiessql);
-        // var_dump($activitiesindex);
-//        dump($routes);
+//         var_dump($hotscy);
+//        dump($food);
 //        exit;
 
         return view('index/index',[
             'foods'=>$food,
-            'link' =>$link,
             'hotroute'=>$routes,
             'hotscenery'=>$scenery,
-            'activitiesindex'=>$activitiesindex
+            'activitiesindex'=>$activitiesindex,
+            'cate'=>$cate,
+            'hotscy'=>$hotscy
         ]);
     }
 
@@ -50,7 +51,6 @@ class Index extends Controller
     {
         $data =input();
         $cid = $data['cid'];
-
         // 判断用户查看的类型
         if($cid==4){
             //查询主表字段和封面图片
@@ -77,8 +77,8 @@ class Index extends Controller
         $data =input();
         $cid = $data['cid'];
         $gid = $data['gid'];
-        //var_dump($data);
-
+//        var_dump($data);
+////        die;
         if($cid==5){
             $list = Db::query("select ml_route_detail.*,ml_route_pic.pic from ml_route_detail LEFT JOIN ml_route_pic ON ml_route_detail.c_gid=ml_route_pic.gid where ml_route_detail.c_gid='$gid' ");
             $this->assign('list',$list);
@@ -87,7 +87,7 @@ class Index extends Controller
 //            die;
             return view ('index/detail');
         }elseif($cid==1){
-            $list = Db::query("select ml_scenery_detail.*,ml_scenery_pic.pic from ml_scenery_detail LEFT JOIN ml_scenery_pic ON ml_scenery_detail.c_gid=ml_scenery_pic.gid where ml_scenery_detail.c_gid='$gid'");
+            $list = Db::query("select ml_scenery_detail.*,ml_scenery_pic.pic from ml_scenery_detail LEFT JOIN ml_scenery_pic ON ml_scenery_pic.gid=$gid where ml_scenery_detail.c_gid=$gid");
             $this->assign('list',$list);
             $this->assign('data',$data);
             return view ('index/detail');

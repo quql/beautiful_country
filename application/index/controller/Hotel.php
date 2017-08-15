@@ -58,8 +58,11 @@ class Hotel extends Base
     public function save()
     {
         $info = input('post.');
-//        dump($info);
         $uid = input('session.u_id');
+        if(empty($uid)){
+            $this->success('请先登录','index/index/index');
+        }
+
         $u = model('userDetail');
         $res = $u->getDetail($uid);
         $utype = $res[0]['ud_type'];

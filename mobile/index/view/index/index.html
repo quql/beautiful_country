@@ -1,253 +1,642 @@
-<!doctype html>
-<html>
+<!DOCTYPE HTML>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <link rel="stylesheet" href="/static/mobile/css/amazeui.min.css">
-    <link rel="stylesheet" href="/static/mobile/css/wap.css?2">
-    <title>首页</title>
-    <style>
-        #nav{
-            position: fixed;
-            bottom:5px;
-            background-color: #f0f0f0;
-            width:100%;
-            height: 50px;
-        }
-        #nav li {
-            line-height:25px;
-        }
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-        #nav li a{
-            font-size:5px;
-        }
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
 
-        #ul{
-            width:98%;
-            margin-left:1%;
-        }
-    </style>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+
+
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/mobile/index/images/splash/splash-icon.png">
+
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/static/mobile/index/images/splash/splash-icon-big.png">
+
+    <link rel="apple-touch-startup-image" href="/static/mobile/index/images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
+
+    <link rel="apple-touch-startup-image" href="/static/mobile/index/images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+
+    <link rel="apple-touch-startup-image" href="/static/mobile/index/images/splash/splash-screen-six.png" media="(device-width: 375px)">
+
+    <link rel="apple-touch-startup-image" href="/static/mobile/index/images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
+
+    <link rel="apple-touch-startup-image" sizes="640x1096" href="/static/mobile/index/images/splash/splash-screen@3x.png" />
+
+    <link rel="apple-touch-startup-image" sizes="1024x748" href="/static/mobile/index/images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
+
+    <link rel="apple-touch-startup-image" sizes="768x1004" href="/static/mobile/index/images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+
+    <link rel="apple-touch-startup-image" sizes="1536x2008" href="/static/mobile/index/images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
+
+    <link rel="apple-touch-startup-image" sizes="1496x2048" href="/static/mobile/index/images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
+
+
+
+    <title>美丽乡村</title>
+
+
+
+    <link href="/static/mobile/index/styles/style.css"     		 rel="stylesheet" type="text/css">
+
+    <link href="/static/mobile/index/styles/framework.css" 		 rel="stylesheet" type="text/css">
+
+    <link href="/static/mobile/index/styles/owl.theme.css" 		 rel="stylesheet" type="text/css">
+
+    <link href="/static/mobile/index/styles/swipebox.css"		 rel="stylesheet" type="text/css">
+
+    <link href="/static/mobile/index/styles/font-awesome.css"	 rel="stylesheet" type="text/css">
+
+    <link href="/static/mobile/index/styles/animate.css"			 rel="stylesheet" type="text/css">
+
+
+    <script type="text/javascript" src="/static/mobile/index/scripts/jquery.js"></script>
+
+    <script type="text/javascript" src="/static/mobile/index/scripts/jqueryui.js"></script>
+
+    <script type="text/javascript" src="/static/mobile/index/scripts/framework.plugins.js"></script>
+
+    <script type="text/javascript" src="/static/mobile/index/scripts/custom.js"></script>
+
+
+
 </head>
+
 <body>
 
-<div data-am-widget="gotop" class="am-gotop am-gotop-fixed">
-    <a href="#top" title="">
-        <img class="am-gotop-icon-custom" src="/static/mobile/img/goTop.png" />
+
+
+<div id="preloader">
+
+    <div id="status">
+
+        <p class="center-text">
+
+            Loading the content...
+
+            <em>Loading depends on your connection speed!</em>
+
+        </p>
+
+    </div>
+
+</div>
+
+
+
+
+
+<ul class="menu-top">
+    <li>
+        <a class="has-submenu" href="#"><i class="fa fa-mobile">登录/注册</i><i class="fa fa-plus"></i></a>
+    </li>
+    <li class="active-menu">
+        <a href="index/index/index"><i class="fa fa-home"></i>首页<i class="fa fa-circle"></i></a></li>
+    <li>
+
+        <a class="has-submenu" href="#"><i class="fa fa-camera"></i>个人中心<i class="fa fa-plus"></i></a>
+
+
+    </li>
+
+    <li>
+
+        <a class="has-submenu" href="#"><i class="fa fa-files-o"></i>分类<i class="fa fa-plus"></i></a>
+
+        <ul class="submenu">
+            {volist name="cate" id="v"}
+            <li><a href="{:url('/listshow',['cid'=>$v.id])}"><i class="fa fa-angle-right"></i>{$v.c_name}<i class="fa fa-circle"></i></a></li>
+            {/volist}
+        </ul>
+
+    </li>
+
+
+
+    <li><a href="contact.html"><i class="fa fa-envelope-o"></i>购物车<i class="fa fa-circle"></i></a></li>
+
+    <li><a class="close-menu" href="#"><i class="fa fa-times"></i>退出<i class="fa fa-circle"></i></a></li>
+
+</ul>
+
+
+
+<div class="header">
+
+    <a href="index/index/index" class="header-logo"></a>
+    <a href="#" class="header-navigation show-navigation"><i class="fa fa-navicon"></i></a>
+
+</div>
+
+<div class="header-clear"></div>
+
+
+
+<div class="slider-container">
+
+    <div class="homepage-slider" data-snap-ignore="true">
+
+        <div>
+
+            <div class="overlay"></div>
+
+            <div class="homepage-slider-caption homepage-left-caption">
+
+                <h3>《绝句二首》</h3>
+
+                <p>迟日江山丽，春风花草香。   泥融飞燕子，沙暖睡鸳鸯。</p>
+
+            </div>
+
+            <img src="/static/mobile/index/images/pictures/cun1.jpg" class="responsive-image" alt="img">
+
+        </div>
+
+        <div>
+
+            <div class="overlay"></div>
+
+            <div class="homepage-slider-caption homepage-center-caption">
+
+                <h3>《竹里馆》</h3>
+
+                <p>独坐幽篁里，弹琴复长啸。   深林人不知，明月来相照。</p>
+
+            </div>
+
+            <img src="/static/mobile/index/images/pictures/cun2.jpg" class="responsive-image" alt="img">
+
+        </div>
+
+        <div>
+
+            <div class="overlay"></div>
+
+            <div class="homepage-slider-caption homepage-right-caption">
+
+                <h3>《乡村四月》</h3>
+
+                <p>绿遍山原白满川，子规声里雨如烟。   乡村四月闲人少，才了蚕桑又插田。</p>
+
+            </div>
+
+            <img src="/static/mobile/index/images/pictures/cun3.jpg" class="responsive-image" alt="img">
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="top-call-to-action full-bottom">
+
+    <a href="tel:+1 234 567 890"><i class="fa fa-lock"></i>登录</a>
+
+    <a class="" href="{:url('/listshow',['cid'=>'4'])}"><i class="fa fa-pie-chart"></i>酒店</a>
+
+    <a href="contact.html"><i class="fa fa-user"></i>个人中心</a>
+
+</div>
+
+
+
+<div class="content">
+
+    <div class="decoration"></div>
+
+    <div class="container no-bottom">
+
+        <h2 class="center-text">安逸之旅,吉美乡村</h2>
+
+        <p class="center-text">
+            昨夜还是春雨沙沙，清晨的缕缕阳光已经穿过丛林照射大地。五月的乡村更显柔情，群山连绵，林壑尤美。汽车穿梭在山间公路上，车窗外茂林修竹，翠色欲滴。
+        </p>
+
+
+    </div>
+
+    <div class="decoration"></div>
+
+</div>
+
+
+
+<!-- Content Heding -->
+
+<div class="content-heading">
+
+    <h4>水墨山水画廊，四季养生天堂</h4>
+
+    <p>美丽田园有情，魅力乡村有请。</p>
+
+    <!--<i class="fa fa-cog"></i>-->
+
+    <div class="overlay"></div>
+
+    <img src="/static/mobile/index/images/pictures/1w.jpg" alt="img">
+
+</div>
+
+
+
+<div class="content">
+
+    <div class="decoration"></div>
+
+    <h2 class="center-text">精彩活动</h2>
+    {volist name="activitiesindex" id="v"}
+    <p class="center-text">
+        {$v.ac_abstract}
+    </p>
+
+    <div class="one-half-responsive">
+
+        <img src="/uploads/{$v['pic']}" class="responsive-image full-bottom" alt="img">
+
+    </div>
+    {/volist}
+
+
+
+
+
+    <div class="decoration"></div>
+
+</div>
+
+
+
+<div class="content-strip full-bottom">
+    <a href="{:url('/listshow',['cid'=>'1'])}">
+        <div class="content-strip-content">
+
+            <h1>乡村风景</h1>
+
+            <p>
+                绿树村边合, 青山郭外斜。 开轩面场圃, 把酒话桑麻。 待到重阳日, 还来就菊花。
+                田夫荷锄立，相见语依依。 即此羡闲逸，怅然吟式微。 春中田园 屋中春鸠鸣，树边杏花白。
+            </p>
+
+        </div>
+
+        <div class="content-strip-overlay"></div>
     </a>
 </div>
 
-<div class="pet_mian" id="top">
-    <div data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{"directionNav":false}' >
-        <ul class="am-slides">
-            <li>
-                <img src="/static/mobile/img/cun1.jpg" height="400">
-                <div class="pet_slider_font">
-                    <span class="pet_slider_emoji"> (╭￣3￣)╭♡   </span>
-                    <span>越中古胜地，活力新富盛。</span>
-                </div>
-                <div class="pet_slider_shadow"></div>
-            </li>
-            <li>
-                <img src="/static/mobile/img/cun2.jpg">
-                <div class="pet_slider_font">
-                    <span class="pet_slider_emoji"> []~(￣▽￣)~*　</span>
-                    <span>相约最美乡村，品味桃花春色</span>
-                </div>
-                <div class="pet_slider_shadow"></div>
-            </li>
-            <li>
-                <img src="/static/mobile/img/cun3.jpg">
-                <div class="pet_slider_font">
-                    <span class="pet_slider_emoji"> (｡・`ω´･)　</span>
-                    <span>乡村的精彩，花园的风采。</span>
-                </div>
-                <div class="pet_slider_shadow"></div>
-            </li>
-        </ul>
-    </div>
 
 
-    <div class="pet_circle_nav">
-        <ul class="pet_circle_nav_list">
-            <li><a href="{:url('/listshow',['cid'=>'1'])}" class="iconfont pet_nav_xinxianshi ">&#xe61e;</a><span>风景</span></li>
-            <li><a href="{:url('/listshow',['cid'=>'5'])}" class="iconfont pet_nav_zhangzhishi ">&#xe607;</a><span>旅游路线</span></li>
-            <li><a href="{:url('/listshow',['cid'=>'6'])}" class="iconfont pet_nav_kantuya ">&#xe62c;</a><span>美食</span></li>
-            <li><a href="{:url('/listshow',['cid'=>'4'])}" class="iconfont pet_nav_mengzhuanti ">&#xe622;</a><span>住宿</span></li>
-            <li><a href="" class="iconfont pet_nav_meirong ">&#xe629;</a><span>活动</span></li>
-            <li><a href="" class="iconfont pet_nav_yiyuan ">&#xe602;</a><span>天气</span></li>
+<div class="content">
 
-            <li><a href="" class="iconfont pet_nav_dianpu ">&#xe604;</a><span>新闻</span></li>
-            <li><a href="{:url('index/Personal/index')}" class="iconfont pet_nav_gengduo ">&#xe600;</a><span>个人中心</span></li>
+    <div class="decoration"></div>
 
-            <li><a href="{:url('/showLogin')}" class="iconfont pet_nav_dianpu ">&#xe604;</a><span>登录/注册</span></li>
-            <li><a href="javascript:;" class="iconfont pet_nav_gengduo ">&#xe600;</a><span>个人中心</span></li>
+    <div class="container no-bottom">
 
-        </ul>
-        <div class="pet_more_list"><div class="pet_more_list_block">
-            <div class="iconfont pet_more_close">×</div></div>
+        <!-- Page Columns-->
+        {volist name="hotscenery" id="v" key="k"}
+        {if condition="$k%2 eq 1"}
+        <div class="one-half-responsive">
+            <a href="{:url('/detail',['cid'=>$v.c_id,'gid'=>$v.id])}">
+                <p class="thumb-left no-bottom">
+
+                    <img src="/uploads/{$v.pic}" alt="img">
+
+                    <strong>{$v.gd_title} </strong>
+
+                    <em><br>{$v.gd_abstract}</em>
+
+                </p>
+            </a>
+
+
+            <div class="thumb-clear"></div>
+            <div class="decoration"></div>
         </div>
-    </div>
-    <div class="pet_content_main">
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default" >
-            <div class="am-list-news-bd">
-                <ul class="am-list">
-                    <!--缩略图在标题右边-->
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-right pet_list_one_block">
-                        <div class="pet_list_one_info">
-                            <div class="pet_list_one_info_l">
-                                <div class="pet_list_one_info_name">特产美食</div>
-                            </div>
-                            <div class="pet_list_one_info_r">
-                                <div class="pet_list_tag pet_list_tag_xxs">特产美食</div>
-                            </div>
-                        </div>
-                        {volist name="foods" id="v"}
-                        <div class=" am-u-sm-8 am-list-main pet_list_one_nr">
-                            <h3 class="am-list-item-hd pet_list_one_bt"><a href="{:url('/detail',['cid'=>$v.c_id,'gid'=>$v.id])}" class="">{$v.gd_abstract}</a></h3>
-                        </div>
-                        <div class="am-u-sm-4 am-list-thumb">
-                            <a href="{:url('/detail',['cid'=>$v.c_id,'gid'=>$v.id])}" class="">
-                                <img src="/uploads/{$v.pic}" class="pet_list_one_img" alt=""/>
-                            </a>
-                        </div>
-                        {/volist}
-                    </li>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-right pet_list_one_block">
-                        <div class="pet_list_one_info">
-                            <div class="pet_list_one_info_l">
-                                <div class="pet_list_one_info_name">热门路线推荐</div>
-                            </div>
-                            <div class="pet_list_one_info_r">
-                                <div class="pet_list_tag pet_video_tag">路线推荐</div>
-                            </div>
-                        </div>
-                        {volist name="hotroute" id="v"}
-                        <div class=" am-u-sm-8 am-list-main pet_list_one_nr">
-                            <h3 class="am-list-item-hd pet_list_one_bt"><a href="{:url('/detail',['cid'=>$v.c_id,'gid'=>$v.id])}" class="">{:mb_substr($v.gd_abstract,0,50)}....</a></h3>
-                            <div class="am-list-item-text pet_list_one_text"></div>
-                        </div>
+        {else /}
 
-                        <div class="am-u-sm-4 am-list-thumb pet_video_info">
-                            <div class="pet_video_info_tag"><i class="iconfont">&#xe62d;</i>03:50</div>
-                            <a href="{:url('/detail',['cid'=>$v.c_id,'gid'=>$v.id])}">
-                                <img src="/uploads/{$v.pic}" class="" />
-                            </a>
-                        </div>
-                        {/volist}
-                    </li>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-right pet_list_one_block">
-                        <div class="pet_list_one_info">
-                            <div class="pet_list_one_info_l">
-                                <div class="pet_list_one_info_name">热门景区</div>
-                            </div>
-                            <div class="pet_list_one_info_r">
-                                <div class="pet_list_tag pet_list_tag_zzs">景区</div>
-                            </div>
-                        </div>
-                        {volist name="hotscenery" id="v"}
-                        <div class=" am-u-sm-8 am-list-main pet_list_one_nr">
-                            <h3 class="am-list-item-hd pet_list_one_bt"><a href="{:url('/detail',['cid'=>$v.c_id,'gid'=>$v.id])}" class="">{:mb_substr($v.gd_abstract,0,50)}....</a></h3>
-                        </div>
+        <div class="one-half-responsive last-column">
+            <a href="{:url('/detail',['cid'=>$v.c_id,'gid'=>$v.id])}">
+                <p class="thumb-right no-bottom">
 
-                        <div class="am-u-sm-4 am-list-thumb">
-                            <a href="{:url('/detail',['cid'=>$v.c_id,'gid'=>$v.id])}" class="">
-                                <img src="/uploads/{$v.pic}" class="pet_list_one_img" />
-                            </a>
-                        </div>
-                        {/volist}
-                    </li>
+                    <img src="/uploads/{$v.pic}" alt="img">
 
+                    <strong>{$v.gd_title} </strong>
 
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-right pet_list_one_block">
-                        <div class="pet_list_one_info">
-                            <div class="pet_list_one_info_l">
-                                <div class="pet_list_one_info_name">热门活动</div>
-                            </div>
-                            <div class="pet_list_one_info_r">
-                                <div class="pet_list_tag pet_list_tag_zzs">活动</div>
-                            </div>
-                        </div>
-                        {volist name="activitiesindex" id="v"}
-                        <div class=" am-u-sm-8 am-list-main pet_list_one_nr">
-                            <h3 class="am-list-item-hd pet_list_one_bt"><a href="###" class=""></a></h3>
-                        </div>
+                    <em><br>{$v.gd_abstract} </em>
 
-                        <div class="am-u-sm-4 am-list-thumb">
-                            <a href="###" class="">
-                                <img src="/uploads/{$v.pic}" class="pet_list_one_img" />
-                            </a>
-                        </div>
-                        {/volist}
-                    </li>
-
-
-
-
-
-                    <li class="am-g am-list-item-desced pet_list_one_block">
-                        <div class="pet_article_user_block">
-                            <div class="pet_article_user_img">
-                                <div class="pet_article_user_shadow"></div>
-                                <div class="pet_article_user_title">一周在任意地点工作三天？</div>
-                                <img src="/static/mobile/img/c2.png" alt=""></div>
-                            <div class="pet_article_user_info">
-                                <div class="pet_article_user_info_ico"><img src="/static/mobile/img/c.png" alt=""></div>SeeYouAgain
-                            </div>
-                            <div class="am-list-item-text pet_article_user_nr">这是一家帮助客户在亚太地区找到适合的打折酒店的中介机构，在全球设立了9个办事处，老板克里斯蒂安·米施勒宣称要把它打造成世界上最棒的公司。</div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                </p>
+            </a>
+            <div class="thumb-clear"></div>
+            <div class="decoration"></div>
 
         </div>
+        {/if}
+        {/volist}
 
     </div>
-    <br>
-    <div id="nav">
-        <div id="ul">
-            <ul class="am-nav am-nav-pills">
-                <li class="am-abled"><a href="#top"><span class="am-icon-arrow-up am-icon-sm">　</span>置顶</a></li>
-                <li class="am-abled"> <a href="#doc-oc-demo1" data-am-offcanvas><span class="am-icon-th-list am-icon-sm">　</span>分类</a></li>
-                <li class="am-abled"><a href="#"><span class="am-icon-cart-plus am-icon-sm">　</span>购物车</a></li>
-                <li class="am-abled"><a href="#"><span class="am-icon-female am-icon-sm">　</span>我的</a></li>
-            </ul>
-        </div>
-    </div>
-    <br>
-
 
 </div>
 
 
-<script src="/static/mobile/js/jquery.min.js"></script>
-<script src="/static/mobile/js/amazeui.min.js"></script>
-<script>
-    $(function(){
 
-        // 动态计算新闻列表文字样式
-        auto_resize();
-        $(window).resize(function() {
-            auto_resize();
-        });
-        $('.am-list-thumb img').load(function(){
-            auto_resize();
-        });
+<!-- Content Heding -->
 
-        $('.am-list > li:last-child').css('border','none');
-        function auto_resize(){
-            $('.pet_list_one_nr').height($('.pet_list_one_img').height());
+<div class="content-heading">
+    <a href="{:url('/listshow',['cid'=>'5'])}">
+        <h4>旅游路线</h4>
 
-        }
-        $('.pet_nav_gengduo').on('click',function(){
-            $('.pet_more_list').addClass('pet_more_list_show');
-        });
-        $('.pet_more_close').on('click',function(){
-            $('.pet_more_list').removeClass('pet_more_list_show');
-        });
-    });
+        <p>飒飒松上雨，潺潺石中流。</p>
 
-</script>
+        <i class="fa fa-star"></i>
+
+        <div class="overlay"></div>
+
+        <img src="/static/mobile/index/images/pictures/3w.jpg" alt="img">
+    </a>
+</div>
+
+
+
+<div class="content">
+    {volist name="hotroute" id="v"}
+    <a href="{:url('/detail',['cid'=>$v.c_id,'gid'=>$v.id])}">
+        <div class="container">
+
+            <div class="one-half-responsive">
+
+                <img src="/uploads/{$v.pic}" alt="img" class="responsive-image">
+
+            </div>
+
+            <div class="one-half-responsive last-column">
+
+                <h2 class="center-if-mobile no-bottom">{$v.gd_title}</h2>
+
+
+                <p class="center-if-mobile no-bottom">
+                    {$v.gd_abstract}
+                </p>
+
+            </div>
+
+        </div>
+    </a>
+    {/volist}
+
+    <div class="decoration"></div>
+
+    <div class="container no-bottom">
+
+        <h2 class="center-text">热门景区</h2>
+
+        <p class="center-text">
+            木杪田家出，城阴野迳分。溜渠行碧玉，畦稼卧黄云。薄槿烟脂染，深荷水麝焚。夕阳人不见，鸡鹜自成群。
+        </p>
+
+        <ul class="gallery round-thumb homepage-gallery">
+            {volist name="hotscy" id="v"}
+            <li><a class="" href="{:url('/detail',['cid'=>$v.c_id,'gid'=>$v.id])}" ><img src="/uploads/{$v.pic}" alt="img" /></a></li>
+            {/volist}
+        </ul>
+
+    </div>
+
+    <div class="decoration"></div>
+
+</div>
+
+
+
+<!-- Content Heding -->
+
+<div class="content-heading">
+    <a href="{:url('/listshow',['cid'=>'6'])}">
+        <h4>特产美食</h4>
+
+        <p>T友朋设宴庆云楼，美食十二配郎酒。</p>
+
+
+        <div class="overlay"></div>
+
+        <img src="/static/mobile/index/images/pictures/5w.jpg" alt="img">
+    </a>
+</div>
+
+
+
+<!-- Page Content-->
+
+<div class="content">
+
+    <div class="decoration"></div>
+
+    <!-- Staff Slider-->
+
+    <div class="container">
+
+        <a href="#" class="next-staff"></a>
+
+        <a href="#" class="prev-staff"></a>
+
+        <div class="staff-slider">
+            {volist name="foods" id="v"}
+            <a href="{:url('/detail',['cid'=>$v.c_id,'gid'=>$v.id])}">
+                <div>
+
+                    <div class="staff-item">
+
+                        <img src="/uploads/{$v.pic}" alt="img">
+
+                        <h4>{$v.gd_title}</h4>
+                        <strong>{$v.gd_abstract}</strong>
+                    </div>
+
+                </div>
+            </a>
+            {/volist}
+
+
+        </div>
+
+    </div>
+
+    <div class="decoration"></div>
+
+</div>
+
+
+
+<!-- Content Heding -->
+
+<div class="content-heading">
+
+    <h4>美丽乡村</h4>
+
+    <p>桃红复含宿雨，柳绿更带朝烟</p>
+
+
+    <div class="overlay"></div>
+
+    <img src="/static/mobile/index/images/pictures/1w.jpg" alt="img">
+
+</div>
+
+
+
+<div class="content">
+
+    <div class="quote-slider full-bottom">
+
+        <div>
+
+            <h4>
+
+                寒山转苍翠，秋水日潺潺。   倚杖柴门外，临风听暮蝉。   渡头余落日，墟里上孤烟。    夏值接舆醉，狂歌五柳前。
+
+            </h4>
+
+
+        </div>
+
+        <div>
+
+            <h4>
+
+                故人具鸡黍，邀我至田家。   绿树村边合，青山郭外斜。   开轩面场圃，把酒话桑麻。    待到重阳日，还来就菊花。
+
+            </h4>
+
+            <a href="#">美丽乡村</a>
+
+        </div>
+
+
+
+    </div>
+
+    <div class="decoration"></div>
+
+</div>
+
+
+
+
+
+<!-- Page Footer-->
+
+<div class="footer">
+    <p class="center-text">美丽乡村</p>
+</div>
+
+
+
+<!-- Share Elements-->
+
+<div class="share-bottom">
+
+    <h3>Share Page</h3>
+
+    <div class="share-socials-bottom">
+
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.themeforest.net/">
+
+            <i class="fa fa-facebook facebook-color"></i>
+
+            Facebook
+
+        </a>
+
+        <a href="https://twitter.com/home?status=Check%20out%20ThemeForest%20http://www.themeforest.net">
+
+            <i class="fa fa-twitter twitter-color"></i>
+
+            Twitter
+
+        </a>
+
+        <a href="https://plus.google.com/share?url=http://www.themeforest.net">
+
+            <i class="fa fa-google-plus google-color"></i>
+
+            Google
+
+        </a>
+
+
+
+        <a href="https://pinterest.com/pin/create/button/?url=http://www.themeforest.net/&media=https://0.s3.envato.com/files/63790821/profile-image.jpg&description=Themes%20and%20Templates">
+
+            <i class="fa fa-pinterest-p pinterest-color"></i>
+
+            Pinterest
+
+        </a>
+
+        <a href="sms:">
+
+            <i class="fa fa-comment-o sms-color"></i>
+
+            Text
+
+        </a>
+
+        <a href="mailto:?&subject=Check this page out!&body=http://www.themeforest.net">
+
+            <i class="fa fa-envelope-o mail-color"></i>
+
+            Email
+
+        </a>
+
+    </div>
+
+    <a href="#" class="close-share-bottom">Close</a>
+
+</div>
+
+<div class="menu-wrapper-background"></div>
+
+
+
 </body>
-</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

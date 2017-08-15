@@ -1248,7 +1248,7 @@ ul.gt_facts2_wrap li span{color:#fff;font-size:18px;text-transform:uppercase;fon
 	  ==============================================================
 */
 .gt_team2_wrap{text-align: center;position:relative;padding-top: 20px;}
-.gt_team2_wrap>img{width: auto !important;height: auto;display: inline-block !important;}
+.gt_team2_wrap>img{!important;display: inline-block !important;}
 .gt_team2_name{background-color: #f0f5f6;padding:20px 0px;}
 .gt_team2_name>h6,.gt_team2_align_center>h6{font-weight: bold;margin: 0px 0px 8px;text-transform:uppercase;}
 .gt_team2_name>h6{color: #000000;}
