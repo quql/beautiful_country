@@ -1,0 +1,246 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/static/mobile/css/amazeui.min.css">
+    <link rel="stylesheet" href="/static/mobile/css/wap.css">
+    <title>详情页</title>
+</head>
+<body style="background:#ececec">
+<div class="pet_mian" >
+    <div class="pet_head">
+        <header data-am-widget="header"
+                class="am-header am-header-default pet_head_block">
+            <div class="am-header-left am-header-nav ">
+                <a href="javascript:history.go(-1)" class="iconfont pet_head_jt_ico">&#xe601;</a>
+            </div>
+
+            <h1 class="am-header-title pet_article_user">
+                <div class="pet_article_user_info_tab">
+                    <div class="pet_article_user_info_tab_font">
+                        <div class="pet_article_user_info_tab_font_triangle"></div>
+                        <div class="pet_article_user_info_tab_font_center"><i>文章</i><span>16篇</span></div>
+                        <!--         <div class="pet_article_user_info_tab_font_center"><i>涂鸦</i><span>89张</span></div>
+                                <div class="pet_article_user_info_tab_font_center_line"></div>
+                                <div class="pet_article_user_info_tab_font_center"><a href="###">查看全部资料</a></div> -->
+                    </div>
+                </div>
+                <span class="pet_article_user_name">详情页</span>
+            </h1>
+        </header>
+    </div>
+
+
+    <div class="pet_content">
+        <div class="pet_content_block">
+            <article data-am-widget="paragraph" class="am-paragraph am-paragraph-default pet_content_article" data-am-paragraph="{ tableScrollable: true, pureview: true }">
+                <h1 class="pet_article_title">美丽乡村</h1>
+                {volist name="list" id="v"}
+                <img src="/uploads/{$v.pic}" width="250">
+                <br>
+                {/volist}
+                <p>{$list['0']['gd_details']}</p>
+                <p><span class="am-icon-jpy am-icon-sm">　</span>价格:¥{$list['0']['gd_price']}</p>
+                <p><span class="am-icon-binoculars am-icon-sm">　</span>浏览量:{$list['0']['gd_view']}</p>
+            </article>
+            <div>
+                <input type="hidden" name="gid" id="gid" value="{$data['gid']}">
+                <input type="hidden" name="cid" id="cid" value="{$data['cid']}">
+                <!--<a href="{:url('index/Cart/index',['gid'=>$data['gid'],'$cid'=>$data['cid']])}">加入购物车</a>-->
+                <button type="button" class="am-btn am-btn-danger am-round" id="cart">加入购物车</button>
+            </div>
+            <div class="pet_article_dowload">
+                <div class="pet_article_dowload_title">关于Amaze UI</div>
+                <div class="pet_article_dowload_content"><div class="pet_article_dowload_triangle"></div>
+                    <div class="pet_article_dowload_ico"><img src="/static/mobile/img/footdon.png" alt=""></div>
+                    <div class="pet_article_dowload_content_font">
+                        Amaze UI 以移动优先（Mobile first）为理念，从小屏逐步扩展到大屏，最终实现所有屏幕适配，适应移动互联潮流。
+                    </div>
+                    <div class="pet_article_dowload_all">
+                        <a href="###" class="pet_article_dowload_Az am-icon-apple"> App store</a>
+                        <a href="###" class="pet_article_dowload_Pg am-icon-android"> Android</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pet_comment_list">
+            <div class="pet_comment_list_wap"><div class="pet_comment_list_title">精彩评论</div>
+
+                <div data-am-widget="tabs" class="am-tabs am-tabs-default pet_comment_list_tab" >
+                    <ul class="am-tabs-nav am-cf pet_comment_list_title_tab">
+                        <li class="am-active"><a href="[data-tab-panel-0]">人气</a></li>
+                        <li class=""><a href="[data-tab-panel-1]">最新</a></li>
+                        <li class=""><a href="[data-tab-panel-2]">最早</a></li>
+                    </ul>
+                    <div class="am-tabs-bd pet_pl_list">
+                        <div data-tab-panel-0 class="am-tab-panel am-active">
+                            <div class="pet_comment_list_block">
+                                <div class="pet_comment_list_block_l"><img src="/static/mobile/img/a1.png" alt=""></div>
+                                <div class="pet_comment_list_block_r">
+                                    <div class="pet_comment_list_block_r_info">Amaze</div>
+                                    <div class="pet_comment_list_block_r_text">那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。</div>
+                                    <div class="pet_comment_list_block_r_bottom">
+                                        <div class="pet_comment_list_bottom_info_l">10分钟前</div>
+                                        <div class="pet_comment_list_bottom_info_r">
+                                            <span><i class="iconfont">&#xe631;</i>5 </span>
+                                            <span> 回复</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pet_comment_list_block">
+                                <div class="pet_comment_list_block_l"><img src="/static/mobile/img/a2.png" alt=""></div>
+                                <div class="pet_comment_list_block_r">
+                                    <div class="pet_comment_list_block_r_info">一如既往</div>
+                                    <div class="pet_comment_list_block_r_text"><span>@Drary</span>没有老友你的陪伴，日子真是漫长与你重逢之时，我会敞开心扉倾诉所有。</div>
+                                    <div class="pet_comment_list_block_r_bottom">
+                                        <div class="pet_comment_list_bottom_info_l">15分钟前</div>
+                                        <div class="pet_comment_list_bottom_info_r">
+                                            <span><i class="iconfont">&#xe631;</i>5 </span>
+                                            <span> 回复</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pet_comment_list_block">
+                                <div class="pet_comment_list_block_l"><img src="/static/mobile/img/a3.png" alt=""></div>
+                                <div class="pet_comment_list_block_r">
+                                    <div class="pet_comment_list_block_r_info">AllThe</div>
+                                    <div class="pet_comment_list_block_r_text">表紙の裏に移らないよに あけた一枚目のページの裏に透けた文字めくろうとして 指がとまって</div>
+                                    <div class="pet_comment_list_block_r_bottom">
+                                        <div class="pet_comment_list_bottom_info_l">30分钟前</div>
+                                        <div class="pet_comment_list_bottom_info_r">
+                                            <span><i class="iconfont">&#xe631;</i>5 </span>
+                                            <span> 回复</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pet_comment_list_block">
+                                <div class="pet_comment_list_block_l"><img src="/static/mobile/img/a4.png" alt=""></div>
+                                <div class="pet_comment_list_block_r">
+                                    <div class="pet_comment_list_block_r_info">Drary</div>
+                                    <div class="pet_comment_list_block_r_text">无论历经怎样的艰难坎坷，总有你相伴陪我度过。</div>
+                                    <div class="pet_comment_list_block_r_bottom">
+                                        <div class="pet_comment_list_bottom_info_l">1小时前</div>
+                                        <div class="pet_comment_list_bottom_info_r">
+                                            <span><i class="iconfont">&#xe631;</i>5 </span>
+                                            <span> 回复</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-tab-panel-1 class="am-tab-panel ">
+                            <div class="pet_comment_list_block">
+                                <div class="pet_comment_list_block_l"><img src="/static/mobile/img/a2.png" alt=""></div>
+                                <div class="pet_comment_list_block_r">
+                                    <div class="pet_comment_list_block_r_info">一如既往</div>
+                                    <div class="pet_comment_list_block_r_text"><span>@Drary</span>没有老友你的陪伴，日子真是漫长与你重逢之时，我会敞开心扉倾诉所有。</div>
+                                    <div class="pet_comment_list_block_r_bottom">
+                                        <div class="pet_comment_list_bottom_info_l">15分钟前</div>
+                                        <div class="pet_comment_list_bottom_info_r">
+                                            <span><i class="iconfont">&#xe631;</i>5 </span>
+                                            <span> 回复</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pet_comment_list_block">
+                                <div class="pet_comment_list_block_l"><img src="/static/mobile/img/a3.png" alt=""></div>
+                                <div class="pet_comment_list_block_r">
+                                    <div class="pet_comment_list_block_r_info">AllThe</div>
+                                    <div class="pet_comment_list_block_r_text">表紙の裏に移らないよに あけた一枚目のページの裏に透けた文字めくろうとして 指がとまって</div>
+                                    <div class="pet_comment_list_block_r_bottom">
+                                        <div class="pet_comment_list_bottom_info_l">30分钟前</div>
+                                        <div class="pet_comment_list_bottom_info_r">
+                                            <span><i class="iconfont">&#xe631;</i>5 </span>
+                                            <span> 回复</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pet_comment_list_block">
+                                <div class="pet_comment_list_block_l"><img src="/static/mobile/img/a1.png" alt=""></div>
+                                <div class="pet_comment_list_block_r">
+                                    <div class="pet_comment_list_block_r_info">Amaze</div>
+                                    <div class="pet_comment_list_block_r_text">那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。</div>
+                                    <div class="pet_comment_list_block_r_bottom">
+                                        <div class="pet_comment_list_bottom_info_l">10分钟前</div>
+                                        <div class="pet_comment_list_bottom_info_r">
+                                            <span><i class="iconfont">&#xe631;</i>5 </span>
+                                            <span> 回复</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="pet_comment_list_block">
+                                <div class="pet_comment_list_block_l"><img src="/static/mobile/img/a4.png" alt=""></div>
+                                <div class="pet_comment_list_block_r">
+                                    <div class="pet_comment_list_block_r_info">Drary</div>
+                                    <div class="pet_comment_list_block_r_text">无论历经怎样的艰难坎坷，总有你相伴陪我度过。</div>
+                                    <div class="pet_comment_list_block_r_bottom">
+                                        <div class="pet_comment_list_bottom_info_l">1小时前</div>
+                                        <div class="pet_comment_list_bottom_info_r">
+                                            <span><i class="iconfont">&#xe631;</i>5 </span>
+                                            <span> 回复</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-tab-panel-2 class="am-tab-panel ">
+                            <div class="pet_comment_list_block">
+                                <div class="pet_comment_list_block_l"><img src="/static/mobile/img/a1.png" alt=""></div>
+                                <div class="pet_comment_list_block_r">
+                                    <div class="pet_comment_list_block_r_info">Amaze</div>
+                                    <div class="pet_comment_list_block_r_text">那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。</div>
+                                    <div class="pet_comment_list_block_r_bottom">
+                                        <div class="pet_comment_list_bottom_info_l">10分钟前</div>
+                                        <div class="pet_comment_list_bottom_info_r">
+                                            <span><i class="iconfont">&#xe631;</i>5 </span>
+                                            <span> 回复</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pet_article_footer_info">美丽乡村</div>
+    </div>
+</div>
+<script src="/static/mobile/js/jquery.min.js"></script>
+<script src="/static/mobile/js/amazeui.min.js"></script>
+<script>
+    $('#cart').click(function(){
+        var gid=document.getElementById('gid').value;
+        var cid=document.getElementById('cid').value;
+        console.log(gid,cid);
+        docartAjax(gid,cid);
+    });
+    //执行加入购物车的AJAX请求
+    function docartAjax(gid,cid){
+        $.ajax({
+            type:'get',
+            url:'/docart/'+gid+'/'+cid,
+            dataType:'json',
+            success:function(data){
+                //console.log(data);
+                if(data.status){
+                    alert('加入成功');
+                }else{
+                    alert('加入失败');
+                }
+            },
+            error:function(){
+                alert('请求失败');
+            }
+        });
+    }
+
+
+</script>
+</body>
+</html>

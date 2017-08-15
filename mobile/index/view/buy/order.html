@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的订单</title>
+    <link rel="stylesheet" href="/static/mobile/css/amazeui.min.css">
+    <link rel="stylesheet" href="/static/mobile/css/wap.css">
+    <style>
+        body{
+            width: 100%;
+        }
+        .head{
+            width: 100%;
+            height: 50px;
+            background-color: lightskyblue;
+            color: white;
+            text-align: left;
+            line-height: 50px;
+            padding-left: 20px;
+        }
+        form{
+            padding: 20px;
+        }
+        .span1{
+            display: block;
+            float: left;
+        }
+        .span2{
+            display: block;
+            float: right;
+            padding: 20px;
+        }
+        ul{
+            padding: 20px;
+        }
+        li{
+            display: inline-block;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="col-md-8" id="order" style="display: block;">
+    <div class='head'><span class="span1">我的订单</span><a href="{:url('index/personal/index')}"><span class="span2">返回</span></a></div>
+    <div class="gt_d_classes_wrap default_width" style="display: block">
+        <ul class="choose">
+            <li><button class="gt_d_title h4" id="done" style="background-color: #ccc">已完成</button></li>
+            <li><button class="gt_d_title h4" id="shipped">待收货</button></li>
+            <li><button class="gt_d_title h4" id="notShipped">待发货</button></li>
+        </ul>
+        <div id="bigForm">
+            <div class="gt_d_courses_wrap default_width mt20" style="display:block" id="doneForm">
+                {if condition="!empty($done)";}
+                <table class="table table-hover">
+                    <!--已完成订单-->
+                    <tr>
+                        <th style="text-align: center">订单号</th>
+                        <th style="text-align: center">商品</th>
+                        <th style="text-align: center">单价(元)</th>
+                        <th style="text-align: center">数量</th>
+                        <th style="text-align: center">金额</th>
+                        <th style="text-align: center" class="col-sm-3">操作</th>
+                    </tr>
+                    {volist name="done" id="v"}
+                    <tr style="line-height: 20px">
+                        <td style="text-align: center">{$v['o_order_num']}</td>
+                        <td style="text-align: center">{$v['o_gname']}</td>
+                        <td style="text-align: center">{$v['o_price']}</td>
+                        <td style="text-align: center">{$v['o_num']}</td>
+                        <td style="text-align: center">{$v['o_total']}</td>
+                        <td style="text-align: center">
+                            <button class="btn btn-info btn-sm show01">查看</button>
+                            <button class="btn btn-danger btn-sm delOrder" oid="{$v['o_id']}">删除</button>
+                        </td>
+                    </tr>
+                    {/volist}
+                </table>
+                {/if}
+                　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+                {volist name="done" id="v"}
+                <!--<div class="" id="showDetail" style="display: block">-->
+                <figure class="show11" style="display: none">
+                    <img src="/uploads/{$v['o_photo']}" style="width: 60%;">
+                    <figcaption class="gt_listing_rating">
+                        Paid
+                    </figcaption>
+                </figure>
+                <div class="gt_d_classes_des show12" style="display: none">
+                    <h6><a href="#">{$v['o_gname']}</a></h6>
+                    <ul>
+                        <li>
+                            <ul class="gt_rating_star">
+                                <li>
+                                    <!--评级-->
+                                    <a href="#"><i class="fa fa-star"></i></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>{$v['o_time']}</li>
+                    </ul>
+                    <p>
+                        评论...........
+                    </p>
+                </div>
+                {/volist}
+                <!--</div>-->
+            </div>
+            <div class="gt_d_courses_wrap default_width mt20" style="display: none" id="shippedForm">
+                {if condition="!empty($diliver)";}
+                <!--已发货订单-->
+                <table class="table table-hover">
+                    <tr>
+                        <th style="text-align: center">订单号</th>
+                        <th style="text-align: center">商品</th>
+                        <th style="text-align: center">单价(元)</th>
+                        <th style="text-align: center">数量</th>
+                        <th style="text-align: center">金额</th>
+                        <th style="text-align: center" class="col-sm-3">操作</th>
+                    </tr>
+                    {volist name="diliver" id="v"}
+                    <tr style="line-height: 20px">
+                        <td style="text-align: center">{$v['o_order_num']}</td>
+                        <td style="text-align: center">{$v['o_gname']}</td>
+                        <td style="text-align: center">{$v['o_price']}</td>
+                        <td style="text-align: center">{$v['o_num']}</td>
+                        <td style="text-align: center">{$v['o_total']}</td>
+                        <td style="text-align: center">
+                            <button class="btn btn-info btn-sm show02">查看</button>
+                            <button class="btn btn-danger btn-sm cancel">退货</button>
+                        </td>
+                    </tr>
+                    {/volist}
+                </table>
+                {/if}
+                　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+                {volist name="diliver" id="v"}
+                <!--<div class="" id="showDetail" style="display: block">-->
+                <figure class="show21" style="display: none">
+                    <img src="/uploads/{$v['o_photo']}" style="width: 60%;">
+                    <figcaption class="gt_listing_rating">
+                        Paid
+                    </figcaption>
+                </figure>
+                <div class="gt_d_classes_des show22" style="display: none">
+                    <h6><a href="#">{$v['o_gname']}</a></h6>
+                    <ul>
+                        <li>
+                            <ul class="gt_rating_star">
+                                <li>
+                                    <!--评级-->
+                                    <a href="#"><i class="fa fa-star"></i></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>{$v['o_time']}</li>
+                    </ul>
+                    <p>
+                        评论...........
+                    </p>
+                </div>
+                {/volist}
+                <!--</div>-->
+            </div>
+            <div class="gt_d_courses_wrap default_width mt20" style="display: none" id="notShippedForm">
+                {if condition="!empty($un)";}
+                <!--未发货订单-->
+                <table class="table table-hover">
+                    <tr>
+                        <th style="text-align: center">订单号</th>
+                        <th style="text-align: center">商品</th>
+                        <th style="text-align: center">单价(元)</th>
+                        <th style="text-align: center">数量</th>
+                        <th style="text-align: center">金额</th>
+                        <th style="text-align: center" class="col-sm-3">操作</th>
+                    </tr>
+                    {volist name="un" id="v"}
+                    <tr style="line-height: 20px">
+                        <td style="text-align: center">{$v['o_order_num']}</td>
+                        <td style="text-align: center">{$v['o_gname']}</td>
+                        <td style="text-align: center">{$v['o_price']}</td>
+                        <td style="text-align: center">{$v['o_num']}</td>
+                        <td style="text-align: center">{$v['o_total']}</td>
+                        <td style="text-align: center">
+                            <button class="btn btn-info btn-sm show03">查看</button>
+                            <button class="btn btn-danger btn-sm cancel">退货</button>
+                        </td>
+                    </tr>
+                    {/volist}
+                </table>
+                　{/if}　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+                {volist name="un" id="v"}
+                <figure class="show31" style="display: none">
+                    <img src="/uploads/{$v['o_photo']}" style="width: 60%;">
+                    <figcaption class="gt_listing_rating">
+                        Paid
+                    </figcaption>
+                </figure>
+
+                <div class="gt_d_classes_des show32" style="display: none">　　　　　　　　　　　　　　　　　　　　　
+                    <h6><a href="#">{$v['o_gname']}</a></h6>
+                    <ul>
+                        <li>
+                            <ul class="gt_rating_star">
+                                <li>
+                                    <!--评级-->
+                                    <a href="#"><i class="fa fa-star"></i></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>{$v['o_time']}</li>
+                    </ul>
+                    <p>
+                        评论...........
+                    </p>
+                </div>
+                {/volist}
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="/static/mobile/js/jquery.min.js"></script>
+<script src="/static/mobile/js/amazeui.min.js"></script>
+<script>
+    //      order
+    $('#done').click(function(){
+        $(this).css('backgroundColor', '#ccc');
+        $(".choose button:not(#done)").css('backgroundColor', '');
+        $('#doneForm').css('display', 'block');
+        $('#bigForm > div:not(#doneForm)').css('display', 'none');
+    });
+    $('#shipped').click(function(){
+        $(this).css('backgroundColor', '#ccc');
+        $(".choose button:not(#shipped)").css('backgroundColor', '');
+        $('#shippedForm').css('display', 'block');
+        $('#bigForm > div:not(#shippedForm)').css('display', 'none');
+    });
+    $('#notShipped').click(function(){
+        $(this).css('backgroundColor', '#ccc');
+        $(".choose button:not(#notShipped)").css('backgroundColor', '');
+        $('#notShippedForm').css('display', 'block');
+        $('#bigForm > div:not(#notShippedForm)').css('display', 'none');
+    });
+
+    $('#show01').click(function(){
+        $('#show11,#show12').slideToggle();
+    });
+    $('#show02').click(function(){
+        $('#show21,#show22').slideToggle();
+    });
+    //      $('.show03').click(function(){
+    //          $('.show3').slideToggle();
+    //      });
+
+    //        控制商品详情框弹出
+    var show03 = document.getElementsByClassName('show03');
+    var show31 = document.getElementsByClassName('show31');
+    var show32 = document.getElementsByClassName('show32');
+    //      console.log(show03);
+    //      console.log(show31);
+    //      console.log(show32);
+    for(var i = 0; i<show03.length; i++){
+        (function(i){
+            show03[i].onclick = function(){
+                demo3(i);
+            };
+        })(i);
+    }
+
+    function demo3(i){
+        //          alert(i);
+        $('.show31').eq(i).slideToggle();
+        $('.show32').eq(i).slideToggle();
+
+    }
+
+    var show02 = document.getElementsByClassName('show02');
+    var show21 = document.getElementsByClassName('show21');
+    var show22 = document.getElementsByClassName('show22');
+
+    for(var i = 0; i<show02.length; i++){
+        (function(i){
+            show02[i].onclick = function(){
+                demo2(i);
+            };
+        })(i);
+    }
+
+    function demo2(i){
+        //          alert(i);
+        $('.show21').eq(i).slideToggle();
+        $('.show22').eq(i).slideToggle();
+
+    }
+
+    var show01 = document.getElementsByClassName('show01');
+    var show11 = document.getElementsByClassName('show11');
+    var show12 = document.getElementsByClassName('show12');
+    //      console.log(show01);
+    //      console.log(show11);
+    //      console.log(show12);
+    for(var i = 0; i<show01.length; i++){
+        (function(i){
+            show01[i].onclick = function(){
+                demo1(i);
+            };
+        })(i);
+    }
+
+    function demo1(i){
+        //          alert(i);
+        $('.show11').eq(i).slideToggle();
+        $('.show12').eq(i).slideToggle();
+
+    }
+
+    //        删除已完成订单
+    $('.delOrder').click(function(){
+        var oid = $(this).attr('oid');
+        if(confirm('您确定要删除此订单记录吗?')){
+            var obj = $(this).parents('tr');
+            //console.log(oid,obj);
+            delOrder(oid, obj);
+        }
+    });
+    //
+    function delOrder(id,obj){
+        $.ajax({
+            type:'get',
+            url:'/delete/'+id,
+            dataType:'json',
+            success:function(data){
+                    alert(data);
+                if (data.status){
+                    alert('订单删除成功');
+                    obj.remove();
+                }else{
+                    alert('订单删除失败,请重试~');
+                }
+            },
+            error:function(){
+                alert('ajax请求失败,请重试~');
+            }
+        });
+    }
+
+    //        退货
+    $('.cancel').click(function(){
+        alert('您的退货申请卖家已收到,请耐心等待商家联系');
+    });
+
+</script>
+
+</body>
+</html>

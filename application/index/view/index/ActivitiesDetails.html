@@ -45,7 +45,7 @@
                               {volist name="yjf" id="value"}
                               <ul class="slides">
                                   <li>
-                                      <img src="/uploads/{$value.pic}" alt="" />
+                                      <img src="/uploads/{$value.pic}" alt="" width="120px"/>
                                   </li>
                               </ul>
                               {/volist}
@@ -55,7 +55,7 @@
                               <div id="shop_detaild_slider">
                                   <ul class="slides">
                                       <li>
-                                          <img src="/uploads/{$details.pic}" alt="" />
+                                          <img src="/uploads/{$details.pic}" alt="" width="420px"/>
                                       </li>
                                   </ul>
                               </div>
@@ -111,117 +111,6 @@
 
 {block name="myjs"}
 
-{/block}{extend name="index/index"}
-{block name="main"}
 
-
-    <link href="style.css" rel="stylesheet">
-    <!-- Color CSS -->
-    <link href="css/color.css" rel="stylesheet">
-    <!-- Responsive CSS -->
-    <link href="css/responsive.css" rel="stylesheet">
-    <!--Sub Banner Wrap Start -->
-    <div class="gt_sub_banner_bg default_width">
-        <div class="container">
-            <div class="gt_sub_banner_hdg  default_width">
-                 <h2>美丽乡村 汇聚精彩活动</h2>
-                <h6>如果你不出去走走，你会以为这就是世界</h6>
-            </div>
-        </div>
-    </div>
-    <!--Sub Banner Wrap End -->
-    <!--Breadcrumb Wrap End -->
-    <div class="gt_breadcrumb_bg default_width">
-      <div class="container">
-        <div class="gt_breadcrumb_wrap default_width">
-            <ul>
-                <li><a href="#">美丽乡村</a></li>
-                <li><a href="#">精彩活动</a></li>
-            </ul>
-        </div>
-      </div>
-    </div>
-    <!--Breadcrumb Wrap End -->
-    
-    <!--Content Wrap Start-->
-    <div class="gt_main_content_wrap">
-          <!--Shop Wrap Start-->
-        <section class="gt_shop_detail_bg gt_courses_bg">
-            <div class="container">
-
-            {volist name="activitiesdetails" id="details"}
-            <div class="gt_product_detail_border_wrap">
-                <div class="row">
-                  <div class="col-md-6">
-                      <div class="gt_shop_slider_outer_wrap">
-                          <div id="shop_detail_thumnail" class="shop_detail_thumnail">
-                              {volist name="yjf" id="value"}
-                              <ul class="slides">
-                                  <li>
-                                      <img src="/uploads/{$value.pic}" alt="" />
-                                  </li>
-                              </ul>
-                              {/volist}
-                          </div>
-                          
-                          <div class="shop_detaild_slider">
-                              <div id="shop_detaild_slider">
-                                  <ul class="slides">
-                                      <li>
-                                          <img src="/uploads/{$details.pic}" alt="" />
-                                      </li>
-                                  </ul>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  
-                  <div class="col-md-6">
-                      <div class="gt_shop_detail_banner">
-                          <h4>{$details.ac_title}</h4>
-                          <div class="gt_shop_rating_wrap">
-                              <ul>
-                                  <li><a href="#"><i class="fa fa-star-half-full"></i></a></li>
-                                  <li><a href="#"><i class="fa fa-star-half-full"></i></a></li>
-                                  <li><a href="#"><i class="fa fa-star-half-full"></i></a></li>
-                                  <li><a href="#"><i class="fa fa-star-half-full"></i></a></li>
-                                  <li><a href="#"><i class="fa fa-star-half-full"></i></a></li>
-                              </ul>
-                              <span>(4 reviws) / Add to reviews</span>
-                          </div>
-                          <div class="gt_shop_price_wrap">
-                              <h5 style="font-family:Times New Roman,Georgia,Serif;">{$details.ac_opentime}~{$details.ac_closetime}</h4>
-                              <h5 style="font-family:Times New Roman,Georgia,Serif;">地址：{$details.ac_spot}</h5>
-                              <h5>{$details.ac_price}</h5>
-                              <h5 style="margin-top:5px;margin-bottom:5px;font-weight:thick;">举办方：{$details.ac_host}</h5>
-                              <h5>可报名人数：{$details.ac_contain}</h5>
-                              <h5>咨询热线：{$details.ac_contact}</h5>
-                              <!-- <span></span> -->
-                          </div>
-                          <!-- <div class="gt_product_detail_des"> -->
-                             <!--  <h5>{$details.ac_abstract}</h5> -->
-                             <!--  <p>{$details.ac_details}</p> -->
-                          <!-- </div> -->
-                          <div class="gt_product_button_wrap">
-                            <button id="signup" onclick="return false" ;>我要报名</button>
-                            <!-- <button>Whishlist</button> -->
-                          </div>
-                      </div>
-                  </div> 
-                </div>
-              </div>
-
-              <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;">
-                <p>{$details.ac_details}</p>
-              </div> 
-              {/volist}
-          </div>
-        </section>
-        <!--Shop Wrap End-->
-    </div>
-
-{/block}
-
-{block name="myjs"}
 
 {/block}

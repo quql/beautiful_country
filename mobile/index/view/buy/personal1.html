@@ -1,0 +1,228 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="/static/mobile/css/amazeui.min.css">
+  <link rel="stylesheet" href="/static/mobile/css/wap.css">
+  <title>{$list['username']}</title>
+</head>
+<body>
+  <div class="pet_mian" >
+    <div class="pet_head">
+      <header data-am-widget="header"
+          class="am-header am-header-default pet_head_block">
+        <div class="am-header-left am-header-nav ">
+          <a href="#left-link" class="iconfont pet_head_jt_ico">&#xe601;</a>
+        </div>
+        <div class="pet_news_list_tag_name">{$list['username']}</div>
+        <div class="am-header-right am-header-nav">
+          <a href="{:url('index/Cart/showindex')}" class="am-icon-shopping-cart" style="font-size: 22px"></a>
+        </div>
+      </header>
+    </div>
+
+    <div class="pet_content pet_content_list">
+      <div class="pet_grzx">
+          <div class="pet_grzx_nr">
+              <div class="pet_grzx_ico">
+                  <img src="/uploads/headPhoto/{$list['photo']}" alt="" width="200px" height="200px" >
+
+                  <!--设置头像的模态框-->
+                  <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+                      <div class="am-modal-dialog">
+                          <div class="am-modal-hd">更换头像
+                              <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+                          </div>
+                          <div class="am-modal-bd">
+                              <form action="{:url('index/Personal/upload')}" enctype="multipart/form-data" method="post">
+                              <div class="col-sm-10">
+                                      <input type="hidden" name="id" value="{$list['id']}">
+                                      <input type="file" name="image" /> <br>
+                              </div>
+                              <button type="submit" class="btn am-btn-primary">上传</button>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+              <div class="pet_grzx_name">{$list['username']}　{$list['type']==0?'普通会员':'超级会员'}　积分：{:empty($list['point'])?'0':$list['point'];}  　<button type="button" class="am-btn am-btn-xs am-round am-btn-primary" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 400, height: 225}"><i class="am-icon-camera am-icon-sm"></i></button></div>
+              {if condition="!empty($list['text'])";}
+              <div class="pet_grzx_map">个性签名:{$list['text']}</div>
+              {/if}
+              <div class="pet_grzx_num">
+                <span><i><a href="{:url('index/Personal/order')}">待付款</a></i></span>
+                <span><i><a href="{:url('index/Personal/order')}">待发货{$wnu}</a></i></span>
+                <span><i><a href="{:url('index/Personal/order')}">待收货{$snu}</a></i></span>
+                <span><i><a href="{:url('index/Personal/order')}">已完成{$dnu}</a></i></span>
+              </div>
+          </div>
+          <div class="pet_grzx_list">
+             <div class="pet_content_main pet_article_like_delete">
+                  <div data-am-widget="list_news" class="am-list-news am-list-news-default am-no-layout">
+                    <div class="am-list-news-bd">
+                      <ul class="am-list">
+                          <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left pet_list_one_block">
+                              <a href="{:url('index/Personal/favorite')}" >我的收藏</a>
+                          </li>
+                          <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left pet_list_one_block">
+                              <a href="{:url('index/Personal/order')}" >我的订单</a>
+                          </li>
+                          <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left pet_list_one_block">
+                              <a href="{:url('index/Personal/coupon')}">我的优惠券{$mnu}</a>
+                              <button  class="am-btn am-btn-xs am-radius am-btn-primary" data-am-modal="{target: '#doc-modal-2', closeViaDimmer: 0, width: 400, height: 225}">积分兑换</button>
+                          </li>
+                          <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left pet_list_one_block">
+                             <a href="{:url('index/Personal/repass')}" >重置密码</a>
+                          </li>
+                          <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left pet_list_one_block">
+                              <a href="{:url('index/Personal/baseinfo')}" >修改基本资料</a>
+                          </li>
+                          <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left pet_list_one_block">
+                              <a href="{:url('index/Personal/adress')}" >收货地址管理</a>
+                          </li>
+                          <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left pet_list_one_block">
+                              <a href="{:url('index/index/logout')}" >安全退出</a>
+                          </li>
+                      </ul>
+                    </div>
+                    </div>
+                  </div>
+             </div>
+          </div>
+        <div class="pet_article_footer_info">Copyright(c)2015 PetShow All Rights Reserved</div>
+      </div>
+    </div>
+  <!--设置积分兑换-->
+  <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-2">
+      <div class="am-modal-dialog">
+          <div class="am-modal-hd">兑换优惠券
+              <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+          </div>
+          <div class="am-modal-bd">
+              <div class="row">
+                  <div class="col-sm-5">
+                      <select class="form-control col-sm-5" style="height: 47px" id="choosePoint">
+                          <option colum="m_ten" value="10">10元优惠券</option>
+                          <option colum="m_twenty" value="20">20元优惠券</option>
+                          <option colum="m_fifty" value="50">50元优惠券</option>
+                          <option colum="m_hundred" value="100">100元优惠券</option>
+                      </select>
+                  </div>
+                  <div class="col-sm-5 col-sm-offset-1">
+                      <div class="gt_product_left_wrap ml20" style="border: none;margin: 0px 0px -2px;">
+                          <span>数量:</span>
+                          <div id="incdec">
+                              <input type="text" value="1" readonly="readonly" id="num" name="num"/>
+                              <div class="gt_increment">
+                                  <button type="button" id="up" >+</button>
+                                  <button type="button" id="down" > -</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-10 control-label">这将消耗您<strong id="total">10</strong>点积分</label>
+                  </div>
+                  <button type="submit" class="btn btn-primary" id="yes">确认</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+    <script src="/static/mobile/js/jquery.min.js"></script>
+    <script src="/static/mobile/js/amazeui.min.js"></script>
+    <script>
+$(function() {
+    //      优惠券
+    $('#up').click(function () {
+        if ($('#num').val() >= 99) {
+            $('#num').val(99);
+        }
+        $('#num').val() + 1;
+        var n = parseInt($('#num').val()) + 1;
+        var t = $('#choosePoint').val() * n;
+        $('#total').html(t);
+//            console.log($('#total').html(t));
+    });
+
+
+    $('#down').click(function () {
+        if ($('#num').val() <= 1) {
+            $('#num').val(1);
+        }
+        $('#num').val() - 1;
+        var n = parseInt($('#num').val()) - 1;
+        var t = $('#choosePoint').val() * n;
+        $('#total').html(t);
+//            console.log($('#total').html(t));
+
+    });
+
+    $('#choosePoint').change(function () {
+        var n = parseInt($('#num').val());
+        var t = $('#choosePoint').val() * n;
+        $('#total').html(t);
+//            console.log(n);
+//            console.log(t);
+    });
+
+//        优惠券模态框点击确认
+    $('#yes').click(function () {
+        if (parseInt($('#total').html()) > parseInt($('#point').html())) {
+            alert('您的积分不足哦');
+        } else {
+//               用户id
+            var id = $('#userid').html();
+//               用户在输入框输入的值
+//               var text = prompt("请输入您的账户密码","password");
+//               用户选择的优惠券类型
+            var type = parseInt($('#choosePoint').val());
+//               优惠券数量
+            var n = parseInt($('#num').val());
+//               消耗的总积分
+            var total = parseInt($('#total').html());
+//               console.log(id, typeof(id));
+//               console.log(type, typeof(type));
+//               console.log(n, typeof(n));
+//               console.log(total, typeof(total));
+            checkpass(id, type, n, total);
+        }
+    });
+
+    function checkpass(id, type, n, total) {
+        $.ajax({
+            type: 'post',
+            url: "/money",
+            data: {
+                "id": id,
+//                    "pass":text,
+                "type": type,
+                "n": n,
+                "total": total
+            },
+            dataType: 'json',
+            success: function (data) {
+//                    console.log(data);
+                if (data.status) {
+                    alert('优惠券兑换成功');
+                    history.go(0);
+                } else {
+                    alert('优惠券兑换失败,请重试');
+                }
+            },
+            error: function () {
+                alert('优惠券兑换失败,请重试');
+            }
+        });
+    }
+});
+
+
+</script>
+</body>
+  </html>

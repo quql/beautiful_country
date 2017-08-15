@@ -530,35 +530,6 @@
                             {/volist}
                         </ul>
                     </li>
-
-                   <!--  Route::get('/:id/','index/Activities'); -->
-
-
-             <!--      <li><a href="javascript:avoid(0);">资讯</a>
-                    <ul>
-                      <li><a href="comming-soon.html">Comming Soon</a></li>
-                      <li><a href="classes.html">Classes</a></li>
-                      <li><a href="javascript:avoid(0);">Team Pages</a>
-                        <ul>
-                          <li><a href="team-grid.html">Team Grid</a></li>
-                          <li><a href="team-grid-02.html">Team Grid Style 02</a></li>
-                          <li><a href="team-detail.html">Team Detail</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="javascript:avoid(0);">Dashboard Pages</a>
-                        <ul>
-                          <li><a href="my-profile.html">My Profile</a></li>
-                          <li><a href="profile-setting.html">Profile Setting</a></li>
-                          <li><a href="privacy-setting.html">Privacy Setting</a></li>
-                          <li><a href="report-achievement.html">Reports and Achievement</a></li>
-                          <li><a href="dashboard-classes.html">Dashboard Classes</a></li>
-                          <li><a href="dashboard-courses.html">Dashboard Courses</a></li>
-                          <li><a href="dashboard-fav-courses.html">Dashboard Favorite Courses</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="login-register.html">Login and Register</a></li>
-                    </ul>
-                  </li> -->
                   <li><a href="about-us.html">关于我们</a></li>
                 </ul>
             </nav>
@@ -1470,8 +1441,8 @@
         //获取提交的数据
         var name = document.getElementById('inputName').value;
         var p1 = document.getElementById('p1');
-        //验证店铺名称是否满足正则条件 +出现1次或多次
-        if (name.match(/^\w{1,12}$/) === null) {
+        //验证店铺名称是否满足正则条件 +出现1次或多次 /^([\u4e00-\u9fa5]){2,8}$/
+        if ((name.match(/^\w{1,12}$/) === null)&&(name.match(/^([\u4e00-\u9fa5]){1,8}$/) === null)) {
             p1.innerHTML = ' × 请输入1-12位的数字、字母或下划线组成的店铺名字';
             p1.style.color = 'red';
             return false;
@@ -1483,7 +1454,7 @@
         var person = document.getElementById('inputPerson').value;
         var p2 = document.getElementById('p2');
         //验证负责人是否符合 6-12位的数字字母下划线
-        if (person.match(/^\w{1,12}$/) === null) {
+        if ((person.match(/^\w{1,12}$/) === null)&&(person.match(/^([\u4e00-\u9fa5]){2,8}$/) === null)) {
             p2.innerHTML = '× 请输入1-12位的数字、字母或下划线组成的名字';
             p2.style.color = 'red';
             return false;
@@ -1517,8 +1488,8 @@
         //手机号
         var phone = document.getElementById('inputPhone').value;
         var p4 = document.getElementById('p4');
-        if (phone.match(/^\d{11}$/) === null) {
-            p4.innerHTML = ' × 请输入11位数字的手机号码';
+        if (phone.match(/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/) === null) {
+            p4.innerHTML = ' × 请输入11位合法的手机号码';
             p4.style.color = 'red';
             return false;
         } else {

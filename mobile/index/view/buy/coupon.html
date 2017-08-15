@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的优惠券</title>
+    <link rel="stylesheet" href="/static/mobile/css/amazeui.min.css">
+    <link rel="stylesheet" href="/static/mobile/css/wap.css">
+    <style>
+        body{
+            width: 100%;
+        }
+        .head{
+            width: 100%;
+            height: 50px;
+            background-color: lightskyblue;
+            color: white;
+            text-align: left;
+            line-height: 50px;
+            padding-left: 20px;
+        }
+        p{
+            color: lightskyblue;
+            width: 100%;
+            text-align: center;
+        }
+        .span1{
+            display: block;
+            float: left;
+        }
+        .span2{
+            display: block;
+            float: right;
+            padding-right: 20px;
+        }
+        li{
+            list-style: none;
+            margin-bottom: 7px;
+            margin-left: 7px;
+        }
+        ul{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class='head'>
+    <span class="span1">收货地址</span>
+    <a href="{:url('index/personal/index')}"><span class="span2">返回</span></a>
+</div>
+    {if condition="!empty($money)";}
+    <div class="am-radio-inline">
+        <form action="">
+        <ul>
+            {for start="0" end="$money['m_ten']"}
+            <li>
+                <input type="radio" style="margin-top:30px">
+                <img src="/static/app/index/images/money/10.png" style="width:300px;height:70px;">
+            </li>
+            {/for}
+            {for start="0" end="$money['m_twenty']"}
+            <li>
+                <input type="radio" style="margin-top:30px">
+                <img src="/static/app/index/images/money/20.png" style="width:300px;height:70px;">
+            </li>
+            {/for}
+            {for start="0" end="$money['m_fifty']"}
+            <li>
+                <input type="radio" style="margin-top:30px">
+                <img src="/static/app/index/images/money/50.png" style="width:300px;height:70px;">
+            </li>
+            {/for}
+            {for start="0" end="$money['m_hundred']"}
+            <li>
+                <input type="radio" style="margin-top:30px">
+                <img src="/static/app/index/images/money/100.png" style="width:300px;height:70px;">
+            </li>
+            {/for}
+        </ul>
+            <button>使用优惠券</button>
+        </form>
+    </div>
+    {else/}
+    <p>\(^o^)/</p>
+    <p>你还木有优惠券可以使用呐</p>
+    <p>去邀请好友获取吧</p>
+    {/if}
+    <script src="/static/mobile/js/jquery.min.js"></script>
+    <script src="/static/mobile/js/amazeui.min.js"></script>
+    <script>
+        //      优惠券
+        $('#up').click(function(){
+            if($('#num').val() >= 99){
+                $('#num').val(99);
+            }
+            $('#num').val() + 1;
+            var n = parseInt($('#num').val()) + 1;
+            var t = $('#choosePoint').val()*n;
+            $('#total').html(t);
+//            console.log($('#total').html(t));
+        });
+
+
+        $('#down').click(function(){
+            if($('#num').val() <= 1){
+                $('#num').val(1);
+            }
+            $('#num').val() - 1;
+            var n = parseInt($('#num').val()) - 1;
+            var t = $('#choosePoint').val()*n;
+            $('#total').html(t);
+//            console.log($('#total').html(t));
+
+        });
+
+        $('#choosePoint').change(function(){
+            var n = parseInt($('#num').val());
+            var t = $('#choosePoint').val()*n;
+            $('#total').html(t);
+//            console.log(n);
+//            console.log(t);
+        });
+
+        //        优惠券模态框点击确认
+        $('#yes').click(function(){
+            if(parseInt($('#total').html()) > parseInt($('#point').html())){
+                alert('您的积分不足哦');
+            }else{
+//               用户id
+                var id = $('#userid').html();
+//               用户在输入框输入的值
+//               var text = prompt("请输入您的账户密码","password");
+//               用户选择的优惠券类型
+                var type = parseInt($('#choosePoint').val());
+//               优惠券数量
+                var n = parseInt($('#num').val());
+//               消耗的总积分
+                var total = parseInt($('#total').html());
+//               console.log(id, typeof(id));
+//               console.log(type, typeof(type));
+//               console.log(n, typeof(n));
+//               console.log(total, typeof(total));
+                checkpass(id, type, n, total);
+            }
+        });
+
+        function checkpass(id, type, n, total){
+            $.ajax({
+                type: 'post',
+                url: "/money",
+                data: {
+                    "id":id,
+//                    "pass":text,
+                    "type":type,
+                    "n":n,
+                    "total":total
+                },
+                dataType: 'json',
+                success:function(data){
+//                    console.log(data);
+                    if (data.status){
+                        alert('优惠券兑换成功');
+                        history.go(0);
+                    }else{
+                        alert('优惠券兑换失败,请重试');
+                    }
+                },
+                error:function(){
+                    alert('优惠券兑换失败,请重试');
+                }
+            });
+        }
+
+        //        显示现金券
+        $('#showCoupon').click(function(){
+            $('#coupon').slideToggle();
+        });
+    </script>
+
+</body>
+</html>

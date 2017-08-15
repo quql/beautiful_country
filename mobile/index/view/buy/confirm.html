@@ -1,0 +1,94 @@
+﻿{extend name="index/index"}
+
+{block name="main"}
+<!--Sub Banner Wrap Start -->
+    <div class="gt_sub_banner_bg default_width">
+        <div class="container">
+            <div class="gt_sub_banner_hdg  default_width">
+                <h2>订单确认</h2>
+                <h6>欢迎来到还没名字的网站~</h6>
+            </div>
+        </div>
+    </div>
+    <!--Sub Banner Wrap End -->
+    <!--Breadcrumb Wrap End -->
+    <div class="gt_breadcrumb_bg default_width">
+        <div class="container">
+            <div class="gt_breadcrumb_wrap default_width">
+                <ul>
+                    <li><a href="{:url('index/index/index')}">首页</a></li>
+                    <li><a href="{:url('index/cart/index')}">订单确认</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Breadcrumb Wrap End -->
+    <div class="gt_main_content_wrap">
+        <!--Shop Wrap Start-->
+        <section class="gt_shop_detail_bg gt_courses_bg">
+            <div class="container">
+                <div class="row col-sm-12">
+                    <table class="table">
+                        <tr>
+                            <th style="text-align: center">收货人</th>
+                            <th style="text-align: center">联系电话</th>
+                            <th style="text-align: center">收货地址</th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center">{$address['ua_name']}</td>
+                            <td style="text-align: center">{$address['ua_phone']}</td>
+                            <td style="text-align: center">{$address['ua_address']}{$address['ua_street']}</td>
+                        </tr>
+                    </table>
+                    <table class="table table-hover mt30">
+                        <tr>
+                            <th style="text-align: center"></th>
+                            <th style="text-align: center">商品名称</th>
+                            <th style="text-align: center">单价</th>
+                            <th style="text-align: center">数量</th>
+                        </tr>
+                        {volist name="data" id="v" key="k"}
+                        <tr>
+                            <td style="text-align: center">{$k}</td>
+                            <td style="text-align: center">{$v['ca_gname']}</td>
+                            <td style="text-align: center">{$v['ca_price']}</td>
+                            <td style="text-align: center">{$v['ca_num']}</td>
+                        </tr>
+                        {/volist}
+                        <tr>
+                            <td colspan="7" style="text-align: right">
+                            合计
+                            <span id="total" class="h2">{$s}</span>
+                            元
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="margin-left: 850px" class="mt50">
+                        <form action="index/order/index" method="post">
+                            <button type="button" href="" class="btn btn-info btn-lg">取消订单</button>
+                            <input type="hidden" name="aid" value="{$address['ua_id']}">
+                            <input type="hidden" name="total" value="{$s}">
+                            {volist name="data" id="v"}
+                            <input type="hidden" name="{$v['ca_id']}" value="">
+                            {/volist}
+                            <button type="submit" class="btn btn-success btn-lg ml30" id="settle">确认支付</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--Content Wrap Start-->
+        </section>
+    </div>
+
+    <!--Content Wrap End-->
+{/block}
+
+{block name="myjs"}
+{js href="/static/app/index/js/toastr.min.js"}
+<script>
+
+</script>
+{/block}
+
+</body>
+</html>

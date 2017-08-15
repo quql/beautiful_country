@@ -11,10 +11,19 @@
 //动态注册
 use think\Route;
 Route::get('/','index/index/index');
-Route::get('admin','admin/index/index');
+Route::get('listshow','index/Index/listshow');
+Route::get('detail','index/Index/detail');
 
-
-
+//个人中心
+Route::get('personal','index/Personal/index');
+//优惠券
+Route::get('coupon','index/Personal/coupon');
+//删除已完成订单
+Route::get('delete/:id','index/Order/delete');
+//加入购物车
+Route::get('docart/:gid/:cid','index/Cart/index');
+//删除购物车中的商品
+Route::get('delete/:id','index/Cart/delete');
 return [
 //    '__pattern__' => [
 //        'name' => '\w+',

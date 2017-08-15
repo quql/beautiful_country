@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的收藏</title>
+    <link rel="stylesheet" href="/static/mobile/css/amazeui.min.css">
+    <link rel="stylesheet" href="/static/mobile/css/wap.css">
+    <style>
+        body{
+            width: 100%;
+        }
+        .head{
+            width: 100%;
+            height: 50px;
+            background-color: lightskyblue;
+            color: white;
+            text-align: left;
+            line-height: 50px;
+            padding-left: 20px;
+        }
+        form{
+            padding: 20px;
+        }
+        .span1{
+            display: block;
+            float: left;
+        }
+        .span2{
+            display: block;
+            float: right;
+            padding-right: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div >
+    <div class='head'><span class="span1">我的收藏</span><a href="{:url('index/personal/index')}"><span class="span2">返回</span></a></div>
+    <div class="gt_d_classes_wrap default_width">
+        <ul class="nav nav-tabs nav-justified">
+            <li><a href="javascript:void(0);" class="gt_d_title h4" id="a" style="background-color: #ccc">收藏商品</a></li>
+            <li><a href="javascript:void(0);" class="gt_d_title h4" id="b">收藏店铺</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-4 mt20">
+            <div class="thumbnail">
+                <img src="/static/app/index/images/courses-01.jpg" >
+                <div class="caption">
+                    <h3>商品名</h3>
+                    <p>商品简介</p>
+                    <p>
+                        <a href="#" class="btn btn-primary" role="button">去店铺看看</a>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp
+                        <a href="#" class="btn btn-success" role="button">买买买</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="/static/mobile/js/jquery.min.js"></script>
+<script src="/static/mobile/js/amazeui.min.js"></script>
+<script>
+    //      favorite
+    $('#showFavorite').click(function(){
+        $('#favorite').css('display','block');
+        $('#information').css('display','none');
+        $('#personal').css('display','none');
+        $('#order').css('display','none');
+    });
+</script>
+</body>
+</html>

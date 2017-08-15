@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/static/mobile/css/amazeui.min.css">
+    <link rel="stylesheet" href="/static/mobile/css/wap.css">
+    <title>酒店详情</title>
+</head>
+<body style="background:#ececec">
+<div class="pet_mian" >
+    <div class="pet_head">
+        <header data-am-widget="header"
+                class="am-header am-header-default pet_head_block">
+            <div class="am-header-left am-header-nav ">
+                <a href="javascript:history.go(-1)" class="iconfont pet_head_jt_ico">&#xe601;</a>
+            </div>
+            <div class="am-header-right am-header-nav">
+                <a href="javascript:;" class="iconfont pet_head_gd_ico">&#xe600;</a>
+            </div>
+        </header>
+    </div>
+
+
+    <div class="pet_content pet_content_list">
+        <div class="pet_zlnr">
+            <div class="pet_zlnr_user">
+                <div class="pet_zlnr_user_r">
+                    {if condition="$list[0]['is_park'] eq '1'"}
+                   <span class="am-icon-car am-icon-sm">　</span>停车场
+                    {/if}
+                    　　
+                    {if condition="$list[0]['is_wifi'] eq '1'"}
+                   <span class="am-icon-wifi am-icon-sm">　</span>WIFI
+                    {/if}
+                </div>
+            </div>
+            <div class="pet_zlnr_nr">
+
+                <article data-am-widget="paragraph"
+                         class="am-paragraph am-paragraph-default"
+
+                         data-am-paragraph="{ tableScrollable: true, pureview: true }">
+                    {volist name="list" id="v"}
+                    <img src="/uploads/{$v.pic}">
+                    {/volist}
+                    <p>{$list[0]['gd_details']}</p>
+                    <div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+                        <!--列表标题-->
+                        <div class="am-list-news-hd am-cf">
+                            <!--带更多链接-->
+                            <a href="##" class="">
+                                <h2>酒店信息</h2>
+                            </a>
+                        </div>
+
+                        <div class="am-list-news-bd">
+                            <ul class="am-list">
+
+                                <li class="am-g am-list-item-dated">
+                                    <h4>单价:　<font color="red">¥{$list[0]['gd_price']}</font></h4>
+                                </li>
+                                <li class="am-g am-list-item-dated">
+                                    <h4>会员价:　<font color="red">¥{$list[0]['gd_discount']}</font></h4>
+                                </li>
+                                <li class="am-g am-list-item-dated">
+                                    <h4>剩余房间数:　<font color="red">{$list[0]['gd_store']}</font></h4>
+                                </li>
+                                <li class="am-g am-list-item-dated">
+                                    <h4>联系方式:　<font color="red">{$list[0]['gd_phone']}</font></h4>
+                                </li>
+                                <li class="am-g am-list-item-dated">
+                                    <h4>地址:　<font color="red">{$list[0]['gd_address']}</font></h4>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <button type="button" class="am-btn am-btn-waring am-round">立即预定</button>
+                </article>
+                <div class="pet_zlnr_pl">
+                    <div class="pet_zlnr_pl_block">
+                        <div class="pet_zlnr_pl_block_l"><img src="/static/mobile/img/qq1.png" alt=""></div>
+                        <div class="pet_zlnr_pl_block_r">TuniuDesign
+                            <span>长滩岛之美丽，有如它的名字，那是长达七公里的银色沙滩。清晨，从小旅馆中散步而出，坐在椰子树下，清凉的海风送来阵阵茉莉花香。</span></div>
+
+                    </div>
+                    <div class="pet_zlnr_pl_block">
+                        <div class="pet_zlnr_pl_block_l"><img src="/static/mobile/img/qq2.png" alt=""></div>
+                        <div class="pet_zlnr_pl_block_r">KiKiWiWi
+                            <span>华丽丽的精美内饰，笑意盈盈的船员，可口的意式风味美食，每天看不完的各类精彩纷呈的风情歌舞表演，一切想象不到的视觉和心灵享受，注定是在那海上意大利的夏天。</span></div>
+
+                    </div>
+                    <div class="pet_zlnr_pl_block">
+                        <div class="pet_zlnr_pl_block_l"><img src="/static/mobile/img/qq3.png" alt=""></div>
+                        <div class="pet_zlnr_pl_block_r">时光待你好
+                            <span>这是楼主第一次写游记，有不足之处还请见谅刚毕业不久，虽然已经进入职场，但是由于习惯了和男朋友每几个月都出去旅行放松一下，这次就申请积攒几天假和男票商量着要去海边转转。</span></div>
+
+                    </div>
+                    <div class="pet_zlnr_pl_block">
+                        <div class="pet_zlnr_pl_block_l"><img src="/static/mobile/img/qq4.png" alt=""></div>
+                        <div class="pet_zlnr_pl_block_r">TuniuDesign
+                            <span>长滩岛之美丽，有如它的名字，那是长达七公里的银色沙滩。清晨，从小旅馆中散步而出，坐在椰子树下，清凉的海风送来阵阵茉莉花香。</span></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="pet_article_dowload">
+                <div class="pet_article_dowload_title">关于Amaze UI</div>
+                <div class="pet_article_dowload_content"><div class="pet_article_dowload_triangle"></div>
+                    <div class="pet_article_dowload_ico"><img src="/static/mobile/img/footdon.png" alt=""></div>
+                    <div class="pet_article_dowload_content_font">
+                        Amaze UI 以移动优先（Mobile first）为理念，从小屏逐步扩展到大屏，最终实现所有屏幕适配，适应移动互联潮流。
+                    </div>
+                    <div class="pet_article_dowload_all">
+                        <a href="###" class="pet_article_dowload_Az am-icon-apple"> App store</a>
+                        <a href="###" class="pet_article_dowload_Pg am-icon-android"> Android</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pet_article_footer_info">Copyright(c)2015 PetShow All Rights Reserved</div>
+    </div>
+</div>
+<script src="/static/mobile/js/jquery.min.js"></script>
+<script src="/static/mobile/js/amazeui.min.js"></script>
+<script>
+    $(function(){
+
+        // 动态计算新闻列表文字样式
+        auto_resize();
+        $(window).resize(function() {
+            auto_resize();
+        });
+        $('.am-list-thumb img').load(function(){
+            auto_resize();
+        });
+        $('.pet_article_like li:last-child').css('border','none');
+        function auto_resize(){
+            $('.pet_list_one_nr').height($('.pet_list_one_img').height());
+            // alert($('.pet_list_one_nr').height());
+        }
+        $('.pet_article_user').on('click',function(){
+            if($('.pet_article_user_info_tab').hasClass('pet_article_user_info_tab_show')){
+                $('.pet_article_user_info_tab').removeClass('pet_article_user_info_tab_show').addClass('pet_article_user_info_tab_cloes');
+            }else{
+                $('.pet_article_user_info_tab').removeClass('pet_article_user_info_tab_cloes').addClass('pet_article_user_info_tab_show');
+            }
+        });
+
+        $('.pet_head_gd_ico').on('click',function(){
+            $('.pet_more_list').addClass('pet_more_list_show');
+        });
+        $('.pet_more_close').on('click',function(){
+            $('.pet_more_list').removeClass('pet_more_list_show');
+        });
+    });
+
+</script>
+</body>
+</html>

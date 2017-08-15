@@ -304,7 +304,7 @@ class Index extends Base
         //$mail->AddReplyTo("", "");//设置回复人信息
         $mail->IsHTML(true); //是否使用HTML格式
 
-        $mail->Subject = "邮箱测试"; //邮件标题
+        $mail->Subject = "美丽乡村店铺入驻验证邮件"; //邮件标题
         $mail->Body = "您的验证码是:".$vcode. ",三分钟内验证有效"; //邮件内容，上面设置HTML，则可以是HTML
         if(!empty(cache('vcode'))){
             if(!$mail->Send())
