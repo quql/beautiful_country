@@ -67,9 +67,8 @@ function moveCode(code){
 			
 			progress.innerText = '验证成功';
 			progress.style.width = evenWidth+deviation+'px';
-			evenBox.style.left = evenWidth+'px'
-			
-			codeInput.value = fn.codeVluae;
+			evenBox.style.left = evenWidth+'px';
+
 			evenBox.onmousedown = null;
 		}else{
 

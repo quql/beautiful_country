@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cn">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
@@ -39,7 +39,7 @@
     <li><a href="{:url('/showRegister')}">注册</a></li>
 </ul>
 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
-<form class="am-form am-form-horizontal" action="{:url('/doRegister')}" method="post">
+<form class="am-form am-form-horizontal" action="{:url('/doRegister')}" method="post" onsubmit="return checkMsg()">
     <div class="am-form-group">
         <!--<label class="am-u-sm-1 am-form-label"></label>-->
         <div class="am-u-sm-8 am-u-sm-offset-2">
@@ -90,14 +90,12 @@
         </div>
     </div>
     <div class="am-form-group">
-        <!--<label class="am-u-sm-2 am-form-label"></label>-->
         <div class="am-u-sm-8 am-u-sm-offset-2">
             <label class="form-inline">
-                <div class="form-inline-input" style="padding-left: 0px">
-                    <div class="code-box" id="code-box" style="width:220px">
-                        <!--<input type="text" name="code" class="code-input" />-->
-                        <p></p>
-                        <span>>>></span>
+                <div class="form-inline-input" style="padding-left: 0px;border: 1px solid #cccccc;border-radius:5px">
+                    <div class="code-box" id="code-box" style="width:229px;border-radius:5px">
+                        <p id="test"></p>
+                        <span style="background-color: #ffffff">>>></span>
                     </div>
                 </div>
             </label>
@@ -105,7 +103,7 @@
     </div>
     <div class="am-form-group">
         <div class="am-u-sm-8 am-u-sm-offset-2">
-            <button type="submit" style="border-radius:5px" class="am-btn am-btn-success">注册</button>
+            <button type="submit" style="border-radius:5px;width:230px" class="am-btn am-btn-success">注册</button>
         </div>
     </div>
 </form>
@@ -172,11 +170,11 @@
             }
         });
 
-//        验证码
+//        拖动验证码
         window.addEventListener('load',function(){
 
             //code是后台传入的验证字符串
-            var code = "",
+            var code = "jsaidaisd656",
                 codeFn = new moveCode(code);
 
             //获取当前的code值
@@ -191,7 +189,32 @@
         });
 
 
+
+
     });
+</script>
+<script>
+    function checkMsg(){
+        var v = $('#test').width();
+        if($('#username').val() == ''){
+            alert('用户名不能为空');
+            return false;
+        }else if($('#phone').val() == ''){
+            alert('手机号不能为空');
+            return false;
+        }else if($('#pass').val() == ''){
+            alert('密码不能为空');
+            return false;
+        }else if($('#secondPass').val() == ''){
+            alert('确认密码不能为空');
+            return false;
+        }else if(v != 229){
+            alert('请拖动验证码进行验证');
+            return false;
+        }else{
+            return true;
+        }
+    }
 </script>
 </body>
 </html>

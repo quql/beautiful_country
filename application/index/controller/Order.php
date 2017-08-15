@@ -4,6 +4,7 @@ namespace app\index\controller;
 
 use think\Controller;
 use think\Db;
+use think\db\Query;
 use think\Request;
 
 class Order extends Base
@@ -13,7 +14,7 @@ class Order extends Base
     {
         $uid = input('session.u_id');
         $i = input('post.');
-        //dump($i);
+        //dump($i);die;
 
         //地址
         $aid = $i['aid'];
@@ -56,6 +57,16 @@ class Order extends Base
         //生成订单号
         $orderNum = time().rand(10e8,90e8);
 
+        //添加积分到用户数据
+
+        $u = model('userDetail');
+        $op = $u->getPoint($uid)['ud_point'];
+        //dump($op);die;
+        $point = [
+            'ud_point'=>round($i['total']/20 + $op),
+        ];
+        $p = $u->updateDetail($uid, $point);
+
         //生成主订单表数据
         $data = [
           'uid'=>$uid,
@@ -97,9 +108,34 @@ class Order extends Base
            $a[$k]['moid']=$mid;
            $a[$k]['o_cid']=$v['cid'];
            $a[$k]['o_bid']=$v['bid'];
+           //删除购物车
            $c->delete($v['ca_id']);
+
+           //改变商品库存
+            if($v['cid'] == 5){
+                $table = 'route_detail';
+            }elseif($v['cid'] == 1){
+                $table = 'scenery_detail';
+            }elseif($v['cid'] == 6){
+                $table = 'food_detail';
+            }
+
+            $query = new Query();
+            $n = $query->name($table)->field('gd_store')->where('c_gid',$v['ca_gdid'])->select()[0];
+            //减去本次购买数量
+            $n = (int)$n['gd_store'] - $v['ca_num'];
+
+            //改变商品的销量
+            $n1 = $query->name($table)->field('gd_num')->where('c_gid',$v['ca_gdid'])->select()[0];
+            $n1 = (int)$n1['gd_num'] + $v['ca_num'];
+            $n2 = [
+                'gd_store'=>$n,
+                'gd_num'=>$n1,
+            ];
+            db($table)->where('c_gid',$v['ca_gdid'])->update($n2);
         }
-        //dump($a);
+        ////dump($a);
+        //die;
 
         $o=  model('order');
         $order = $o->saveAll($a);

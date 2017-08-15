@@ -20,6 +20,13 @@ Route::post('dologin', 'index/login/doLogin');
 //退出登录
 Route::get('outLogin', 'index/login/outLogin');
 
+
+Route::get('qqlogin', 'index/login/login');
+//QQ资料完善
+Route::post('qqlogin','index/Login/doqqlogin');
+
+
+
 //显示注册页面
 Route::get('showRegister', 'index/Index/showRegister');
 //执行注册

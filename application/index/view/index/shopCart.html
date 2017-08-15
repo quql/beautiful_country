@@ -28,7 +28,7 @@
         <section class="gt_shop_detail_bg gt_courses_bg">
             <div class="container">
                 <div class="row col-sm-12">
-                    <form action="{:url('/confirm')}" method="post" onsubmit="return check()">
+                    <form action="{:url('/confirm')}" method="post" onsubmit="return checkMsg()">
 
                         <!--总积分-->
                         <input type="hidden" name="point" id="point">
@@ -52,14 +52,14 @@
                     </table>
                 </div>
                 <div class="mt20">
-                <table class="table table-hover" id="mytable">
+                <table class="table table-hover row" id="mytable">
                     <tr>
-                        <th style="text-align: center;"></th>
-                        <th style="text-align: center;">商品图片</th>
-                        <th style="text-align: center;">商品名称</th>
-                        <th style="text-align: center;">商品类别</th>
-                        <th style="text-align: center;">单价 (元)</th>
-                        <th class="col-sm-2" style="text-align: center;">数量</th>
+                        <th style="text-align: center;" class="col-sm-1"></th>
+                        <th style="text-align: center;" class="col-sm-2">商品图片</th>
+                        <th style="text-align: center;" class="col-sm-3">商品名称</th>
+                        <th style="text-align: center;" class="col-sm-3">商品类别</th>
+                        <th style="text-align: center;" class="col-sm-1">单价 (元)</th>
+                        <th class="col-sm-1" style="text-align: center;">数量</th>
                         <!--<th style="text-align: center;">总价 (元)</th>-->
                         <th style="text-align: center;">操作</th>
                     </tr>
@@ -76,9 +76,9 @@
                     <p style="display: none" id="base">{$v['ca_point']}</p>
                     <tr>
                         <td style="text-align: center;line-height: 62px;">
-                            <input type="checkbox" name="{$v['ca_id']}">
+                            <input type="checkbox" class="choose" name="{$v['ca_id']}">
                         </td>
-                        <td style="text-align: center;line-height: 62px;">
+                        <td style="text-align: center;line-height: 62px;padding-left: 47px;">
                             <img src="/uploads/{$v['ca_photo']}" class="img-rounded" alt="" width="100" height="56">
                         </td>
                         <td style="text-align: center;line-height: 62px;">{$v['ca_gname']}</td>
@@ -175,37 +175,21 @@
         }
 
 
-//        function check(){
-//            var v = $('input:[name="aid"]:checked').val();
-//            if (v == null){
-//                alert("收货地址不能为空哦~");
-//                return false;
-//            }
-//            return true;
-
-//            if($("input[name='aid']:checked").size()==0){
-//                alert("收货地址不能为空哦~");
-//                return false;
-//            }else{
-//                return true;
-//            }
-
-//            if($(".rid").is(':checked')) {
-//                return true;
-//            }else{
-//                return false;
-//            }
-
-//              if($('.rid').is(':checked')){
-//                return true;
-//            }else{
-//                return false;
-//            }
-
-//        }
 
 
     });
+</script>
+<script>
+//    提交订单时 判断是否有商品被选中
+    function checkMsg(){
+        if($(".choose").is(':checked')){
+            return true;
+        }else{
+            alert('请选择商品');
+            return false;
+        }
+
+    }
 </script>
 {/block}
 
