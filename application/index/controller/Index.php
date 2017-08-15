@@ -18,7 +18,7 @@ class Index extends Base
         $sql1="select ml_food.*,ml_food_pic.pic,ml_business.b_name from ml_food LEFT JOIN ml_food_pic ON ml_food.id=ml_food_pic.gid LEFT JOIN ml_business ON ml_food.bus_id=ml_business.b_id  where ml_food_pic.is_first='1' and  ml_food.gd_is_sale='1'";
         $food=Db::query($sql1);
         //dump($food);
-//die;
+        //die;
         //热推线路TOP10
         $sql2="select ml_route_detail.*,ml_route_pic.pic,ml_route.c_id,gd_title,gd_abstract,bus_id,ml_business.b_name from ml_route_detail LEFT JOIN ml_route ON ml_route_detail.c_gid=ml_route.id LEFT JOIN ml_business ON ml_route.bus_id=ml_business.b_id LEFT JOIN ml_route_pic ON ml_route.id=ml_route_pic.gid WHERE ml_route.gd_is_sale='1' and ml_route_pic.is_first='1' ORDER BY gd_view desc limit 5";
         $routes = Db::query($sql2);
@@ -30,30 +30,14 @@ class Index extends Base
         //dump($scenery);
         //exit;
 
-        //查询友情链接数据
-        $link = Db::name('link')->select();
-
         //查询精彩活动的数据
         $activitiessql = "select ml_activities.id as activities_id,ml_activities.ac_title,ml_activities.ac_abstract,ml_activities.ac_opentime,ml_activities.ac_closetime,ml_activities.ac_spot,ml_activities.ac_spot,ml_activities.ac_host,ml_activities.ac_cate,ml_activities.ac_details,ml_activities.ac_price,ml_activities.ac_status,ml_activities.ac_contain,ml_activities.bus_id,ml_ac_cate.id as ac_cate_id,ml_ac_cate.ac_name,ml_ac_cate.p_id,ml_ac_pic.id as ac_pic_id,ml_ac_pic.acid,ml_ac_pic.pic from ml_activities LEFT JOIN ml_ac_pic ON ml_activities.id=ml_ac_pic.acid LEFT JOIN ml_ac_cate ON ml_activities.ac_cate=ml_ac_cate.id where ml_ac_pic.is_first='1' and  ml_activities.ac_status='1'";
-        // where ml_ac_pic.is_first='1'
-             //查询精彩活动的数据
-       $linksql = "select * from ml_activities
-         LEFT JOIN ml_ac_pic ON ml_activities.id=ml_ac_pic.acid
-         LEFT JOIN ml_ac_cate ON ml_activities.ac_cate=ml_ac_cate.id";
-
-        $activities = Db::query($linksql);
-        // var_dump($activities);die;
 
         $activitiesindex = Db::query($activitiessql);
-        // var_dump($activitiesindex);
-        // die;
-//        dump($scenery);
-//        exit;
+
         return view('index/index',[
             'foods'=>$food,
             'pics'=>$pic,
-            'link' =>$link,
-            'activities' =>$activities,
             'hotroute'=>$routes,
             'hotscenery'=>$scenery,
             'activitiesindex'=>$activitiesindex

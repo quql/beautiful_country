@@ -89,10 +89,8 @@ Route::resource('Activitiesadminlist', 'admin/Activitiesadminlist');
 //平台查看活动图片
 Route::get('Activitiesadminshow','admin/Activitiesadminlist/show');
 
-
 //友情链接管理
 Route::resource('link','admin/Link');
-
 
 //活动管理前台
 //活动列表页
@@ -101,12 +99,12 @@ Route::get('activitieslist','index/activities/index');
 Route::get('/activitieslistshow/:id','index/activities/activitieslistshow');
 //活动详情页
 Route::get('/activitiesdetailsshow/:id','index/activities/activitiesdetailsshow');
-
+//活动报名信息
+Route::post('activitiesregister','index/activities/save');
 
 
 //前台住宿
 Route::resource('hotelDetail', 'index/hotel');
-
 //旅游线路分类管理
 Route::resource('Routescate', 'admin/Routescate');
 //旅游线路管理
@@ -261,6 +259,9 @@ Route::get('goodsdetail','index/GoodsDetail/index');
 Route::get('qqlogin','index/Login/qqlogin');
 //QQ资料完善
 Route::post('qqlogin','index/Login/doqqlogin');
+
+//发送短信
+Route::get('sendmsg','index/Sendmsg/send');
 
 return [
 //    '__pattern__' => [
