@@ -152,7 +152,7 @@
     //        验证收货地址
     $('#addstreet').change(function(){
         console.log($('#addstreet').val());
-        if (($('#addstreet').val().match(/[\dA-Za-z\u4E00-\u9FA5]+/) == null)||($('#addstreet').val()==null)){
+        if ($('#addstreet').val().match(/[\dA-Za-z\u4E00-\u9FA5]+/) == null){
             $('#tips8').html('地址格式不正确~');
             $('#tips8').css('color','#f00');
             //return false;
@@ -162,8 +162,17 @@
         }
     });
     function checkAdd(){
-        if($('#tips6').html()||$('#tips7').html()||$('#tips8').html()){
+        if($('#addname').val() == ''){
+            alert('收货人不能为空');
             return false;
+        }else if($('#addphone').val() == ''){
+            alert('联系方式不能为空');
+            return false;
+        }else if($('#addstreet').val() == ''){
+            alert('详细地址不能为空');
+            return false;
+        }else{
+            return true;
         }
     }
 

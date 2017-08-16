@@ -17,8 +17,8 @@ class Personal extends Controller
     public function index()
     {
         //用户id
-//        $id = input('session.u_id');
-        $id =8;
+//        $id = input('session.uid');
+        $id =1;
         //获取用户基本信息
         $user = model('user');
         $list = $user->getUser($id);
@@ -58,7 +58,7 @@ class Personal extends Controller
     public function coupon()
     {
         //用户id
-//        $id = input('session.u_id');
+//        $id = input('session.uid');
         $id =1;
 
         $m = model('money');
@@ -76,8 +76,8 @@ class Personal extends Controller
     public function baseinfo()
     {
         //用户id
-//        $id = input('session.u_id');
-        $id =8;
+//        $id = input('session.uid');
+        $id =1;
         //获取用户基本信息
         $user = model('user');
         $list = $user->getUser($id);
@@ -91,7 +91,8 @@ class Personal extends Controller
      * */
     public function order()
     {
-        $id=4;
+//        $id = input('session.uid');
+        $id=1;
         //处理订单信息
         $o = model('order');
         //加载未发货订单
@@ -150,8 +151,8 @@ class Personal extends Controller
     public function repass()
     {
         //用户id
-//        $id = input('session.u_id');
-        $id =8;
+//        $id =  input('session.uid');
+        $id =1;
         //获取用户基本信息
         $user = model('user');
         $list = $user->getUser($id);
@@ -166,8 +167,8 @@ class Personal extends Controller
     public function favorite()
     {
         //用户id
-//        $id = input('session.u_id');
-        $id =8;
+//        $id = input('session.uid');
+        $id =1;
         //获取用户基本信息
 //        $user = model('user');
 //        $list = $user->getUser($id);
@@ -213,7 +214,7 @@ class Personal extends Controller
     public function adress()
     {
         //用户id
-//        $id = input('session.u_id');
+//        $id = input('session.uid');
         $id =1;
         //加载用户收获的地址
         $add = model('userAddress');
@@ -230,7 +231,7 @@ class Personal extends Controller
     public function address()
     {
         //用户id
-//        $id = input('session.u_id');
+//        $id = input('session.uid');
         $id =1;
         $info=input('post.');
 
@@ -278,8 +279,8 @@ class Personal extends Controller
     {
         // 获取表单上传文件 例如上传了001.jpg
         $file = request()->file('image');
-        //$id = input('post.')['id'];
-        $id =8;
+//        $id = input('post.')['id'];
+        $id =1;
         //dump($id);
         //exit;
         // 移动到框架应用根目录/public/uploads/ 目录下

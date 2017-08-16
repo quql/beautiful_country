@@ -46,90 +46,101 @@
 </head>
 <body>
 <div class='head'>
-    <span class="span1">购物车</span>
+    <span class="span1">我的购物车</span>
     <a href="{:url('index/personal/index')}"><span class="span2">返回</span></a>
 </div>
 
     <div class="gt_main_content_wrap">
         <!--Shop Wrap Start-->
         <section class="gt_shop_detail_bg gt_courses_bg">
-            <div class="container">
-                <div class="row col-sm-12">
-                    <form action="{:url('/confirm')}" method="post" onsubmit="return check()">
-
-                        <!--总积分-->
-                        <input type="hidden" name="point" id="point">
-                    <table class="table table-striped ml20">
-                        <tr style="line-height: inherit">
-                            <th style="text-align: center" class="col-sm-1"></th>
-                            <th style="text-align: center" class="col-sm-3">收货人</th>
-                            <th style="text-align: center" class="col-sm-3">联系电话</th>
-                            <th style="text-align: center">收货地址</th>
-                        </tr>
-                        {if condition="!empty($address)"}
-                        {volist name="address" id="a"}
-                        <tr style="line-height: 20px">
-                            <td style="text-align: center;line-height: 31px">
-                                <input type="radio" name="aid" value="{$a['ua_id']}" class="rid" checked>
-                            </td>
-                            <td style="text-align: center;line-height: 31px">{$a['ua_name']}</td>
-                            <td style="text-align: center;line-height: 31px">{$a['ua_phone']}</td>
-                            <td style="text-align: center;line-height: 31px">{$a['ua_address']}{$a['ua_street']}</td>
-                        </tr>
-                        {/volist}
-                        {/if}
-                    </table>
-                        </form>
-                </div>
-                <div class="mt20">
+            <div class="container" style="padding-top: 10px;border-bottom:1px;">
+                {if condition="!empty($list)"}
                 <table class="table table-hover" id="mytable">
                     <tr>
                         <th style="text-align: center;"></th>
-                        <th style="text-align: center;">商品图片</th>
-                        <th style="text-align: center;">商品名称</th>
-                        <th style="text-align: center;">商品类别</th>
-                        <th style="text-align: center;">单价 (元)</th>
+                        <th style="text-align: center;">商品</th>
+                        <th style="text-align: center;">单价</th>
                         <th class="col-sm-2" style="text-align: center;">数量</th>
                         <!--<th style="text-align: center;">总价 (元)</th>-->
-                        <th style="text-align: center;">操作</th>
+                        <th style="text-align: center;"></th>
                     </tr>
-                    {if condition="!empty($list)"}
+
                     {volist name="list" id="v" key="k"}
                     <!--商品id-->
                     <!--<input type="hidden" name="gid" value="{$v.ca_gdid}">-->
+                    <form action="{:url('index/Order/confirm')}" method="post" onsubmit="return checkMsg()">
                     <p style="display: none" class="gnum" value="{$v['ca_gdid']}"></p>
-                    <!--/*&lt;!&ndash;商品单价&ndash;&gt;*/-->
+                    <!--商品单价-->
                     <input type="hidden" name="price" value="{$v.ca_price}">
-                    <!--传递商品类型-->
+                    <!--商品类型-->
                     <input type="hidden" name="type" value="{$v.ca_gtype}">
-                    <!--传递购物车id-->
+                    <!--购物车id-->
                     <input type="hidden" name="cid" value="{$v.cid}">
+                        <!--总积分-->
+                        <input type="hidden" name="point"  value="{$v['ca_point']}">
                     <p style="display: none" id="base">{$v['ca_point']}</p>
                     <tr>
                         <td style="text-align: center;line-height: 62px;">
-                            <input type="checkbox" name="{$v['ca_id']}">
+                            <input type="checkbox" class="choose" name="{$v['ca_id']}">
                         </td>
                         <td style="text-align: center;line-height: 62px;">
-                            <img src="/uploads/{$v['ca_photo']}" class="img-rounded" alt="" width="100" height="56">
+                            <img src="/uploads/{$v['ca_photo']}" class="img-rounded" alt="" width="50" height="50">
+                            {$v['ca_gname']}
                         </td>
-                        <td style="text-align: center;line-height: 62px;">{$v['ca_gname']}</td>
-                        <td style="text-align: center;line-height: 62px;">{$v['ca_gtype']}</td>
-                        <td style="text-align: center;line-height: 62px;" class="price">{$v['ca_price']}</td>
+                        <td style="text-align: center;line-height: 62px;" class="price">￥{$v['ca_price']}</td>
                         <td style="text-align: center;line-height: 62px;">{$v['ca_num']}</td>
                         <td style="text-align: center;line-height: 62px;">
-                            <button type="button" class="btn btn-danger glyphicon glyphicon-trash del" data-id="{$v['ca_id']}"></button>
+                            <button type="button" class="btn-sm btn-danger glyphicon glyphicon-trash del" data-id="{$v['ca_id']}">删除</button>
                         </td>
                     </tr>
                     {/volist}
-                    {/if}
+                    <tr>
+                        <td ></td>
+                        <td ></td>
+                        <td ></td>
+                        <td>合计:</td>
+                        <td>金额</td>
+                    </tr>
 
                 </table>
+                {else/}
+                <h6 style="text-align: center">购物车空空如也,<a href="{:url('index/index/index')}">去购物吧</a>~~~</h6>
+                {/if}
                 </div>
-                <div style="margin-left: 850px" class="mt50">
-                        <a href="{:url('index/index/index')}" class="btn btn-info btn-lg ml30">再去逛逛</a>
-                        <button type="submit" class="btn btn-success btn-lg ml30" id="settle">去结算</button>
-                    </form>
+            <div class="mt20">
+                {if condition="!empty($address)"}
+                <div class="row col-sm-12">
+                    <hr>
+                    <h6>选择收货信息:</h6>
+                        <table class="table table-striped ml20">
+                            {volist name="address" id="a"}
+                            <tr style="line-height: 20px">
+                                <td style="text-align: center;line-height: 31px">
+                                    <input type="radio" name="aid" value="{$a['ua_id']}" class="rid" checked>
+                                </td>
+                                <td style="text-align: center;line-height: 31px">{$a['ua_name']}</td>
+                                <td style="text-align: center;line-height: 31px">{$a['ua_phone']}</td>
+                                <td style="text-align: center;line-height: 31px">{$a['ua_address']}{$a['ua_street']}</td>
+                            </tr>
+                            {/volist}
+
+                        </table>
+
                 </div>
+                <div style="margin-top: 20px;text-align: center" class="mt50">
+                    <a href="{:url('index/index/index')}" class="btn btn-info btn-sm ml30">再去逛逛</a>
+                    <button type="submit" class="btn btn-success btn-sm ml30" id="settle">去结算</button>
+                </div>
+                </form>
+                    {else/}
+                    <h6 style="text-align: center">尚未添加收货地址,请去个人中心完善~~~</h6>
+
+                </div>
+                <div style="margin-top: 20px;text-align: center" class="mt50">
+                        <a href="{:url('index/index/index')}" class="btn btn-info btn-sm ml30">再去逛逛</a>
+                        <button class="btn btn-success btn-sm ml30" id="back">去结算</button>
+                </div>
+                {/if}
             </div>
             <!--Content Wrap Start-->
         </section>
@@ -151,6 +162,9 @@
                 var t = $('#choosePoint').val() * n;
                 $('#total').html(t);
 //            console.log($('#total').html(t));
+            });
+            $('#back').click(function () {
+                alert('尚未添加收货地址,请去个人中心完善');
             });
 
 
@@ -275,7 +289,7 @@
         function delAjax(id, obj){
             $.ajax({
                 type: 'get',
-                url: "/delete/"+id,
+                url: "/deletecart/"+id,
                 dataType:'json',
                 success:function(data){
                     console.log(data);
@@ -324,6 +338,18 @@
 
 
     });
+</script>
+<script>
+    //    提交订单时 判断是否有商品被选中
+    function checkMsg(){
+        if($(".choose").is(':checked')){
+            return true;
+        }else{
+            alert('请选择要购买的商品');
+            return false;
+        }
+
+    }
 </script>
 
 </body>

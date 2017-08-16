@@ -15,7 +15,7 @@ class Cart extends Controller
         $cid=input('cid');
 
         //用户id
-//        $uid = input('session.u_id');
+//        $uid = input('session.uid');
         $uid=1;
         if(empty($uid)){
             $this->error('请先登录哦~~~~','index/index/index');
@@ -25,7 +25,7 @@ class Cart extends Controller
             $type='旅游路线';
             $list = Db::query("select ml_route_detail.*,ml_route_pic.pic ,ml_route.gd_title,bus_id from ml_route_detail LEFT JOIN ml_route_pic ON ml_route_detail.c_gid=ml_route_pic.gid LEFT JOIN ml_route ON ml_route_detail.c_gid=ml_route.id where ml_route_detail.c_gid='$gid' ");
         }elseif($cid==1){
-            $type='景区';
+            $type='景区门票';
             $list = Db::query("select ml_scenery_detail.*,ml_scenery_pic.pic,ml_scenery.gd_title,bus_id from ml_scenery_detail LEFT JOIN ml_scenery_pic ON ml_scenery_detail.c_gid=ml_scenery_pic.gid LEFT JOIN ml_scenery ON ml_scenery_detail.c_gid=ml_scenery.id where ml_scenery_detail.c_gid='$gid'");
         }elseif($cid==6){
             $type='特产美食';
@@ -36,27 +36,47 @@ class Cart extends Controller
         }else{
             $this->error('暂无数据');
         }
-        //dump($list[0]);die;
         $list=$list[0];
-        $data = [
-            'ca_uid'=>$uid,
-            'ca_gdid'=>$gid,
-            'ca_num'=>1,
-            'ca_price'=>$list['gd_price'],
-            'ca_photo'=>$list['pic'],
-            'ca_gname'=>$list['gd_title'],
-            'ca_gtype'=>$type,
-            'ca_point'=>round($list['gd_price']/20),
-            'bid'=>$list['bus_id'],
-            'cid'=>$cid,
-        ];
-        $c = model('cart');
-        $res = $c->insert($data);
-        //dump($res);die;
-        if($res){
-            $info['status']=true;
+
+        //判断如果购物车表中已存在此用户加入的同一种商品,即更新购物车商品的数量
+        $cart=Db::name('cart')->where(['ca_uid'=>$uid,'cid'=>$cid,'ca_gdid'=>$gid])->find();
+
+        //dump($cart);
+        //dump($cart['ca_num']);
+        if(!empty($cart)){
+            $data = [
+                'ca_num'=>$cart['ca_num']+1,
+                'ca_point'=>round($list['gd_price']/20)*2
+            ];
+            $update=Db::name('cart')->where('ca_id',$cart['ca_id'])->update($data);
+            //dump($update);
+            if($update){
+                $info['status']=true;
+            }else{
+                $info['status']=false;
+            }
+            //return json($info);
         }else{
-            $info['status']=false;
+            $data = [
+                'ca_uid'=>$uid,
+                'ca_gdid'=>$gid,
+                'ca_num'=>1,
+                'ca_price'=>$list['gd_price'],
+                'ca_photo'=>$list['pic'],
+                'ca_gname'=>$list['gd_title'],
+                'ca_gtype'=>$type,
+                'ca_point'=>round($list['gd_price']/20),
+                'bid'=>$list['bus_id'],
+                'cid'=>$cid
+            ];
+            $c = model('cart');
+            $res = $c->insert($data);
+            //dump($res);die;
+            if($res){
+                $info['status']=true;
+            }else{
+                $info['status']=false;
+            }
         }
         return json($info);
     }
@@ -64,7 +84,7 @@ class Cart extends Controller
     public function showindex()
     {
         //从缓存中获取用户id
-//        $uid = input('session.u_id');
+//        $uid = input('session.uid');
         $uid=1;
         $c = model('cart');
         $list = $c->getCart($uid);
@@ -81,7 +101,7 @@ class Cart extends Controller
     public function show()
     {
         //用户id
-        $uid = input('session.u_id');
+        $uid = input('session.uid');
         if(empty($uid)){
             $this->error('请先登录哦~~~~','index/index/index');
         }
@@ -108,7 +128,7 @@ class Cart extends Controller
     public function index1()
     {
         //用户id
-        $uid = input('session.u_id');
+        $uid = input('session.uid');
 
         //加载用户收获的地址
         $add = model('userAddress');

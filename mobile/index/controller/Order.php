@@ -11,15 +11,16 @@ class Order extends Controller
     //确认订单
     public function confirm()
     {
-        $uid = input('session.u_id');
+//        $uid = input('session.uid');
+        $uid=1;
         $i = input('post.');
-        //dump($i);
+//        dump($i);
 
-        //地址
+        //地址id
         $aid = $i['aid'];
         $a = model('userAddress');
         $address = $a->oneAddress($aid);
-
+        //购物车id
         static $arr = array();
         foreach($i as $k =>$v){
             if($v === 'on'){
@@ -27,10 +28,10 @@ class Order extends Controller
                 $arr[] = $k;
             }
         }
-        //dump($arr);
+//        dump($arr);
         $c = model('cart');
         $res = $c->getMsg($arr);
-        //dump($res);
+//        dump($res);
 
         //总价
         $s = 0;
@@ -38,7 +39,7 @@ class Order extends Controller
             $s += $v['ca_price']*$v['ca_num'];
         }
 
-        return view('index/confirm',[
+        return view('buy/confirm',[
             'data'=>$res,
             'address'=>$address[0],
             's'=>$s,

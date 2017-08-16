@@ -47,7 +47,7 @@ Route::get('delete/:id','index/Order/delete');
 //加入购物车
 Route::get('docart/:gid/:cid','index/Cart/index');
 //删除购物车中的商品
-Route::get('delete/:id','index/Cart/delete');
+Route::get('deletecart/:id','index/Cart/delete');
 return [
 //    '__pattern__' => [
 //        'name' => '\w+',

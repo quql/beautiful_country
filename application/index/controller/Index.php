@@ -20,12 +20,12 @@ class Index extends Base
         //dump($food);
         //die;
         //热推线路TOP10
-        $sql2="select ml_route_detail.*,ml_route_pic.pic,ml_route.c_id,gd_title,gd_abstract,bus_id,ml_business.b_name from ml_route_detail LEFT JOIN ml_route ON ml_route_detail.c_gid=ml_route.id LEFT JOIN ml_business ON ml_route.bus_id=ml_business.b_id LEFT JOIN ml_route_pic ON ml_route.id=ml_route_pic.gid WHERE ml_route.gd_is_sale='1' and ml_route_pic.is_first='1' ORDER BY gd_view desc limit 5";
+        $sql2="select ml_route_detail.*,ml_route_pic.pic,ml_route.c_id,gd_title,gd_abstract,bus_id,ml_business.b_name from ml_route_detail LEFT JOIN ml_route ON ml_route_detail.c_gid=ml_route.id LEFT JOIN ml_business ON ml_route.bus_id=ml_business.b_id LEFT JOIN ml_route_pic ON ml_route.id=ml_route_pic.gid WHERE ml_route.gd_is_sale='1' and ml_route_pic.is_first='1' ORDER BY gd_view asc limit 6";
         $routes = Db::query($sql2);
         //dump($routes);
 
         //热门景点
-        $sql3="select ml_scenery_detail.*,ml_scenery_pic.pic,ml_scenery.c_id,gd_title,gd_abstract,bus_id,ml_business.b_name,b_province,b_city,b_area from ml_scenery_detail LEFT JOIN ml_scenery ON ml_scenery_detail.c_gid=ml_scenery.id LEFT JOIN ml_business ON ml_scenery.bus_id=ml_business.b_id LEFT JOIN ml_scenery_pic ON ml_scenery.id=ml_scenery_pic.gid WHERE ml_scenery.gd_is_sale='1' and ml_scenery_pic.is_first='1' ORDER BY gd_view desc limit 6";
+        $sql3="select ml_scenery_detail.*,ml_scenery_pic.pic,ml_scenery.c_id,gd_title,gd_abstract,bus_id,ml_business.b_name,b_province,b_city,b_area from ml_scenery_detail LEFT JOIN ml_scenery ON ml_scenery_detail.c_gid=ml_scenery.id LEFT JOIN ml_business ON ml_scenery.bus_id=ml_business.b_id LEFT JOIN ml_scenery_pic ON ml_scenery.id=ml_scenery_pic.gid WHERE ml_scenery.gd_is_sale='1' and ml_scenery_pic.is_first='1' ORDER BY gd_view asc limit 6";
         $scenery = Db::query($sql3);
         //dump($scenery);
         //exit;
@@ -35,7 +35,17 @@ class Index extends Base
 
         $activitiesindex = Db::query($activitiessql);
 
+//        查询四个产品表的数据总量
+        $s_num=Db::name('scenery')->count();
+        $r_num=Db::name('route')->count();
+        $f_num=Db::name('food')->count();
+        $h_num=Db::name('hotel')->count();
+
         return view('index/index',[
+            's_num'=>$s_num,
+            'r_num'=>$r_num,
+            'f_num'=>$f_num,
+            'h_num'=>$h_num,
             'foods'=>$food,
             'pics'=>$pic,
             'hotroute'=>$routes,
