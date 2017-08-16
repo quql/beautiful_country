@@ -32,7 +32,7 @@
 
                         <!--总积分-->
                         <input type="hidden" name="point" id="point">
-                    <table class="table table-striped ml20">
+                    <table class="table table-striped ml20" id="addresstable">
                         <tr style="line-height: inherit">
                             <th style="text-align: center" class="col-sm-1"></th>
                             <th style="text-align: center" class="col-sm-3">收货人</th>
@@ -42,11 +42,11 @@
                         {volist name="address" id="a"}
                         <tr style="line-height: 20px">
                             <td style="text-align: center;line-height: 31px">
-                                <input type="radio" name="aid" value="{$a['ua_id']}" class="rid" checked>
+                                <input type="radio" name="aid" value="{$a['ua_id']}" class="rid" checked >
                             </td>
                             <td style="text-align: center;line-height: 31px">{$a['ua_name']}</td>
                             <td style="text-align: center;line-height: 31px">{$a['ua_phone']}</td>
-                            <td style="text-align: center;line-height: 31px">{$a['ua_address']}{$a['ua_street']}</td>
+                            <td style="text-align: center;line-height: 31px" id="address">{$a['ua_address']}{$a['ua_street']}</td>
                         </tr>
                         {/volist}
                     </table>
@@ -182,7 +182,11 @@
 <script>
 //    提交订单时 判断是否有商品被选中
     function checkMsg(){
-        if($(".choose").is(':checked')){
+        var l = $('#addresstable tr').length;
+        if(l <= 1){
+            alert('收货地址不能为空,请去个人中心添加收货地址');
+            return false;
+        }else if($(".choose").is(':checked')){
             return true;
         }else{
             alert('请选择商品');

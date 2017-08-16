@@ -265,8 +265,10 @@ Route::get('qqlogin','index/Login/qqlogin');
 Route::post('qqlogin','index/Login/doqqlogin');
 
 //发送短信
-Route::get('sendmsg','index/Sendmsg/send');
+Route::get('sendmsg/:phone','index/Sendmsg/send');
 
+//网站统计
+Route::get('chartjs', 'admin/count/chartjs');
 return [
 //    '__pattern__' => [
 //        'name' => '\w+',

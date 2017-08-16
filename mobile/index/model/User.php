@@ -42,7 +42,7 @@ class User extends Model
         $res = $user->allowField(true)->update($data,['u_id'=>$id]);
 
     //登录判断用户是否存在
-    public function getUser($data = '')
+    public function judgeUser($data = '')
     {
         $query = new Query();
         $res = $query->name('user')

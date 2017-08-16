@@ -15,8 +15,10 @@ class Hotel extends Base
      */
     public function index()
     {
+        $i = input('get.');
+        dump($i);die;
         //登录用户的id
-        $uid = 1;
+        $uid = input('session.u_id');
 
         //浏览店铺商家的id
         $bid = 15;
@@ -120,7 +122,18 @@ class Hotel extends Base
 
     public function ordertrue()
     {
+        $uid = input('session.u_id');
         $data = cache('hotel_order');
+        //dump($data);die;
+        //增加积分
+        $u = model('userDetail');
+        $op = $u->getPoint($uid)['ud_point'];
+        //dump($op);die;
+        $point = [
+            'ud_point'=>round($data['o_total']/20 + $op),
+        ];
+        $p = $u->updateDetail($uid, $point);
+
         $res = Db::name('hotel_order')->data($data)->insert();
         if($res>0){
             $this->success('支付成功','index/index/index');

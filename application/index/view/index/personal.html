@@ -111,11 +111,12 @@
                                         <div class="col-sm-5 col-sm-offset-1">
                                             <div class="gt_product_left_wrap ml20" style="border: none;margin: 0px 0px -2px;">
                                                 <span>数量:</span>
-                                                <div id="incdec">
-                                                    <input type="text" value="1" readonly="readonly" id="nums" name="num"/>
-                                                    <div class="gt_increment">
-                                                        <button type="button" id="up" >+</button>
-                                                        <button type="button" id="down" > -</button>
+                                                <div class="input-group spinner" data-trigger="spinner" id="spinner">
+                                                    <input type="text" class="form-control ml20" value="1" data-max="99" data-min="1" data-step="1" style="width: 107px;height: 57px" id="num">
+                                                    <div class="input-group-addon" style="background-color: #2dcc70">
+                                                        <a href="javascript:;" class="spin-up" data-spin="up" style="width: 30px;color: #ffffff"><i class="icon-sort-up">+</i></a>
+                                                        <br><br>
+                                                        <a href="javascript:;" class="spin-down" data-spin="down" style="width: 30px;color: #ffffff"><i class="icon-sort-down">-</i></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -210,12 +211,12 @@
                                         {$v['phone']}
                                     </p>
                                 </li>
-                                <li>
-                                    <span>邮箱:</span>
-                                    <p>
-                                        {$v['email']}
-                                    </p>
-                                </li>
+                                <!--<li>-->
+                                    <!--<span>邮箱:</span>-->
+                                    <!--<p>-->
+                                        <!--{$v['email']}-->
+                                    <!--</p>-->
+                                <!--</li>-->
                                 </li>
                                 <li>
                                         <button type="button" class="btn btn-info" id="showCoupon">我的优惠券</button>
@@ -295,7 +296,7 @@
                               <div id="distpicker">
                                   <div class="form-group">
                                       <div style="position: relative;margin-left: 20px;">
-                                          <input id="city-picker3" class="form-control" readonly type="text" value="江苏省/常州市/溧阳市" data-toggle="city-picker" style="width: 400px;overflow: hidden" name="address">
+                                          <input type="text" id="txt_city" class="form-control" name="address" style="width: 408px;" placeholder="请选择省市区地址"/>
                                           <input type="text" class="form-control mt10" style="width: 408px;" maxlength="26" name="street" placeholder="请输入详细街道门牌号" id="addstreet">
                                           <span class="ml30" id="tips8"></span>
                                       </div>
@@ -310,6 +311,12 @@
                       </div>
                   </form>
                   <hr>
+                  <div class="form-group" style="margin-top: 30px">
+                      <label class="col-sm-2 control-label"></label>
+                      <div class="col-sm-3">
+                          <h4><b>收货地址</b></h4>
+                      </div>
+                  </div>
                   <div class="row mt20 col-sm-12">
                       <table class="table table-striped ml20">
                           <tr style="line-height: inherit">
@@ -339,7 +346,7 @@
                 </div>
                 <div class="gt_classes_wrap mt20" id="perForm" style="display: block">
                     {volist name="list" id="v"}
-                    <form class="form-horizontal mt50" action="{:url('index/personal/updateUser')}" method="post">
+                    <form class="form-horizontal mt50" action="{:url('index/personal/updateUser')}" method="post" onsubmit="return checkPer()">
                         <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="id" value="{$v['id']}">
                         <div class="form-group">
@@ -378,17 +385,30 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">手机</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" style="width: 300px;" maxlength="11" placeholder="请输入手机号" name="u_phone" value="{$v['phone']}" id="phone">
+                                <input type="text" class="form-control phone" style="width: 300px;" maxlength="11" placeholder="请输入手机号" name="u_phone" value="{$v['phone']}" id="phone">
                                 <span class="ml30" id="tips2"></span>
+                                <span class="oldphone" style="display: none">{$v['phone']}</span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">邮箱</label>
-                            <div class="col-sm-10">
-                                <input type="email" class="form-control" style="width: 300px;" placeholder="请输入邮箱" name="ud_email" value="{$v['email']}" id="email">
-                                <span class="ml30" id="tips3"></span>
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-8">
+                                <div class="input-group" style="width: 420px;">
+                                    <input type="text" class="form-control oldcode" placeholder="请输入短信验证码" name="oldcode">
+                                    <input type="hidden" id="newcode" name="newcode">
+                                    <span class="input-group-btn" >
+        <button class="btn btn-info" type="button" style="width: 123px;" id="sendCode">发送短信验证码</button>
+      </span>
+                                </div><!-- /input-group -->
                             </div>
                         </div>
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-2 control-label">邮箱</label>-->
+                            <!--<div class="col-sm-10">-->
+                                <!--<input type="email" class="form-control" style="width: 300px;" placeholder="请输入邮箱" name="ud_email" value="{$v['email']}" id="email">-->
+                                <!--<span class="ml30" id="tips3"></span>-->
+                            <!--</div>-->
+                        <!--</div>-->
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-success">确认修改</button>
@@ -476,7 +496,7 @@
                               </tr>
                               {/volist}
                           </table>
-                          　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　{$done->render()}
+                          　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　{$done->render()}
                           {volist name="done" id="v"}
                           <!--<div class="" id="showDetail" style="display: block">-->
                           <figure class="show11" style="display: none">
@@ -530,7 +550,7 @@
                               </tr>
                               {/volist}
                           </table>
-                          　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　{$diliver->render()}
+                          　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　{$diliver->render()}
                           {volist name="diliver" id="v"}
                           <!--<div class="" id="showDetail" style="display: block">-->
                           <figure class="show21" style="display: none">
@@ -584,7 +604,7 @@
                               </tr>
                               {/volist}
                           </table>
-                          　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　{$un->render()}
+                          　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　{$un->render()}
                           {volist name="un" id="v"}
                           <figure class="show31" style="display: none">
                               <img src="/uploads/{$v['o_photo']}" style="width: 60%;">
@@ -619,7 +639,7 @@
             <!--住宿,hotel-->
             <div class="col-md-8" id="hotel" style="display: none;background-color: white">
                 <div class="row">
-                    <table class="table table-hover">
+                    <table class="table table-striped">
                         <caption style="text-align: center"><h3>订单详情</h3></caption>
                         <tr>
                             <th style="text-align: center">下单时间<br>订单号</th>
@@ -635,7 +655,7 @@
                             <!--<th style="text-align: center" class="col-sm-1">操作</th>-->
                         </tr>
                         {volist name="hotels" id="v"}
-                        <tr style="line-height: 20px">
+                        <tr >
                             <td style="text-align: center">{$v['o_time']}<br>{$v['o_order_num']}</td>
                             <!--<td style="text-align: center;width: 50px;">{$v['o_order_num']}</td>-->
                             <td style="text-align: center">{$v['o_gname']}</td>
@@ -805,8 +825,8 @@
             <div class="gt_copyright_des">
                 <p>Copyright © <a href="#">Edu-skill </a> 2016. All rights reserved.</p>
                 <span>Created by: <a href="#">2goodtheme.com</a></span>
-              </div>
-          </div>
+            </div>
+        </div>
       </div>
       <!--Copyright Wrap Start-->
     </footer>
@@ -829,9 +849,15 @@
   <!--地址联动-->
   <script src="/static/app/index/js/jquery.js"></script>
   <script src="/static/app/index/js/bootstrap.js"></script>
-  <script src="/static/app/index/js/city-picker.data.js"></script>
-  <script src="/static/app/index/js/city-picker.js"></script>
+  <!--<script src="/static/app/index/js/city-picker.data.js"></script>-->
+  <!--<script src="/static/app/index/js/city-picker.js"></script>-->
   <script src="/static/app/index/js/main.js"></script>
+    <!--新地址联动-->
+<script src="/static/app/index/js/jquery-1.10.2.js"></script>
+<script src="/static/app/index/js/jquery.city.js"></script>
+<script src="/static/app/index/js/bootstrap.js"></script>
+<!--加减按钮-->
+<script src="/static/app/index/js/jquery.spinner.min.js"></script>
 
 <script>
     //      information
@@ -873,44 +899,33 @@
     });
 
     //      优惠券
-    $('#up').click(function(){
-        if($('#nums').val() >= 99){
-            $('#nums').val(99);
-        }else{
-            $('#nums').val() + 1;
-            console.log($('#nums').val());
-        }
-    });
-
-
-    //            var n = parseInt($('#nums').val());
-    //            var t = $('#choosePoint').val()*n;
-    //            $('#total').html(t);
-
-    //            console.log($('#total').html(t));
-
-
-    $('#down').click(function(){
-        if($('#nums').val() <= 1){
-            $('#nums').val(1);
-        }else{
-            var n = document.getElementById('nums').value;
-//                console.log(n);
-            n = n -1;
-        }
-        var n = parseInt($('#nums').val());
+//    加
+    $('.spin-up').click(function(){
+        var n = parseInt($('#num').val())+1;
         var t = $('#choosePoint').val()*n;
         $('#total').html(t);
-//            console.log($('#total').html(t));
-
+//        console.log(t);
     });
-
-    $('#choosePoint').change(function(){
-        var n = parseInt($('#nums').val());
-        var t = $('#choosePoint').val()*n;
-        $('#total').html(t);
-//            console.log(n);
+//    减
+    $('.spin-down').click(function(){
+        if($('#num').val() <=1){
+            $('#num').val(1);
+            var t = $('#choosePoint').val()*1;
+            $('#total').html(t);
+        }else{
+            var n = parseInt($('#num').val())-1;
+            var t = $('#choosePoint').val()*n;
+            $('#total').html(t);
 //            console.log(t);
+        }
+
+    });
+
+//    改变优惠券类型时触发
+    $('#choosePoint').change(function(){
+        var n = parseInt($('#num').val());
+        var t = $('#choosePoint').val()*n;
+        $('#total').html(t);
     });
 
     //        优惠券模态框点击确认
@@ -925,7 +940,7 @@
 //               用户选择的优惠券类型
             var type = parseInt($('#choosePoint').val());
 //               优惠券数量
-            var n = parseInt($('#nums').val());
+            var n = parseInt($('#num').val());
 //               消耗的总积分
             var total = parseInt($('#total').html());
 //               console.log(id, typeof(id));
@@ -1233,6 +1248,64 @@
             return true;
         }
     }
+
+//    修改个人信息发送短信验证码
+    $('#sendCode').click(function(){
+        n = 30;
+        function time(){
+          if(n <= 1){
+              $('#sendCode').text('发送短信验证码');
+              $('#sendCode').attr('disabled', false);
+              clearTimeout(time);
+              n = 30;
+          }else{
+              n--;
+              $('#sendCode').text(n+'秒后再获取');
+              $('#sendCode').attr('disabled', true);
+              setTimeout(time,1000);
+          }
+//          console.log(n);
+      }
+      time();
+
+        var phone = $('.oldphone').text();
+        $.ajax({
+            type:'get',
+            url:'/sendmsg/'+phone,
+            success:function(data){
+//                console.log(data);
+                if(data['status']){
+                    alert('短信验证码发送成功');
+                    $('#newcode').val(data['string']);
+                }else{
+                    alert('短信验证码发送失败~');
+                }
+            },
+            error:function(){
+                alert('短信验证码发送失败');
+            }
+        });
+    });
+
+//    修改个人信息前验证表单数据
+    function checkPer(){
+        if($('.oldcode').val() == ''){
+            alert('请进行短信验证');
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+//    地址联动
+    $('#txt_city').jcity({
+        urlOrData: '/static/app/index/js/citydata.json',
+        animate: { showClass: 'animated flipInX', hideClass: 'animated flipOutX' },
+        onChoice: function (data) {
+            console.log(data);
+        }
+    });
+
 </script>
 <!--Custom JavaScript-->
 <script src="/static/app/index/js/custom.js"></script>

@@ -12,6 +12,9 @@ class Index extends Base
 {
     public function index()
     {
+        //增加浏览量
+        model('count')->view();
+        model('count')->todayView();
         //查询轮播图
         $pic=Db::name('pic')->where('is_show','1')->select();
         //查询特产美食数据
