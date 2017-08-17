@@ -114,9 +114,9 @@
                                                 <div class="input-group spinner" data-trigger="spinner" id="spinner">
                                                     <input type="text" class="form-control ml20" value="1" data-max="99" data-min="1" data-step="1" style="width: 107px;height: 57px" id="num">
                                                     <div class="input-group-addon" style="background-color: #2dcc70">
-                                                        <a href="javascript:;" class="spin-up" data-spin="up" style="width: 30px;color: #ffffff"><i class="icon-sort-up">+</i></a>
+                                                        <a href="javascript:;" class="spin-up" data-spin="up" style="width: 30px;color: #ffffff">+</a>
                                                         <br><br>
-                                                        <a href="javascript:;" class="spin-down" data-spin="down" style="width: 30px;color: #ffffff"><i class="icon-sort-down">-</i></a>
+                                                        <a href="javascript:;" class="spin-down" data-spin="down" style="width: 30px;color: #ffffff">-</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -497,12 +497,12 @@
                               {/volist}
                           </table>
                           　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　{$done->render()}
-                          {volist name="done" id="v"}
+                          {volist name="done" id="v" key="k"}
                           <!--<div class="" id="showDetail" style="display: block">-->
                           <figure class="show11" style="display: none">
                               <img src="/uploads/{$v['o_photo']}" style="width: 60%;">
                               <figcaption class="gt_listing_rating">
-                                  Paid
+                                  {$k}
                               </figcaption>
                           </figure>
                           <div class="gt_d_classes_des show12" style="display: none">
@@ -519,7 +519,7 @@
                                   <li>{$v['o_time']}</li>
                               </ul>
                               <p>
-                                  评论...........
+                                  <!--评论...........-->
                               </p>
                           </div>
                           {/volist}
@@ -551,12 +551,12 @@
                               {/volist}
                           </table>
                           　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　{$diliver->render()}
-                          {volist name="diliver" id="v"}
+                          {volist name="diliver" id="v" key="k"}
                           <!--<div class="" id="showDetail" style="display: block">-->
                           <figure class="show21" style="display: none">
                               <img src="/uploads/{$v['o_photo']}" style="width: 60%;">
                               <figcaption class="gt_listing_rating">
-                                  Paid
+                                  {$k}
                               </figcaption>
                           </figure>
                           <div class="gt_d_classes_des show22" style="display: none">
@@ -573,7 +573,7 @@
                                   <li>{$v['o_time']}</li>
                               </ul>
                               <p>
-                                  评论...........
+                                  <!--评论...........-->
                               </p>
                           </div>
                           {/volist}
@@ -605,11 +605,11 @@
                               {/volist}
                           </table>
                           　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　{$un->render()}
-                          {volist name="un" id="v"}
+                          {volist name="un" id="v" key="k"}
                           <figure class="show31" style="display: none">
                               <img src="/uploads/{$v['o_photo']}" style="width: 60%;">
                               <figcaption class="gt_listing_rating">
-                                  Paid
+                                  {$k}
                               </figcaption>
                           </figure>
 
@@ -627,7 +627,7 @@
                                   <li>{$v['o_time']}</li>
                               </ul>
                               <p>
-                                  评论...........
+                                  <!--评论...........-->
                               </p>
                           </div>
                           {/volist}
@@ -666,8 +666,8 @@
                             <!--<td style="text-align: center">{$v['inname']}</td>-->
                             <!--<td style="text-align: center">{$v['inphone']}</td>-->
                             <td style="text-align: center">
-                                {if condition="$v['o_status'] eq 0"}未处理
-                                {else}已处理
+                                {if condition="$v['o_status'] eq 0"}未入住
+                                {else}已入住
                                 {/if}
                             </td>
                         </tr>

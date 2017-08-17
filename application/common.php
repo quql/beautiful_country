@@ -83,13 +83,13 @@ function sendTemplateSMS($to,$datas,$tempId)
      // echo "Sending TemplateSMS to $to <br/>";
      $result = $rest->sendTemplateSMS($to,$datas,$tempId);
      if($result == NULL ) {
-        $info['status']=FALSE;
+        $info['status']=false;
         return $info;
          // echo "result error!";
          // break;
      }
      if($result->statusCode!=0) {
-         $info['status']=FALSE;
+         $info['status']=false;
         return $info;
          // echo "error code :" . $result->statusCode . "<br>";
          // echo "error msg :" . $result->statusMsg . "<br>";

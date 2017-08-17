@@ -9,7 +9,7 @@
     <div class="gt_sub_banner_bg default_width">
         <div class="container">
             <div class="gt_sub_banner_hdg  default_width">
-                <h2>路线详情页</h2>
+                <h2>景区详情页</h2>
                 <h6>欢迎来到还没名字的网站~</h6>
             </div>
         </div>
@@ -68,7 +68,7 @@
                           </div>
                       </div>
                   </div>
-                    <form action="{:url('index/cart/index')}" method="post">
+                    <form action="{:url('index/cart/index')}" method="post" onsubmit="return checkMsg()">
 
                         <input type="hidden" name="id" value="{$scenerys['id']}">
                         <input type="hidden" name="type" value="景区门票">
@@ -343,6 +343,16 @@
 
     small.onmouseout = function(){
         big.style.display = 'none';
+    }
+
+    //    提交前检查信息
+    function checkMsg(){
+        if($('#store').text() == 0){
+            alert('商品太热卖完啦,商家正在火速补充库存,敬请期待~')
+            return false;
+        }else{
+            return true;
+        }
     }
 </script>
 {/block}

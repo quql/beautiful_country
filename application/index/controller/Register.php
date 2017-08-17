@@ -45,6 +45,11 @@ class Register extends Base
         $res = Db::table('ml_user_detail')->data($data1)->insert();
         //dump($result);
         if ($result > 0 && $res>0) {
+            //添加数据到统计表
+            model('count')->register();
+            //添加数据到register表
+            model('register')->insert();
+
             //如果添加成功 重定向到首页
             $this->success('恭喜你注册成功，请点击登录', '/');
         } else {

@@ -39,7 +39,8 @@ class User extends Model
     public function updatePass($id = '', $data = '')
     {
         $user = model('user');
-        $res = $user->allowField(true)->update($data,['u_id'=>$id]);
+        $res = $user->allowField(true)->update($data, ['u_id' => $id]);
+    }
 
     //登录判断用户是否存在
     public function judgeUser($data = '')

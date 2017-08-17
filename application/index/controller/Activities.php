@@ -118,6 +118,9 @@ class Activities extends Base
         $result = Db::table('ml_activities_register')->insert($data);
 
             if ($result > 0 ) {
+                //添加数据到活动统计
+                model('count')->active();
+
                 //如果添加提交成功
                 $this->success('报名信息提交成功,商家会尽快给您联系');
             } else {

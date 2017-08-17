@@ -68,7 +68,7 @@
                           </div>
                       </div>
                   </div>
-                    <form action="{:url('index/cart/index')}" method="post">
+                    <form action="{:url('index/cart/index')}" method="post" onsubmit="return checkMsg()">
 
                         <input type="hidden" name="id" value="{$route['id']}">
                         <input type="hidden" name="type" value="旅游路线">
@@ -324,6 +324,8 @@
             $('#new').css('display','block');
             $('#new').html(t);
         });
+
+
     })
 
 
@@ -342,6 +344,16 @@
 
     small.onmouseout = function(){
         big.style.display = 'none';
+    }
+
+    //    提交前检查信息
+    function checkMsg(){
+        if($('#store').text() == 0){
+            alert('商品太热卖完啦,商家正在火速补充库存,敬请期待~')
+            return false;
+        }else{
+            return true;
+        }
     }
 </script>
 {/block}

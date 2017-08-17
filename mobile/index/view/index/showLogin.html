@@ -7,11 +7,13 @@
     <meta name="description" content="" />
     <link rel="stylesheet" href="/static/mobile/css/amazeui.min.css">
     <link rel="stylesheet" href="/static/mobile/css/wap.css?2">
+    <link href="/static/mobile/css/user.css" type="text/css" rel="stylesheet" />
+
     <title>登录</title>
 </head>
 <body>
 <header data-am-widget="header"
-        class="am-header am-header-default" style="background-color: #2dcc70">
+        class="am-header am-header-default" style="background-color: #2a2c2c">
     <div class="am-header-left am-header-nav">
         <a href="{:url('/')}" class="">
 
@@ -53,6 +55,18 @@
         </div>
     </div>
 
+    <div class="am-form-group">
+        <div class="am-u-sm-8 am-u-sm-offset-2">
+            <!--<label class="form-inline">-->
+                <!--<div class="form-inline-input" style="padding-left: 0px;border: 1px solid #cccccc;border-radius:5px">-->
+                    <div class="code-box" id="code-box" style="width: 229px;border-radius:5px">
+                        <p id="test"></p>
+                        <span style="background-color: #ffffff">>>></span>
+                    </div>
+                <!--</div>-->
+            <!--</label>-->
+        </div>
+    </div>
 
     <div class="am-form-group">
         <div class="am-u-sm-8 am-u-sm-offset-2">
@@ -72,13 +86,43 @@
 
 <script src="/static/mobile/js/jquery.min.js"></script>
 <script src="/static/mobile/js/amazeui.min.js"></script>
+<script src="/static/mobile/js/login.js"></script>
 <script>
+//    function w(){
+//        var w = $('#pass').width();
+//        $('#code-box').css('width',w);
+//    }
+//    w();
+
+//    console.log(w);
+
+//    拖动验证码
+    window.addEventListener('load',function(){
+
+        //code是后台传入的验证字符串
+        var code = "jsaidaisd656",
+            codeFn = new moveCode(code);
+
+        //获取当前的code值
+        //console.log(codeFn.getCode());
+
+        //改变code值
+        //code = '46asd546as5';
+        //codeFn.setCode(code);
+
+        //重置为初始状态
+        //codeFn.resetCode();
+    });
     function checkMsg(){
+        var v = $('#test').width();
         if($('#name').val() == ''){
             alert('用户名不能为空');
             return false;
         }else if($('#pass').val() == '') {
             alert('密码不能为空');
+            return false;
+        }else if(v != 229){
+            alert('请拖动验证码进行验证');
             return false;
         }else{
             return true;

@@ -64,7 +64,7 @@
                           </div>
                       </div>
                   </div>
-                    <form action="{:url('index/cart/index')}" method="post">
+                    <form action="{:url('index/cart/index')}" method="post" onsubmit="return checkMsg()">
                         <input type="hidden" name="id" value="{$foods['id']}">
                         <input type="hidden" name="type" value="特产美食">
                         <input type="hidden" name="point" value="{:round($detail['gd_price']/20)}">
@@ -342,6 +342,15 @@
 //        console.log($('#num').val());
 //    });
 
+//    提交前检查信息
+    function checkMsg(){
+        if($('#store').text() == 0){
+            alert('商品太热卖完啦,商家正在火速补充库存,敬请期待~')
+            return false;
+        }else{
+            return true;
+        }
+    }
 </script>
 <script>
     var big = document.getElementById('big');

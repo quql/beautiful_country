@@ -14,7 +14,7 @@ class Index extends Base
     {
         //增加浏览量
         model('count')->view();
-        model('count')->todayView();
+        model('view')->insert();
         //查询轮播图
         $pic=Db::name('pic')->where('is_show','1')->select();
         //查询特产美食数据

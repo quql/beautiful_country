@@ -136,7 +136,14 @@ class Hotel extends Base
 
         $res = Db::name('hotel_order')->data($data)->insert();
         if($res>0){
-            $this->success('支付成功','index/index/index');
+            //添加交易量到统计表
+            model('count')->trade();
+            //添加酒店量到统计表
+            model('count')->hotel();
+            //添加数据到trade统计表
+            model('trade')->insert();
+
+            $this->success('支付成功','index/personal/index');
         }else{
             $this->error('支付失败');
         }

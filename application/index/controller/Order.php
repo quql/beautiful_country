@@ -69,7 +69,7 @@ class Order extends Base
 
         //生成主订单表数据
         $data = [
-          'uid'=>$uid,
+            'uid'=>$uid,
             'aid'=>$i['aid'],
             'total'=>$i['total'],
             'time'=>$time,
@@ -111,6 +111,15 @@ class Order extends Base
            //删除购物车
            $c->delete($v['ca_id']);
 
+           //改变商品类型的交易次数
+           if($v['cid'] == 1){
+               model('count')->scenery();
+           }elseif($v['cid'] == 5){
+                model('count')->route();
+           }elseif($v['cid'] == 6){
+               model('count')->food();
+           }
+
            //改变商品库存
             if($v['cid'] == 5){
                 $table = 'route_detail';
@@ -133,9 +142,9 @@ class Order extends Base
                 'gd_num'=>$n1,
             ];
             db($table)->where('c_gid',$v['ca_gdid'])->update($n2);
+
         }
-        ////dump($a);
-        //die;
+        //dump($a);die;
 
         $o=  model('order');
         $order = $o->saveAll($a);
@@ -143,6 +152,17 @@ class Order extends Base
         //$clean = $c->delete($info['cid']);
         //exit;
         if($order){
+            //添加交易量到统计表
+            model('count')->trade();
+
+            //添加交易金额到统计表
+            $a = model('count')->getTotal()['total'];
+            $data = ['total'=>$a+$i['total']];
+            model('count')->total($data);
+
+            //添加数据到trade统计表
+            model('trade')->insert();
+
             $this->success('支付成功~','index/personal/index');
         }else{
             $this->error('支付失败,请重试~');

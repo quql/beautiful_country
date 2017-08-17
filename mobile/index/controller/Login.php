@@ -12,7 +12,7 @@ class Login extends Controller
     public function doLogin()
     {
         $i = input('post.');
-        //dump($i);
+        //dump($i);die;
         $data = [
             'username'=>$i['username'],
             'pass'=>md5($i['pass']),
@@ -31,9 +31,14 @@ class Login extends Controller
     //退出登录
     public function outLogin()
     {
-        //dump(input('session.u_id'));
-        session('uid',null);
-        $this->success('退出成功', 'index/index/index');
+        $u = input('session.uid');
+        if($u == ''){
+            $this->error('您当前未处于登录状态');
+        }else{
+            session('uid',null);
+            $this->success('退出成功', 'index/index/index');
+        }
+
     }
 
     //qq登录
