@@ -80,47 +80,60 @@
                     </div>
                     <button type="button" class="am-btn am-btn-waring am-round">立即预定</button>
                 </article>
-                <div class="pet_zlnr_pl">
-                    <div class="pet_zlnr_pl_block">
-                        <div class="pet_zlnr_pl_block_l"><img src="/static/mobile/img/qq1.png" alt=""></div>
-                        <div class="pet_zlnr_pl_block_r">TuniuDesign
-                            <span>长滩岛之美丽，有如它的名字，那是长达七公里的银色沙滩。清晨，从小旅馆中散步而出，坐在椰子树下，清凉的海风送来阵阵茉莉花香。</span></div>
+                <div class="pet_comment_list">
+                    <div class="pet_comment_list_wap"><div class="pet_comment_list_title">精彩评论({:count($comment)})</div>
 
+                        <div data-am-widget="tabs" class="am-tabs am-tabs-default pet_comment_list_tab" >
+                            <!--<ul class="am-tabs-nav am-cf pet_comment_list_title_tab">-->
+                            <!--<li class="am-active"><a href="[data-tab-panel-0]">人气好评</a></li>-->
+                            <!--<li class=""><a href="[data-tab-panel-1]">中评</a></li>-->
+                            <!--<li class=""><a href="[data-tab-panel-2]">差评</a></li>-->
+                            <!--</ul>-->
+
+                            {if condition="!empty($comment)"}
+                            <div class="am-tabs-bd pet_pl_list">
+                                <div data-tab-panel-0 class="am-tab-panel am-active">
+                                    {volist name='comment' id='cv'}
+                                    <div class="pet_comment_list_block">
+                                        <div class="pet_comment_list_block_l"><img src="/uploads/headPhoto/{$cv['ud_photo']}" alt=""></div>
+                                        <div class="pet_comment_list_block_r">
+                                            <div class="pet_comment_list_block_r_info">{$cv['u_username']}</div>
+                                            <div class="pet_comment_list_block_r_text">{$cv['c_text']}</div>
+                                            <div class="pet_comment_list_block_r_bottom">
+                                                <div class="pet_comment_list_bottom_info_l">
+                                                    {switch name=$cv['c_score']}
+                                                    {case value="1"}<span class="am-icon-star"></span>{/case}
+                                                    {case value="2"}<span class="am-icon-star"></span><span class="am-icon-star"></span>{/case}
+                                                    {case value="3"}<span class="am-icon-star"></span><span class="am-icon-star"></span><span class="am-icon-star"></span>{/case}
+                                                    {case value="4"}<span class="am-icon-star"></span><span class="am-icon-star"></span><span class="am-icon-star"></span><span class="am-icon-star"></span>{/case}
+                                                    {case value="5"}<span class="am-icon-star"></span><span class="am-icon-star"></span><span class="am-icon-star"></span><span class="am-icon-star"></span><span class="am-icon-star"></span>{/case}
+                                                    {default /}default
+                                                    {/switch}
+                                                </div>
+                                                <div class="pet_comment_list_bottom_info_r">
+                                                    <span>{$cv['c_time']}</span></div>
+                                            </div>
+                                            {if condition="!empty($cv['c_content'])"}
+                                            <div class="pet_comment_list_block_r_bottom">
+                                                <div class="pet_comment_list_bottom_info_l">
+                                                    <span><b>商家回应:　</b>{$cv['c_content']}</span>
+                                                </div>
+                                                <div class="pet_comment_list_bottom_info_r">
+                                                    <span><b>回复时间:　</b>{$cv['c_atime']}</span></div>
+                                            </div>
+                                            {/if}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {/volist}
+                            {else/}
+                            <h2 style="text-align: center">此商品下暂无用户评论哦~~</h2>
+                            {/if}
+                        </div>
                     </div>
-                    <div class="pet_zlnr_pl_block">
-                        <div class="pet_zlnr_pl_block_l"><img src="/static/mobile/img/qq2.png" alt=""></div>
-                        <div class="pet_zlnr_pl_block_r">KiKiWiWi
-                            <span>华丽丽的精美内饰，笑意盈盈的船员，可口的意式风味美食，每天看不完的各类精彩纷呈的风情歌舞表演，一切想象不到的视觉和心灵享受，注定是在那海上意大利的夏天。</span></div>
-
-                    </div>
-                    <div class="pet_zlnr_pl_block">
-                        <div class="pet_zlnr_pl_block_l"><img src="/static/mobile/img/qq3.png" alt=""></div>
-                        <div class="pet_zlnr_pl_block_r">时光待你好
-                            <span>这是楼主第一次写游记，有不足之处还请见谅刚毕业不久，虽然已经进入职场，但是由于习惯了和男朋友每几个月都出去旅行放松一下，这次就申请积攒几天假和男票商量着要去海边转转。</span></div>
-
-                    </div>
-                    <div class="pet_zlnr_pl_block">
-                        <div class="pet_zlnr_pl_block_l"><img src="/static/mobile/img/qq4.png" alt=""></div>
-                        <div class="pet_zlnr_pl_block_r">TuniuDesign
-                            <span>长滩岛之美丽，有如它的名字，那是长达七公里的银色沙滩。清晨，从小旅馆中散步而出，坐在椰子树下，清凉的海风送来阵阵茉莉花香。</span></div>
-
-                    </div>
-
                 </div>
 
-            </div>
-            <div class="pet_article_dowload">
-                <div class="pet_article_dowload_title">关于Amaze UI</div>
-                <div class="pet_article_dowload_content"><div class="pet_article_dowload_triangle"></div>
-                    <div class="pet_article_dowload_ico"><img src="/static/mobile/img/footdon.png" alt=""></div>
-                    <div class="pet_article_dowload_content_font">
-                        Amaze UI 以移动优先（Mobile first）为理念，从小屏逐步扩展到大屏，最终实现所有屏幕适配，适应移动互联潮流。
-                    </div>
-                    <div class="pet_article_dowload_all">
-                        <a href="###" class="pet_article_dowload_Az am-icon-apple"> App store</a>
-                        <a href="###" class="pet_article_dowload_Pg am-icon-android"> Android</a>
-                    </div>
-                </div>
             </div>
         </div>
 

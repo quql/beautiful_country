@@ -267,6 +267,14 @@ Route::post('qqlogin','index/Login/doqqlogin');
 //发送短信
 Route::get('sendmsg','index/Sendmsg/send');
 
+//添加评论
+Route::get('commentcre/:id','index/Comment/create');
+//Route::get('commentshow/:id','index/Comment/read');
+
+//加载商家后台的用户评论列表
+Route::get('usercomment','admin/BusInfo/comment');
+Route::get('buscommentcre/:id','admin/BusInfo/create');
+
 return [
 //    '__pattern__' => [
 //        'name' => '\w+',

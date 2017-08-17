@@ -108,5 +108,55 @@ class BusInfo extends Bus
         }
     }
 
+    /**
+     * 显示用户评论的列表
+     *
+     * @return \think\Response
+     */
+    public function comment()
+    {
+        //获取到缓存中的b_id 查询出对应评论
+        $id=cache('b_id');
+        $sql="select ml_comment.c_score,c_text,c_time,c_cid,c_gname,c_id,ml_bus_comment.c_content,ml_user.u_username FROM ml_comment LEFT JOIN ml_bus_comment ON ml_bus_comment.com_id=ml_comment.c_id LEFT JOIN ml_user ON ml_user.u_id=ml_comment.c_uid WHERE  ml_comment.c_bid=$id  AND ml_comment.is_ban='0'";
+        $res=Db::query($sql);
+        //dump($res);
+        return view('bus/comment', ['res' => $res]);
+
+    }
+    public function create($id){
+        if(!empty($id)){
+            $res['id']=$id;
+            $res['status']=true;
+        }else{
+            $res['status']=false;
+        }
+        return json($res);
+    }
+    /**
+     * 保存商家回复的评论
+     *
+     * @return \think\Response
+     */
+    public function save(Request $request)
+    {
+        //获取表单提交的数据
+        $arr = $request->post();
+        //dump($arr);die;
+        $data = [
+            'c_content' => $arr['content'],
+            'bid' => cache('b_id'),
+            'com_id' => $arr['com_id'],
+            'c_atime' => date('Y-m-d H:i:s')
+        ];
+        //dump($data);
+        $res = Db::name('bus_comment')->insert($data);
+        if ($res) {
+            $this->success('已回复此评论');
+        } else {
+            $this->error('啊偶~~失败了,不要气馁,再来一次');
+        }
+
+    }
+
 
 }
