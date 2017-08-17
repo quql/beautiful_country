@@ -1,11 +1,15 @@
  aa = function (){
-    var hintText={user_email:{hint:"⚠️邮箱是您登录的唯一账号，请谨慎填写",right:"√邮箱格式正确",wrong:"×邮箱格式有误，请重新输入"},
+    var hintText={
+            user_email:{hint:"⚠️邮箱是您登录的唯一账号，请谨慎填写",right:"√邮箱格式正确",wrong:"×邮箱格式有误，请重新输入"},
             user_name:{hint:"⚠️请输入3-12个字符的用户名（包括字母/数字/下划线）",right:"√用户名格式正确",wrong:"×用户名格式有误，请重新输入"},
             name:{hint:"⚠️请输入3-12姓名",right:"√姓名输入正确",wrong:"×姓名输入有误，请重新输入"},
             address:{hint:"⚠️请输入正确地址",right:"√地址输入正确",wrong:"×地址输入有误，请重新输入"},
             weight:{hint:"⚠️请输入物品质量",right:"√物品质量已输入输入",wrong:"×物品质量输入有误，请重新输入"},
-            phone:{hint:"⚠️请输入11位电话号码",right:"√电话号码输入正确",wrong:"×电话号码输入有误，请重新输入"},
+            phone:{hint:"⚠️请输入11位电话号码",right:"√电话号码输入正确",wrong:"×电话号码不合法，请重新输入"},
             id_card:{hint:"⚠️请输入18位身份证号码",right:"√身份证号码输入正确",wrong:"×身份证号码输入有误，请重新输入"},
+
+            smscode:{hint:"请输入4位数字的短信验证码",right:"   ",wrong:"   "},
+
             password:{hint:"⚠️请输入6位以上密码",right:"√密码格式正确",wrong:"×请输入符合格式的密码"},
             repassword:{hint:"⚠️请再次输入密码",right:"√再次输入密码正确",wrong:"×两次输入不一致或密码格式不正确，请重新输入或密码格式不正确"}};
     var regEvent=function(node, event, func){
@@ -61,7 +65,7 @@
             case "info_phone":
             case "send_to_phone":
             case "send_from_phone":
-                flag=/^((\(\d{2,3}\))|(\d{3}\-))?1[3,8,5]{1}\d{9}$/.test(value);
+                flag=/^((\(\d{2,3}\))|(\d{3}\-))?1[3,4,8,7,5]{1}\d{9}$/.test(value);
                 id="phone";
                 break;
             case "id_card":
@@ -70,6 +74,11 @@
             case "weight":
                 flag=/^\d{1,4}$/.test(value);
                 break;
+
+                case "smscode":
+                flag=/^\d{1,4}$/.test(value);
+                break;
+
             default:
                 break;
         }
@@ -131,8 +140,9 @@ function checkuserform()
     var input2 =document.getElementById('phone').value.length;
     var input3 =document.getElementById('password').value.length;
     var input4 =document.getElementById('repassword').value.length;
+    var input5 =document.getElementById('smscode').value.length;
 
-    if(input1==0 || input2==0 || input3==0 || input4==0){
+    if(input1==0 || input2==0 || input3==0 || input4==0 || input5==0){
         alert('每项数据不能为空');
         return false;
     }else{

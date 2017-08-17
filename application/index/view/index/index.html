@@ -27,6 +27,14 @@
     <link href="/static/app/index/css/city-picker.css" rel="stylesheet" type="text/css" />
     <link href="/static/app/index/css/zzsc.css" rel="stylesheet" type="text/css" />
 
+    <!-- 登录注册yjf -->
+    <link href="/static/app/index/css/login-register.css" rel="stylesheet">
+    <!-- Custom Main StyleSheet CSS -->
+    <link href="/static/app/index/css/style.css" rel="stylesheet">
+    <!-- Color CSS -->
+    <link href="/static/app/index/css/color.css" rel="stylesheet">
+    <!-- Responsive CSS -->
+    <link href="/static/app/index/css/responsive.css" rel="stylesheet">
 
     <!--yjf-->
     <!-- <link href="/static/app/index/css/bootstrap.min.css" rel="stylesheet">
@@ -108,29 +116,7 @@
     </style>
 
     <style type="text/css">
-    /*表单提交按钮*/
-    .yjf {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 10px;
-    outline: none;
-    margin-bottom: 5px;
-    border-radius: 5px; }
-
-    input[type=submit],
-    .yjf {
-    display: block;
-    margin: 0 auto;
-    line-height: 20px;
-    font-size: 20px;
-    color: #fff;
-    background: #0f88eb;
-    border: 0; }
-
-    #v_container{
-    margin-top: 30px;
-    margin-bottom: 25px;
-    }
+    
    /* 短信验证码*/
     .wraper{
       padding: 100px;
@@ -159,8 +145,9 @@
       background-color: lightblue;
       color: #eee;
     }
+
   </style>
-    <!--Footer List Wrap end-->
+    <!--yjf 友情链接-->
     <style type="text/css">
 
         .gt_foo_contact_wrap0 {
@@ -203,86 +190,59 @@
 
     </style>
 
+
+    <style type="text/css">
+
+      .gt_login_field input[name="u_phone"] {
+        width: 70%;
+        height: 45px;
+        border-radius: 50px;
+        background-color: #4d4d4d;
+        padding: 8px 10px 8px 60px;
+        color: #f2f2f2;
+        margin-bottom: 15px;
+        }
+
+        .gt_login_field input[name="vcode"] {
+        width: 60%;
+        height: 45px;
+        border-radius: 50px;
+        background-color: #4d4d4d;
+        padding: 8px 10px 8px 60px;
+        color: #f2f2f2;
+        margin-bottom: 15px;
+        }
+
+        #msmbtn{
+        width: 100%;
+        padding: 11px 0px;
+        border-radius: 59px;
+        text-align: center;
+        color: #ffffff;
+        margin-bottom: 15px;
+        }
+
+        .gt_login_field input[type="password"] {
+        width: 100%;
+        height: 45px;
+        border-radius: 50px;
+        background-color: #4d4d4d;
+        padding: 8px 10px 8px 60px;
+        color: #f2f2f2;
+        margin-bottom: 15px;
+    }
+
+    </style>
+
+
     {css href="/static/app/index/css/reset.css"}
     {css href="/static/app/index/css/dashboard.css"}
     {css href="/static/app/index/css/city-picker.css" rel="stylesheet" type="text/css"}
     <!--{!&#45;&#45;三级地址联动&#45;&#45;}-->
     <!--end-yjf-->
 </head>
+
 <body>
-<!--yjf-->
- <!-- 会员登录注册 Modal -->
-<!-- Middle modal -->
-<div class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myMiddleModalLabel">
-  <div class="modal-dialog modal-md" role="document">
-    <div class="modal-content">
-<!--模态框中的内容-->
-<div style="z-index:999">
-  <div class="login_cont">
-    <div class="login_nav">
-      <div class="nav_slider">
-        <a href="#" class="signup focus">注册</a>
-        <a href="#" class="signin">登录</a>
-      </div>
-    </div>
-
-        <form class="form-horizontal" action="{:url('index/Register/doregister')}" method="post"  onsubmit="return checkuserform() && return checkVer()">
-
-          <div class="input_signup active form-group">
-            <input class="input" id="user_name" type="text" aria-label="用户名（包含字母／数字／下划线" placeholder="用户名" name="u_username">
-            <div class="hint">请填写符合格式的用户名</div>
-
-            <input class="input" id="phone" type="text" class="account" aria-label="手机号（仅支持中国大陆）" placeholder="手机号（仅支持中国大陆）" name="u_phone" style="width:180px;"><!-- <button type="button"  style="background:white;">获取验证码</button> -->
-            <button style="display: inline-block;width: 100px" id="msmbtn" class="btn-default btn-sm btn_email">获取验证码</button>
-
-            <div class="hint">请填写手机号</div>
-
-            <input class="input" id="password" type="password" aria-label="密码" placeholder="请输入短信验证码" name="u_smscode">
-            <div class="hint">请填写符合格式的密码</div>
-
-            <input class="input" id="password" type="password" aria-label="密码" placeholder="密码（不少于 6 位）" name="u_password">
-            <div class="hint">请填写符合格式的密码</div>
-
-            <input class="input" id="repassword" type="password" aria-label="密码" placeholder="再次输入密码" name="u_repassword">
-            <div class="hint">请再次输入密码</div>
-
-            <input type="submit" id="submit" class="button yjf" name="button" value="注册">
-            </br>
-          </div>
-        </form>
-
-        <form class="form-horizontal" action="{:url('index/Login/doLogin')}" method="post" name='myUserform' id='myuserformw'onsubmit="return checkuserform() && return checkVer()">
-
-          <div class="input_signin">
-            <input class="input" id="login_user_name" type="text" aria-label="用户名" placeholder="用户名" name="u_username">
-            <div class="hint" >请输入用户名</div>
-            <input class="input" id="login_password" type="password" aria-label="密码" placeholder="密码" name="u_password">
-            <div class="hint">请输入密码</div>
-
-            <div style="float:left"><input type="text" id="code_input" class="input" aria-label="密码" placeholder="请输入验证码" name="u_repassword" style="width:150px;"></div>
-            
-            <div style="float:left;padding-top:5px;"><a id="v_container" style="padding-left:35px;"></a></div>
-            <div class="hint" id="qql">请输入验证码</div>
-            
-
-           <!--  <div><img src="{:captcha_src()}" alt="captcha" /></div> -->
-            <input type="submit" id="button" class="button yjf" name="button" value="登录">
-            </br>
-          </div>
-        </form>
-
-              <font>　　—————其他方式登录—————</font>
-              <br>　　　　　　　　　　
-              　<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101416221&redirect_uri=http://qqlong.top/qqlogin">
-                <img src="/static/app/index/images/qqu.png" class="img-circle" width="30" id="qqimg"　width="30"></a>
-               <br>
-        </div>
-      </div>
-      <!--模态框中的内容结束-->
-    </div>
-  </div>
-</div>
-
 
   <div class="gt_wrapper">
     <!-- Header Wrap Start -->
@@ -372,8 +332,6 @@
                                           <p id='p9' style="padding-left: 15px"></p>
                                           <button style="display: inline-block;width: 100px" class="btn-default btn-sm btn_email">获取验证码</button>
                                       </div>
-
-
                                   </div>
                                   <!--</form>-->
                                   <div class="form-inline">
@@ -411,7 +369,7 @@
             <div class="gt_login_element">
               <!-- <a href="#"><i class="icon-lock"></i>登陆</a> -->
                 {if condition="empty(input('session.u_id'))"}
-                    <a class="btn " data-toggle="modal" data-target=".bs-example-modal-md" ><i class="glyphicon glyphicon-flag"></i>注册/登录</a>
+                    <a href="{:url('index/Register/register')}"><i class="glyphicon glyphicon-flag"></i>注册/登录</a>
                 {else /}
                     <a href="#">欢迎您,{$user.u_username}</a>
                     <a href="{:url('index/index/loginout')}"><i class="glyphicon glyphicon-log-out"></i>退出</a>
@@ -419,7 +377,6 @@
                 {/if}
                 <a href="{:url('admin/BusLogin/index')}"><i class="glyphicon glyphicon-inbox"></i>我的店铺</a>
 
-              
             </div>
           </div>
       </div>
@@ -1575,17 +1532,16 @@
 
     $('#code_input').blur(function(){
      
-        var res = verifyCode.validate(document.getElementById("code_input").value);
-            if(res){
-              $('#qql').css('color','#1DC091').html("√验证码正确");
-              verify =true;
-            }else{
-              // console.log($('#qql'));
-              $('#qql').html("验证码错误");
-              // alert("");
-              verify =false;
-
-            }
+      var res = verifyCode.validate(document.getElementById("code_input").value);
+          if(res){
+            $('#qql').css('color','#1DC091').html("√验证码正确");
+            verify =true;
+          }else{
+            // console.log($('#qql'));
+            $('#qql').html("验证码错误");
+            // alert("");
+            verify =false;
+          }
     });
     function checkVer(){
           if(verify){
@@ -1645,22 +1601,10 @@
             });
         });
 
-        //参数绑定id,cid
-        // function dataRead(data){
-        //   var lis=document.getElementsByClassName('li');
-        //     for(var i=0;i<data.length;i++){
-        //         (function(i){
-        //             lis[i].setAttribute('data-id',data[i].id);
-        //             lis[i].setAttribute('cid',data[i].c_id);
-        //         })(i);
-        //     }
-        // }
-
         function doSearch(str){
             var arr = str.substr(0,2);
            window.location = "/searchover/"+arr;
         }
-
 
         var qqimg=document.getElementById('qqimg');
         qqimg.onmouseover=function(){
@@ -1673,35 +1617,98 @@
 
     <!--搜索JS END-->
 
+
+    <!--yjf 短信验证-->
     <script type="text/javascript">
-        //点击按钮 获取短信验证码
-        $('#msmbtn').click(function () {
-          // alert('qqq');
-          msmAjax();
-          return false;
-        });
 
-        function msmAjax() {
-          $.ajax({
-              type: 'get',
-              url: '/sendmsg',
-              dataType: 'json',
-              success: function (data) {
-                
-                  if (data.status) {
+      function checkPhone(){
+      var phone = document.getElementById('phone').value;
+//       console.log(phone);
+         if(!(/^1[34578]\d{9}$/.test(phone))){
+             // alert("手机号码有误，请重填");
+             // $('#smscode').html("×电话号码不合法，请重新输入");
+             return false;
+         }else{
+             return true;
+         }
+      }
 
-                      alert('短信验证码发送成功')
-                  } else {
-                      alert('短信验证码发送失败')
-                  }
-              },
-              error: function () {
-                  alert('AJAX操作失败');
+        var btn1 = document.getElementById('msmbtn');
+           btn1.onclick = function(){
+               if(!checkPhone()){
+                   return false;
+               }
+               var  phone = document.getElementById('phone').value;
+               m=60;
+               showbtn();
+               send(phone);
+          }
+
+         function showbtn() {
+             var  btn1 = document.getElementById('msmbtn');
+             if (m <= 0) {
+                 btn1.disabled = false;
+                 btn1.innerHTML = '重新获取';
+                 return;
+             }
+             btn1.innerHTML = '重新获取('+m+')';
+             btn1.disabled =true;
+             m--;
+             setTimeout("showbtn()", 1000);
+         }
+
+    sendsmscode ='adsfdxgfhcvjbknbvjhgfsASdsfdghjkl';
+
+    //AjAX请求发送验证码
+    function send(phone){
+      console.log(phone);
+       $.ajax({
+          type:'get',
+           url:'/sendmsg/'+phone,
+           dataType: 'json',
+           success:function(data){
+              if(data.status){
+                  sendsmscode=data['string'];
+                  alert('短信发送成功');
+              }else{
+                  alert('系统错误,请重试');
               }
-          });
-        }
+           },
+           error:function(){
+               alert('AJAX请求失败');
+           }
+       });
+    }
+
+      //验证验证码的正确性
+      
+      // console.log(smscode);
+      // console.log(sendsmscode);
+
+
+      $("#smscode").blur(function(){
+
+            var smscode =document.getElementById('smscode').value;
+            if(smscode==sendsmscode){
+              $('#yjf').css('color','#1DC091').html("√短信验证码正确");
+              return true;
+            }else{
+              $('#yjf').css('color','#EA5A70').html("×短信验证码错误");
+              return false;
+            }
+      });
+
+      function check()
+       {
+          if(!smscode==sendsmscode){
+            return false;
+          }else{
+            return  true;
+          }
+       }
 
     </script>
+   <!--yjf 短信验证-->
 
     {/block}
 </body>

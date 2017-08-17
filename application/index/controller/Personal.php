@@ -5,6 +5,8 @@ namespace app\index\controller;
 use app\index\model\User;
 use think\Controller;
 use think\Request;
+use think\Db;
+use think\db\Query;
 
 class Personal extends Base
 {
@@ -17,6 +19,7 @@ class Personal extends Base
     {
         //用户id
         $id = input('session.u_id');
+        // var_dump($id);die;
         //获取用户基本信息
         $user = model('user');
         $list = $user->getUser($id);
@@ -48,7 +51,20 @@ class Personal extends Base
 
         //加载已完成订单
         $done = $o->done($id);
-      return view('index/personal',[
+
+        //获取用户参加的活动数据
+        $activities_register = Db::name('activities_register')->where('ar_user_id',$id)->select();
+
+        foreach($activities_register as $k=>$v){
+            $q = new Query;
+            // $n[$k] = $q->name('activities')->field('ac_title')->where('id',$v['ar_activities_id'])->find();
+            $activities_register[$k]['qq'] = $q->name('activities')->where('id',$v['ar_activities_id'])->find();
+        }
+        // var_dump($n);
+        // var_dump($activities_register);
+        // die;
+
+        return view('index/personal',[
             'list'=>$list,
             'data'=>$data,
             'money'=>$money,
@@ -56,9 +72,8 @@ class Personal extends Base
             'diliver'=>$diliver,
             'done'=>$done,
             'hotels'=>$hotels,
+            'activities_register'=>$activities_register
         ]);
-
-
     }
 
     /*
@@ -332,8 +347,6 @@ class Personal extends Base
         //}else{
         //    return $this->error('密码不正确,请重试~');
         //}
-
-
     }
 }
 

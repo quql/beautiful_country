@@ -217,4 +217,25 @@ class Activities extends Bus
         $this->assign('acid',$id);
         return view('activities/ActivitiesBusPic');
     }
+
+    public function register($id)
+    {   
+        if (cache('b_name') == null) {
+            $this->redirect("admin/BusLogin/index");
+        }
+
+        // $result = Db::name('activities_register')->where('ar_activities_id',$id)->select();
+        
+        $activities_register_sql = "select ml_activities.id as activities_id,
+        ml_activities.ac_title,ml_activities.ac_abstract,ml_activities.ac_opentime,ml_activities.ac_closetime,ml_activities.ac_spot,ml_activities.ac_host,ml_activities.ac_cate,ml_activities.ac_details,ml_activities.ac_price,ml_activities.ac_status,ml_activities.ac_contain,ml_activities.bus_id,ml_activities.ac_contact,
+        ml_activities_register.id as ar_id,ml_activities_register.ar_opentime,ml_activities_register.ar_closetime,ml_activities_register.ar_amount,ml_activities_register.ar_condinator,ml_activities_register.ar_contact,ml_activities_register.ar_comments,ml_activities_register.ar_bus_id,ml_activities_register.ar_submit_time,ml_activities_register.ar_activities_id,ml_activities_register.ar_user_id 
+        from ml_activities
+        LEFT JOIN ml_activities_register ON ml_activities.id=ml_activities_register.ar_activities_id where ml_activities_register.ar_activities_id = $id ";
+
+        $activities_register = Db::query($activities_register_sql);
+        // var_dump($activities_register);die;
+        $this->assign('activities_register', $activities_register);
+        return view('activities/ActivitiesBusRegisterDatails');
+
+    }
 }

@@ -134,8 +134,8 @@ class Order extends Base
             ];
             db($table)->where('c_gid',$v['ca_gdid'])->update($n2);
         }
-        ////dump($a);
-        //die;
+        // dump($a);
+        // die;
 
         $o=  model('order');
         $order = $o->saveAll($a);

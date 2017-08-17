@@ -7,6 +7,11 @@ use think\Db;
 
 class Register extends Base
 {
+    public function register ()
+    { 
+      return view('index/login-register');
+    }
+    
     public function doRegister(Request $request)
     { 
       $info = $request->post();
