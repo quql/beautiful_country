@@ -35,8 +35,11 @@ class Base extends Controller
         if(!empty(input('session.u_id'))){
             $id = input('session.u_id');
             $user = Db::name('user')->where('u_id',$id)->field('u_id,u_username')->select();
+            $shopcart = Db::name('cart')->field('ca_price,ca_gname,ca_photo')->where('ca_uid',$id)->select();
+//            var_dump($shopcart);
             $user = $user['0'];
             $this->assign('user',$user);
+            $this->assign('shopcart',$shopcart);
         }
     }
 

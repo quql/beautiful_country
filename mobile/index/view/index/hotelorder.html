@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/static/mobile/time/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/static/app/index/css/bootstrap.css">
+    <title>订单确认</title>
+</head>
+<body>
+<div class="row">
+    <div class="col-md-1">
+        <h1>酒店订单确认</h1>
+        <p>酒店名称:{$list.gd_title}</p>
+        <img src="/uploads/{$list.pic}">
+    </div>
+
+    <div class="col-md-1">
+        <p>入住人:{$username}</p>
+        <p>联系方式:{$phone}</p>
+        <p>入住时间:{$inttime}　　　离店时间:{$outtime}</p>
+        <p>共{$days}晚</p>
+        <p>共计:¥{$total}</p>
+    </div>
+    <div class="col-md-1">
+        <form action="{:url('/playtrue')}" method="post">
+            <input type="hidden" name="username" value="{$username}">
+            <input type="hidden" name="phone" value="{$phone}">
+            <input type="hidden" name="inttime" value="{$inttime}">
+            <input type="hidden" name="outtime" value="{$outtime}">
+            <input type="hidden" name="total" value="{$total}">
+            <input type="hidden" name="gid" value="{$list.id}">
+            <button type="submit" class="btn btn-success">确认支付</button>
+            <a href="{:url('/')}"  class="btn btn-danger">取消订单</a>
+        </form>
+    </div>
+</div>
+<div class="row">
+
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="/static/mobile/time/js/date.js"></script>
+
+</body>
+</html>
+

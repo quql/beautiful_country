@@ -1,0 +1,84 @@
+{extend name="index/index" /}
+
+{block name="main"}
+
+    <!--Sub Banner Wrap Start -->
+    <div class="gt_sub_banner_bg default_width">
+        <div class="container">
+            <div class="gt_sub_banner_hdg  default_width">
+                <h2>乡村风景</h2>
+                <h6>Welcome To Country</h6>
+            </div>
+        </div>
+    </div>
+    <!--Sub Banner Wrap End -->
+    <!--Breadcrumb Wrap End -->
+    <div class="gt_breadcrumb_bg default_width">
+        <div class="container">
+            <div class="gt_breadcrumb_wrap default_width">
+                <ul>
+                    <li><a href="{:url('/')}">Home</a></li>
+                    <li><a href="#">{$motive}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Breadcrumb Wrap End -->
+
+    <!--Main Content Wrap Start-->
+    <div class="gt_content_wrap">
+        <!--Blog Grid Wrap Start-->
+        <section class="gt_courses_bg">
+            <div class="container">
+                <div class="row">
+
+
+
+                    {volist name="list" id="v"}
+                    <div class="col-md-4 col-sm-6">
+                        <div class="gt_blog_wrap default_width mb30">
+                            <figure>
+                                <img src="/uploads/{$v.pic}" alt="">
+                                <figcaption class="gt_gallery_style1_des">
+                                    <ul>
+                                        <li><a href="{:url('/goodsdetail',['id'=>$v.id,'bus_id'=>$v.bus_id,'cid'=>$v.c_id])}"><i class="fa fa-link"></i></a></li>
+                                        <li><a href="/uploads/{$v.pic}" data-rel="prettyPhoto"><i class="fa fa-search"></i></a></li>
+                                    </ul>
+                                    <h3>{$v.gd_title}</h3>
+                                </figcaption>
+                            </figure>
+                            <div class="gt_blog_des default_width">
+                                <ul class="gt_event_meta">
+                                    <li><i class="fa fa-calendar"></i>8:00 am-5:00</li>
+                                    <li><i class="fa fa-user"></i>¥{$v.price}</li>
+                                </ul>
+                                <h6><a href="{:url('/goodsdetail',['id'=>$v.id,'bus_id'=>$v.bus_id,'cid'=>$v.c_id])}">{$v.gd_title}</a></h6>
+                                <p>{:mb_substr($v.gd_abstract,0,15)}....</p>
+                            </div>
+                            <a href="{:url('/goodsdetail',['id'=>$v.id,'bus_id'=>$v.bus_id,'cid'=>$v.c_id])}">Read More <i class="fa fa-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    {/volist}
+
+
+
+
+
+
+            </div>
+        </section>
+        <!--Blog Grid Wrap End-->
+    </div>
+    <!--Main Content Wrap End-->
+{/block}
+
+{block name="myjs"}
+<!--Jquery Library-->
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<!--Bootstrap core JavaScript-->
+<!--<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>-->
+<!--Pretty Photo JavaScript-->
+<script src="/static/app/index/js/jquery.prettyPhoto.js"></script>
+<!--Custom JavaScript-->
+<script src="/static/app/index/js/custom.js"></script>
+{/block}

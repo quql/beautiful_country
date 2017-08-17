@@ -9,7 +9,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 
-
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/mobile/index/images/splash/splash-icon.png">
 
     <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/static/mobile/index/images/splash/splash-icon-big.png">
@@ -60,7 +59,6 @@
     <script type="text/javascript" src="/static/mobile/index/scripts/custom.js"></script>
 
 
-
 </head>
 
 <body>
@@ -92,7 +90,7 @@
         <a class="has-submenu" href="#"><i class="fa fa-mobile">登录/注册</i><i class="fa fa-plus"></i></a>
     </li>
     <li class="active-menu">
-        <a href="index/index/index"><i class="fa fa-home"></i>首页<i class="fa fa-circle"></i></a></li>
+        <a href="{:url('/')}"><i class="fa fa-home"></i>首页<i class="fa fa-circle"></i></a></li>
     <li>
 
         <a class="has-submenu" href="#"><i class="fa fa-camera"></i>个人中心<i class="fa fa-plus"></i></a>
@@ -130,7 +128,7 @@
 </div>
 
 <div class="header-clear"></div>
-
+{block name="main"}
 
 
 <div class="slider-container">
@@ -195,7 +193,7 @@
 
     <a href="tel:+1 234 567 890"><i class="fa fa-lock"></i>登录</a>
 
-    <a class="" href="{:url('/listshow',['cid'=>'4'])}"><i class="fa fa-pie-chart"></i>酒店</a>
+    <a class="" href="{:url('/listshow',['cid'=>'4'])}"><i class="fa fa-pie-chart"></i>酒店预订</a>
 
     <a href="contact.html"><i class="fa fa-user"></i>个人中心</a>
 
@@ -598,7 +596,7 @@
 
 <div class="menu-wrapper-background"></div>
 
-
+{/block}
 
 </body>
 

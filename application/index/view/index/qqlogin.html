@@ -18,36 +18,37 @@
     <link rel="stylesheet" href="/static/app/index/public/registered.css">
 </head>
 <body>
-   <div class="row" id="row1">
-       <div class="col-md-2 col-md-offset-1" >
-        <img src="/static/app/index/pic/meili.jpg" class="img-rounded">
-       </div>
-       <div class="col-md-9"></div>
-   </div>
+
    <div class="row" id="row2">
        <div class="col-md-12" >
-        <img src="/static/app/index/pic/xmad_14975874886877_BtyPE.jpg" class="img-rounded" width='100%'>
+        <img src="/static/app/index/pic/1.jpg" class="img-rounded" width='100%'>
        </div>
    </div>
    <div class="row">
        <div class="col-md-4 col-md-offset-3" id="q">
-            <font size="6" color='#F56600'>　请完善您的资料　</font>
+            <font size="6" color='white'>　请完善您的资料　</font>
        </div>
    </div>
    <div class="row" id="row3">
        <div class="col-md-4 col-md-offset-3" id="box">
             <img src="{$photo}">
-            <form action="{:url('/qqlogin')}" method="post" onsubmit="return checkPhone()" >
+            <form action="{:url('/qqlogin')}" method="post" onsubmit="return check()" >
 
             <div class="form-group">
             用户名:<input type="text" name="username" class="form-control" id="exampleInputPassword1" value="{$username}" readonly>
             </div> 
             <div class="form-group">
-            手机号码:<input type="phone" name="phone" class="form-control" id="exampleInputEmail1" placeholder="手机号">
+            手机号码:<input type="phone" name="phone" class="form-control" id="phone" placeholder="手机号">
             <p id="p"></p>
             </div>
+            <div class="form-inline ">
+                验证码:<br>
+                <input type="text" name="vali" class="form-control" id="vail" placeholder="请输入验证码">
+                <button class="btn btn-success " id="add">获取验证码</button>
+                <p id="p"></p>
+            </div>
                 <input type="hidden" name="photo" value="{$photo}">
-            <button type="submit" class="btn btn-warning btn-block" id="btn">确认添加</button>
+            <button type="submit" class="btn btn-warning btn-block" id="btn" >确认添加</button>
             <br>
             <br>
             <br>
@@ -59,20 +60,98 @@
    </div>
         
 
-        </script>
-<script src="/static/app/index/public/js/jquery.min.js"></script>
-<!-- Bootstrap 的JS文件必须在JQ类库文件之后引入,依赖与JQ-->
-<script src="/static/app/index/public/js/bootstrap.min.js"></script>
-<script>
-    function checkPhone(){
-        var phone = document.getElementById('exampleInputEmail1').value;
-        if(!(/^1[34578]\d{9}$/.test(phone))){
-            alert("手机号码有误，请重填");
-            return false;
-        }
-    }
-        
 
-</script>
+   <script>
+   function checkPhone(){
+       var phone = document.getElementById('phone').value;
+//       console.log(phone);
+       if(!(/^1[34578]\d{9}$/.test(phone))){
+           alert("手机号码有误，请重填");
+           return false;
+       }else{
+           return true;
+       }
+   }
+
+   var btn1 = document.getElementById('add');
+   btn1.onclick = function(){
+       if(!checkPhone()){
+           return false;
+       }
+       var  phone = document.getElementById('phone').value;
+       m=60;
+       showbtn();
+       send(phone);
+       //倒计时按钮
+   }
+   function showbtn() {
+       var  btn1 = document.getElementById('add');
+       if (m <= 0) {
+           btn1.disabled = false;
+           btn1.innerHTML = '重新获取';
+           return;
+       }
+       btn1.innerHTML = '重新获取('+m+')';
+       btn1.disabled =true;
+       m--;
+       setTimeout("showbtn()", 1000);
+   }
+   sendvail ='adsfdxgfhcvjbknbvjhgfsASdsfdghjkl';
+   //AjAX请求发送验证码
+    function send(phone){
+       $.ajax({
+          type:'get',
+           url:'/sendmsg/'+phone,
+           dataType: 'json',
+           success:function(data){
+              if(data.status){
+                  sendvail=data['string'];
+                  alert('短信发送成功');
+              }else{
+                  alert('系统错误,请重试');
+              }
+
+           },
+           error:function(){
+               alert('AJAX请求失败');
+           }
+       });
+    }
+
+    //验证验证码的正确性
+   function checkvail()
+   {
+      var vail =document.getElementById('vail').value;
+//      console.log(vail,sendvail);
+      if(vail==sendvail){
+          return true;
+      }
+      alert('验证码错误!!');
+      return false;
+   }
+
+   function check()
+   {
+       if(!checkPhone()){
+//           alert('手机号码不合法');
+           return false;
+       }
+       if(!checkvail()){
+//           alert('验证码不正确');
+           return false;
+       }
+       return  true;
+   }
+
+
+
+
+
+
+
+   </script>
+   <script src="/static/app/index/public/js/jquery.min.js"></script>
+   <!-- Bootstrap 的JS文件必须在JQ类库文件之后引入,依赖与JQ-->
+   <script src="/static/app/index/public/js/bootstrap.min.js"></script>
 </body>
 </html>

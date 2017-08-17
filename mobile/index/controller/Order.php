@@ -6,7 +6,7 @@ use think\Controller;
 use think\Db;
 use think\Request;
 
-class Order extends Controller
+class Order extends Base
 {
     //确认订单
     public function confirm()
@@ -21,8 +21,8 @@ class Order extends Controller
         $address = $a->oneAddress($aid);
 
         static $arr = array();
-        foreach($i as $k =>$v){
-            if($v === 'on'){
+        foreach ($i as $k => $v) {
+            if ($v === 'on') {
                 //dump($v);
                 $arr[] = $k;
             }
@@ -34,14 +34,14 @@ class Order extends Controller
 
         //总价
         $s = 0;
-        foreach($res as $k => $v){
-            $s += $v['ca_price']*$v['ca_num'];
+        foreach ($res as $k => $v) {
+            $s += $v['ca_price'] * $v['ca_num'];
         }
 
-        return view('index/confirm',[
-            'data'=>$res,
-            'address'=>$address[0],
-            's'=>$s,
+        return view('index/confirm', [
+            'data' => $res,
+            'address' => $address[0],
+            's' => $s,
         ]);
     }
 
@@ -52,16 +52,16 @@ class Order extends Controller
 
         $uid = input('session.u_id');
         //生成订单时间
-        $time = date('Y-m-d H:i:s',time());
+        $time = date('Y-m-d H:i:s', time());
         //生成订单号
-        $orderNum = time().rand(10e8,90e8);
+        $orderNum = time() . rand(10e8, 90e8);
 
         //生成主订单表数据
         $data = [
-          'uid'=>$uid,
-            'aid'=>$i['aid'],
-            'total'=>$i['total'],
-            'time'=>$time,
+            'uid' => $uid,
+            'aid' => $i['aid'],
+            'total' => $i['total'],
+            'time' => $time,
         ];
 
         //添加进主表
@@ -72,8 +72,8 @@ class Order extends Controller
 
         //添加进详情表
         static $arr = array();
-        foreach($i as $k =>$v){
-            if($v === ''){
+        foreach ($i as $k => $v) {
+            if ($v === '') {
                 $arr[] = $k;
             }
         }
@@ -83,37 +83,38 @@ class Order extends Controller
         //dump($res);
 
         $a = array();
-        foreach($res as $k=>$v){
-           $a[$k]['o_gid']=$v['ca_gdid'];
-           $a[$k]['o_uid']=$v['ca_uid'];
-           $a[$k]['o_time']=$time;
-           $a[$k]['o_status']=0;
-           $a[$k]['o_num']=$v['ca_num'];
-           $a[$k]['o_price']=$v['ca_price'];
-           $a[$k]['o_order_num']=$orderNum;
-           $a[$k]['o_total']=$v['ca_num']*$v['ca_price'];
-           $a[$k]['o_gname']=$v['ca_gname'];
-           $a[$k]['o_photo']=$v['ca_photo'];
-           $a[$k]['moid']=$mid;
-           $a[$k]['o_cid']=$v['cid'];
-           $a[$k]['o_bid']=$v['bid'];
-           $c->delete($v['ca_id']);
+        foreach ($res as $k => $v) {
+            $a[$k]['o_gid'] = $v['ca_gdid'];
+            $a[$k]['o_uid'] = $v['ca_uid'];
+            $a[$k]['o_time'] = $time;
+            $a[$k]['o_status'] = 0;
+            $a[$k]['o_num'] = $v['ca_num'];
+            $a[$k]['o_price'] = $v['ca_price'];
+            $a[$k]['o_order_num'] = $orderNum;
+            $a[$k]['o_total'] = $v['ca_num'] * $v['ca_price'];
+            $a[$k]['o_gname'] = $v['ca_gname'];
+            $a[$k]['o_photo'] = $v['ca_photo'];
+            $a[$k]['moid'] = $mid;
+            $a[$k]['o_cid'] = $v['cid'];
+            $a[$k]['o_bid'] = $v['bid'];
+            $c->delete($v['ca_id']);
         }
         //dump($a);
 
-        $o=  model('order');
+        $o = model('order');
         $order = $o->saveAll($a);
 
         //$clean = $c->delete($info['cid']);
         //exit;
-        if($order){
-            $this->success('支付成功~','index/index/index');
-        }else{
+        if ($order) {
+            $this->success('支付成功~', 'index/index/index');
+        } else {
             $this->error('支付失败,请重试~');
         }
         //dump($res);
 
     }
+
     /**
      * 处理购物车传递的信息
      *
@@ -126,8 +127,8 @@ class Order extends Controller
 
         //获取用户id
         $uid = input('session.u_id');
-        if(empty($uid)){
-            $this->error('请先登录哦~~~~','index/index/index');
+        if (empty($uid)) {
+            $this->error('请先登录哦~~~~', 'index/index/index');
         }
 
         $d = model('userDetail');
@@ -139,7 +140,7 @@ class Order extends Controller
         $p = $od + $nd;
         //本次订单所获得的积分
         $point = [
-            'ud_point'=>$p,
+            'ud_point' => $p,
         ];
         //执行增加积分
         $p = $d->updateDetail($uid, $point);
@@ -150,13 +151,13 @@ class Order extends Controller
         //判断商品类型
         $type = $info['type'];
 
-        if($type == 'scenery'){
+        if ($type == 'scenery') {
             $s = model('scenery');
             $p = model('sceneryPic');
-        }elseif($type == 'food'){
+        } elseif ($type == 'food') {
             $s = model('food');
             $p = model('foodPic');
-        }elseif($type == 'route'){
+        } elseif ($type == 'route') {
             $s = model('route');
             $p = model('routePic');
         }
@@ -171,25 +172,25 @@ class Order extends Controller
         //dump($photo);
 
         //生成订单时间
-        $time = date('Y-m-d H:i:s',time());
+        $time = date('Y-m-d H:i:s', time());
         //生成订单号
-        $orderNum = time().rand(10e8,90e8);
+        $orderNum = time() . rand(10e8, 90e8);
         //dump($orderNum);
 
         //准成order表字段
         $data = [
-            'o_bid'=>$bid,
-            'o_gid'=>$gid,
-            'o_uid'=>$info['uid'],
-            'o_aid'=>$info['aid'],
-            'o_time'=>$time,
-            'o_status'=>'0',
-            'o_num'=>$info['num'],
-            'o_price'=>$info['price'],
-            'o_total'=>$info['total'],
-            'o_order_num'=>$orderNum,
-            'o_gname'=>$gname,
-            'o_photo'=>$photo,
+            'o_bid' => $bid,
+            'o_gid' => $gid,
+            'o_uid' => $info['uid'],
+            'o_aid' => $info['aid'],
+            'o_time' => $time,
+            'o_status' => '0',
+            'o_num' => $info['num'],
+            'o_price' => $info['price'],
+            'o_total' => $info['total'],
+            'o_order_num' => $orderNum,
+            'o_gname' => $gname,
+            'o_photo' => $photo,
         ];
 
         $o = model('order');
@@ -199,7 +200,7 @@ class Order extends Controller
         $c = model('cart');
         $cart = $c->delete($info['cid']);
 
-        $this->success('支付成功','index/index/index');
+        $this->success('支付成功', 'index/index/index');
 
 
         //return view('')
@@ -209,19 +210,97 @@ class Order extends Controller
     /**
      * 删除指定资源
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \think\Response
      */
     public function delete($id)
     {
         $good = db('order')->delete($id);
 
-        if ($good){
+        if ($good) {
             $info['status'] = true;
-        }else{
+        } else {
             $info['status'] = false;
         }
         return json($info);
         //return json($good);
+    }
+
+    public function hotelpay()
+    {
+        $data = input();
+        $gid = $data['id'];
+        $list = Db::query("select ml_hotel.id,ml_hotel.gd_title,ml_hotel.price,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1' AND ml_hotel.id='$gid'");
+        $list = $list[0];
+        $this->assign('list', $list);
+        return view('index/hotelpay');
+    }
+
+    public function hotelorder()
+    {
+        $data = input();
+//        dump($data);
+        $username = $data['username'];
+        $phone = $data['phone'];
+        $days = $data['days'];
+        $inttime = $data['int'];
+        $outtime = $data['out'];
+
+        $gid = $data['gid'];
+        $list = Db::query("select ml_hotel.id,ml_hotel.gd_title,ml_hotel.price,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1' AND ml_hotel.id='$gid' ");
+        $list = $list[0];
+        $total = $days * $list['price'];
+        $this->assign('username', $username);
+        $this->assign('phone', $phone);
+        $this->assign('inttime', $inttime);
+        $this->assign('outtime', $outtime);
+        $this->assign('days', $days);
+        $this->assign('total', $total);
+        $this->assign('list', $list);
+        return view('index/hotelorder');
+    }
+
+    public function playtrue()
+    {
+        $data = input();
+//        $uid = input('session.u_id');
+        $uid = '4';
+        $time = date('Y-m-d H:i:s',time());
+        $orderNum = time().rand(10e8,90e8);
+        $intime = $data['inttime']. '　to　' .$data['outtime'];
+        $gid=$data['gid'];
+        $list = Db::query("select ml_hotel.id,ml_hotel.gd_title,ml_hotel.bus_id,ml_hotel.price,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1' AND ml_hotel.id='$gid' ");
+        $list = $list[0];
+        $res['o_bid']=$list['bus_id'];
+        $res['o_gid'] =$gid;
+        $res['o_uid']=$uid;
+        $res['o_time']=$time;
+        $res['o_status']='0';
+        $res['o_num']='1';
+        $res['o_price']=$list['price'];
+        $res['o_order_num']=$orderNum;
+        $res['o_total']=$data['total'];
+        $res['o_gname']=$list['gd_title'];
+        $res['o_photo']=$list['pic'];
+        $res['intime']=$intime;
+        $res['inname']=$data['username'];
+        $res['inphone']=$data['phone'];
+//        var_dump($res);
+//        die;
+        $oldstore = Db::name('hotel_detail')->field('gd_store')->where('c_gid',$gid)->find();
+        $num = (int)$oldstore['gd_store'];
+        if($num<=0){
+            $this->error('支付失败,库存不足');
+        }
+        $newstore = $num-1;
+        $upnum = Db::name('hotel_detail')->where('c_gid',$gid)->update(['gd_store'=>$newstore]);
+        $result = Db::name('hotel_order')->data($res)->insert();
+        if($result>0 && $upnum>0){
+            $this->success('支付成功','index/index/index');
+        }else{
+            $this->error('支付失败');
+        }
+
+
     }
 }

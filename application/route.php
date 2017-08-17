@@ -265,7 +265,19 @@ Route::get('qqlogin','index/Login/qqlogin');
 Route::post('qqlogin','index/Login/doqqlogin');
 
 //发送短信
-Route::get('sendmsg','index/Sendmsg/send');
+Route::get('sendmsg/:phone','index/Sendmsg/send');
+
+Route::get('qq','index/Index/qq');
+
+//显示热门景区
+Route::get('sceneryhot','index/Motive/index');
+
+//显示当季主题
+Route::get('scenerymotive','index/Motive/motive');
+
+//显示特价景区
+Route::get('sceneryprice','index/Motive/price');
+
 
 return [
 //    '__pattern__' => [

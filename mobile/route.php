@@ -48,6 +48,15 @@ Route::get('delete/:id','index/Order/delete');
 Route::get('docart/:gid/:cid','index/Cart/index');
 //删除购物车中的商品
 Route::get('delete/:id','index/Cart/delete');
+
+
+//酒店确认支付
+Route::post('playtrue','index/Order/playtrue');
+//酒店预订
+Route::get('hotelpay','index/Order/hotelpay');
+//酒店订单确认
+Route::post('hotelorder','index/Order/hotelorder');
+
 return [
 //    '__pattern__' => [
 //        'name' => '\w+',

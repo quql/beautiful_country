@@ -56,7 +56,7 @@ class Index extends Base
         //判断用户查看的类型
         if($id==4){
             //查询主表字段和封面图片
-           $list = Db::query("select ml_hotel.id,gd_title,gd_abstract,price,c_id,bus_id,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1'");
+            $list = Db::query("select ml_hotel.id,gd_title,gd_abstract,price,c_id,bus_id,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1'");
         }elseif($id==5){
             $list = Db::query("select ml_route.id,gd_title,gd_abstract,price,c_id,bus_id,ml_route_pic.pic from ml_route LEFT JOIN ml_route_pic ON ml_route.id=ml_route_pic.gid where ml_route_pic.is_first='1'");
         }elseif($id==1){
@@ -68,6 +68,14 @@ class Index extends Base
         }
 //        var_dump($list);
 //        die;
+        //景区排行
+        $scylist = Db::query("select ml_scenery.id,gd_title,c_id,bus_id,ml_scenery_detail.gd_view from ml_scenery LEFT JOIN ml_scenery_detail ON ml_scenery.id=ml_scenery_detail.c_gid where  ml_scenery.gd_is_sale='1' ORDER BY ml_scenery_detail.gd_view desc");
+        //酒店专区
+        $hotellist = Db::query("select ml_hotel.id,gd_title,gd_abstract,price,bus_id,c_id,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1' AND ml_hotel.gd_is_sale='1'");
+
+
+        $this->assign('scylist',$scylist);
+        $this->assign('hotellist',$hotellist);
         $this->assign('list',$list);
         return view ('index/list');
     }
@@ -132,7 +140,6 @@ class Index extends Base
         $data =input();
         $id = $data['id'];
         $cateid = $data['cid'];
-
        // 判断用户查看的类型
         if($id==4){
             //查询主表字段和封面图片
@@ -146,10 +153,14 @@ class Index extends Base
         }else{
             return '暂无数据';
         }
+       //景区排行
+        $scylist = Db::query("select ml_scenery.id,gd_title,c_id,bus_id,ml_scenery_detail.gd_view from ml_scenery LEFT JOIN ml_scenery_detail ON ml_scenery.id=ml_scenery_detail.c_gid where  ml_scenery.gd_is_sale='1' ORDER BY ml_scenery_detail.gd_view desc");
+        //酒店专区
+        $hotellist = Db::query("select ml_hotel.id,gd_title,gd_abstract,price,bus_id,c_id,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1' AND ml_hotel.gd_is_sale='1'");
 
-       // var_dump($list);
-       // die;
 
+        $this->assign('scylist',$scylist);
+        $this->assign('hotellist',$hotellist);
         $this->assign('list',$list);
         return view ('index/list');
     }
@@ -201,6 +212,14 @@ class Index extends Base
         if(empty($list)){
             $this->error('没有找到哦~~~','index/index/index');
         }
+        //景区排行
+        $scylist = Db::query("select ml_scenery.id,gd_title,c_id,bus_id,ml_scenery_detail.gd_view from ml_scenery LEFT JOIN ml_scenery_detail ON ml_scenery.id=ml_scenery_detail.c_gid where  ml_scenery.gd_is_sale='1' ORDER BY ml_scenery_detail.gd_view desc");
+        //酒店专区
+        $hotellist = Db::query("select ml_hotel.id,gd_title,gd_abstract,price,bus_id,c_id,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1' AND ml_hotel.gd_is_sale='1'");
+
+
+        $this->assign('scylist',$scylist);
+        $this->assign('hotellist',$hotellist);
         $this->assign('list',$list);
         return view ('index/list');
     }//
@@ -248,7 +267,14 @@ class Index extends Base
                 $list[]=$v;
             }
         }
+        //景区排行
+        $scylist = Db::query("select ml_scenery.id,gd_title,c_id,bus_id,ml_scenery_detail.gd_view from ml_scenery LEFT JOIN ml_scenery_detail ON ml_scenery.id=ml_scenery_detail.c_gid where  ml_scenery.gd_is_sale='1' ORDER BY ml_scenery_detail.gd_view desc");
+        //酒店专区
+        $hotellist = Db::query("select ml_hotel.id,gd_title,gd_abstract,price,bus_id,c_id,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1' AND ml_hotel.gd_is_sale='1'");
 
+
+        $this->assign('scylist',$scylist);
+        $this->assign('hotellist',$hotellist);
         $this->assign('list',$list);
         return view ('index/list');
     }//
@@ -307,5 +333,12 @@ class Index extends Base
         }
 
         return json($result);
+    }
+
+    public function qq()
+    {
+        $this->assign('photo','1.jpg');
+        $this->assign('username','qqq');
+        return view('index/qqlogin');
     }
 }

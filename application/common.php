@@ -83,17 +83,16 @@ function sendTemplateSMS($to,$datas,$tempId)
      // echo "Sending TemplateSMS to $to <br/>";
      $result = $rest->sendTemplateSMS($to,$datas,$tempId);
      if($result == NULL ) {
-        $info['status']=FALSE;
+        $info['status']=false;
         return $info;
          // echo "result error!";
          // break;
      }
      if($result->statusCode!=0) {
-         $info['status']=FALSE;
+         $info['status']=false;
         return $info;
          // echo "error code :" . $result->statusCode . "<br>";
          // echo "error msg :" . $result->statusMsg . "<br>";
-         //TODO 添加错误处理逻辑
      }else{
          // echo "Sendind TemplateSMS success!<br/>";
          // 获取返回信息
@@ -102,6 +101,5 @@ function sendTemplateSMS($to,$datas,$tempId)
          // echo "smsMessageSid:".$smsmessage->smsMessageSid."<br/>";
          $info['status']=true;
          return $info;
-         //TODO 添加成功处理逻辑
      }
 }

@@ -1,22 +1,29 @@
 #row1{
 	margin-top:20px;
 }
-#row2{
-	margin-top:30px;
-}
+/*#row2{*/
+	/*margin-top:30px;*/
+/*}*/
 .form-group{
 	margin-top:30px;
 }
 .form-control{
-	height:50px;
+	height:40px;
 }
 #btn{
 	background: #F46600;
 }
 #box{
-	height:350px;
-	background:white;
+	height: 400px;
+	background-color:rgba(22,33,55,0.2);
 }
 #q{
-	background:white;
+	text-align: center;
+	background-color:rgba(22,33,55,0.2);
 }
+
+#vail{
+	width: 150px;
+}
+
+

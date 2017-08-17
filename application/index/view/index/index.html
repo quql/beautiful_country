@@ -426,59 +426,32 @@
       <div class="gt_menu_bg default_width" >
           <div class="container">
             <!--Logo Wrap Start-->
-            <div class="gt_logo">
-              <a href="#"><img src="" alt="">logo图片</a>
-            </div>
+            <!--<div class="gt_logo">-->
+              <!--<a href="#"><img src="" alt="">logo图片</a>-->
+            <!--</div>-->
             <!--Logo Wrap End-->
             <!--Cart Wrap Start-->
+            {if condition="!empty(input('session.u_id'))"}
             <div class="gt_cart_wrap">
               <a href="{:url('/showCart')}"><i class="fa fa-cart-arrow-down"></i>&nbsp 购物车</a>
                 <div class="gt_cart_list">
                   <ul>
+                      {volist name="shopcart" id="v"}
                       <li>
                           <figure>
-                              <img src="/static/app/index/extra-images/product-02.png" alt="">
-                              <i class="fa fa-remove"></i>
+                              <img src="/uploads/{$v.ca_photo}">
                           </figure>
                           <div class="gt_cart_item_detail">
-                              <p>Lorem ipsum dolor sit amet</p>
-                              <span>$600</span>
+                              <p>{$v.ca_gname}</p>
+                              <span>¥{$v.ca_price}</span>
                           </div>
                       </li>
-                      <li>
-                          <figure>
-                              <img src="/static/app/index/extra-images/product-02.png" alt="">
-                              <i class="fa fa-remove"></i>
-                          </figure>
-                          <div class="gt_cart_item_detail">
-                              <p>Lorem ipsum dolor sit amet</p>
-                              <span>$600</span>
-                          </div>
-                      </li>
-                      <li>
-                          <span class="gt_product">3 Product Added</span>
-                          <span class="gt_product_total">$3000</span>
-                      </li>
-                      <li>
-                          <a class="gt_cart_btn" href="#">View Cart</a>
-                          <a class="gt_cart_btn" href="#">Checkout</a>
-                      </li>
+                      {/volist}
                   </ul>
               </div>
             </div>
+            {/if}
             <!--Logo Wrap End-->
-            <!--Search Wrap Start-->
-            <div class="gt_search_wrap">
-              <span class="search-fld"><i class="fa fa-search"></i></span>
-                <div class="search-wrapper-area">
-                    <form class="search-area">
-                        <input type="text" placeholder="Search Here"/>
-                        <input type="submit" value="Go"/>
-                    </form>
-                    <span class="gt_search_remove_btn"><i class="fa fa-remove"></i></span>
-                </div>
-            </div>
-            <!--Search Wrap End-->
             <!--Navigation Wrap Start-->
             <nav class="gt_navigation" >
               <button class="gt_mobile_menu">
@@ -570,25 +543,25 @@
           <div class="col-md-4 no_padding">
             <div class="gt_banner_service service_bg_1 default_width" style="background-image:url('/static/app/index/images/r2.jpg');">
               <i class="glyphicon glyphicon-fire">热门</i>
-              <h4><a href="#">HOT HOT HOT SPOTS</a></h4>
+              <h4><a href="{:url('/sceneryhot')}">HOT HOT HOT SPOTS</a></h4>
               <p>还没有目标 ? 看过来....</p>
-              <a href="#">显示更多</a>
+              <a href="{:url('/sceneryhot')}">显示更多</a>
             </div>
           </div>
           <div class="col-md-4 no_padding">
             <div class="gt_banner_service service_bg_2 default_width" style="background-image:url('/static/app/index/images/r5.jpg');">
               <i class="glyphicon glyphicon-camera">当季主题</i>
-              <h4><a href="#">THEME OF THE SEASON</a></h4>
+              <h4><a href="{:url('/scenerymotive')}">THEME OF THE SEASON</a></h4>
               <p>拒绝<span class='glyphicon glyphicon-remove'></span><span class='glyphicon glyphicon-remove'></span><span class='glyphicon glyphicon-remove'></span> 宅 </p>
-              <a href="#">显示更多</a>
+              <a href="{:url('/scenerymotive')}">显示更多</a>
             </div>
           </div>
           <div class="col-md-4 no_padding">
             <div class="gt_banner_service service_bg_3 default_width" style="background-image:url('/static/app/index/images/r4.jpg');">
               <i class="glyphicon glyphicon-flash">特价</i>
-              <h4><a href="#">SPECIAL OFFER SECKILL</a></h4>
+              <h4><a href="{:url('/sceneryprice')}">SPECIAL OFFER SECKILL</a></h4>
               <p>走过路过不要错过~~~</p>
-              <a href="#">显示更多</a>
+              <a href="{:url('/sceneryprice')}">显示更多</a>
             </div>
           </div>
         </div>

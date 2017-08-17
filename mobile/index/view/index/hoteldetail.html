@@ -78,7 +78,7 @@
                         </div>
 
                     </div>
-                    <button type="button" class="am-btn am-btn-waring am-round">立即预定</button>
+                    <a href="{:url('/hotelpay',['id'=>$list['0']['c_gid']])}" class="am-btn am-btn-danger am-round"><font color="white">立即预订</font></a>
                 </article>
                 <div class="pet_zlnr_pl">
                     <div class="pet_zlnr_pl_block">
@@ -160,6 +160,12 @@
             $('.pet_more_list').removeClass('pet_more_list_show');
         });
     });
+
+</script>
+
+<script>
+
+    $('.select-time').hotelDate();
 
 </script>
 </body>
