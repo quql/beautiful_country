@@ -37,7 +37,7 @@ class Personal extends Base
         $o = model('order');
         //加载未发货订单
         $un = $o->unOrder($id);
-        //dump($un);
+        //dump($un);die;
 
         //加载已发货订单
         $diliver = $o->diliver($id);
@@ -72,15 +72,20 @@ class Personal extends Base
     {
         $info = input('put.');
         $id = $info['id'];
-        //dump($info
-        //exit;);
+
+        $oldcode = $info['oldcode'];
+        $newcode = $info['newcode'];
+        if($oldcode != $newcode){
+            return $this->error('验证码不正确,请重试~');
+        }
+
         $d1 = [
           'u_username'=>$info['u_username'],
           'u_phone'=>$info['u_phone'],
         ];
         $d2 = [
             'ud_sex'=>$info['ud_sex'],
-            'ud_email'=>$info['ud_email'],
+            //'ud_email'=>$info['ud_email'],
         ];
 
         $user = model('user');

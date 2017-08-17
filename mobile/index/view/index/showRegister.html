@@ -7,12 +7,11 @@
     <meta name="description" content="" />
     <link rel="stylesheet" href="/static/mobile/css/amazeui.min.css">
     <link rel="stylesheet" href="/static/mobile/css/wap.css?2">
-    <link href="/static/mobile/css/user.css" type="text/css" rel="stylesheet" />
     <title>注册</title>
 </head>
 <body>
 <header data-am-widget="header"
-        class="am-header am-header-default" style="background-color: #2dcc70">
+        class="am-header am-header-default" style="background-color: #2a2c2c">
     <div class="am-header-left am-header-nav">
         <a href="{:url('/')}" class="">
 
@@ -56,7 +55,7 @@
     <div class="am-form-group">
         <!--<label class="am-u-sm-2 am-form-label"></label>-->
         <div class="am-u-sm-8 am-u-sm-offset-2">
-            <input type="text" style="border-radius:5px" id="phone" name="phone" placeholder="请输入你的手机号">
+            <input type="text" style="border-radius:5px" id="phone" class="phone" name="phone" placeholder="请输入你的手机号">
         </div>
     </div>
     <div class="am-form-group">
@@ -89,18 +88,22 @@
             <span id="tips4"></span>
         </div>
     </div>
+
     <div class="am-form-group">
+        <!--<label class="am-u-sm-2 am-form-label"></label>-->
+        <div class="am-u-sm-5 am-u-sm-offset-2">
+            <input type="text" style="border-radius:5px;width: 120px;" placeholder="请输入验证码" id="incode">
+        </div>
+        <button type="button" class="am-btn am-btn-secondary" style="border-radius:5px;width: 80px;" id="send">验证码</button>
+        <p style="display: none" id="code"></p>
+    </div>
+    <div class="am-form-group">
+        <!--<label class="am-u-sm-2 am-form-label"></label>-->
         <div class="am-u-sm-8 am-u-sm-offset-2">
-            <label class="form-inline">
-                <div class="form-inline-input" style="padding-left: 0px;border: 1px solid #cccccc;border-radius:5px">
-                    <div class="code-box" id="code-box" style="width:229px;border-radius:5px">
-                        <p id="test"></p>
-                        <span style="background-color: #ffffff">>>></span>
-                    </div>
-                </div>
-            </label>
+            <span id="tips5"></span>
         </div>
     </div>
+
     <div class="am-form-group">
         <div class="am-u-sm-8 am-u-sm-offset-2">
             <button type="submit" style="border-radius:5px;width:230px" class="am-btn am-btn-success">注册</button>
@@ -170,23 +173,46 @@
             }
         });
 
-//        拖动验证码
-        window.addEventListener('load',function(){
+//        修改个人信息发送短信验证码
+        $('#send').click(function(){
+            n = 30;
+            function time(){
+                if(n <= 1){
+                    $('#send').text('验证码');
+                    $('#send').attr('disabled', false);
+                    clearTimeout(time);
+                    n = 30;
+                }else{
+                    n--;
+                    $('#send').text(n);
+                    $('#send').attr('disabled', true);
+                    setTimeout(time,1000);
+                }
+//          console.log(n);
+            }
+            time();
 
-            //code是后台传入的验证字符串
-            var code = "jsaidaisd656",
-                codeFn = new moveCode(code);
-
-            //获取当前的code值
-            //console.log(codeFn.getCode());
-
-            //改变code值
-            //code = '46asd546as5';
-            //codeFn.setCode(code);
-
-            //重置为初始状态
-            //codeFn.resetCode();
+            var phone = $('.phone').val();
+//            console.log(phone);
+            $.ajax({
+                type:'get',
+                url:'/sendmsg/'+phone,
+                success:function(data){
+                    console.log(data);
+                    if(data['status']){
+                        $('#code').text(data['string']);
+                        alert('短信验证码发送成功');
+                    }else{
+                        alert('短信验证码发送失败~');
+                    }
+                },
+                error:function(){
+                    alert('短信验证码发送失败');
+                }
+            });
         });
+
+
 
 
 
@@ -195,7 +221,8 @@
 </script>
 <script>
     function checkMsg(){
-        var v = $('#test').width();
+        var incode = $('#incode').val();
+        console.log(incode);
         if($('#username').val() == ''){
             alert('用户名不能为空');
             return false;
@@ -208,8 +235,11 @@
         }else if($('#secondPass').val() == ''){
             alert('确认密码不能为空');
             return false;
-        }else if(v != 229){
-            alert('请拖动验证码进行验证');
+        }else if(incode == ''){
+            alert('请进行短信验证');
+            return false;
+        }else if(incode != $('code').text()){
+            alert('验证码不正确,请重试');
             return false;
         }else{
             return true;

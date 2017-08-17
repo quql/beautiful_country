@@ -267,6 +267,7 @@ Route::post('qqlogin','index/Login/doqqlogin');
 //发送短信
 Route::get('sendmsg/:phone','index/Sendmsg/send');
 
+
 Route::get('qq','index/Index/qq');
 
 //显示热门景区
@@ -287,6 +288,9 @@ Route::get('commentcre/:id','index/Comment/create');
 Route::get('usercomment','admin/BusInfo/comment');
 Route::get('buscommentcre/:id','admin/BusInfo/create');
 
+
+//网站统计
+Route::get('chartjs', 'admin/count/chartjs');
 return [
 //    '__pattern__' => [
 //        'name' => '\w+',

@@ -24,7 +24,7 @@ class Login extends Base
 
         $id = $has['0']['u_id'];
 
-        if( $data['u_password']==$pass){
+        if( md5($data['u_password'])==$pass){
             session('u_id',"$id");
             $this->success('登录成功','/');
         }else{

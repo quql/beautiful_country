@@ -46,6 +46,7 @@
     <link href="/static/app/admin/js/iCheck/skins/square/red.css" rel="stylesheet">
     <link href="/static/app/admin/js/iCheck/skins/square/blue.css" rel="stylesheet">
     <link href="/static/app/admin/css/toastr.min.css" rel="stylesheet">
+    <link href="/static/app/admin/css/reset.css" rel="stylesheet">
 
     <!--dashboard calendar-->
     <link href="/static/app/admin/css/clndr.css" rel="stylesheet">
@@ -57,6 +58,15 @@
     <link href="/static/app/admin/css/style.css" rel="stylesheet">
     <link href="/static/app/admin/css/style-responsive.css" rel="stylesheet">
 
+    <!--饼状图-->
+    <!--<link href="/static/app/admin/css/default.css" rel="stylesheet">-->
+    <link href="/static/app/admin/css/reset_count.css" rel="stylesheet">
+    <!--总计-->
+    <link rel='stylesheet prefetch' href='/static/app/admin/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="/static/app/admin/css/style.css" media="screen" type="text/css" />
+    <link rel="stylesheet" href="/static/app/admin/css/normalize.css" media="screen" type="text/css" />
+    <!--<link rel="stylesheet" href="/static/app/admin/css/bootstrap.css" media="screen" type="text/css" />-->
+    <!--<link rel="stylesheet" href="/static/app/admin/css/bootstrap.min.css" media="screen" type="text/css" />-->
 
 
 
@@ -191,12 +201,12 @@
                         <li><a href="http://www.weidea.net"> More</a></li>
                     </ul>
                 </li>
-                <li class="menu-list"><a href=""><i class="fa fa-bar-chart-o"></i> <span>Charts</span></a>
+                <li class="menu-list"><a href=""><i class="fa fa-bar-chart-o"></i> <span>网站统计</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="flot_chart.html"> Flot Charts</a></li>
-                        <li><a href="morris.html"> Morris Charts</a></li>
-                        <li><a href="chartjs.html"> Chartjs</a></li>
-                        <li><a href="c3chart.html"> C3 Charts</a></li>
+                        <!--<li><a href="flot_chart.html"> Flot Charts</a></li>-->
+                        <!--<li><a href="morris.html"> Morris Charts</a></li>-->
+                        <li><a href="{:url('/chartjs')}"> 统计</a></li>
+                        <!--<li><a href="c3chart.html"> C3 Charts</a></li>-->
                     </ul>
                 </li>
                 <li class="menu-list"><a href="#"><i class="fa fa-th-list"></i> <span>Data Tables</span></a>

@@ -33,6 +33,8 @@ Route::post('qqlogin','index/Login/doqqlogin');
 
 //显示注册页面
 Route::get('showRegister', 'index/Index/showRegister');
+//发送短信
+Route::get('sendmsg/:phone','index/Sendmsg/send');
 //执行注册
 Route::post('doRegister', 'index/Register/doRegister');
 

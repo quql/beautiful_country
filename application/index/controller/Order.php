@@ -69,7 +69,7 @@ class Order extends Base
 
         //生成主订单表数据
         $data = [
-          'uid'=>$uid,
+            'uid'=>$uid,
             'aid'=>$i['aid'],
             'total'=>$i['total'],
             'time'=>$time,
@@ -111,6 +111,15 @@ class Order extends Base
            //删除购物车
            $c->delete($v['ca_id']);
 
+           //改变商品类型的交易次数
+           if($v['cid'] == 1){
+               model('count')->scenery();
+           }elseif($v['cid'] == 5){
+                model('count')->route();
+           }elseif($v['cid'] == 6){
+               model('count')->food();
+           }
+
            //改变商品库存
             if($v['cid'] == 5){
                 $table = 'route_detail';
@@ -133,9 +142,9 @@ class Order extends Base
                 'gd_num'=>$n1,
             ];
             db($table)->where('c_gid',$v['ca_gdid'])->update($n2);
+
         }
-        ////dump($a);
-        //die;
+        //dump($a);die;
 
         $o=  model('order');
         $order = $o->saveAll($a);
@@ -143,158 +152,25 @@ class Order extends Base
         //$clean = $c->delete($info['cid']);
         //exit;
         if($order){
-            $this->success('支付成功~','index/index/index');
+            //添加交易量到统计表
+            model('count')->trade();
+
+            //添加交易金额到统计表
+            $a = model('count')->getTotal()['total'];
+            $data = ['total'=>$a+$i['total']];
+            model('count')->total($data);
+
+            //添加数据到trade统计表
+            model('trade')->insert();
+
+            $this->success('支付成功~','index/personal/index');
         }else{
             $this->error('支付失败,请重试~');
         }
         //dump($res);
 
     }
-    /**
-     * 处理购物车传递的信息
-     *
-     * @return \think\Response
-     */
-    public function index100()
-    {
 
-        $info = input('post.');
-
-        //获取用户id
-        $uid = input('session.u_id');
-        if(empty($uid)){
-            $this->error('请先登录哦~~~~','index/index/index');
-        }
-
-        $d = model('userDetail');
-        //获取原积分
-        $od = $d->getDetail($uid)[0]['ud_point'];
-        //获取本次积分
-        $nd = $info['point'];
-        //得到最新积分
-        $p = $od + $nd;
-        //本次订单所获得的积分
-        $point = [
-            'ud_point'=>$p,
-        ];
-        //执行增加积分
-        $p = $d->updateDetail($uid, $point);
-
-        //商品id
-        $gid = $info['gid'];
-
-        //判断商品类型
-        $type = $info['type'];
-
-        if($type == 'scenery'){
-            $s = model('scenery');
-            $p = model('sceneryPic');
-        }elseif($type == 'food'){
-            $s = model('food');
-            $p = model('foodPic');
-        }elseif($type == 'route'){
-            $s = model('route');
-            $p = model('routePic');
-        }
-
-        //获取商家id
-        $bid = $s->getDetail($gid)[0]['bus_id'];
-        //dump($s->getDetail($gid));exit;
-        //获取商品名称
-        $gname = $s->getDetail($gid)['0']['gd_title'];
-        //获取商品图片
-        $photo = $p->getPhotos($gid, 1)[0]['pic'];
-        //dump($photo);
-
-        //生成订单时间
-        $time = date('Y-m-d H:i:s',time());
-        //生成订单号
-        $orderNum = time().rand(10e8,90e8);
-        //dump($orderNum);
-
-        //准成order表字段
-        $data = [
-            'o_bid'=>$bid,
-            'o_gid'=>$gid,
-            'o_uid'=>$info['uid'],
-            'o_aid'=>$info['aid'],
-            'o_time'=>$time,
-            'o_status'=>'0',
-            'o_num'=>$info['num'],
-            'o_price'=>$info['price'],
-            'o_total'=>$info['total'],
-            'o_order_num'=>$orderNum,
-            'o_gname'=>$gname,
-            'o_photo'=>$photo,
-        ];
-
-        $o = model('order');
-        $order = $o->insert($data);
-        //dump($order);
-
-        $c = model('cart');
-        $cart = $c->delete($info['cid']);
-
-        $this->success('支付成功','index/index/index');
-
-
-        //return view('')
-    }
-
-    /**
-     * 显示创建资源表单页.
-     *
-     * @return \think\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * 保存新建的资源
-     *
-     * @param  \think\Request  $request
-     * @return \think\Response
-     */
-    public function save(Request $request)
-    {
-        //
-    }
-
-    /**
-     * 显示指定的资源
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function read($id)
-    {
-        //
-    }
-
-    /**
-     * 显示编辑资源表单页.
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * 保存更新的资源
-     *
-     * @param  \think\Request  $request
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * 删除指定资源
