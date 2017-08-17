@@ -17,6 +17,7 @@ class Login extends Base
         // var_dump($has);die;
 
         if(empty($has)){
+
             $this->error('账号或密码错误');
         }
 

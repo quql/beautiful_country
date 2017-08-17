@@ -55,7 +55,7 @@ function https_request($url,$data = null)
 
 function sendTemplateSMS($to,$datas,$tempId)
 {    //短信接口
-     $accountSid= '8a216da85da6adf7015de0943b4514da';
+    $accountSid= '8a216da85da6adf7015de0943b4514da';
 
     //主帐号令牌,对应官网开发者主账号下的 AUTH TOKEN
     $accountToken= 'd24f5b639f7f409388b1469dd99bb119';

@@ -10,7 +10,9 @@ class Sendmsg
     $newArr = array_rand($arr,4);
     $string = implode("",$newArr);
 
+
     $result = sendTemplateSMS("$phone",array("$string",'5'),"1");
+
     if($result['status']){
         $result['string']=$string;
         return json($result);

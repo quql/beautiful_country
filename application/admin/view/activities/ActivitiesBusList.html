@@ -67,6 +67,7 @@
                                 <a class=" btn btn-success" href="{:url('admin/Activities/show',['id'=>$v.id])}">管理活动图片</a>
                                 <a class=" btn btn-primary" href="{:url('admin/Activities/read',['id'=>$v['id']])}">查看活动详情</a>
                                 <button class=" btn btn-danger del-btn" activities-id="{$v.id}" >删除活动</button>
+                                <a class=" btn btn btn-info" href="{:url('admin/Activities/register',['id'=>$v['id']])}">查看报名用户</a>
                             </td>
                         </tr>
                         {/volist}

@@ -144,7 +144,7 @@
                   <li><a href="javascript:void(0);" id="showPersonal"><i class="glyphicon glyphicon-th-list"></i>账户信息</a></li>
                   <li><a href="javascript:void(0);" id="showOrder"><i class="icon-book gt-color"></i>我的订单</a></li>
                   <li><a href="javascript:void(0);" id="showHotel"><i class="glyphicon glyphicon-home"></i>我的住宿</a></li>
-                  <li><a href="javascript:void(0);" id="showFavorite"><i class="fa fa-heart gt-color"></i>我的收藏</a></li>
+                  <li><a href="javascript:void(0);" id="showFavorite"><i class="glyphicon glyphicon-flag"></i>我的活动</a></li>
                   <!--<li><a href="report&achievement.html"><i class="icon-business gt-color"></i>Report &#38; Achievement</a></li>-->
                   <!--<li><a href="profile-setting.html"><i class="icon-three gt-color"></i>Profile Setting</a></li>-->
                   <!--<li><a href="privacy-setting.html"><i class="icon-lock gt-color"></i>Privacy Setting</a></li>-->
@@ -682,32 +682,38 @@
                     </table>
                 </div>
             </div>
-            <!--收藏,favorite-->
-                <div class="col-md-8" id="favorite" style="display: none">
-                    <div class="gt_d_classes_wrap default_width">
-                        <ul class="nav nav-tabs nav-justified" style="background-color: inherit">
-                            <li><a href="javascript:void(0);" class="gt_d_title h4" id="a" style="background-color: #ccc">收藏商品</a></li>
-                            <li><a href="javascript:void(0);" class="gt_d_title h4" id="b">收藏店铺</a></li>
-                        </ul>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-md-4 mt20">
-                            <div class="thumbnail">
-                                <img src="/static/app/index/images/courses-01.jpg" >
-                                <div class="caption">
-                                    <h3>商品名</h3>
-                                    <p>商品简介</p>
-                                    <p>
-                                        <a href="#" class="btn btn-primary" role="button">去店铺看看</a>
-                                        &nbsp&nbsp&nbsp&nbsp&nbsp
-                                        <a href="#" class="btn btn-success" role="button">买买买</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+            <!--活动,favorite-->
+            <div class="col-md-8" id="favorite" style="display: none">
+                <div class="row">
+                    <table class="table table-hover">
+                        <caption style="text-align: center"><h3>活动列表</h3></caption>
+                        <tr>
+                            <th style="text-align: center">活动名称</th>
+                            <th style="text-align: center">活动地点</th>
+                            <th style="text-align: center">活动参加的时间</th>
+                            <th style="text-align: center">报名人数</th>
+                            <th style="text-align: center">报名人姓名</th>
+                            <th style="text-align: center">报名人联系方式</th>
+                            <th style="text-align: center">报名信息备注</th>
+                            <th style="text-align: center">活动提交的时间</th>
+                        </tr>
+                        {volist name="$activities_register" id="ar"}
+                        <tr style="line-height: 20px">
+                            <td style="text-align: center">{$ar['qq']['ac_title']}</td>
+                            <td style="text-align: center">{$ar['qq']['ac_spot']}</td>
+                            <td style="text-align: center">{$ar['ar_opentime']}~{$ar['ar_closetime']}</td>
+                            <td style="text-align: center">{$ar['ar_amount']}</td>
+                            <td style="text-align: center">{$ar['ar_condinator']}</td>
+                            <td style="text-align: center">{$ar['ar_contact']}</td>
+                            <td style="text-align: center">{$ar['ar_comments']}</td>
+                            <td style="text-align: center">{$ar['ar_submit_time']}</td>
+                         </tr>
+                        {/volist}
+                       
+                    </table>
                 </div>
+
+                  
             </div>
 
 

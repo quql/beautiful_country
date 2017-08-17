@@ -10,8 +10,13 @@
 // +----------------------------------------------------------------------
 //动态注册
 use think\Route;
+
+//登录注册
+Route::get('register','index/Register/register');
+
 //节点操作
 Route::post('nodeedit','admin/cate/nodeedit');
+
 Route::get('/','index/index/index');
 
 //分类管理
@@ -80,6 +85,10 @@ Route::resource('Activitiesbuspic', 'admin/Activitiesbuspic');
 
 //平台对活动图片的删除
 Route::resource('Activitiesadminpic', 'admin/Activitiesadminpic');
+
+//商家查看活动报名信息
+Route::get('busactivitiesregister','admin/activities/register');
+
 //商家查看活动图片
 Route::get('Activitiesshow','admin/Activities/show');
 //设置图片封面
@@ -101,6 +110,7 @@ Route::get('/activitieslistshow/:id','index/activities/activitieslistshow');
 Route::get('/activitiesdetailsshow/:id','index/activities/activitiesdetailsshow');
 //活动报名信息
 Route::post('activitiesregister','index/activities/save');
+
 
 
 //前台住宿
