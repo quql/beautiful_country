@@ -47,6 +47,7 @@ Route::get('delete/:id','index/Order/delete');
 //加入购物车
 Route::get('docart/:gid/:cid','index/Cart/index');
 //删除购物车中的商品
+
 Route::get('delete/:id','index/Cart/delete');
 
 
@@ -56,6 +57,10 @@ Route::post('playtrue','index/Order/playtrue');
 Route::get('hotelpay','index/Order/hotelpay');
 //酒店订单确认
 Route::post('hotelorder','index/Order/hotelorder');
+
+Route::get('deletecart/:id','index/Cart/delete');
+//添加评论
+Route::get('create/:id','index/Comment/create');
 
 return [
 //    '__pattern__' => [

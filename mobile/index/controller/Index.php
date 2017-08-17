@@ -77,10 +77,18 @@ class Index extends Base
         $gid = $data['gid'];
 //        var_dump($data);
 ////        die;
+
+        //获取商品评论的内容及用户
+        $sql="select ml_comment.c_score,c_text,c_time,c_gname,ml_user_detail.ud_photo,ml_user.u_username,ml_bus_comment.c_content,c_atime FROM ml_comment LEFT JOIN ml_user_detail ON ml_user_detail.ud_uid=ml_comment.c_uid LEFT JOIN ml_bus_comment ON ml_bus_comment.com_id=ml_comment.c_id LEFT JOIN ml_user ON ml_user.u_id=ml_comment.c_uid WHERE ml_comment.c_cid=$cid AND ml_comment.c_gid=$gid AND ml_comment.is_ban='0' ";
+
+        $comment=Db::query($sql);
+        //dump($comment);die;
+
         if($cid==5){
             $list = Db::query("select ml_route_detail.*,ml_route_pic.pic from ml_route_detail LEFT JOIN ml_route_pic ON ml_route_detail.c_gid=ml_route_pic.gid where ml_route_detail.c_gid='$gid' ");
             $this->assign('list',$list);
             $this->assign('data',$data);
+            $this->assign('comment',$comment);
 //            var_dump($list);
 //            die;
             return view ('index/detail');
@@ -88,17 +96,20 @@ class Index extends Base
             $list = Db::query("select ml_scenery_detail.*,ml_scenery_pic.pic from ml_scenery_detail LEFT JOIN ml_scenery_pic ON ml_scenery_pic.gid=$gid where ml_scenery_detail.c_gid=$gid");
             $this->assign('list',$list);
             $this->assign('data',$data);
+            $this->assign('comment',$comment);
             return view ('index/detail');
         }elseif($cid==6){
             $list = Db::query("select ml_food_detail.*, ml_food_pic.pic from ml_food_detail LEFT JOIN ml_food_pic ON ml_food_detail.c_gid=ml_food_pic.gid where ml_food_detail.c_gid='$gid' ");
             $this->assign('list',$list);
             $this->assign('data',$data);
+            $this->assign('comment',$comment);
             return view ('index/detail');
         }elseif($cid==4){
             $list = Db::query("select ml_hotel_detail.*, ml_hotel_pic.pic from ml_hotel_detail LEFT JOIN ml_hotel_pic ON ml_hotel_detail.c_gid=ml_hotel_pic.gid where ml_hotel_detail.c_gid='$gid' ");
 //            var_dump($list);
 //            die;
             $this->assign('list',$list);
+            $this->assign('comment',$comment);
             return view ('index/hoteldetail');
         }else{
             $this->error('暂无数据');

@@ -39,7 +39,7 @@
                         <tr >
                             <th style="text-align: center">编号</th>
                             <th style="text-align: center">产品</th>
-                            <th style="text-align: center">内容</th>
+                            <th style="text-align: center">用户评论内容</th>
                             <th style="text-align: center">状态</th>
                             <th style="text-align: center">操作</th>
 
@@ -49,14 +49,14 @@
                         {volist name="list" id="v" key="k"}
                         <tr>
                             <td align="center" valign="middle">{$k}</td>
-                            <td align="center" valign="middle">{$v.c_gid}</td>
+                            <td align="center" valign="middle"><a href="{:url('/goodsdetail',['id'=>$v.c_gid,'bus_id'=>$v.c_bid,'cid'=>$v.c_cid])}">{$v.c_gname}</a></td>
                             <td align="center" valign="middle">
-                                <textarea name="" id="" cols="40" rows="1" readonly="readonly">{$v.c_text}</textarea>
+                                <textarea name=""  cols="40" rows="1" readonly="readonly">{$v.c_text}</textarea>
                             </td>
                             <td align="center" valign="middle" id="ban{$v.c_id}">{if condition='($v.is_ban==0)'}已发布{else /}已禁用{/if}</td>
-                            <td class="col-md-4">
-                                <button class=" btn-info btn-sm find-btn" show-id='{$v.c_id}' data-toggle="modal" data-target="#myModal">查看详情
-                                </button>
+                            <td class="col-md-3">
+                                <button class=" btn-info btn-sm find-btn" show-id='{$v.c_id}' data-toggle="modal" data-target="#myModal">查看详情</button>
+                                <!--<a href="{:url('admin/comment/find',['id'=>$v.c_id])}">查看</a>-->
                                 <button class=" btn btn-danger del-btn btn-sm" bin-id="{$v.c_id}">禁用此评论</button>
                             </td>
                         </tr>
@@ -81,21 +81,37 @@
                 <h4 class="modal-title" id="myModalLabel">评价详情</h4>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <label>产品名称:</label><span class="span1"></span>
-                </div>
-                <div class="form-group">
-                    <label>用户:</label><span class="span2"></span>
-                </div>
-                <div class="form-group">
-                    <label>评价内容:</label><br>
-                    <textarea cols="30" rows="2" class="textarea"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>评分:</label><span class="span3"></span>
-                </div>
-                <div class="form-group">
-                    <label>评论时间:</label><span class="span4"></span>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2 " >
+                            <img src="" alt="" class="img img-circle" width="200" style="margin-top: 100px">
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                            <div class="form-group">
+                                <label>用户:　</label><span class="span2"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>产品:　</label><span class="span1"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>评价内容:　</label><br>
+                                <textarea cols="30" rows="2" class="textarea1"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>评分:　</label><span class="span3"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>评论时间:　</label><span class="span4"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>商家答复:　</label><br>
+                                <textarea cols="30" rows="2" class="textarea2"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>答复时间:　</label><span class="span5"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -193,11 +209,14 @@
                 // 遍历模态框
                 if (data.status) {
                     // 图片填充
-                    $('.span1').html(data.c_gid);
-                    $('.span2').html(data.c_uid);
+                    $('.img').attr('src','/uploads/headPhoto/'+data.ud_photo);
+                    $('.span1').html(data.c_gname);
+                    $('.span2').html(data.u_username);
                     $('.span3').html(data.c_score);
                     $('.span4').html(data.c_time);
-                    $('.textarea').html(data.c_text);
+                    $('.textarea1').html(data.c_text);
+                    $('.textarea2').html(data.c_content);
+                    $('.span5').html(data.c_atime);
 
                 } else {
                     alert('数据可能丢失了~~~~');

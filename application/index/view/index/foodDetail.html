@@ -140,7 +140,7 @@
                       <div class="gt_shop_tab_link">
                           <ul id="tabs" data-tabs="tabs">
                               <li class="active"><a data-toggle="tab" href="#product_detail">商品详情</a></li>
-                              <li><a data-toggle="tab" href="#sepecfication">评论</a></li>
+                              <li><a data-toggle="tab" href="#sepecfication">评论({:count($comment)})</a></li>
                               <!--<li><a data-toggle="tab" href="#customer_review">Customer Reviews</a></li>-->
                           </ul>
                       </div>
@@ -153,28 +153,45 @@
                           </div>
                           <div class="tab-pane" id="sepecfication">
                               <div class="gt_shop_tab_des">
-                                  <table class="table table-striped row" style="text-align: center">
-                                      <tr>
-                                          <th style="text-align: center" class="col-sm-1"></th>
-                                          <th style="text-align: center" class="col-sm-2">用户名</th>
-                                          <th style="text-align: center" class="col-sm-6">评论内容</th>
-                                          <th style="text-align: center">好评度</th>
-                                          <th style="text-align: center">评论时间</th>
-                                      </tr>
-                                      <tr>
-                                          <td style="text-align: center">
-                                              <img src="/static/app/index/extra-images/product-01.jpg" class="img-circle" width="70">
-                                          </td>
-                                          <td style="text-align: center;line-height: 77px">老王</td>
-                                          <td style="text-align: center;line-height: 77px">这东西,简直了~</td>
-                                          <td style="text-align: center;line-height: 77px">
-                                              <span class="glyphicon glyphicon-star"></span>
-                                              <span class="glyphicon glyphicon-star"></span>
-                                          </td>
-                                          <td style="text-align: center;line-height: 77px">2017-08-01,12:30:29</td>
-                                      </tr>
-                                  </table>
+                                  {if condition="!empty($comment)"}
+                                  {volist name='comment' id='cv'}
+                                  <div class="container">
+                                      <div class="row">
+                                          <div class="col-md-4" style="text-align: center;margin-top:15px;">
+                                              <div class="col-md-3 col-md-offset-3" >
+                                                  <img src="/uploads/headPhoto/{$cv['ud_photo']}" class="img-circle" width="60">
+                                              </div>
+                                              <div class="col-md-3" style="margin-top:15px;">{$cv['u_username']}</div>
+                                          </div>
+                                          <div class="col-md-3 " style="margin-top:15px;">
+                                              {$cv['c_text']}
+                                          </div>
+                                          <div class="col-md-2 " style="margin-top:15px;">
+                                              {switch name=$cv['c_score']}
+                                              {case value="1"}<span class="glyphicon glyphicon-star"></span>{/case}
+                                              {case value="2"}<span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span>{/case}
+                                              {case value="3"}<span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span>{/case}
+                                              {case value="4"}<span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span>{/case}
+                                              {case value="5"}<span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span>{/case}
+                                              {default /}default
+                                              {/switch}
+                                          </div>
+                                          <div class="col-md-2 " style="margin-top:15px;">
+                                              {$cv['c_time']}
+                                          </div>
+                                      </div>
+                                  </div>
+                                  {if condition="!empty($cv['c_content'])"}
+                                  <div class="row" style="text-align: center;margin-top:15px;border-bottom: 1px solid #333;font-size:12px">
+                                      <div class="col-md-6 col-md-offset-2"><b>商家回应:　</b>{$cv['c_content']}</div>
+                                      <div class="col-md-4"><b>回复时间:　</b>{$cv['c_atime']}</div>
+                                  </div>
 
+                                  {/if}
+                                  {/volist}
+                                  {else/}
+                                  <h2 style="text-align: center">此商品下暂无用户评论哦~~</h2>
+                                  {/if}
                               </div>
                               <nav aria-label="Page navigation" style="margin-left: 940px">
                                   <ul class="pagination">

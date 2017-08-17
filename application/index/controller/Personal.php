@@ -4,6 +4,7 @@ namespace app\index\controller;
 
 use app\index\model\User;
 use think\Controller;
+use think\Db;
 use think\Request;
 
 class Personal extends Base
@@ -48,6 +49,9 @@ class Personal extends Base
 
         //加载已完成订单
         $done = $o->done($id);
+        //dump($done);
+        //die;
+
       return view('index/personal',[
             'list'=>$list,
             'data'=>$data,

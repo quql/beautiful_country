@@ -503,7 +503,7 @@
                             {/volist}
                         </ul>
                     </li>
-                  <li><a href="about-us.html">关于我们</a></li>
+                  <!--<li><a href="about-us.html">关于我们</a></li>-->
                 </ul>
             </nav>
             <!--Navigation Wrap End-->
@@ -569,7 +569,7 @@
       <!--Banner Services Wrap End-->
 
       <!--Explore All Courses Wrap End-->
-      <section class="gt_courses_bg">
+      <section class="gt_courses_bg" >
         <div class="container">
           <!--Heading Wrap Start-->
           <div class="gt_hdg_1 default_width">
@@ -599,11 +599,12 @@
           </div>
           <!--Search Wrap End-->
 {if condition="!empty($hotroute)"}
-            <div class="gt_hdg_1 default_width">
-                <h3>热门线路TOP10</h3>
-                <p >HOT<i class="glyphicon glyphicon-fire">HOT</i> HOT<i class="glyphicon glyphicon-fire">HOT</i> HOT <i class="glyphicon glyphicon-fire">HOT</i>HOT</p>
+            <div style="background:black">
+            <div class="gt_hdg_1 default_width" style="background:black;padding:20px" >
+                <h3 style="color:white">热门线路　TOP10</h3>
+                <p >HOT<i class="glyphicon glyphicon-fire" style="color:white">HOT</i> HOT<i class="glyphicon glyphicon-fire" style="color:#12ff85">HOT</i> HOT <i class="glyphicon glyphicon-fire" style="color:white">HOT</i>HOT</p>
                 <span class="gt_hdg_left"></span>
-                <i class="icon-school"></i>
+                <i class="icon-school" style="color:white"></i>
                 <span class="gt_hdg_right"></span>
             </div>
           <!--Courses List Wrap Start-->
@@ -634,7 +635,7 @@
                       </figure>
                       <div class="gt_course_des default_width">
                           <h5><a href="{:url('/goodsdetail',['id'=>$vroute.c_gid,'bus_id'=>$vroute.bus_id,'cid'=>$vroute.c_id])}">{$vroute.gd_title}</a></h5>
-                          <p>{$vroute.gd_abstract}</p>
+                          <h6>{$vroute.gd_abstract}</h6>
                       </div>
                       <div class="gt_course_bottom default_width">
                           <h5>￥{$vroute.gd_price}<span></span></h5>
@@ -645,87 +646,55 @@
               {/volist}
           </div>
             {/if}
+            </div>
           <!--Courses List Wrap End-->
         </div>
 
       </section>
-      <!--Explore All Courses Wrap Start-->
 
-      <!--Explore All Courses Search Wrap Start-->
-
-       <!--<section class="gt_course_search_bg">-->
-        <!--Heading Wrap Start-->
-        <!--<div class="gt_hdg_1 white_color default_width">-->
-          <!--<h3>理想目的地</h3>-->
-          <!--<p>Aenean commodo ligal geate dolor. Aenan massa. Loren ipsum dolor sit amet,color<br>tetuer adiois elit, aliquam eget nibh etibra</p>-->
-        <!--</div>-->
-        <!--Heading Wrap End-->
-        <!--Explore Search Wrap Start-->
-           <!--<div class="container">
-            <div class="gt_explore_search_wrap default_width">
-              <form class="default_width">
-                 <div class="col-md-3 col-sm-6">
-                     <div class="gt_explore_search">
-                         <select class="find_course_search">
-                             <option>Category</option>
-                             <option>2</option>
-                             <option>3</option>
-                             <option>4</option>
-                         </select>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-sm-6">
-                     <div class="gt_explore_search">
-                         <select class="find_course_search">
-                             <option>Duration</option>
-                             <option>2</option>
-                             <option>3</option>
-                             <option>4</option>
-                         </select>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-sm-6">
-                     <div class="gt_explore_search">
-                         <select class="find_course_search">
-                             <option>Level</option>
-                             <option>2</option>
-                             <option>3</option>
-                             <option>4</option>
-                         </select>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-sm-6">
-                     <div class="gt_explore_search">
-                         <select class="find_course_search">
-                             <option>Keyword</option>
-                             <option>2</option>
-                             <option>3</option>
-                             <option>4</option>
-                         </select>
-                     </div>
-                 </div>
-                 <div class="col-md-12">
-                     <div class="gt_explore_search align_center">
-                         <input type="submit" value="Search Courses" />
-                     </div>
-                 </div>
-             </form>
+        <section class="gt_campus_bg" style="background-color: black">
+            <div class="container">
+                <!--Heading Wrap Start-->
+                <div class="gt_hdg_1 default_width">
+                    <h3 style="color:#2DCC70">精彩活动</h3>
+                    <p id="jchd">^_^ 一个人辣么无聊,来报名团体活动才有意思呦  ^_^_</p>
+                    <span class="gt_hdg_left"></span>
+                    <i class="icon-school" style="color:white "></i>
+                    <span class="gt_hdg_right"></span>
+                </div>
+                <!--Heading Wrap End-->
             </div>
-          </div>-->
-        <!--Explore Search Wrap End-->
-      <!--</section>-->
-      <!--Explore All Courses Search Wrap End-->
 
-      <!--Why Choose Us Wrap Start-->
-        <!--{if condition="!empty($hotscenery)"}-->
-      <section class="gt_choose_bg">
+            <!--Gallery List Wrap Start-->
+            {volist name="activitiesindex" id="v"}
+            <div class="col-md-3 col-sm-6 no_padding">
+                <div class="gt_gallery_style1">
+                    <figure>
+                        <img src="/uploads/{$v['pic']}" style="height:250px" alt="">
+                    </figure>
+                    <div class="gt_gallery_style1_des">
+                        <ul>
+                            <li><a href="{:url('/activitiesdetailsshow/'.$v.activities_id)}"><i class="fa fa-link"></i></a></li>
+                            <li><a href="/uploads/{$v['pic']}" data-rel="prettyPhoto"><i class="fa fa-search"></i></a></li>
+                        </ul>
+                        <h3>{$v['ac_title']}</h3>
+                    </div>
+                </div>
+            </div>
+            {/volist}
+
+            <!--Gallery List Wrap End-->
+        </section>
+
+        {if condition="!empty($hotscenery)"}
+      <section class="gt_choose_bg" >
         <div class="container">
           <!--Heading Wrap Start-->
-          <div class="gt_hdg_1 default_width">
-            <h3>热门景点</h3>
-            <p>还在犹豫,还在纠结,还在迷茫<br>看别人都去了哪里~~~</p>
-              <span class="gt_hdg_left"></span>
-              <i class="icon-school"></i>
+          <div class="gt_hdg_1 default_width" style="background:black;padding:20px;color:white">
+            <h3 style="color:#12ff85">热门景点</h3>
+            <p id="hot">还在犹豫,还在纠结,还在迷茫,看别人都去了哪里~~~</p>
+              <span class="gt_hdg_left" ></span>
+              <i class="icon-school" style="color:white"></i>
               <span class="gt_hdg_right"></span>
           </div>
           <!--Heading Wrap End-->
@@ -737,11 +706,11 @@
                   <!--gt_bg_9/10/11/12/13-->
                   {volist name='hotscenery' id="vsc"}
                 <div class="col-md-6 col-sm-6">
-                  <div class="gt_choose_wrap gt_bg_9 default_width">
-                    <span class="gt_bg_5"><a href="{:url('/goodsdetail',['id'=>$vsc.c_gid,'bus_id'=>$vsc.bus_id,'cid'=>$vsc.c_id])}"><img src="/uploads/{$vsc.pic}" alt="" width="200px" height="100%"></a></span>
+                  <div class="gt_choose_wrap gt_bg_13 default_width" height="130px">
+                    <span class="gt_bg_5"><a href="{:url('/goodsdetail',['id'=>$vsc.c_gid,'bus_id'=>$vsc.bus_id,'cid'=>$vsc.c_id])}"><img src="/uploads/{$vsc.pic}" alt="" width="200px" height="130px"></a></span>
                     <div class="gt_choose_des">
                       <h6><a href="{:url('/goodsdetail',['id'=>$vsc.c_gid,'bus_id'=>$vsc.bus_id,'cid'=>$vsc.c_id])}">{$vsc.gd_title}</a></h6>
-                      <p>{$vsc.gd_abstract}</p>
+                      <!--<p>{$vsc.gd_abstract}</p>-->
                         <p>位于:　{$vsc.b_province}/{$vsc.b_city}/{$vsc.b_area}　<a href="{:url('/busindexshow',['id'=>$vsc.bus_id])}">{$vsc.b_name}</a></p>
 
                     </div>
@@ -751,88 +720,49 @@
               </div>
             </div>
             <div class="col-md-3">
-              <div class="gt_choose_img">
-                <img src="/static/app/index/images/1.jpg" alt="">
+              <div class="gt_choose_img" style="top:0px;left:15px">
+                <img src="/static/app/index/images/hai.jpg" width='340px' height="700px" alt="">
               </div>
             </div>
           </div>
           <!--Choose Us List Wrap End-->
         </div>
       </section>
-        <!--{/if}-->
+        {/if}
 
-      <!--Why Choose Us Wrap End-->
-
-      <!--Campus Life and Activities Wrap Start-->
-      <section class="gt_campus_bg">
-        <div class="container">
-          <!--Heading Wrap Start-->
-          <div class="gt_hdg_1 default_width">
-            <h3>精彩活动</h3>
-            <p id="jchd">^_^ 一个人辣么无聊,来报名团体活动才有意思呦  ^_^_</p>
-              <span class="gt_hdg_left"></span>
-              <i class="icon-school"></i>
-              <span class="gt_hdg_right"></span>
-          </div>
-          <!--Heading Wrap End-->
-        </div>
-
-          <!--Gallery List Wrap Start-->
-           {volist name="activitiesindex" id="v"}
-          <div class="col-md-3 col-sm-6 no_padding">
-            <div class="gt_gallery_style1">
-              <figure>
-                <img src="/uploads/{$v['pic']}" style="height:250px" alt="">
-              </figure>
-              <div class="gt_gallery_style1_des">
-                <ul>
-                  <li><a href="{:url('/activitiesdetailsshow/'.$v.activities_id)}"><i class="fa fa-link"></i></a></li>
-                  <li><a href="/uploads/{$v['pic']}" data-rel="prettyPhoto"><i class="fa fa-search"></i></a></li>
-                </ul>
-                <h3>{$v['ac_title']}</h3>
-              </div>
-            </div>
-          </div>
-          {/volist}
-
-          <!--Gallery List Wrap End-->
-      </section>
-      <!--Campus Life and Activities Wrap End-->
-
-      <!--Facts and Figure Wrap Start-->
       <section class="gt_fact_bg">
         <div class="container">
           <div class="row">
             <div class="col-md-3 col-sm-6">
                   <div class="gt_number_count_wrap gt_bg_14">
-                    <i class="icon-books-stack-from-top-view"></i>
-                    <h4 class="counter"> 排行榜  245 </h4>
+                    <i class="glyphicon glyphicon-picture"></i>
+                    <h4 class="counter"> {$s_num} </h4>
                     <span>+</span>
-                    <h5><a href="#">Courses</a></h5>
+                    <h5><a href="#">scenery</a></h5>
                   </div>
               </div>
               <div class="col-md-3 col-sm-6">
                   <div class="gt_number_count_wrap gt_bg_15">
-                    <i class="icon-avatar"></i>
-                    <h4 class="counter"> 7450 </h4>
+                    <i class="glyphicon glyphicon-road"></i>
+                    <h4 class="counter"> {$r_num} </h4>
                     <span>+</span>
-                    <h5><a href="#">Student Unrolled</a></h5>
+                    <h5><a href="#">route</a></h5>
                   </div>
               </div>
               <div class="col-md-3 col-sm-6">
                   <div class="gt_number_count_wrap gt_bg_16">
-                    <i class="icon-education"></i>
-                    <h4 class="counter"> 350 </h4>
+                    <i class="glyphicon glyphicon-apple"></i>
+                    <h4 class="counter"> {$f_num} </h4>
                     <span>+</span>
-                    <h5><a href="#">Qualified Teacher</a></h5>
+                    <h5><a href="#">food</a></h5>
                   </div>
               </div>
               <div class="col-md-3 col-sm-6">
                   <div class="gt_number_count_wrap gt_bg_17">
-                    <i class="icon-cup-1"></i>
-                    <h4 class="counter"> 289 </h4>
+                    <i class="glyphicon glyphicon-object-align-bottom"></i>
+                    <h4 class="counter"> {$h_num} </h4>
                     <span>+</span>
-                    <h5><a href="#">Awards</a></h5>
+                    <h5><a href="#">hotel</a></h5>
                   </div>
               </div>
           </div>
@@ -905,71 +835,12 @@
                       <img src="/static/app/index/extra-images/testimonial-01.jpg" alt="">
                   </figure>
                   <div class="gt_testimonial_des">
-                      <h5><a href="#">xxxxx</a></h5>
-                      <span>工作于</span>
-                  </div>
-              </div>
-            </div>
-            
-            <div class="item">
-              <div class="gt_testimonial_wrap gt_bg_18">
-                  <p>点评详细内容</p>
-              </div>
-              <div class="gt_testimonial_img">
-                  <figure>
-                      <img src="/static/app/index/extra-images/testimonial-01.jpg" alt="">
-                  </figure>
-                  <div class="gt_testimonial_des">
-                      <h5><a href="#">xxxxx</a></h5>
-                      <span>工作于</span>
+                      <!--<h5><a href="#">xxxxx</a></h5>-->
+                      <!--<span>工作于</span>-->
                   </div>
               </div>
             </div>
 
-            <div class="item">
-              <div class="gt_testimonial_wrap gt_bg_18">
-                  <p>点评详细内容</p>
-              </div>
-              <div class="gt_testimonial_img">
-                  <figure>
-                      <img src="/static/app/index/extra-images/testimonial-01.jpg" alt="">
-                  </figure>
-                  <div class="gt_testimonial_des">
-                      <h5><a href="#">xxxxx</a></h5>
-                      <span>工作于</span>
-                  </div>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="gt_testimonial_wrap gt_bg_18">
-                  <p>点评详细内容</p>
-              </div>
-              <div class="gt_testimonial_img">
-                  <figure>
-                      <img src="/static/app/index/extra-images/testimonial-01.jpg" alt="">
-                  </figure>
-                  <div class="gt_testimonial_des">
-                      <h5><a href="#">xxxxx</a></h5>
-                      <span>工作于</span>
-                  </div>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="gt_testimonial_wrap gt_bg_18">
-                  <p>点评详细内容</p>
-              </div>
-              <div class="gt_testimonial_img">
-                  <figure>
-                      <img src="/static/app/index/extra-images/testimonial-01.jpg" alt="">
-                  </figure>
-                  <div class="gt_testimonial_des">
-                      <h5><a href="#">xxxxx</a></h5>
-                      <span>工作于</span>
-                  </div>
-              </div>
-            </div>
             
           </div>
           <!--Testimonial List Wrap End-->
@@ -1385,6 +1256,7 @@
     // 文字滚动
     var jchd = document.getElementById('jchd');
     var msg = document.getElementById('msg');
+    var hot = document.getElementById('hot');
         setInterval(function (){
             var str = msg.innerHTML;
             var arr = str.split("");
@@ -1403,6 +1275,12 @@
             var estr = str.substr(1);
             document.title = estr + fstr;
         },500);
+        setInterval(function (){
+            var str = hot.innerHTML;
+            var arr = str.split("");
+            arr.push(arr.shift());
+            hot.innerHTML = arr.join("");
+        },100);
 
 
       //验证商户注册的表单

@@ -4,6 +4,7 @@ namespace app\index\controller;
 
 use think\Controller;
 use think\Request;
+use think\Db;
 
 class GoodsDetail extends Base
 {
@@ -22,6 +23,11 @@ class GoodsDetail extends Base
         $cid = $data['cid'];
         //商家ID
         $bid = $data['bus_id'];
+
+        //获取商品评论的内容及用户
+        $sql="select ml_comment.c_score,c_text,c_time,c_gname,ml_user_detail.ud_photo,ml_user.u_username,ml_bus_comment.c_content,c_atime FROM ml_comment LEFT JOIN ml_user_detail ON ml_user_detail.ud_uid=ml_comment.c_uid LEFT JOIN ml_bus_comment ON ml_bus_comment.com_id=ml_comment.c_id LEFT JOIN ml_user ON ml_user.u_id=ml_comment.c_uid WHERE ml_comment.c_cid=$cid AND ml_comment.c_gid=$id AND ml_comment.is_ban='0' ";
+        $comment=Db::query($sql);
+        //dump(count($comment));die;
 
         //判断用户是否登录
         if(!empty(input('session.u_id'))){
@@ -54,6 +60,7 @@ class GoodsDetail extends Base
                 'type'=>$type,
                 'bid'=>$bid,
                 'cid'=>6,
+                'comment'=>$comment
             ]);
 
         }elseif($cid==1){
@@ -80,6 +87,7 @@ class GoodsDetail extends Base
                 'type'=>$type,
                 'bid'=>$bid,
                 'cid'=>1,
+                'comment'=>$comment
             ]);
         }elseif($cid==5){
             //获取路线的基本信息
@@ -105,6 +113,7 @@ class GoodsDetail extends Base
                 'type'=>$type,
                 'bid'=>$bid,
                 'cid'=>5,
+                'comment'=>$comment
             ]);
         }elseif($cid==4){
             //获取商品基本信息
@@ -131,6 +140,7 @@ class GoodsDetail extends Base
                 'type'=>$type,
                 'bid'=>$bid,
                 'cid'=>6,
+                'comment'=>$comment
             ]);
         }
 

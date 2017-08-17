@@ -5,6 +5,9 @@
     <title>我的订单</title>
     <link rel="stylesheet" href="/static/mobile/css/amazeui.min.css">
     <link rel="stylesheet" href="/static/mobile/css/wap.css">
+    <!--<link href="/static/app/index/css/bootstrap.min.css" rel="stylesheet">-->
+    <!--<link href="/static/app/index/css/city-picker.css" rel="stylesheet" type="text/css" />-->
+    <!--<script src="/static/app/index/js/jquery-1.8.3.min.js"></script>-->
     <style>
         body{
             width: 100%;
@@ -71,6 +74,9 @@
                         <td style="text-align: center">{$v['o_total']}</td>
                         <td style="text-align: center">
                             <button class="btn btn-info btn-sm show01">查看</button>
+                            <!--<button class="btn btn-info btn-sm comment"  data-toggle="modal" data-target="#myCommentModal">评价</button>-->
+                            <button class="am-btn am-btn-xs am-btn-primary comment" data-am-modal="{target: '#doc-modal', closeViaDimmer: 0, width:400, height: 325}" oid="{$v['o_id']}">评价</button>
+                            <!--<a href="{:url('index/Comment/create',['id'=>$v['o_id']])}">评价</a>-->
                             <button class="btn btn-danger btn-sm delOrder" oid="{$v['o_id']}">删除</button>
                         </td>
                     </tr>
@@ -97,11 +103,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>{$v['o_time']}</li>
+                        <li>购买时间:{$v['o_time']}</li>
                     </ul>
-                    <p>
-                        评论...........
-                    </p>
                 </div>
                 {/volist}
                 <!--</div>-->
@@ -153,11 +156,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>{$v['o_time']}</li>
+                        <li>购买时间:{$v['o_time']}</li>
                     </ul>
-                    <p>
-                        评论...........
-                    </p>
                 </div>
                 {/volist}
                 <!--</div>-->
@@ -210,9 +210,6 @@
                         </li>
                         <li>{$v['o_time']}</li>
                     </ul>
-                    <p>
-                        评论...........
-                    </p>
                 </div>
                 {/volist}
             </div>
@@ -220,9 +217,83 @@
         </div>
     </div>
 </div>
+
+
+<!--设置头像的模态框-->
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">
+            <h4 class="modal-title" id="gname1"></h4>
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            <form action="{:url('index/Comment/save')}" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <input type="hidden" name='bid' id="bid" value="">
+                    <input type="hidden" name='gid' id="gid" value="">
+                    <input type="hidden" name='cid' id="cid" value="">
+                    <input type="hidden" name='uid' id="uid" value="">
+                    <input type="hidden" name='oid' id="oid" value="">
+                    <input type="hidden" name='gname' id="gname" value="">
+                    <textarea name="content"  cols="40" rows="3" placeholder="请输入评论内容,长度限制在140个字符以内" maxlength="140" noresize></textarea>
+                    <br>
+                    <br>
+                    评分:　
+                    <input type="radio" name='score' value="5" checked>非常好∩_∩
+                    　<input type="radio" name='score' value="4">很好^_^
+                    　<input type="radio" name='score' value="3">好:-D
+                    　<input type="radio" name='score' value="2">一般-_-
+                    　<input type="radio" name='score' value="1">差╯﹏╰
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">提交评价</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--<script src="/static/app/index/js/jquery.js"></script>-->
+<!--<script src="/static/app/index/js/bootstrap.min.js"></script>-->
+<!--<script src="/static/app/index/js/city-picker.data.js"></script>-->
+<!--<script src="/static/app/index/js/city-picker.js"></script>-->
+<!--<script src="/static/app/index/js/main.js"></script>-->
+
 <script src="/static/mobile/js/jquery.min.js"></script>
 <script src="/static/mobile/js/amazeui.min.js"></script>
 <script>
+
+    //商品评价
+    $('.comment').click(function(){
+        //订单的id
+        var id = $(this).attr('oid');
+        //console.log(id);
+        commentAjax(id);
+    });
+    function commentAjax(id){
+        $.ajax({
+            type:'get',
+            url:'/create/'+id,
+            dataType:'json',
+            success:function(data){
+                console.log(data);
+                if(data.status){
+                    $('#gname1').html('商品名称:'+data.gname);
+                    $('#gname').attr('value',data.gname);
+                    $('#gid').attr('value',data.gid);
+                    $('#cid').attr('value',data.cid);
+                    $('#uid').attr('value',data.uid);
+                    $('#bid').attr('value',data.bid);
+                    $('#oid').attr('value',data.oid);
+                }else{
+                    $('.modal-body').html('获取数据失败,请重试');
+                }
+            },
+            error:function(){
+                alert('请求失败');
+            }
+        });
+    }
+
     //      order
     $('#done').click(function(){
         $(this).css('backgroundColor', '#ccc');

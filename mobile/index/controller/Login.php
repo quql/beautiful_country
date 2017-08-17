@@ -18,7 +18,7 @@ class Login extends Controller
             'pass'=>md5($i['pass']),
         ];
         $u = model('User');
-        $res = $u->getUser($data);
+        $res = $u->judgeUser($data);
         //dump($res);die;
         if($res){
             session('uid', $res[0]['u_id']);

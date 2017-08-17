@@ -279,6 +279,14 @@ Route::get('scenerymotive','index/Motive/motive');
 Route::get('sceneryprice','index/Motive/price');
 
 
+//添加评论
+Route::get('commentcre/:id','index/Comment/create');
+//Route::get('commentshow/:id','index/Comment/read');
+
+//加载商家后台的用户评论列表
+Route::get('usercomment','admin/BusInfo/comment');
+Route::get('buscommentcre/:id','admin/BusInfo/create');
+
 return [
 //    '__pattern__' => [
 //        'name' => '\w+',
