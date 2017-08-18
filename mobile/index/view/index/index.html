@@ -95,8 +95,8 @@
 
         <a class="has-submenu" href="{:url('index/Personal/index')}"><i class="fa fa-camera"></i>个人中心<i class="fa fa-plus"></i></a>
 
-
     </li>
+
 
     <li>
 
@@ -105,6 +105,17 @@
         <ul class="submenu">
             {volist name="cate" id="v"}
             <li><a href="{:url('/listshow',['cid'=>$v.id])}"><i class="fa fa-angle-right"></i>{$v.c_name}<i class="fa fa-circle"></i></a></li>
+            {/volist}
+        </ul>
+
+    </li>
+
+     <li>
+
+        <a class="has-submenu" href="#"><i class="fa fa-wechat"></i>活动<i class="fa fa-plus"></i></a>
+        <ul class="submenu">
+            {volist name="activities" id="v"}
+            <li><a href="{:url('/activitieslistshow/'.$v.id)}"><i class="fa fa-angle-right"></i>{$v.ac_name}<i class="fa fa-circle"></i></a></li>
             {/volist}
         </ul>
 

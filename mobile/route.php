@@ -64,6 +64,18 @@ Route::get('deletecart/:id','index/Cart/delete');
 //添加评论
 Route::get('create/:id','index/Comment/create');
 
+
+//活动列表页
+Route::get('activitieslist','index/activities/index');
+//显示不同分类列表页
+Route::get('/activitieslistshow/:id','index/activities/activitieslistshow');
+//活动详情页
+Route::get('/activitiesdetailsshow/:id','index/activities/activitiesdetailsshow');
+//活动报名信息
+Route::post('activitiesregister','index/activities/save');
+
+
+
 return [
 //    '__pattern__' => [
 //        'name' => '\w+',

@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/static/mobile/css/amazeui.min.css">
+    <link rel="stylesheet" href="/static/mobile/css/wap.css">
+    <title>详情页</title>
+</head>
+<body style="background:#ececec">
+<div class="pet_mian" >
+    <div class="pet_head">
+        <header data-am-widget="header"
+                class="am-header am-header-default pet_head_block">
+            <div class="am-header-left am-header-nav ">
+                <a href="javascript:history.go(-1)" class="iconfont pet_head_jt_ico">&#xe601;</a>
+            </div>
+
+            <h1 class="am-header-title pet_article_user">
+                <div class="pet_article_user_info_tab">
+                    <div class="pet_article_user_info_tab_font">
+                        <div class="pet_article_user_info_tab_font_triangle"></div>
+                        <div class="pet_article_user_info_tab_font_center"><i>文章</i><span>16篇</span></div>
+                        <!--         <div class="pet_article_user_info_tab_font_center"><i>涂鸦</i><span>89张</span></div>
+                                <div class="pet_article_user_info_tab_font_center_line"></div>
+                                <div class="pet_article_user_info_tab_font_center"><a href="###">查看全部资料</a></div> -->
+                    </div>
+                </div>
+                <span class="pet_article_user_name">详情页</span>
+            </h1>
+        </header>
+    </div>
+
+
+    <div class="pet_content">
+        <div class="pet_content_block">
+            <article data-am-widget="paragraph" class="am-paragraph am-paragraph-default pet_content_article" data-am-paragraph="{ tableScrollable: true, pureview: true }">
+               
+                {volist name="activitiesdetails" id="details"}
+
+                <h1 align="center" class="pet_article_title" style="margin-bottom:5px;">{$details.ac_title}</h1>
+                <img src="/uploads/{$details.pic}" width="250">
+
+                <hr>
+                <li class="am-g am-list-item-dated">
+                    <h4>活动时间 : <font color="red">{$details.ac_opentime}~{$details.ac_closetime}</font></h4>
+                    <p hidden id="opentime">{$details.ac_opentime}</p>
+                    <p hidden id="closetime">{$details.ac_closetime}</p>
+                </li>
+
+                <li class="am-g am-list-item-dated">
+                    <h4>活动地点 : <font color="red">{$details.ac_spot}</font></h4>
+                </li>
+
+                <li class="am-g am-list-item-dated">
+                    <h4>报名费用 : <font color="red">{$details.ac_price}</font></h4>
+                </li>
+
+                <li class="am-g am-list-item-dated">
+                    <h4>举办方 : <font color="red">{$details.ac_host}</font></h4>
+                </li>
+
+                <li class="am-g am-list-item-dated">
+                    <h4>可报名人数 : <font color="red">{$details.ac_contain}</font></h4>
+                </li>
+
+                <li class="am-g am-list-item-dated">
+                    <h4>咨询热线 : <font color="red">{$details.ac_contact}</font></h4>
+                </li>
+
+                <li class="am-g am-list-item-dated">
+                <h4>活动详情:</h4>
+                <p><font color="black">{$details.ac_details}</font></p>
+                </li>
+
+                {/volist}
+
+
+                <div class="gt_product_button_wrap">
+                    <!-- <button id="signup" onclick="checkSignup()";>我要报名</button> -->
+                     <center><button 
+                      type="button"
+                      class="am-btn am-btn-danger am-round" id="signup"
+                      data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 280}">
+                     我要报名
+                    </button></center>
+                </div>
+
+            </article>
+        </div>
+        <div class="pet_article_footer_info">美丽乡村</div>
+    </div>
+</div>
+
+
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd"><h3>活动报名信息填写</h3>
+      <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+    </div>
+    <div class="am-modal-bd">
+
+    <form action="{:url('/activitiesregister', ['id'=>$details.activities_id])}" method="post" id="form">
+
+           <li class="am-g am-list-item-dated">
+               <h4>参与的活动名称 : <font color="red">{$details.ac_title}</font></h4>
+           </li>
+
+           <li class="am-g am-list-item-dated">
+               <b>请选择报名活动的起始日期 : </b><br>
+               ★开始时间:<input type="date" name="opentime"><br>
+               ★结束时间:<input type="date" name="closetime">
+           </li>
+
+           <li class="am-g am-list-item-dated" style="margin-top:15px;">
+               <b>★请输入参与活动的人数: </b><br>
+               <input type="text" name="amount" placeholder="请输入参与活动的人数">
+           </li>
+
+           <li class="am-g am-list-item-dated" style="margin-top:15px;">
+               <b>★请输入报名人的名字 : </b><br>
+               <input type="text" name="condinator" placeholder="请输入姓名">
+           </li>
+
+           <li class="am-g am-list-item-dated" style="margin-top:15px;">
+               <b>★请输入报名人的联系方式 : </b><br>
+               <input type="text" name="contact" placeholder="请输入联系方式">
+           </li>
+
+           <li class="am-g am-list-item-dated" style="margin-top:15px;">
+               <b>信息备注 : </b><br>
+               <input type="text" name="comments" placeholder="如有备注请在此填写">
+           </li>
+
+          <button type="submit" class="m-btn am-btn-danger am-round">提交</button>
+        </form>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+
+  window.onload = function()
+  { 
+    //当前时间的时间戳
+    var myDate=new Date();
+    var currenttimestamp =myDate.getTime();
+    //活动开始时间的时间戳
+    var opentime = document.getElementById('opentime');
+    var opentimeValue=opentime.innerHTML;
+    var opentimestamp = Date.parse(opentimeValue);
+    //活动结束时间的时间戳
+    var closetime = document.getElementById('closetime');
+    var closetimeValue=closetime.innerHTML;
+    var closetimestamp = Date.parse(closetimeValue);
+    console.log(currenttimestamp);
+    console.log(opentimestamp);
+    console.log(closetimestamp);
+
+    if (currenttimestamp >= closetimestamp) 
+    {
+      // alert("活动已经结束，无法报名");
+      var signup = document.getElementById("signup");
+
+      var signupText = document.getElementById("signup").innerHTML = '活动已经结束，无法参加';
+       signup.setAttribute('disabled','disabled');
+       console.log(signup);
+      return;
+
+    } 
+    if (currenttimestamp <= opentimestamp) 
+    {
+      var signupText = document.getElementById("signup").innerHTML = '活动还未开始，可提前点我报名';
+      return;
+    } 
+
+    if (currenttimestamp >= opentimestamp && currenttimestamp <= closetimestamp) 
+    {
+       var signupText = document.getElementById("signup").innerHTML = '活动进行中，点我报名吧';
+      return;
+    } 
+
+  }; 
+
+</script>
+
+<script type="text/javascript">
+
+    $("#form").submit(function(e){
+          // alert("Submitted");
+          // return false;
+        });
+    
+</script>
+
+<script src="/static/mobile/js/jquery.min.js"></script>
+<script src="/static/mobile/js/amazeui.min.js"></script>
+
+</body>
+</html>

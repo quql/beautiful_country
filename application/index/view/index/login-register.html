@@ -119,12 +119,12 @@
   //1.用户名合法性验证
   function sub1(){
     var sub11=$("#sub11").val();
-    if (/^\w{6,12}$/.test(sub11)){
+    if (/^\w{4,12}$/.test(sub11)){
       $('#sub1').html('√用户名格式正确');
       $('#sub1').css('color','green');
       return true;
     }else{
-      $('#sub1').html('× 请输入6-12位的数字、字母或下划线组成的名字');
+      $('#sub1').html('× 请输入4-12位的数字、字母或下划线组成的名字');
       $('#sub1').css('color','red');
       return false;
     }
@@ -176,12 +176,12 @@
   //4.用户名合法性验证
     function sub4(){
     var sub44=$("#sub44").val();
-    if (/^\w{6,12}$/.test(sub44)){
+    if (/^\w{4,12}$/.test(sub44)){
       $('#sub4').html('√用户名格式正确');
       $('#sub4').css('color','green');
       return true;
     }else{
-      $('#sub4').html('× 请输入6-12位的数字、字母或下划线组成的名字');
+      $('#sub4').html('× 请输入4-12位的数字、字母或下划线组成的名字');
       $('#sub4').css('color','red');
       return false;
     }
