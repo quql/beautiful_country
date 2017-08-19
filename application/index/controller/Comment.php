@@ -9,17 +9,7 @@ use think\Db;
 class Comment extends Controller
 {
     /**
-     * 显示资源列表
-     *
-     * @return \think\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * 显示创建资源表单页.
+     * 添加评论前传递id.
      *
      * @return \think\Response
      */
@@ -28,7 +18,7 @@ class Comment extends Controller
         //参数为订单的id
         //根据订单id 获取对应产品的名称 用户的id 分类id 商品的id
         $good = Db::name('order')->where('o_id', $id)->find();
-        dump($good);
+
         if (!empty($good)) {
             $data = [
                 'oid' => $id,
@@ -42,7 +32,8 @@ class Comment extends Controller
         } else {
             $data['status'] = false;
         }
-        return json($id);
+        //dump($data);die;
+        return json($data);
 
     }
 
@@ -85,23 +76,20 @@ class Comment extends Controller
      */
     public function read($id)
     {
-        //用户的id
-        //$uid = input('session.u_id');
-        //加载已完成订单的评论
-        $comment = Db::name('comment')->where(['c_oid' => $id])->find();
-        return json($comment);
+        //加载此条评论
+        $comment = Db::name('comment')->where('c_id', $id)->find();
+        if($comment){
+            $data['status']=true;
+            $data['text']=$comment['c_text'];
+            $data['score']=$comment['c_score'];
+            $data['gname']=$comment['c_gname'];
+            $data['c_id']=$id;
+        }else{
+            $data['status']=false;
+        }
+        return json($data);
     }
 
-    /**
-     * 显示编辑资源表单页.
-     *
-     * @param  int $id
-     * @return \think\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * 保存更新的资源
@@ -110,9 +98,21 @@ class Comment extends Controller
      * @param  int $id
      * @return \think\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $info = $request->post();
+        $id=$info['c_id'];
+        $data=[
+            'c_score'=>$info['score'],
+            'c_text'=>$info['text']
+        ];
+        $result = Db::table('ml_comment')->where('c_id',$id)->update($data);
+        //var_dump($result);
+        if ($result) {
+            $this->success('修改成功');
+        } else {
+            $this->success('修改失败,请刷新重试!');
+        }
     }
 
     /**
@@ -123,6 +123,14 @@ class Comment extends Controller
      */
     public function delete($id)
     {
-        //
+        $result = Db::name('comment')->delete($id);
+        if ($result) {
+            $info['status'] = true;
+            $info['info'] = '此条评论已删除';
+        } else {
+            $info['status'] = false;
+            $info['info'] = '删除失败,请重试!';
+        }
+        return json($info);
     }
 }

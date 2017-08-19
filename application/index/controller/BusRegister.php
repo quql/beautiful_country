@@ -19,12 +19,12 @@ class BusRegister extends Base
     {
         //处理接收到的数据
         $info = $request->post();
-        //dump($info);
-        //dump(cache('vcode'));
-        //exit;
+//        dump($info);
+//        dump(cache('vcode'));
+//        exit;
         if (!cache('vcode')){
             $this->error('验证码已过期,请重新获取~~~');
-        }else if (cache('vcode')!==$info['vcode']){
+        }else if (cache('vcode')!=$info['vcode']){
             $this->error('验证码输入有误~~~');
         }
 
@@ -32,7 +32,7 @@ class BusRegister extends Base
         $res = Db::name('business')->where('b_name', $info["b_name"])->find();
         //dump($res);
         if ($res !== null) {
-            $this->error('此商铺名称已有人注册啦,请修改~~~');
+            $this->error('此商铺名称已被注册过啦,请修改~~~');
         }
         $a = Db::name('business')->where('b_phone', $info["b_phone"])->find();
         if ($a !== null) {
