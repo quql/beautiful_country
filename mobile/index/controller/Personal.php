@@ -6,8 +6,9 @@ namespace app\index\controller;
 use app\index\model\User;
 use think\Controller;
 use think\Request;
+use think\Db;
 
-class Personal extends Controller
+class Personal extends Base
 {
     /**
      * 显示个人中心页面
@@ -17,8 +18,8 @@ class Personal extends Controller
     public function index()
     {
         //用户id
-//        $id = input('session.uid');
-        $id =1;
+        $id = input('session.uid');
+//        $id =1;
         //获取用户基本信息
         $user = model('user');
         $list = $user->getUser($id);
@@ -58,8 +59,8 @@ class Personal extends Controller
     public function coupon()
     {
         //用户id
-//        $id = input('session.uid');
-        $id =1;
+        $id = input('session.uid');
+//        $id =1;
 
         $m = model('money');
         $money = $m->getNum($id);
@@ -76,8 +77,8 @@ class Personal extends Controller
     public function baseinfo()
     {
         //用户id
-//        $id = input('session.uid');
-        $id =1;
+        $id = input('session.uid');
+//        $id =1;
         //获取用户基本信息
         $user = model('user');
         $list = $user->getUser($id);
@@ -91,8 +92,8 @@ class Personal extends Controller
      * */
     public function order()
     {
-//        $id = input('session.uid');
-        $id=1;
+        $id = input('session.uid');
+//        $id=1;
         //处理订单信息
         $o = model('order');
         //加载未发货订单
@@ -151,8 +152,8 @@ class Personal extends Controller
     public function repass()
     {
         //用户id
-//        $id =  input('session.uid');
-        $id =1;
+        $id =  input('session.uid');
+//        $id =1;
         //获取用户基本信息
         $user = model('user');
         $list = $user->getUser($id);
@@ -167,8 +168,8 @@ class Personal extends Controller
     public function favorite()
     {
         //用户id
-//        $id = input('session.uid');
-        $id =1;
+        $id = input('session.uid');
+//        $id =1;
         //获取用户基本信息
 //        $user = model('user');
 //        $list = $user->getUser($id);
@@ -214,8 +215,8 @@ class Personal extends Controller
     public function adress()
     {
         //用户id
-//        $id = input('session.uid');
-        $id =1;
+        $id = input('session.uid');
+//        $id =1;
         //加载用户收获的地址
         $add = model('userAddress');
         $data = $add->getAddress($id);
@@ -231,8 +232,8 @@ class Personal extends Controller
     public function address()
     {
         //用户id
-//        $id = input('session.uid');
-        $id =1;
+        $id = input('session.uid');
+//        $id =1;
         $info=input('post.');
 
         $data = [
@@ -279,8 +280,8 @@ class Personal extends Controller
     {
         // 获取表单上传文件 例如上传了001.jpg
         $file = request()->file('image');
-//        $id = input('post.')['id'];
-        $id =1;
+        $id = input('post.')['id'];
+//        $id =1;
         //dump($id);
         //exit;
         // 移动到框架应用根目录/public/uploads/ 目录下
@@ -392,6 +393,29 @@ class Personal extends Controller
         //}
 
 
+    }
+
+    //我的住宿
+    function hotel(){
+        $id = input('session.uid');
+        //加载酒店订单
+        $h = model('hotelOrder');
+        $hotels = $h->getOrder($id);
+        return view('buy/hotel', [
+            'hotels'=>$hotels
+        ]);
+    }
+
+    //我的评论
+    function comment(){
+        $id = input('session.uid');
+        //加载此用户下的评论内容
+        $sql = "select ml_comment.c_score,c_text,c_time,c_gname,c_cid,c_gid,c_bid,c_id,ml_bus_comment.c_content,c_atime FROM ml_comment LEFT JOIN ml_bus_comment ON ml_bus_comment.com_id=ml_comment.c_id WHERE ml_comment.c_uid=$id";
+        $comment = Db::query($sql);
+        //dump($comment);
+        return view('buy/comment', [
+            'comment'=>$comment
+        ]);
     }
 }
 

@@ -308,6 +308,8 @@ Route::get('chartjs', 'admin/count/chartjs');
 //天气
 Route::get('weather/:city', 'index/index/weather');
 
+//给用户发邮件
+Route::get('sendemail/:id', 'admin/Users/email');
 return [
 //    '__pattern__' => [
 //        'name' => '\w+',

@@ -6,7 +6,7 @@ use think\Controller;
 use think\Db;
 use think\Request;
 
-class Cart extends Controller
+class Cart extends Base
 {
 
     public function index()

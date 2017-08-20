@@ -18,9 +18,7 @@ class BusLogin extends Controller
     {
         //加载商家登陆的模板
         return view('login/busLogin');
-
     }
-
 
     /**
      * 执行商家登陆的操作
@@ -32,7 +30,7 @@ class BusLogin extends Controller
     {
         //处理表单数据
         $info = $request->post();
-        //dump($info);
+        //dump($info);die;
         //判断数据是否合法
         //dump($res);
         $res = Db::name('business')->where('b_name', $info["b_name"])->find();

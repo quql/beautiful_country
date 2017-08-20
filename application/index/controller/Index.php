@@ -299,9 +299,9 @@ class Index extends Base
     }
 
     //邮箱接口
-    public function email($toemail='695260422@qq.com')
+    public function email($email='695260422@qq.com')
     {
-       $toemail = input('email');//定义收件人的邮箱
+       $email = input('email');//定义收件人的邮箱
         //生成一个随机四位数 保存在session中
         $vcode=rand(1000,9999);
 //        Session::set('vcode',$vcode,'think');
@@ -334,7 +334,7 @@ class Index extends Base
         $mail->Port=25;
         $mail->From = "13127573831@163.com"; //邮件发送者email地址
         $mail->FromName = "美丽乡村";
-        $mail->AddAddress($toemail, "邮箱测试");
+        $mail->AddAddress($email, "邮箱测试");
         //$mail->AddReplyTo("", "");//设置回复人信息
         $mail->IsHTML(true); //是否使用HTML格式
 
@@ -392,9 +392,9 @@ class Index extends Base
         return json($data);
     }
     //邮箱订阅
-    public function newsemail($toemail='695260422@qq.com')
+    public function newsemail($email='695260422@qq.com')
     {
-        $toemail = input('email');//定义收件人的邮箱
+        $email = input('email');//定义收件人的邮箱
         $mail = new PHPMailer(); //建立邮件发送类
         $mail->CharSet = "UTF-8";
         $address ="13127573831@163.com";
@@ -410,8 +410,8 @@ class Index extends Base
         $mail->Port=25;
         $mail->From = "13127573831@163.com"; //邮件发送者email地址
         $mail->FromName = "美丽乡村";
-        $mail->AddAddress($toemail, "美丽乡村");
-        //$mail->AddReplyTo("", "");//设置回复人信息
+        $mail->AddAddress($email, "美丽乡村");
+        $mail->AddReplyTo("13127573831@163.com", "美丽乡村");//设置回复人信息
         $mail->IsHTML(true); //是否使用HTML格式
 
         $mail->Subject = "美丽乡村咨询订阅"; //邮件标题

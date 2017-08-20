@@ -42,7 +42,7 @@
             <input type="password" name="pass" class="form-control" placeholder="密码">
             <input type="text" name="phone" class="form-inline" placeholder="手机号码" style="width: 180px; height:39px;padding-left: 10px" onblur="sub5()" id="666">
             <button type="button" style="display: inline-block;width:100px;height:39px;margin-left: 5px;border-radius: 5px" class="form-inline" id="usebtn">获取验证码</button><span class="subscript" id="sub5"></span>
-            <input type="password" name="pass" class="form-control" placeholder="请输入短信验证码" onblur="sub6()" id="888">
+            <input type="password"  class="form-control" placeholder="请输入短信验证码" onblur="sub6()" id="888">
             <span class="subscript" id="sub6"></span>
             <button class="btn btn-lg btn-login btn-block" type="submit">
                 <i class="fa fa-check"></i>
@@ -100,15 +100,6 @@
             return false;
         }
     };
-//    <!--短信验证-->
-//    function checkPhone(){
-//        var phone = document.getElementById('666').value;
-//        if(!(/^1[34578]\d{9}$/.test(phone))){
-//            return false;
-//        }else{
-//            return true;
-//        }
-//    }
     var btn1 = document.getElementById('usebtn');
     $('#usebtn').click(function(){
         if(!sub5()){
@@ -154,7 +145,7 @@
         });
     }
 
-    //6.短信验证码的合法性验证
+    //短信验证码的合法性验证
     function sub6(){
         var smscode =document.getElementById('888').value;
         if(smscode==sendsmscode){
