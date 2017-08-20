@@ -87,15 +87,21 @@ class Hotel extends Base
      */
     public function update()
     {
-        $i = input('post.');
-        //dump($i);exit;
+
+//        dump($i);exit;
 
         //订单生成时间
         $time = date('Y-m-d H:i:s',time());
 
         //生成订单号
-        $orderNum = time().rand(10e8,90e8);
-
+        $str = null;
+        $strPol = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
+        $max = strlen($strPol)-1;
+        for($i=0;$i<32;$i++){
+            $str.=$strPol[rand(0,$max)];//rand($min,$max)生成介于min和max两个数之间的一个随机整数
+        }
+        $orderNum =$str;
+        $i = input('post.');
         $data = [
             'o_bid'=>$i['bid'],
             'o_gid'=>$i['cid'],
@@ -112,11 +118,16 @@ class Hotel extends Base
             'inname'=>$i['name'],
             'inphone'=>$i['phone'],
         ];
-//        dump($data);
-//        die;
+
         cache('hotel_order',$data,3600);
-        $this->assign('data',$data);
-        return view('index/hotelorder');
+        $res = Db::name('hotel_order')->data($data)->insert();
+        if($res>0){
+            $this->assign('data',$data);
+            return view('index/hotelorder');
+        }else{
+            $this->error('下单失败');
+        }
+
 
     }
 

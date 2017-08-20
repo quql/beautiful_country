@@ -299,8 +299,18 @@ Route::get('usercomment','admin/BusInfo/comment');
 Route::get('buscommentcre/:id','admin/BusInfo/create');
 
 
+//微信
+Route::get('weixin','weixin/Index/index');
+
 //网站统计
 Route::get('chartjs', 'admin/count/chartjs');
+
+//微信支付入口
+Route::get('weixinplay','index/Weixinplay/index');
+//确认微信支付
+Route::post('weixininit','index/Weixinplay/weixin');
+
+Route::post('weixinplayover','index/Weixinplay/weixin_notify');
 return [
 //    '__pattern__' => [
 //        'name' => '\w+',

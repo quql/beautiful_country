@@ -63,6 +63,12 @@ Route::post('hotelorder','index/Order/hotelorder');
 Route::get('deletecart/:id','index/Cart/delete');
 //添加评论
 Route::get('create/:id','index/Comment/create');
+//微信接入
+Route::get('weixin','weixin/Index/index');
+
+
+//微信支付
+Route::get('weixinplay','index/weixinplay/index');
 
 return [
 //    '__pattern__' => [
