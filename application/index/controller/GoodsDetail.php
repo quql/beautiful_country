@@ -3,6 +3,7 @@
 namespace app\index\controller;
 
 use think\Controller;
+use think\db\Query;
 use think\Request;
 use think\Db;
 
@@ -47,11 +48,20 @@ class GoodsDetail extends Base
             $d = model('FoodDetail');
             $detail = $d->getDetail($id);
 
-
             //获取商品图片
             $p = model('foodPic');
             $photos = $p->getPhotos($id);
 
+            //获取其他商品
+            $all = $f->getAll($bid);
+            static $pics = array();
+            foreach($all as $k=>$v){
+                $q = new Query();
+                $pics= $q->name('food_pic')->field('pic')->where('gid',$v['id'])->find();
+                $all[$k]['pic']=$pics['pic'];
+            };
+
+            //dump($all);die;
 
             return view('index/foodDetail', [
                 'foods'=>$food[0],
@@ -60,7 +70,10 @@ class GoodsDetail extends Base
                 'type'=>$type,
                 'bid'=>$bid,
                 'cid'=>6,
-                'comment'=>$comment
+                'comment'=>$comment,
+                'all'=>$all,
+
+
             ]);
 
         }elseif($cid==1){
@@ -76,9 +89,18 @@ class GoodsDetail extends Base
             $p = model('sceneryPic');
             $photos = $p->getPhotos($id);
 
+            //获取其他商品
+            $all = $s->getAll($bid);
+            static $pics = array();
+            foreach($all as $k=>$v){
+                $q = new Query();
+                $pics= $q->name('scenery_pic')->field('pic')->where('gid',$v['id'])->find();
+                $all[$k]['pic']=$pics['pic'];
+            };
+
             //dump($scenery[0]);
             //dump($detail[0]);
-            //dump($photos);
+            //dump($all);die;
 
             return view('index/sceneryDetail', [
                 'scenerys'=>$scenery[0],
@@ -87,7 +109,8 @@ class GoodsDetail extends Base
                 'type'=>$type,
                 'bid'=>$bid,
                 'cid'=>1,
-                'comment'=>$comment
+                'comment'=>$comment,
+                'all'=>$all,
             ]);
         }elseif($cid==5){
             //获取路线的基本信息
@@ -106,6 +129,15 @@ class GoodsDetail extends Base
             //dump($detail[0]);
             //dump($photos);
 
+            //获取其他商品
+            $all = $r->getAll($bid);
+            static $pics = array();
+            foreach($all as $k=>$v){
+                $q = new Query();
+                $pics= $q->name('route_pic')->field('pic')->where('gid',$v['id'])->find();
+                $all[$k]['pic']=$pics['pic'];
+            };
+
             return view('index/routeDetail', [
                 'route'=>$route[0],
                 'detail'=>$detail[0],
@@ -113,7 +145,9 @@ class GoodsDetail extends Base
                 'type'=>$type,
                 'bid'=>$bid,
                 'cid'=>5,
-                'comment'=>$comment
+                'comment'=>$comment,
+                'all'=>$all,
+
             ]);
         }elseif($cid==4){
             //获取商品基本信息

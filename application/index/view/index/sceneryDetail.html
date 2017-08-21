@@ -139,6 +139,8 @@
           									<button type="submit" class="btn btn-success" id="tijiao">添加到购物车</button>
                     </form>
           									<a href="{:url('/')}"class="btn btn-success btn-lg">再去逛逛</a>
+                    <a href="http://m.amap.com/navi/?dest=116.470098,39.992838&amp;destName=阜通西&amp;hideRouteIcon=1&amp;key=66cee5cb6497418036929923b2466419" class="btn btn-info btn-lg">在哪儿</a>
+                    <button type="button" id="getxy">获取坐标</button>
           								</div>
                       </div>
 
@@ -269,40 +271,43 @@
                 <!--Heading Wrap End-->
 					
       					<!--Product List Style 2 Wrap Start-->
-      					<div class="row">
-      						<div class="col-md-3 col-sm-6">
-      							<div class="gt_product_outer_wrap gt_shop_style_2_wrap">
-      								<figure>
-      									<img src="/static/app/index/extra-images/product-01.jpg" alt="">
-      									<div class="gt_overlay_wrap"></div>
-      									<figcaption class="gt_product_img_des">
-      										
-      										<p>商品简介...</p>
-      										<ul class="gt_product_ui_element">
-      											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-      											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-      										</ul>
-      									</figcaption>
-      								</figure>
-      								<div class="gt_product_des_wrap">
-      									<h5><a href="#">商品标题</a></h5>
-      									<p>$66</p>
-      									<ul class="gt_rating_start">
-      										<li><a href="#"><i class="fa fa-star"></i></a></li>
-      										<li><a href="#"><i class="fa fa-star"></i></a></li>
-      										<li><a href="#"><i class="fa fa-star"></i></a></li>
-      										<li><a href="#"><i class="fa fa-star"></i></a></li>
-      										<li><a href="#"><i class="fa fa-star"></i></a></li>
-      									</ul>
-      								</div>
-      								<div class="gt_cart_element_wrap">
-      									<a class="gt_retweet_link" href="#"><i class="fa fa-retweet"></i></a>
-      									<a class="gt_add_to_cart" href="#">添加到购物车</a>
-      									<a class="gt_whishlist" href="#"><i class="fa fa-heart"></i></a>
-      								</div>
-      							</div>
-      						</div>
-      					</div>
+                        <div class="row">
+                            {volist name="all" id="v"}
+                            <div class="col-md-3 col-sm-6">
+                                <div class="gt_product_outer_wrap gt_shop_style_2_wrap">
+                                    <figure>
+                                        <img src="/uploads/{$v['pic']}" alt="" style="width: 268px;height: 171px">
+                                        <div class="gt_overlay_wrap"></div>
+                                        <figcaption class="gt_product_img_des">
+
+                                            <p>{$v['gd_abstract']}</p>
+                                            <ul class="gt_product_ui_element">
+                                                <li><a href="{:url('/goodsdetail',['id'=>$v.id,'bus_id'=>$v.bus_id,'cid'=>$v.c_id])}"><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
+                                                <!--<li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>-->
+                                            </ul>
+                                        </figcaption>
+                                    </figure>
+                                    <div class="gt_product_des_wrap">
+                                        <h5><a href="{:url('/goodsdetail',['id'=>$v.id,'bus_id'=>$v.bus_id,'cid'=>$v.c_id])}" max-length="6">{:mb_substr($v['gd_title'],6)}...</a></h5>
+                                        <p>¥{$v['price']}</p>
+                                        <ul class="gt_rating_start">
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="gt_cart_element_wrap">
+                                        <a class="gt_retweet_link" href="javascript:void(0)"><i class="fa fa-retweet"></i></a>
+                                        <a class="gt_add_to_cart" href="{:url('/goodsdetail',['id'=>$v.id,'bus_id'=>$v.bus_id,'cid'=>$v.c_id])}">去看看</a>
+                                        <a class="gt_whishlist" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
+
+                                    </div>
+                                </div>
+                            </div>
+                            {/volist}
+                        </div>
       					<!--Product List Style 2 Wrap End-->
 				      </div>
 				      <!--Our Latest Product Wrap End-->
@@ -363,10 +368,20 @@
         big.style.display = 'none';
     }
 
+//    获取坐标
+    $('#getxy').click(function(){
+        e = e || event;
+        var x = e.lnglat.getLng();
+        var y = e.lnglat.getLat();
+//        document.getElementById("latDiv").innerHTML = x + "," + y;
+        console.log(x);
+        console.log(y);
+    });
+
     //    提交前检查信息
     function checkMsg(){
         if($('#store').text() == 0){
-            alert('商品太热卖完啦,商家正在火速补充库存,敬请期待~')
+            alert('商品太热卖完啦,商家正在火速补充库存,敬请期待~');
             return false;
         }else{
             return true;

@@ -9,6 +9,10 @@ class Index extends Base
 {
     public function index()
     {
+        //增加浏览量
+        model('count')->view();
+        model('view')->insert();
+
         //查询特产美食数据
         $sql1="select ml_food.*,ml_food_pic.pic,ml_business.b_name from ml_food LEFT JOIN ml_food_pic ON ml_food.id=ml_food_pic.gid LEFT JOIN ml_business ON ml_food.bus_id=ml_business.b_id  where ml_food_pic.is_first='1' and  ml_food.gd_is_sale='1' limit 3";
         $food=Db::query($sql1);

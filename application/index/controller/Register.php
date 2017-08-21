@@ -49,6 +49,9 @@ class Register extends Base
         ];
         $res = Db::table('ml_user_detail')->data($data1)->insert();
         //dump($result);
+
+        //新增money表数据
+        Db::table('ml_money')->data('m_uid',$result)->insert();
         if ($result > 0 && $res>0) {
             //添加数据到统计表
             model('count')->register();

@@ -5,17 +5,17 @@
 
 <section>
 
-<div class="container">
+<div class="container-fluid">
     <div class="page-heading mt20">
         <h3>
             网站数据统计
         </h3>
-        <!--<ul class="breadcrumb">-->
-            <!--<li>-->
-                <!--<a href="#">统计</a>-->
-            <!--</li>-->
-            <!--<li class="active"> 首页 </li>-->
-        <!--</ul>-->
+        <ul class="breadcrumb">
+            <li>
+                <a href="{:url('/chartjs')}">首页</a>
+            </li>
+            <li class="active"> 统计 </li>
+        </ul>
     </div>
 
     <div class="wraper">
@@ -23,7 +23,7 @@
             <!--总计-->
             <div class="col-sm-12" style="margin-top: 20px">
                 <section class="panel">
-                    <div class="counter col_fourth" style="float:left;margin-left:160px;text-align: center">
+                    <div class="counter col_fourth" style="float:left;margin-left:100px;text-align: center">
                         <!--<i class="fa fa-code fa-2x"></i>-->
                         <img src="/static/app/admin/images/count/count.png" width="30">
                         <h2 class="timer count-title" id="count-number" data-to="{$view}" data-speed="1500"></h2>

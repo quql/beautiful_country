@@ -81,6 +81,8 @@ function sendTemplateSMS($to,$datas,$tempId)
     // 发送模板短信
     // echo "Sending TemplateSMS to $to <br/>";
     $result = $rest->sendTemplateSMS($to,$datas,$tempId);
+    //dump($result);
+    //die;
     if($result == NULL ) {
         $info['status']=FALSE;
         return $info;

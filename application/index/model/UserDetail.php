@@ -21,8 +21,8 @@ class UserDetail extends Model
     //获取个人积分
     public function getPoint($id = '')
     {
-        $d = db('user_detail');
-        $point = $d->field('ud_point')->find($id);
+        $query = new Query();
+        $point = $query->name('user_detail')->where('ud_uid',$id)->field('ud_point')->find();
         return $point;
     }
 

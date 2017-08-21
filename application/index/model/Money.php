@@ -11,7 +11,7 @@ class Money extends Model
     public function getNum($id = '',$field = true)
     {
         $query = new Query();
-        $res = $query->table('ml_money')->where('m_uid', $id)->field($field)->select();
+        $res = $query->name('money')->where('m_uid', $id)->field($field)->select();
         return $res;
     }
 
