@@ -10,7 +10,7 @@ class Pay extends \think\Model
     private function _weixin_config(){//微信支付公共配置函数
         define('WXPAY_APPID', "wx431438b2f0898f24");//微信公众号APPID
         define('WXPAY_MCHID', "1347721901");//微信商户号MCHID
-        define('WXPAY_KEY', "");//微信商户自定义32位KEY
+        define('WXPAY_KEY', "123456789012345678901234567890bo");//微信商户自定义32位KEY
         define('WXPAY_APPSECRET', "boyuHotelproducts");//微信公众号appsecret
     }
 

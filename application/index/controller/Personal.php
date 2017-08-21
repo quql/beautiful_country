@@ -6,7 +6,6 @@ use app\index\model\User;
 use think\Controller;
 use think\Db;
 use think\Request;
-use think\Db;
 use think\db\Query;
 
 class Personal extends Base
@@ -54,7 +53,6 @@ class Personal extends Base
         $done = $o->done($id);
 
 
-      return view('index/personal',[
 
 
         //获取用户参加的活动数据
@@ -70,10 +68,9 @@ class Personal extends Base
         // die;
 
         return view('index/personal',[
->>>>>>> origin/zhangsan
             'list'=>$list,
             'data'=>$data,
-            'money'=>$money,
+            'money'=>$money[0],
             'un'=>$un,
             'diliver'=>$diliver,
             'done'=>$done,
@@ -288,22 +285,18 @@ class Personal extends Base
         //消耗积分
         $total = input('post.')['total'];
 
-        //$user = model('user');
-        //$pass = $user->getPass($id)['u_password'];
-
-
-        //if ($p == $pass){
         //更改积分
         $d = model('userDetail');
         //获取原积分
-        $point = $d->getPoint($id);
-        $point = $point['ud_point'];
+        $point = $d->getPoint($id)['ud_point'];
 
         //减去消耗的积分
         $p = $point - $total;
         $p1 = [
                 'ud_point'=>$p
             ];
+
+
         //更改积分数据
         $pres = $d->updateDetail($id, $p1);
 
@@ -313,6 +306,7 @@ class Personal extends Base
         if($type == 10){
             //获取代金券信息
             $num = $m->getNum($id, 'm_ten');
+            //dump($num);die;
             $num1 = $num[0]['m_ten'];
             $rn = $num1 + $n;
             //return json($rn);exit;
