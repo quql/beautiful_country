@@ -90,7 +90,6 @@ class Index extends Base
         $this->assign('scylist',$scylist);
         $this->assign('hotellist',$hotellist);
         $this->assign('list',$list);
-        $this->assign('type',$type);
         return view ('index/list');
     }
 
