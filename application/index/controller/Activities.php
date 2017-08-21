@@ -42,7 +42,9 @@ class Activities extends Base
         // ]);
 
         return view('index/ActivitiesList', [
-        "activitiesindex" =>$activities]);
+        "activitiesindex" =>$activities,
+            'type'=>'ac'
+        ]);
     }
 
     /**
@@ -194,6 +196,7 @@ class Activities extends Base
         $activitieslist = Db::query($activitiessql);
         // var_dump($activitieslist);die;
         $this->assign('activitieslist',$activitieslist);
+        $this->assign('type','ac');
         return view ('index/ActivitiesCateList');
         // ok;
     }
@@ -222,6 +225,7 @@ class Activities extends Base
         // var_dump($activitiesdetails);die();
         $this->assign('activitiesdetails',$activitiesdetails);
         $this->assign('yjf',$yjf);
+        $this->assign('type','ac');
         return view ('index/ActivitiesDetails');
         // ok;
     }

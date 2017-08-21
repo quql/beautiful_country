@@ -76,12 +76,16 @@ class Index extends Base
         if($id==4){
             //查询主表字段和封面图片
             $list = Db::query("select ml_hotel.id,gd_title,gd_abstract,price,c_id,bus_id,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1'");
+            $type='4';
         }elseif($id==5){
             $list = Db::query("select ml_route.id,gd_title,gd_abstract,price,c_id,bus_id,ml_route_pic.pic from ml_route LEFT JOIN ml_route_pic ON ml_route.id=ml_route_pic.gid where ml_route_pic.is_first='1'");
+            $type='5';
         }elseif($id==1){
             $list = Db::query("select ml_scenery.id,gd_title,gd_abstract,price,c_id,bus_id,ml_scenery_pic.pic from ml_scenery LEFT JOIN ml_scenery_pic ON ml_scenery.id=ml_scenery_pic.gid where ml_scenery_pic.is_first='1'");
+            $type='1';
         }elseif($id==6){
             $list = Db::query("select ml_food.id,gd_title,gd_abstract,price,c_id,bus_id,ml_food_pic.pic from ml_food LEFT JOIN ml_food_pic ON ml_food.id=ml_food_pic.gid where ml_food_pic.is_first='1'");
+            $type='6';
         }else{
             return '暂无数据';
         }
@@ -96,6 +100,7 @@ class Index extends Base
         $this->assign('scylist',$scylist);
         $this->assign('hotellist',$hotellist);
         $this->assign('list',$list);
+        $this->assign('type',$type);
         return view ('index/list');
     }
 
@@ -162,12 +167,16 @@ class Index extends Base
        // 判断用户查看的类型
         if($id==4){
             //查询主表字段和封面图片
+            $type='4';
             $list = Db::query("select ml_hotel.id,gd_title,gd_abstract,price,bus_id,c_id,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1' AND ml_hotel.h_cate={$cateid}");
         }elseif($id==5){
+            $type='5';
             $list = Db::query("select ml_route.id,gd_title,gd_abstract,price,bus_id,c_id,ml_route_pic.pic from ml_route LEFT JOIN ml_route_pic ON ml_route.id=ml_route_pic.gid where ml_route_pic.is_first='1' AND ml_route.h_cate={$cateid}");
         }elseif($id==1){
+            $type='1';
             $list = Db::query("select ml_scenery.id,gd_title,gd_abstract,price,bus_id,c_id,ml_scenery_pic.pic from ml_scenery LEFT JOIN ml_scenery_pic ON ml_scenery.id=ml_scenery_pic.gid where ml_scenery_pic.is_first='1' AND ml_scenery.h_cate={$cateid}");
         }elseif($id==6){
+            $type='6';
             $list = Db::query("select ml_food.id,gd_title,gd_abstract,price,bus_id,c_id, ml_food_pic.pic from ml_food LEFT JOIN ml_food_pic ON ml_food.id=ml_food_pic.gid where ml_food_pic.is_first='1' AND ml_food.h_cate={$cateid}");
         }else{
             return '暂无数据';
@@ -181,6 +190,7 @@ class Index extends Base
         $this->assign('scylist',$scylist);
         $this->assign('hotellist',$hotellist);
         $this->assign('list',$list);
+        $this->assign('type',$type);
         return view ('index/list');
     }
 

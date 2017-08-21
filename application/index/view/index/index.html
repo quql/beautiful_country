@@ -513,7 +513,7 @@
                         <li class="active"><a href="{:url('index/index/index')}">首页</a>
                         </li>
 
-                        <li><a href="{:url('/shoplist/4')}">住宿</a>
+                        <li class="lhotel"><a href="{:url('/shoplist/4')}">住宿</a>
                             <ul>
                                 {volist name='hotel' id="v"}
                                 <li><a href="{:url('/listshow/4/'.$v.id)}">{$v.h_name}</a></li>
@@ -522,14 +522,14 @@
                         </li>
 
 
-                        <li><a href="{:url('/shoplist/5')}">旅游线路</a>
+                        <li class="lroute"><a href="{:url('/shoplist/5')}">旅游线路</a>
                             <ul>
                                 {volist name='routes' id="v"}
                                 <li><a href="{:url('/listshow/5/'.$v.id)}">{$v.h_name}</a></li>
                                 {/volist}
                             </ul>
                         </li>
-                        <li><a href="{:url('/shoplist/1')}">景区</a>
+                        <li class="lsc"><a href="{:url('/shoplist/1')}">景区</a>
                             <ul>
                                 {volist name='scenery' id="v"}
                                 <li><a href="{:url('/listshow/1/'.$v.id)}">{$v.h_name}</a></li>
@@ -537,7 +537,7 @@
                             </ul>
                         </li>
 
-                        <li><a href="{:url('/shoplist/6')}">特产美食</a>
+                        <li class="lfood"><a href="{:url('/shoplist/6')}">特产美食</a>
                             <ul>
                                 {volist name='food' id="v"}
                                 <li><a href="{:url('/listshow/6/'.$v.id)}">{$v.h_name}</a></li>
@@ -545,7 +545,7 @@
                             </ul>
                         </li>
 
-                        <li><a href="{:url('index/activities/index')}">精彩活动</a>
+                        <li class="lac"><a href="{:url('index/activities/index')}">精彩活动</a>
                             <ul>
                                 {volist name='activities' id="v"}
                                 <li><a href="{:url('/activitieslistshow/'.$v.id)}">{$v.ac_name}</a></li>
@@ -657,9 +657,45 @@
 
                 </div>
                 <!--Search Wrap End-->
+                <section class="gt_campus_bg" style="background-color: black;padding-bottom: 0px">
+                    <div class="container">
+                        <!--Heading Wrap Start-->
+                        <div class="gt_hdg_1 default_width">
+                            <h3 style="color:#2DCC70">精彩活动</h3>
+                            <p id="jchd">^_^ 一个人辣么无聊,来报名团体活动才有意思呦 ^_^_</p>
+                            <span class="gt_hdg_left"></span>
+                            <i class="icon-school" style="color:white "></i>
+                            <span class="gt_hdg_right"></span>
+                        </div>
+                        <!--Heading Wrap End-->
+                    </div>
+
+                    <!--Gallery List Wrap Start-->
+                    {volist name="activitiesindex" id="v"}
+                    <div class="col-md-3 col-sm-6 no_padding">
+                        <div class="gt_gallery_style1">
+                            <figure>
+                                <img src="/uploads/{$v['pic']}" style="height:250px" alt="">
+                            </figure>
+                            <div class="gt_gallery_style1_des">
+                                <ul>
+                                    <li><a href="{:url('/activitiesdetailsshow/'.$v.activities_id)}"><i class="fa fa-link"></i></a>
+                                    </li>
+                                    <li><a href="/uploads/{$v['pic']}" data-rel="prettyPhoto"><i class="fa fa-search"></i></a>
+                                    </li>
+                                </ul>
+                                <h3><a href="{:url('/activitiesdetailsshow/'.$v.activities_id)}">{$v['ac_title']}</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+
+                    <!--Gallery List Wrap End-->
+                </section>
+
                 {if condition="!empty($hotroute)"}
                 <div style="background:black">
-                    <div class="gt_hdg_1 default_width" style="background:black;padding:20px">
+                    <div class="gt_hdg_1 default_width" style="background:black;padding:20px;margin-top:50px">
                         <h3 style="color:white">热门线路　TOP10</h3>
                         <p>HOT<i class="glyphicon glyphicon-fire" style="color:white">HOT</i> HOT<i
                                 class="glyphicon glyphicon-fire" style="color:#12ff85">HOT</i> HOT <i
@@ -716,41 +752,6 @@
 
         </section>
 
-        <section class="gt_campus_bg" style="background-color: black">
-            <div class="container">
-                <!--Heading Wrap Start-->
-                <div class="gt_hdg_1 default_width">
-                    <h3 style="color:#2DCC70">精彩活动</h3>
-                    <p id="jchd">^_^ 一个人辣么无聊,来报名团体活动才有意思呦 ^_^_</p>
-                    <span class="gt_hdg_left"></span>
-                    <i class="icon-school" style="color:white "></i>
-                    <span class="gt_hdg_right"></span>
-                </div>
-                <!--Heading Wrap End-->
-            </div>
-
-            <!--Gallery List Wrap Start-->
-            {volist name="activitiesindex" id="v"}
-            <div class="col-md-3 col-sm-6 no_padding">
-                <div class="gt_gallery_style1">
-                    <figure>
-                        <img src="/uploads/{$v['pic']}" style="height:250px" alt="">
-                    </figure>
-                    <div class="gt_gallery_style1_des">
-                        <ul>
-                            <li><a href="{:url('/activitiesdetailsshow/'.$v.activities_id)}"><i class="fa fa-link"></i></a>
-                            </li>
-                            <li><a href="/uploads/{$v['pic']}" data-rel="prettyPhoto"><i class="fa fa-search"></i></a>
-                            </li>
-                        </ul>
-                        <h3><a href="{:url('/activitiesdetailsshow/'.$v.activities_id)}">{$v['ac_title']}</a></h3>
-                    </div>
-                </div>
-            </div>
-            {/volist}
-
-            <!--Gallery List Wrap End-->
-        </section>
 
         {if condition="!empty($hotscenery)"}
         <section class="gt_choose_bg">
@@ -942,7 +943,7 @@
             <div class="container">
                 <!--Heading Wrap Start-->
                 <div class="gt_hdg_1 default_width">
-                    <h3>旅游咨询 --遍历数据表</h3>
+                    <h3>旅游咨询</h3>
                     <p>Aenean commodo ligal geate dolor. Aenan massa. Loren ipsum dolor sit amet,color<br>tetuer adiois
                         elit, aliquam eget nibh etibra</p>
                     <span class="gt_hdg_left"></span>
@@ -1210,7 +1211,7 @@
 <script type="text/javascript" src="/static/app/index/js/login_config.js"></script>
 <script type="text/javascript" src="/static/app/index/js/login_login_ajax.js"></script>
 
-{block name="myjs"}
+
 <!--聊天室-->
 <script type="text/javascript" src="/static/app/index/js/socket.io.js"></script>
 
@@ -1523,7 +1524,82 @@
     }
 
 </script>
+<!--天气-->
+<script>
+    $('#cwheather').click(function(){
+        $('#cwdiv').slideToggle();
+    });
+    document.querySelector('#inputcity').addEventListener('keypress', function (event) {
+        if (event.which == 13) {
+            var city = document.getElementById('inputcity').value;
+            var obj = document.getElementById('weatherdetail');
+            $('#weatherdetail').show();
+            console.log(city);
+            if (city.length!==0) {
+                weatherAjax(city, obj);
+            } else {
+                alert('请输入您想查询的城市');
+            }
+        }
+    });
+    document.querySelector('#inputcity').addEventListener('keydown', function (event) {
+        if (event.which == 13) {
+            var city = document.getElementById('inputcity').value;
+            var obj = document.getElementById('weatherdetail');
+            $('#weatherdetail').slideToggle();
+            console.log(city);
+            if (city.length!==0) {
+                weatherAjax(city, obj);
+            } else {
+                alert('请输入您想查询的城市');
+            }
+        }
+    });
+    $('#queryweather').click(function () {
+        var city = document.getElementById('inputcity').value;
+        var obj = document.getElementById('weatherdetail');
+        $('#weatherdetail').slideToggle();
+        //console.log(city);
+        if (city.length!==0) {
+            weatherAjax(city, obj);
+        } else {
+            alert('请输入您想查询的城市');
+        }
+    });
+    function weatherAjax(city, obj) {
+        $.ajax({
+            type: 'get',
+            url: 'weather/' + city,
+            data: 'json',
+            success: function (data) {
+                if (data) {
+                    //console.log(data);
+                    var weather = data.results['0'];
+                    var text = [];
+                    text.push("位置: " + weather.location.path);
+                    text.push("天气:  白天-" + weather.daily['0'].text_day + "　晚间-"+weather.daily['0'].text_night);
+                    text.push("温度: " + weather.daily['0'].low+"℃ ~ "+weather.daily['0'].high+"℃  ");
+                    text.push("风向: " + weather.daily['0'].wind_direction+"风 　"+weather.daily['0'].wind_scale +"级");
+                    text.push("更新时间: " + weather.last_update);
+                    obj.innerText = text.join("\n");
+                } else {
+                    obj.innerText = '请确认您输入的城市是否存在';
+//                    alert('请确认您输入的城市是否存在')
+                }
+            },
+            error: function () {
+                alert('数据请求失败');
+            }
 
+        })
+    }
+//    //导航栏的hover效果
+//    $('#gt_navigation>li').click(function(){
+//        $(this).css('backgroundColor','green').siblings().css('backgroundColor','');
+//    });
+
+</script>
+{block name="myjs"}
 <!--yjf-->
 <script>
     var verifyCode = new GVerify("v_container");
@@ -1615,77 +1691,7 @@
 
 <!--搜索JS END-->
 
-<!--天气-->
-<script>
-    $('#cwheather').click(function(){
-        $('#cwdiv').slideToggle();
-    });
-    document.querySelector('#inputcity').addEventListener('keypress', function (event) {
-        if (event.which == 13) {
-            var city = document.getElementById('inputcity').value;
-            var obj = document.getElementById('weatherdetail');
-            $('#weatherdetail').show();
-            console.log(city);
-            if (city.length!==0) {
-                weatherAjax(city, obj);
-            } else {
-                alert('请输入您想查询的城市');
-            }
-        }
-    });
-    document.querySelector('#inputcity').addEventListener('keydown', function (event) {
-        if (event.which == 13) {
-            var city = document.getElementById('inputcity').value;
-            var obj = document.getElementById('weatherdetail');
-            $('#weatherdetail').slideToggle();
-            console.log(city);
-            if (city.length!==0) {
-                weatherAjax(city, obj);
-            } else {
-                alert('请输入您想查询的城市');
-            }
-        }
-    });
-    $('#queryweather').click(function () {
-        var city = document.getElementById('inputcity').value;
-        var obj = document.getElementById('weatherdetail');
-        $('#weatherdetail').slideToggle();
-        //console.log(city);
-        if (city.length!==0) {
-            weatherAjax(city, obj);
-        } else {
-            alert('请输入您想查询的城市');
-        }
-    });
-    function weatherAjax(city, obj) {
-        $.ajax({
-            type: 'get',
-            url: 'weather/' + city,
-            data: 'json',
-            success: function (data) {
-                if (data) {
-                    //console.log(data);
-                    var weather = data.results['0'];
-                    var text = [];
-                    text.push("位置: " + weather.location.path);
-                    text.push("天气:  白天-" + weather.daily['0'].text_day + "　晚间-"+weather.daily['0'].text_night);
-                    text.push("温度: " + weather.daily['0'].low+"℃ ~ "+weather.daily['0'].high+"℃  ");
-                    text.push("风向: " + weather.daily['0'].wind_direction+"风 　"+weather.daily['0'].wind_scale +"级");
-                    text.push("更新时间: " + weather.last_update);
-                    obj.innerText = text.join("\n");
-                } else {
-                    obj.innerText = '请确认您输入的城市是否存在';
-//                    alert('请确认您输入的城市是否存在')
-                }
-            },
-            error: function () {
-                alert('数据请求失败');
-            }
 
-        })
-    }
-
-</script>
 
 
 {/block}

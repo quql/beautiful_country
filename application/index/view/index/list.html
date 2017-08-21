@@ -1,5 +1,6 @@
 {extend name="index/index"}
 {block name="main"}
+<p style="display: none" id="type">{$type}</p>
     <!--Sub Banner Wrap Start -->
     <div class="gt_sub_banner_bg default_width">
         <div class="container">
@@ -181,4 +182,18 @@
 <script src="/static/app/index/js/jquery.prettyPhoto.js"></script>
 <!--Custom JavaScript-->
 <script src="/static/app/index/js/custom.js"></script>
+<script>
+    $(function(){
+        if($('#type').text() == '4'){
+            $('.lhotel').css('background','#2DCC70');
+        }else if($('#type').text() == '5'){
+            $('.lroute').css('background','#2DCC70');
+        }else if($('#type').text() == '6'){
+            $('.lfood').css('background','#2DCC70');
+        }else if($('#type').text() == '1'){
+            $('.lsc').css('background','#2DCC70');
+        };
+    });
+
+</script>
 {/block}
