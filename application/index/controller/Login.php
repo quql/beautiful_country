@@ -100,6 +100,13 @@ class Login extends Base
             'ud_uid'=>$res1
         ];
         $res2 = Db::name('user_detail')->insert($data2);
+        //新增money表数据
+        Db::table('ml_money')->data('m_uid',$res1)->insert();
+        //添加数据到统计表
+        model('count')->register();
+        //添加数据到register表
+        model('register')->insert();
+
         if($res2){
             session('u_id',$res1);
             $this->success('登录成功','index/index/index');

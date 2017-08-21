@@ -184,7 +184,7 @@ class Cate extends Admin
         if(in_array('0',$result)){
            $this->error('修改失败');
         }else{
-           $this->success('修改成功','admin/cate/index');
+           $this->success('修改成功');
         }
     }
 }

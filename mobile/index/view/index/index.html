@@ -86,9 +86,6 @@
 
 
 <ul class="menu-top">
-    <li>
-        <a class="has-submenu" href="#"><i class="fa fa-mobile">登录/注册</i><i class="fa fa-plus"></i></a>
-    </li>
     <li class="active-menu">
         <a href="{:url('/')}"><i class="fa fa-home"></i>首页<i class="fa fa-circle"></i></a></li>
 
@@ -121,7 +118,7 @@
 
     <li><a href="{:url('index/Cart/showindex')}"><i class="fa fa-envelope-o"></i>购物车<i class="fa fa-circle"></i></a></li>
 
-    <li><a class="close-menu" href="#"><i class="fa fa-times"></i>退出<i class="fa fa-circle"></i></a></li>
+    <li><a class="close-menu" href="{:url('/outLogin')}"><i class="fa fa-times"></i>退出<i class="fa fa-circle"></i></a></li>
 
 </ul>
 
@@ -250,17 +247,16 @@
 <div class="content">
 
     <div class="decoration"></div>
-
     <h2 class="center-text">精彩活动</h2>
     {volist name="activitiesindex" id="v"}
     <p class="center-text">
-        {$v.ac_abstract}
+        <a href="{:url('/activitiesdetailsshow/'.$v.activities_id)}">{$v.ac_abstract}</a>
     </p>
 
     <div class="one-half-responsive">
-
+        <a href="{:url('/activitiesdetailsshow/'.$v.activities_id)}">
         <img src="/uploads/{$v['pic']}" class="responsive-image full-bottom" alt="img">
-
+        </a>
     </div>
     {/volist}
 
@@ -402,7 +398,7 @@
 
         <ul class="gallery round-thumb homepage-gallery">
             {volist name="hotscy" id="v"}
-            <li><a class="" href="{:url('/detail',['cid'=>$v.c_id,'gid'=>$v.id])}" ><img src="/uploads/{$v.pic}" alt="img" /></a></li>
+                <li><a class="" href="{:url('/detail',['cid'=>$v.c_id,'gid'=>$v.id])}" ><img src="/uploads/{$v.pic}" width="200" height="200" class="img-circle"/></a></li>
             {/volist}
         </ul>
 

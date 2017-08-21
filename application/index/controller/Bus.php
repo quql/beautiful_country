@@ -15,6 +15,8 @@ class Bus extends Base
      */
     public function index()
     {
+        $uid=input('session.u_id');
+        $username=Db::name('user')->field('u_username')->where('u_id',$uid)->find();
         //根据接收到的id显示不同的商家页面
         $b_id = input('id');
         //dump($b_id);
@@ -124,7 +126,8 @@ class Bus extends Base
             'cate_h' => $cate_hotel,
             'hotel' => $hotel,
             'cate_a' => $cate_ac,
-            'activities' => $activities
+            'activities' => $activities,
+            'username'=>$username
 
         ]);
     }

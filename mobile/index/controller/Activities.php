@@ -22,27 +22,25 @@ class Activities extends Base
 
         $activities = Db::query($sql);
 
-        // $result = $activities;
-        // $i = 0;
-        // foreach ($activities as $key => $value) {
-        //     if(!empty($value['pic'])) {
-        //         $activities[$key]['pic'] = '/public/static/app/index/images/3.jpg';
-        //     }else{
-        //         for ( $i=$key+1; $i<count($activities); $i++) {
-        //             if ( $value['acid'] == $activities[$i]['acid'] && !empty($value['acid'])) {
-        //                 unset($result[$key]);
-        //             }
-        //         }
-        //     }
-        // }
+         $result = $activities;
+//         $i = 0;
+//         foreach ($activities as $key => $value) {
+//             if(!empty($value['pic'])) {
+//                 $activities[$key]['pic'] = '/public/static/app/index/images/3.jpg';
+//             }else{
+//                 for ( $i=$key+1; $i<count($activities); $i++) {
+//                     if ( $value['acid'] == $activities[$i]['acid'] && !empty($value['acid'])) {
+//                         unset($result[$key]);
+//                     }
+//                 }
+//             }
+//         }
 
         // var_dump($activities);die;
-        // return view('index/ActivitiesList', [
-        //    "activitiesindex" =>$result
-        // ]);
+         return view('activities/ActivitiesList', [
+            "activitiesindex" =>$result
+         ]);
 
-        return view('index/ActivitiesList', [
-        "activitiesindex" =>$activities]);
     }
 
     /**

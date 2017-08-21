@@ -15,8 +15,7 @@ class Cart extends Base
         $cid=input('cid');
 
         //用户id
-//        $uid = input('session.uid');
-        $uid=1;
+      $uid = input('session.uid');
         if(empty($uid)){
             $this->error('请先登录哦~~~~','index/index/index');
         }
@@ -84,8 +83,10 @@ class Cart extends Base
     public function showindex()
     {
         //从缓存中获取用户id
-//        $uid = input('session.uid');
-        $uid=1;
+        $uid = input('session.uid');
+        if(empty($uid)){
+            $this->success('请先登录','/showLogin');
+        }
         $c = model('cart');
         $list = $c->getCart($uid);
         //加载用户收获的地址

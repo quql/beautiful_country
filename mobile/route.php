@@ -71,8 +71,6 @@ Route::get('weixin','weixin/Index/index');
 Route::get('weixinplay','index/weixinplay/index');
 
 
-//活动列表页
-Route::get('activitieslist','index/activities/index');
 //显示不同分类列表页
 Route::get('/activitieslistshow/:id','index/activities/activitieslistshow');
 //活动详情页

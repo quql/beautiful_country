@@ -521,20 +521,6 @@
                 </div>
             </div>
         </div>
-        <div class="gt_menu_bg default_width">
-            <div class="container">
-                <!--Logo Wrap Start-->
-                <!--<div class="gt_logo">-->
-                <!--<a href="#"><img src="" alt="">logo图片</a>-->
-                <!--</div>-->
-                <!--Logo Wrap End-->
-                <!--Cart Wrap Start-->
-                {if condition="!empty(input('session.u_id'))"}
-                <div class="gt_cart_wrap">
-                    <a href="{:url('/showCart')}" class="lcart"><i class="fa fa-cart-arrow-down"></i>&nbsp 购物车</a>
-                    <div class="gt_cart_list">
-          </div>
-      </div>
       <div class="gt_menu_bg default_width" >
           <div class="container">
             <!--Logo Wrap Start-->
@@ -546,6 +532,7 @@
             {if condition="!empty(input('session.u_id'))"}
             <div class="gt_cart_wrap">
               <a href="{:url('/showCart')}"><i class="fa fa-cart-arrow-down"></i>&nbsp 购物车</a>
+                {if condition="!empty($shopcart)"}
                 <div class="gt_cart_list">
                   <ul>
                       {volist name="shopcart" id="v"}
@@ -560,7 +547,9 @@
                       </li>
                       {/volist}
                   </ul>
+
               </div>
+                {/if}
             </div>
             {/if}
             <!--Logo Wrap End-->
@@ -573,26 +562,24 @@
                     </button>
                     <ul>
 
-                        <li class="active"><a href="{:url('index/index/index')}">首页</a>
+                        <li class="active"><a href="{:url('index/index/index')}" style='width:70px;text-align:center ;'>首页</a>
                         </li>
 
-                        <li class="lhotel"><a href="{:url('/shoplist/4')}">住宿</a>
+                        <li class="lhotel"><a href="{:url('/shoplist/4')}" style='width:70px;text-align:center'>住宿</a>
                             <ul>
                                 {volist name='hotel' id="v"}
                                 <li><a href="{:url('/listshow/4/'.$v.id)}">{$v.h_name}</a></li>
                                 {/volist}
                             </ul>
                         </li>
-
-
-                        <li class="lroute"><a href="{:url('/shoplist/5')}">旅游线路</a>
+                        <li class="lroute"><a href="{:url('/shoplist/5')}" style='width:100px;text-align:center'>旅游线路</a>
                             <ul>
                                 {volist name='routes' id="v"}
                                 <li><a href="{:url('/listshow/5/'.$v.id)}">{$v.h_name}</a></li>
                                 {/volist}
                             </ul>
                         </li>
-                        <li class="lsc"><a href="{:url('/shoplist/1')}">景区</a>
+                        <li class="lsc"><a href="{:url('/shoplist/1')}" style='width:70px;text-align:center'>景区</a>
                             <ul>
                                 {volist name='scenery' id="v"}
                                 <li><a href="{:url('/listshow/1/'.$v.id)}">{$v.h_name}</a></li>
@@ -600,7 +587,7 @@
                             </ul>
                         </li>
 
-                        <li class="lfood"><a href="{:url('/shoplist/6')}">特产美食</a>
+                        <li class="lfood"><a href="{:url('/shoplist/6')}" style='width:100px;text-align:center'>特产美食</a>
                             <ul>
                                 {volist name='food' id="v"}
                                 <li><a href="{:url('/listshow/6/'.$v.id)}">{$v.h_name}</a></li>
@@ -608,7 +595,7 @@
                             </ul>
                         </li>
 
-                        <li class="lac"><a href="{:url('index/activities/index')}">精彩活动</a>
+                        <li class="lac"><a href="{:url('index/activities/index')}" style='width:100px;text-align:center'>精彩活动</a>
                             <ul>
                                 {volist name='activities' id="v"}
                                 <li><a href="{:url('/activitieslistshow/'.$v.id)}">{$v.ac_name}</a></li>
@@ -662,7 +649,7 @@
                         <a href="{:url('/sceneryhot')}">显示更多</a>
                     </div>
                 </div>
-                <div class="col-md-4 no_padding">
+                <div class="col-md-4 no_padding" style='margin-left:0px'>
                     <div class="gt_banner_service service_bg_2 default_width"
                          style="background-image:url('/static/app/index/images/r5.jpg');">
                         <i class="glyphicon glyphicon-camera">当季主题</i>
@@ -716,6 +703,8 @@
                                         class="fa fa-search"></i></button>
                             </form>
                         </div>
+                    </div>
+                </div>
             <!--Gallery List Wrap Start-->
                 <!--Search Wrap End-->
                 <section class="gt_campus_bg" style="background-color: black;padding-bottom: 0px">
@@ -810,7 +799,7 @@
                 </div>
                 <!--Courses List Wrap End-->
             </div>
-        </section>
+        </div></section>
 
 
         {if condition="!empty($hotscenery)"}
@@ -1050,7 +1039,7 @@
     {/block}
 
 
-    {block name='footer'}
+    <!--{block name='footer'}-->
     <!--Footer Wrap Start-->
     <footer>
         <!--Newletter Wrap Start-->
@@ -1239,7 +1228,7 @@
     </div>
 </div>
 
-{/block}
+<!--{/block}-->
 
 <!--gt Wrapper End-->
 
@@ -1524,9 +1513,237 @@
 //    });
 
 </script>
+<script>
+    $(function () {
+        $('.apply').click(function () {
+            $('#myModal').modal(options);
+        });
+        $('.tel').click(function () {
+            $('#smodal').modal('show');
+        });
+
+    });
+
+    $('.btn_email').click(function () {
+        vemail = document.getElementById("inputEmail").value;
+        //console.log(vemail);
+        emailAjax(vemail);
+        //return false;
+    });
+    //ajax请求发送邮箱验证码 传递参数为邮箱地址EMAIL
+    function emailAjax(email) {
+        $.ajax({
+            type: 'get',
+            url: '/email/' + email,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                if (data.status) {
+                    alert(data['info']);
+                } else {
+                    alert(data['info']);
+                }
+            },
+            error: function () {
+                // AJAX操作失败
+                alert('网络错误,请求失败~~');
+            }
+
+        });
+    }
+
+    $('.new_email').click(function () {
+        vemail = document.getElementById("newEmail").value;
+        //console.log(vemail);
+        newemailAjax(vemail);
+        //return false;
+    });
+    //ajax请求发送邮箱验证码 传递参数为邮箱地址EMAIL
+    function newemailAjax(email) {
+        $.ajax({
+            type: 'get',
+            url: '/newsemail/' + email,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                if (data.status) {
+                    alert(data['info']);
+                } else {
+                    alert(data['info']);
+                }
+            },
+            error: function () {
+                // AJAX操作失败
+                alert('网络错误,请求失败~~');
+            }
+
+        });
+    }
+
+
+    //验证商户注册的表单
+    function checkForm() {
+        //获取提交的数据
+        var name = document.getElementById('inputName').value;
+        var p1 = document.getElementById('p1');
+        //验证店铺名称是否满足正则条件 +出现1次或多次 /^([\u4e00-\u9fa5]){2,8}$/
+        if (name.match(/^([\u4e00-\u9fa5]){1,8}$/) === null) {
+            p1.innerHTML = ' × 请输入1-8个汉字组成的店铺名字';
+            p1.style.color = 'red';
+            return false;
+        } else {
+            p1.style.color = '#0a0';
+            p1.innerHTML = '√ ';
+        }
+
+        var person = document.getElementById('inputPerson').value;
+        var p2 = document.getElementById('p2');
+        //验证负责人是否符合 6-12位的数字字母下划线
+        if ((person.match(/^[a-z]{1,12}$/) === null) && (person.match(/^([\u4e00-\u9fa5]){2,8}$/) === null)) {
+            p2.innerHTML = '× 请输入1-12位的字母或1-8个汉字组成的名字';
+            p2.style.color = 'red';
+            return false;
+        } else {
+            p2.style.color = '#0a0';
+            p2.innerHTML = '√ ';
+        }
+        //密码
+        var pass = document.getElementById('inputPass').value;
+        var p3 = document.getElementById('p3');
+        //验证密码是否符合 6-18位的数字
+        if (pass.match(/^\w{6,18}$/) === null) {
+            p3.innerHTML = ' × 请输入6-18位的数字、字母或下划线组成的密码';
+            p3.style.color = 'red';
+            return false;
+        } else {
+            p3.style.color = '#0a0';
+            p3.innerHTML = '√ ';
+        }
+        //确认密码
+        var repass = document.getElementById('inputRepass').value;
+        var p8 = document.getElementById('p8');
+        if (pass !== repass) {
+            p8.innerHTML = ' × 两次输入不一致';
+            p8.style.color = 'red';
+            return false;
+        } else {
+            p8.style.color = '#0a0';
+            p8.innerHTML = '√ ';
+        }
+        //手机号
+        var phone = document.getElementById('inputPhone').value;
+        var p4 = document.getElementById('p4');
+        if (phone.match(/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/) === null) {
+            p4.innerHTML = ' × 请输入11位合法的手机号码';
+            p4.style.color = 'red';
+            return false;
+        } else {
+            p4.style.color = '#0a0';
+            p4.innerHTML = '√ ';
+        }
+
+        //地区
+        var adress = document.getElementById('city-picker3').value;
+        var p5 = document.getElementById('p5');
+        var arr = adress.split('/');
+        if (arr.length < 2) {
+            p5.innerHTML = ' × 请选择完整的省/市/区';
+            p5.style.color = 'red';
+            return false;
+        } else {
+            p5.style.color = '#0a0';
+            p5.innerHTML = '√ ';
+        }
+
+        //邮箱
+        var email = document.getElementById('inputEmail').value;
+        var p9 = document.getElementById('p9');
+        if (email.match(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/) === null) {
+            p9.innerHTML = ' × 请填写合法的邮箱地址';
+            p9.style.color = 'red';
+            return false;
+        } else {
+            p9.style.color = '#0a0';
+            p9.innerHTML = '√ ';
+        }
+
+        //验证码
+        var vcode = document.getElementById('inputVcode').value;
+        //console.log(vcode);
+        var p10 = document.getElementById('p10');
+        if (vcode == '' || vcode == null) {
+            p10.innerHTML = ' × 验证码不能为空';
+            p10.style.color = 'red';
+            return false;
+        } else {
+            p10.style.color = '#0a0';
+            p10.innerHTML = '√ ';
+        }
+
+        //同意条款
+        var checkbox = document.getElementById('checkbox');
+        var p7 = document.getElementById('p7');
+        if (!checkbox.checked) {
+            p7.innerHTML = ' × 请认真阅读并同意入驻规则';
+            p7.style.color = 'red';
+            return false;
+            p7.style.color = '#0a0';
+            p7.innerHTML = '√ 通过';
+        }
+    }
+
+</script>
 {block name="myjs"}
 <!--yjf-->
 <script>
+    // 检测滚动事件
+    window.onscroll = function () {
+        // 导航条 位置判断
+        //console.log(document.body.scrollTop);
+        var top = document.body.scrollTop || document.documentElement.scrollTop;
+        var he = document.getElementById('fixed');
+        //console.log(top);
+        if (top > 0) {
+            he.style.position = 'fixed';
+            he.style.top = '0px';
+            he.style.zIndex = '10000';
+        } else {
+            he.style.position = '';
+            he.style.top = '0px';
+            he.style.zIndex = '10';
+        }
+    }
+
+    // 文字滚动
+    var jchd = document.getElementById('jchd');
+    var msg = document.getElementById('msg');
+    var hot = document.getElementById('hot');
+    setInterval(function () {
+        var str = msg.innerHTML;
+        var arr = str.split("");
+        arr.push(arr.shift());
+        msg.innerHTML = arr.join("");
+    }, 100);
+    setInterval(function () {
+        var str = jchd.innerHTML;
+        var arr = str.split("");
+        arr.push(arr.shift());
+        jchd.innerHTML = arr.join("");
+    }, 100);
+    setInterval(function () {
+        var str = document.title;
+        var fstr = str.charAt(0);
+        var estr = str.substr(1);
+        document.title = estr + fstr;
+    }, 500);
+    setInterval(function () {
+        var str = hot.innerHTML;
+        var arr = str.split("");
+        arr.push(arr.shift());
+        hot.innerHTML = arr.join("");
+    }, 100);
+
+
     var verifyCode = new GVerify("v_container");
 
     $('#code_input').blur(function () {

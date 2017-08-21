@@ -19,6 +19,9 @@ class Personal extends Base
     {
         //用户id
         $id = input('session.uid');
+        if(empty($id)){
+            $this->success('请先登录','/showLogin');
+        }
 //        $id =1;
         //获取用户基本信息
         $user = model('user');

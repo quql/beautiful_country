@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>魅丽乡村--{$list.b_name}</title>
+    <title>美丽乡村--{$list.b_name}</title>
     <!-- load stylesheets -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
     <!-- Google web font "Open Sans" -->
@@ -41,9 +41,9 @@
     <div class="cd-slider-nav">
         <nav class="navbar">
             <div class="tm-navbar-bg">
-                <!--<a href="">魅丽乡村首页</a>-->
-                <a class="navbar-brand text-uppercase" href="#">
-                    <img src="{:empty($list['b_logo'])?'/static/app/admin/images/1.jpg':$list['b_logo'];}"  width='80px' height="80px">
+                <a href="{:url('index/index/index')}"><img src="/static/app/index/images/123.jpg" alt="美丽乡村首页" style="margin-top: -23px;margin-left:-30px;height:60px;width: 100px;opacity:0.4;"></a>
+                <a class="navbar-brand text-uppercase">
+                    <img src="{:empty($list['b_logo'])?'/static/app/admin/images/1.jpg':$list['b_logo'];}"  width='60px' height="60px">
                     　{$list['b_name']}
                 </a>
                 <div class="collapse navbar-toggleable-md text-xs-center text-uppercase tm-navbar" id="tmNavbar">
@@ -82,31 +82,34 @@
                     <div class="row">
                         <div class="tm-3-col-container">
                             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 tm-3-col-textbox">
+                                <!--<div class="text-xs-left tm-textbox tm-textbox-padding tm-bg-white-translucent tm-3-col-textbox-inner">-->
+                                    <!--<i class="fa fa-4x fa-pagelines tm-home-fa"></i>-->
+                                    <!--<h2 class="tm-text-title"></h2>-->
+                                    <!--<p class="tm-text"></p>-->
+                                <!--</div>-->
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 tm-3-col-textbox">
                                 <div class="text-xs-left tm-textbox tm-textbox-padding tm-bg-white-translucent tm-3-col-textbox-inner">
-                                    <i class="fa fa-4x fa-pagelines tm-home-fa"></i>
-                                    <h2 class="tm-text-title"></h2>
-                                    <p class="tm-text"></p>
+                                    <!--<i class="fa fa-4x fa-bicycle tm-home-fa"></i>-->
+                                    {if condition="empty($username)"}
+                                    <h2 class="tm-text-title" style="text-align: center">hello </h2>
+                                    {else /}
+                                    <h2 class="tm-text-title" style="text-align: center">hello {$username['u_username']}</h2>
+                                    {/if}
+                                    <h2 class="tm-text-title" style="text-align: center">终于等到你 <span style="color :pink">❤_❤</span></h2>
+
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 tm-3-col-textbox">
                                 <div class="text-xs-left tm-textbox tm-textbox-padding tm-bg-white-translucent tm-3-col-textbox-inner">
-                                    <i class="fa fa-4x fa-bicycle tm-home-fa"></i>
-                                    <h2 class="tm-text-title">欢迎参观{$list['b_name']}</h2>
-                                    <p class="tm-text">There are 3 different gallaries in this template. You can customize them in any suitable way you prefer. You can also modify the content columns as you wish. Images are from Unsplash website. Good Luck!</p>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 tm-3-col-textbox">
-                                <div class="text-xs-left tm-textbox tm-textbox-padding tm-bg-white-translucent tm-3-col-textbox-inner">
-                                    <i class="fa fa-4x fa-plane tm-home-fa"></i>
-                                    <h2 class="tm-text-title">店铺信息</h2>
+                                    <!--<i class="fa fa-4x fa-plane tm-home-fa"></i>-->
+                                    <!--<h2>O(∩_∩)O</h2>-->
+                                    <h2 class="tm-text-title">欢迎参观O(∩_∩)O</h2>
                                     <p class="tm-text">
                                         开店时间:　{$list['b_create_time']}
                                         <br>所在地区:　{$list['b_province']}/{$list['b_city']}/{$list['b_area']}
                                         <br>店铺简介:　{:empty($list['b_desc'])?'村长可能是懒洋洋,还没有补充简介信息.....':$list['b_desc'];}
-                                        <br>描述:　评分
-                                        <br>物流:　评分
-                                        <br>服务:　评分
-                                        <br>收藏店铺:　收藏
+
                                     </p>
                                 </div>
                             </div>
@@ -122,15 +125,16 @@
             <div class="cd-full-width">
                 <div class="container-fluid js-tm-page-content" data-page-no="2" data-page-type="gallery" >
 
-                    <div class="tm-img-gallery-container tm-img-gallery-container-3">
+                    <div class="tm-img-gallery-container tm-img-gallery-container-3" >
                         {volist name="ticket" id="vt" key='k'}
                         {if condition='!empty($vt)'}
+                        <div class="tm-img-gallery-info-container" style="margin-top: 30px">
+                            <h2 class="tm-text-title tm-gallery-title " ><span class="tm-white">{$cate[$k-1]}</span></h2>
+                        </div>
                         {volist name="vt" id="v"}
-                        <div class="tm-img-gallery gallery-one" style="margin-top: 30px">
+                        <div class="tm-img-gallery gallery-one" >
                             <!-- Gallery One pop up connected with JS code below -->
-                            <div class="tm-img-gallery-info-container">
-                                <h2 class="tm-text-title tm-gallery-title tm-white"><span class="tm-white">{$cate[$k-1]}</span></h2>
-                            </div>
+
                             <div class="grid-item">
                                 <figure class="effect-ruby">
                                     <a href="#"><img  src="/uploads/{$v.pic}" alt="Image" class="img-fluid tm-img " style="height:420px;width:320px"></a>
@@ -142,8 +146,9 @@
                                 </figure>
 
                             </div>
+                            <div style="padding:10px;width: 320px;text-align: center;margin-bottom: 20px"><a href="{:url('/goodsdetail',['id'=>$v.gid,'bus_id'=>$b_id,'cid'=>'1'])}">点击查看详情>>></a></div>
+
                         </div>
-                        <div style="padding:10px;width: 320px;text-align: center;margin-bottom: 20px"><a href="{:url('/goodsdetail',['id'=>$v.gid,'bus_id'=>$b_id,'cid'=>'1'])}">点击查看详情>>></a></div>
                         {/volist}
                         {/if}
                         {/volist}
@@ -168,7 +173,7 @@
                             <!-- Gallery Two pop up connected with JS code below -->
                             <div class="grid-item">
                                 <figure class="effect-ruby">
-                                    <a href=""><img src="/uploads/{$v.pic}" alt="Image" class="img-fluid tm-img" style="height:420px;width:320px" ></a>
+                                    <a href=""><img src="/uploads/{$v.pic}" alt="Image" class="img-fluid tm-img" style="height:433px;width:290px" ></a>
                                     <figcaption>
                                         <h2 class="tm-figure-title">{$v.gd_title}</span></h2>
                                         <p class="tm-figure-description">{$v.gd_abstract}</p>
@@ -176,12 +181,14 @@
                                     </figcaption>
                                 </figure>
                             </div>
+                            <div style="padding:10px;width: 290px;text-align: center;margin-bottom: 20px"><a href="{:url('/goodsdetail',['id'=>$v.gid,'bus_id'=>$b_id,'cid'=>'6'])}">点击查看详情>>></a></div>
                         </div>
-                    </div>
-                    <div style="padding:10px;width: 320px;text-align: center;margin-bottom: 20px"><a href="{:url('/goodsdetail',['id'=>$v.gid,'bus_id'=>$b_id,'cid'=>'6'])}">点击查看详情>>></a></div>
+
+
                     {/volist}
                     {/if}
                     {/volist}
+                        </div>
                 </div>
             </div>
         </li>
@@ -202,7 +209,7 @@
 
                             <div class="grid-item">
                                 <figure class="effect-ruby">
-                                    <a href=""><img src="/uploads/{$r1.pic}" alt="Image" class="img-fluid tm-img" height="400px"></a>
+                                    <a href=""><img src="/uploads/{$r1.pic}" alt="Image" class="img-fluid tm-img" height="440px" width="660px"></a>
                                     <figcaption>
                                         <h2 class="tm-figure-title"><a href="{:url('/goodsdetail',['id'=>$r1.gid,'bus_id'=>$r1.bus_id,'cid'=>$r1.c_id])}">{$r1.gd_title}</a></h2>
                                         <p class="tm-figure-description">{$r1.gd_abstract}</p>
@@ -210,9 +217,9 @@
                                     </figcaption>
                                 </figure>
                             </div>
-
+                            <div style="padding:10px;width: 660px;text-align: center;margin-bottom: 20px"><a href="{:url('/goodsdetail',['id'=>$r1.gid,'bus_id'=>$b_id,'cid'=>'5'])}">点击查看详情>>></a></div>
                         </div>
-                        <div style="padding:10px;width: 627px;text-align: center;margin-bottom: 20px"><a href="{:url('/goodsdetail',['id'=>$r1.gid,'bus_id'=>$b_id,'cid'=>'5'])}">点击查看详情>>></a></div>
+
                         {/volist}
                         {/if}
                         {/volist}
@@ -237,7 +244,7 @@
 
                             <div class="grid-item">
                                 <figure class="effect-ruby">
-                                    <a href=""><img src="/uploads/{$r1.pic}" alt="Image" class="img-fluid tm-img" height="400px"></a>
+                                    <a href=""><img src="/uploads/{$r1.pic}" alt="Image" class="img-fluid tm-img" width='585px' height="400px"></a>
                                 <figcaption>
                                 <h2 class="tm-figure-title"><a href="{:url('/activitiesdetailsshow',['id'=>$r1.acid])}">{$r1.ac_title}</a></h2>
                                 <p class="tm-figure-description">{$r1.ac_abstract}</p>
@@ -245,9 +252,9 @@
                                 </figcaption>
                                 </figure>
                             </div>
-
+                            <div style="padding:10px;width: 585px;text-align: center;margin-bottom: 20px"><a href="{:url('/activitiesdetailsshow',['id'=>$r1.acid])}">点击查看详情>>></a></div>
                         </div>
-                        <div style="padding:10px;width: 627px;text-align: center;margin-bottom: 20px"><a href="{:url('/activitiesdetailsshow',['id'=>$r1.acid])}">点击查看详情>>></a></div>
+
                         {/volist}
                         {/if}
                         {/volist}
@@ -271,17 +278,17 @@
                             <!-- Gallery Two pop up connected with JS code below -->
                             <div class="grid-item" >
                                 <figure class="effect-ruby">
-                                    <img src="/uploads/{$h1.pic}" alt="Image" class="img-fluid tm-img" width='500px' height="400px" style="'margin-left:10px">
+                                    <img src="/uploads/{$h1.pic}" alt="Image" class="img-fluid tm-img" style="height:420px;width:560px">
                                     <figcaption>
                                         <h2 class="tm-figure-title">{$h1.gd_title}</h2>
                                         <p class="tm-figure-description">{$h1.gd_abstract}</p>
-                                        <a href="/uploads/{$h1.pic}">View more</a>
+                                        <a href="/uploads/{$h1.pic}">查看详情</a>
                                     </figcaption>
                                 </figure>
                             </div>
-
+                            <div style="padding:10px;width: 560px;text-align: center;margin-bottom: 20px"><a href="{:url('/goodsdetail',['id'=>$v.gid,'bus_id'=>$b_id,'cid'=>'4'])}">点击查看详情>>></a></div>
                         </div>
-                        <div style="padding:10px;width: 500px;text-align: center;margin-bottom: 20px"><a href="{:url('/goodsdetail',['id'=>$v.gid,'bus_id'=>$b_id,'cid'=>'4'])}">点击查看详情>>></a></div>
+
                         {/volist}
                         {/if}
                         {/volist}

@@ -115,10 +115,14 @@
 
             <!--sidebar nav start-->
             <ul class="nav nav-pills nav-stacked custom-nav">
-                <li class="active"><a href="index.html"><i class="fa fa-home"></i> <span>控制列表</span></a></li>
+                <li><a href="{:url('/chartjs')}"><i class="fa fa-bar-chart-o"></i> <span>首页</span></a>
+                </li>
+                <!--<li class="active"><a href="index.html"><i class="fa fa-home"></i> <span>控制列表</span></a></li>-->
                 <li><a href="{:url('admin/Carousel/index')}"><i class="fa fa-laptop"></i><span>轮播图管理</span></a></li>
                 <li><a href="{:url('admin/Comment/index')}"><i class="fa fa-bullhorn"></i> <span>评论管理</span></a></li>
                 <li><a href="{:url('admin/Users/index')}"><i class="fa fa-bullhorn"></i> <span>用户管理</span></a></li>
+                <li><a href="{:url('admin/buspower/index')}"><i class="fa fa-cogs"></i>商铺管理</a></li>
+                <li><a href="{:url('admin/link/index')}"><i class="fa fa-book"></i> <span>友情链接</span></a></li>
                 <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>管理员管理</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="{:url('admin/user/index')}">管理员列表</a></li>
@@ -127,17 +131,6 @@
                         <li><a href="{:url('admin/node/index')}"> 管理员节点管理</a></li>
                     </ul>
                 </li>
-                <li class="menu-list"><a href=""><i class="fa fa-cogs"></i> <span>商铺信息管理</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="{:url('admin/buspower/index')}">查看商铺列表</a></li>
-                        <li><a href="gallery.html"> Media Gallery</a></li>
-                        <li><a href="calendar.html"> Calendar</a></li>
-                        <li><a href="tree_view.html"> Tree View</a></li>
-                        <li><a href="nestable.html"> Nestable</a></li>
-
-                    </ul>
-                </li>
-
                 <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>活动管理</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="{:url('admin/ActivitiesAdminCate/read',['id'=>'2'])}">活动分类管理</a></li>
@@ -182,65 +175,6 @@
                     </ul>
                 </li>
 
-                <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>友情链接管理</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="{:url('admin/link/index')}">友情链接列表</a></li>
-                    </ul>
-                </li>
-
-                <li class="menu-list"><a href=""><i class="fa fa-tasks"></i> <span>Forms</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="form_layouts.html"> Form Layouts</a></li>
-                        <li><a href="form_advanced_components.html"> Advanced Components</a></li>
-                        <li><a href="form_wizard.html"> Form Wizards</a></li>
-                        <li><a href="form_validation.html"> Form Validation</a></li>
-                        <li><a href="editors.html"> Editors</a></li>
-                        <li><a href="inline_editors.html"> Inline Editors</a></li>
-                        <li><a href="pickers.html"> Pickers</a></li>
-                        <li><a href="dropzone.html"> Dropzone</a></li>
-                        <li><a href="http://www.weidea.net"> More</a></li>
-                    </ul>
-                </li>
-                <li class="menu-list"><a href=""><i class="fa fa-bar-chart-o"></i> <span>网站统计</span></a>
-                    <ul class="sub-menu-list">
-                        <!--<li><a href="flot_chart.html"> Flot Charts</a></li>-->
-                        <!--<li><a href="morris.html"> Morris Charts</a></li>-->
-                        <li><a href="{:url('/chartjs')}"> 统计</a></li>
-                        <!--<li><a href="c3chart.html"> C3 Charts</a></li>-->
-                    </ul>
-                </li>
-                <li class="menu-list"><a href="#"><i class="fa fa-th-list"></i> <span>Data Tables</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="basic_table.html"> Basic Table</a></li>
-                        <li><a href="dynamic_table.html"> Advanced Table</a></li>
-                        <li><a href="responsive_table.html"> Responsive Table</a></li>
-                        <li><a href="editable_table.html"> Edit Table</a></li>
-                    </ul>
-                </li>
-
-                <li class="menu-list"><a href="#"><i class="fa fa-map-marker"></i> <span>Maps</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="google_map.html"> Google Map</a></li>
-                        <li><a href="vector_map.html"> Vector Map</a></li>
-                    </ul>
-                </li>
-                <li class="menu-list"><a href=""><i class="fa fa-file-text"></i> <span>Extra Pages</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="profile.html"> Profile</a></li>
-                        <li><a href="invoice.html"> Invoice</a></li>
-                        <li><a href="pricing_table.html"> Pricing Table</a></li>
-                        <li><a href="timeline.html"> Timeline</a></li>
-                        <li><a href="blog_list.html"> Blog List</a></li>
-                        <li><a href="blog_details.html"> Blog Details</a></li>
-                        <li><a href="directory.html"> Directory </a></li>
-                        <li><a href="chat.html"> Chat </a></li>
-                        <li><a href="404.html"> 404 Error</a></li>
-                        <li><a href="500.html"> 500 Error</a></li>
-                        <li><a href="registration.html"> Registration Page</a></li>
-                        <li><a href="lock_screen.html"> Lockscreen </a></li>
-                    </ul>
-                </li>
-        
                 <li><a href="{:url('admin/index/loginexit')}"><i class="fa fa-sign-in"></i> <span>安全退出</span></a></li>
 
             </ul>
@@ -296,513 +230,294 @@
         </div>
         <!-- header section end-->
         {block name="main"}
-        <!-- page heading start-->
-        <div class="page-heading">
-            <h3>
-                Dashboard
-            </h3>
-            <ul class="breadcrumb">
-                <li>
-                    <a href="#">Dashboard</a>
-                </li>
-                <li class="active"> My Dashboard </li>
-            </ul>
-            <div class="state-info">
-                <section class="panel">
-                    <div class="panel-body">
-                        <div class="summary">
-                            <span>yearly expense</span>
-                            <h3 class="red-txt">$ 45,600</h3>
-                        </div>
-                        <div id="income" class="chart-bar"></div>
-                    </div>
-                </section>
-                <section class="panel">
-                    <div class="panel-body">
-                        <div class="summary">
-                            <span>yearly  income</span>
-                            <h3 class="green-txt">$ 45,600</h3>
-                        </div>
-                        <div id="expense" class="chart-bar"></div>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <!-- page heading end-->
+        <!--<body class="sticky-header">-->
 
-        <!--body wrapper start-->
-        <div class="wrapper">
-            <div class="row">
-                <div class="col-md-6">
-                    <!--statistics start-->
-                    <div class="row state-overview">
-                        <div class="col-md-6 col-xs-12 col-sm-6">
-                            <div class="panel purple">
-                                <div class="symbol">
-                                    <i class="fa fa-gavel"></i>
-                                </div>
-                                <div class="state-value">
-                                    <div class="value">230</div>
-                                    <div class="title">New Order</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xs-12 col-sm-6">
-                            <div class="panel red">
-                                <div class="symbol">
-                                    <i class="fa fa-tags"></i>
-                                </div>
-                                <div class="state-value">
-                                    <div class="value">3490</div>
-                                    <div class="title">Copy Sold</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row state-overview">
-                        <div class="col-md-6 col-xs-12 col-sm-6">
-                            <div class="panel blue">
-                                <div class="symbol">
-                                    <i class="fa fa-money"></i>
-                                </div>
-                                <div class="state-value">
-                                    <div class="value">22014</div>
-                                    <div class="title"> Total Revenue</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xs-12 col-sm-6">
-                            <div class="panel green">
-                                <div class="symbol">
-                                    <i class="fa fa-eye"></i>
-                                </div>
-                                <div class="state-value">
-                                    <div class="value">390</div>
-                                    <div class="title"> Unique Visitors</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--statistics end-->
-                </div>
-                <div class="col-md-6">
-                    <!--more statistics box start-->
-                    <div class="panel deep-purple-box">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-7 col-sm-7 col-xs-7">
-                                    <div id="graph-donut" class="revenue-graph"></div>
+        <section>
 
-                                </div>
-                                <div class="col-md-5 col-sm-5 col-xs-5">
-                                    <ul class="bar-legend">
-                                        <li><span class="blue"></span> Open rate</li>
-                                        <li><span class="green"></span> Click rate</li>
-                                        <li><span class="purple"></span> Share rate</li>
-                                        <li><span class="red"></span> Unsubscribed rate</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--more statistics box end-->
+            <div class="container-fluid">
+                <div class="page-heading mt20">
+                    <h3>
+                        网站数据统计
+                    </h3>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="{:url('/chartjs')}">首页</a>
+                        </li>
+                        <li class="active"> 统计 </li>
+                    </ul>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="panel">
-                        <div class="panel-body">
-                            <div class="row revenue-states">
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h4>Monthly revenue report</h4>
-                                    <div class="icheck">
-                                        <div class="square-red single-row">
-                                            <div class="checkbox ">
-                                                <input type="checkbox" checked>
-                                                <label>Online</label>
+
+                <div class="wraper">
+                    <div class="row">
+                        <!--总计-->
+                        <div class="col-sm-12" style="margin-top: 20px">
+                            <section class="panel">
+                                <div class="counter col_fourth" style="float:left;margin-left:100px;text-align: center">
+                                    <!--<i class="fa fa-code fa-2x"></i>-->
+                                    <img src="/static/app/admin/images/count/count.png" width="30">
+                                    <h2 class="timer count-title" id="count-number" data-to="{$view}" data-speed="1500"></h2>
+                                    <p class="count-text ">历史访问量</p>
+                                </div>
+
+                                <div class="counter col_fourth" style="float:left;margin-left:110px;text-align: center">
+                                    <!--<i class="fa fa-coffee fa-2x"></i>-->
+                                    <img src="/static/app/admin/images/count/user.png" width="30">
+                                    <h2 class="timer count-title" id="count-number" data-to="{$register}" data-speed="1500"></h2>
+                                    <p class="count-text ">历史注册人数</p>
+                                </div>
+
+                                <div class="counter col_fourth end" style="float:left;margin-left:110px;text-align: center">
+                                    <!--<i class="fa fa-bug fa-2x"></i>-->
+                                    <img src="/static/app/admin/images/count/bus.png" width="30">
+                                    <h2 class="timer count-title" id="count-number" data-to="{$bus}" data-speed="1500"></h2>
+                                    <p class="count-text ">入驻商家</p>
+                                </div>
+
+                                <div class="counter col_fourth" style="float:left;margin-left:110px;text-align: center">
+                                    <!--<i class="fa fa-lightbulb-o fa-2x"></i>-->
+                                    <img src="/static/app/admin/images/count/countmoney.png" width="30">
+                                    <h2 class="timer count-title" id="count-number" data-to="{$trade}" data-speed="1500"></h2>
+                                    <p class="count-text ">历史交易量</p>
+                                </div>
+
+                                <div class="counter col_fourth end" style="float:left;margin-left:110px;text-align: center">
+                                    <!--<i class="fa fa-bug fa-2x"></i>-->
+                                    <img src="/static/app/admin/images/count/money.png" width="30">
+                                    <h2 class="timer count-title" id="count-number" data-to="{$total}" data-speed="1500"></h2>
+                                    <p class="count-text ">历史交易金额</p>
+                                </div>
+
+
+                            </section>
+                        </div>
+                        <!--用户统计-->
+                        <div class="col-sm-6" style="margin-top: 20px">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    用户统计
+                                    <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                         </span>
+                                </header>
+                                <div class="panel-body" style="height: 630px">
+                                    <div id="content" style="height: 520px">
+
+                                        <div class="legend">
+
+                                            <!--<h1>Legend:</h1>-->
+
+                                            <div class="skills">
+
+                                                <!--<ul>-->
+
+                                                <!--<li class="jq">今日访问量</li>-->
+
+                                                <!--<li class="css">CSS3</li>-->
+
+                                                <!--<li class="html">HTML5</li>-->
+
+                                                <!--<li class="php">PHP</li>-->
+
+                                                <!--<li class="sql">MySQL</li>-->
+
+                                                <!--</ul>-->
+
                                             </div>
+
                                         </div>
-                                        <div class="square-blue single-row">
-                                            <div class="checkbox ">
-                                                <input type="checkbox">
-                                                <label>Offline </label>
-                                            </div>
-                                        </div>
+
+                                        <div id="diagram"></div>
+
                                     </div>
 
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <ul class="revenue-nav">
-                                        <li><a href="#">weekly</a></li>
-                                        <li><a href="#">monthly</a></li>
-                                        <li class="active"><a href="#">yearly</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="clearfix">
-                                        <div id="main-chart-legend" class="pull-right">
+
+
+                                    <div class="footer">
+
+                                        <div class="inside">
+
+
+
                                         </div>
+
                                     </div>
 
-                                    <div id="main-chart">
-                                        <div id="main-chart-container" class="main-chart">
-                                        </div>
-                                    </div>
-                                    <ul class="revenue-short-info">
-                                        <li>
-                                            <h1 class="red">15%</h1>
-                                            <p>Server Load</p>
-                                        </li>
-                                        <li>
-                                            <h1 class="purple">30%</h1>
-                                            <p>Disk Space</p>
-                                        </li>
-                                        <li>
-                                            <h1 class="green">84%</h1>
-                                            <p>Transferred</p>
-                                        </li>
-                                        <li>
-                                            <h1 class="blue">28%</h1>
-                                            <p>Temperature</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="panel">
-                        <header class="panel-heading">
-                            goal progress
-                            <span class="tools pull-right">
-                                <a href="javascript:;" class="fa fa-chevron-down"></a>
-                                <a href="javascript:;" class="fa fa-times"></a>
-                             </span>
-                        </header>
-                        <div class="panel-body">
-                            <ul class="goal-progress">
-                                <li>
-                                    <div class="prog-avatar">
-                                        <img src="/static/app/admin/images/photos/user1.png" alt=""/>
-                                    </div>
-                                    <div class="details">
-                                        <div class="title">
-                                            <a href="#">John Doe</a> - Project Lead
-                                        </div>
-                                        <div class="progress progress-xs">
-                                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
-                                                <span class="">70%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prog-avatar">
-                                        <img src="/static/app/admin/images/photos/user2.png" alt=""/>
-                                    </div>
-                                    <div class="details">
-                                        <div class="title">
-                                            <a href="#">Cameron Doe</a> - Sales
-                                        </div>
-                                        <div class="progress progress-xs">
-                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 91%">
-                                                <span class="">91%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prog-avatar">
-                                        <img src="/static/app/admin/images/photos/user3.png" alt=""/>
-                                    </div>
-                                    <div class="details">
-                                        <div class="title">
-                                            <a href="#">Hoffman Doe</a> - Support
-                                        </div>
-                                        <div class="progress progress-xs">
-                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                                <span class="">40%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prog-avatar">
-                                        <img src="/static/app/admin/images/photos/user4.png" alt=""/>
-                                    </div>
-                                    <div class="details">
-                                        <div class="title">
-                                            <a href="#">Jane Doe</a> - Marketing
-                                        </div>
-                                        <div class="progress progress-xs">
-                                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                                <span class="">20%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="prog-avatar">
-                                        <img src="/static/app/admin/images/photos/user5.png" alt=""/>
-                                    </div>
-                                    <div class="details">
-                                        <div class="title">
-                                            <a href="#">Hoffman Doe</a> - Support
-                                        </div>
-                                        <div class="progress progress-xs">
-                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-                                                <span class="">45%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="text-center"><a href="#">View all Goals</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="panel">
-                        <div class="panel-body extra-pad">
-                            <h4 class="pros-title">prospective <span>leads</span></h4>
-                            <div class="row">
-                                <div class="col-sm-4 col-xs-4">
-                                    <div id="p-lead-1"></div>
-                                    <p class="p-chart-title">Laptop</p>
-                                </div>
-                                <div class="col-sm-4 col-xs-4">
-                                    <div id="p-lead-2"></div>
-                                    <p class="p-chart-title">iPhone</p>
-                                </div>
-                                <div class="col-sm-4 col-xs-4">
-                                    <div id="p-lead-3"></div>
-                                    <p class="p-chart-title">iPad</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="panel">
-                        <div class="panel-body extra-pad">
-                            <div class="col-sm-6 col-xs-6">
-                                <div class="v-title">Visits</div>
-                                <div class="v-value">10,090</div>
-                                <div id="visit-1"></div>
-                                <div class="v-info">Pages/Visit</div>
-                            </div>
-                            <div class="col-sm-6 col-xs-6">
-                                <div class="v-title">Unique Visitors</div>
-                                <div class="v-value">8,173</div>
-                                <div id="visit-2"></div>
-                                <div class="v-info">Avg. Visit Duration</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
 
-                    <div class="panel green-box">
-                        <div class="panel-body extra-pad">
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-6">
-                                    <div class="knob">
-                                        <span class="chart" data-percent="79">
-                                            <span class="percent">79% <span class="sm">New Visit</span></span>
-                                        </span>
+                                    <div class="get">
+
+
+                                        <div class="arc">
+
+                                            <span class="text">性别未知用户</span><span>：{$nsecrecy}</span>
+
+                                            <input type="hidden" class="percent" value="{:round($nsecrecy)}" />
+
+                                            <input type="hidden" class="color" value="#97BE0D" />
+
+                                        </div>
+
+                                        <div class="arc">
+
+                                            <span class="text">男性用户</span><span>：{$nmale}</span>
+
+                                            <input type="hidden" class="percent" value="{:round($male)}" />
+
+                                            <input type="hidden" class="color" value="#D84F5F" />
+
+                                        </div>
+
+                                        <div class="arc">
+
+                                            <span class="text">女性用户</span><span>：{$nfemale}</span>
+
+                                            <input type="hidden" class="percent" value="{:round($female)}" />
+
+                                            <input type="hidden" class="color" value="#88B8E6" />
+
+                                        </div>
+
+                                        <!--<div class="arc">-->
+
+                                        <!--<span class="text"></span>-->
+
+                                        <!--<input type="hidden" class="percent" value="{$secrecy}" />-->
+
+                                        <!--<input type="hidden" class="color" value="#BEDBE9" />-->
+
+                                        <!--</div>-->
+
+                                        <!--<div class="arc">-->
+
+                                        <!--&lt;!&ndash;<span class="text">MySQL</span>&ndash;&gt;-->
+
+                                        <!--<input type="hidden" class="percent" value="45" />-->
+
+                                        <!--<input type="hidden" class="color" value="#EDEBEE" />-->
+
+                                        <!--</div>-->
+
                                     </div>
+
                                 </div>
-                                <div class="col-sm-6 col-xs-6">
-                                    <div class="knob">
-                                        <span class="chart" data-percent="56">
-                                            <span class="percent">56% <span class="sm">Bounce rate</span></span>
-                                        </span>
-                                    </div>
+                            </section>
+                        </div>
+                        <!--访问量统计-->
+                        <div class="col-sm-6" style="margin-top: 20px">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    访问量
+                                    <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                         </span>
+                                </header>
+                                <div class="panel-body">
+                                    <div id="main3" style="height:400px; width:400px;margin:0 auto;"></div>
+                                    <span style="display: none;" id="tview">{$tview}</span>
+                                    <span style="display: none;" id="yview">{$yview}</span>
+                                    <span style="display: none;" id="wview">{$wview}</span>
+                                    <span style="display: none;" id="mview">{$mview}</span>
                                 </div>
-                            </div>
+                            </section>
+                        </div>
+                        <!--注册量统计-->
+                        <div class="col-sm-6" style="margin-top: 20px">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    注册量
+                                    <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                         </span>
+                                </header>
+                                <div class="panel-body">
+                                    <div id="main4" style="height:400px; width:400px;margin:0 auto;"></div>
+                                    <span style="display: none;" id="tregister">{$tregister}</span>
+                                    <span style="display: none;" id="yregister">{$yregister}</span>
+                                    <span style="display: none;" id="wregister">{$wregister}</span>
+                                    <span style="display: none;" id="mregister">{$mregister}</span>
+                                </div>
+                            </section>
+                        </div>
+                        <!--产品销量统计-->
+                        <div class="col-sm-6" style="margin-top: 20px">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    产品销量
+                                    <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                         </span>
+                                </header>
+                                <div class="panel-body">
+                                    <div id="main" style="height:400px; width:400px;margin:0 auto;"></div>
+                                    <span style="display: none;" id="active">{$active}</span>
+                                    <span style="display: none;" id="hotel">{$hotel}</span>
+                                    <span style="display: none;" id="route">{$route}</span>
+                                    <span style="display: none;" id="food">{$food}</span>
+                                    <span style="display: none;" id="scenery">{$scenery}</span>
+                                </div>
+                            </section>
+                        </div>
+                        <!--产品时间交易量-->
+                        <div class="col-sm-6" style="margin-top: 20px">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    交易量
+                                    <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                         </span>
+                                </header>
+                                <div class="panel-body">
+                                    <div id="main1" style="height:400px; width:400px;margin:0 auto;"></div>
+                                    <span style="display: none;" id="ttrade">{$ttrade}</span>
+                                    <span style="display: none;" id="ytrade">{$ytrade}</span>
+                                    <span style="display: none;" id="wtrade">{$wtrade}</span>
+                                    <span style="display: none;" id="mtrade">{$mtrade}</span>
+                                </div>
+                            </section>
+                        </div>
+                        <!--交易金额统计-->
+                        <div class="col-sm-6" style="margin-top: 20px">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    交易金额
+                                    <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                         </span>
+                                </header>
+                                <div class="panel-body">
+                                    <div id="main2" style="height:400px; width:400px;margin:0 auto;"></div>
+                                    <span style="display: none;" id="ttotal">{$ttotal}</span>
+                                    <span style="display: none;" id="ytotal">{$ytotal}</span>
+                                    <span style="display: none;" id="wtotal">{$wtotal}</span>
+                                    <span style="display: none;" id="mtotal">{$mtotal}</span>
+                                </div>
+                            </section>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="panel">
-                        <div class="panel-body">
-                            <div class="calendar-block ">
-                                <div class="cal1">
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="panel">
-                        <header class="panel-heading">
-                            Todo List
-                            <span class="tools pull-right">
-                                <a class="fa fa-chevron-down" href="javascript:;"></a>
-                                <a class="fa fa-times" href="javascript:;"></a>
-                             </span>
-                        </header>
-                        <div class="panel-body">
-                            <ul class="to-do-list" id="sortable-todo">
-                                <li class="clearfix">
-                                    <span class="drag-marker">
-                                    <i></i>
-                                    </span>
-                                    <div class="todo-check pull-left">
-                                        <input type="checkbox" value="None" id="todo-check"/>
-                                        <label for="todo-check"></label>
-                                    </div>
-                                    <p class="todo-title">
-                                        Dashboard Design & Wiget placement
-                                    </p>
-                                    <div class="todo-actionlist pull-right clearfix">
-
-                                        <a href="#" class="todo-remove"><i class="fa fa-times"></i></a>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <span class="drag-marker">
-                                    <i></i>
-                                    </span>
-                                    <div class="todo-check pull-left">
-                                        <input type="checkbox" value="None" id="todo-check1"/>
-                                        <label for="todo-check1"></label>
-                                    </div>
-                                    <p class="todo-title">
-                                        Wireframe prepare for new design
-                                    </p>
-                                    <div class="todo-actionlist pull-right clearfix">
-
-                                        <a href="#" class="todo-remove"><i class="fa fa-times"></i></a>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <span class="drag-marker">
-                                    <i></i>
-                                    </span>
-                                    <div class="todo-check pull-left">
-                                        <input type="checkbox" value="None" id="todo-check2"/>
-                                        <label for="todo-check2"></label>
-                                    </div>
-                                    <p class="todo-title">
-                                        UI perfection testing for Mega Section
-                                    </p>
-                                    <div class="todo-actionlist pull-right clearfix">
-
-                                        <a href="#" class="todo-remove"><i class="fa fa-times"></i></a>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <span class="drag-marker">
-                                    <i></i>
-                                    </span>
-                                    <div class="todo-check pull-left">
-                                        <input type="checkbox" value="None" id="todo-check3"/>
-                                        <label for="todo-check3"></label>
-                                    </div>
-                                    <p class="todo-title">
-                                        Wiget & Design placement
-                                    </p>
-                                    <div class="todo-actionlist pull-right clearfix">
-
-                                        <a href="#" class="todo-remove"><i class="fa fa-times"></i></a>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <span class="drag-marker">
-                                    <i></i>
-                                    </span>
-                                    <div class="todo-check pull-left">
-                                        <input type="checkbox" value="None" id="todo-check4"/>
-                                        <label for="todo-check4"></label>
-                                    </div>
-                                    <p class="todo-title">
-                                        Development & Wiget placement
-                                    </p>
-                                    <div class="todo-actionlist pull-right clearfix">
-
-                                        <a href="#" class="todo-remove"><i class="fa fa-times"></i></a>
-                                    </div>
-                                </li>
-
-                            </ul>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form role="form" class="form-inline">
-                                        <div class="form-group todo-entry">
-                                            <input type="text" placeholder="Enter your ToDo List" class="form-control" style="width: 100%">
-                                        </div>
-                                        <button class="btn btn-primary pull-right" type="submit">+</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="panel blue-box twt-info">
-                        <div class="panel-body">
-                            <h3>19 Februay 2014</h3>
-
-                            <p>AdminEx is new model of admin
-                                dashboard <a href="#">http://t.co/3laCVziTw4</a>
-                                4 days ago by John Doe</p>
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-body">
-                            <div class="media usr-info">
-                                <a href="#" class="pull-left">
-                                    <img class="thumb" src="/static/app/admin/images/photos/user2.png" alt=""/>
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">Mila Watson</h4>
-                                    <span>Senior UI Designer</span>
-                                    <p>I use to design websites and applications for the web.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-footer custom-trq-footer">
-                            <ul class="user-states">
-                                <li>
-                                    <i class="fa fa-heart"></i> 127
-                                </li>
-                                <li>
-                                    <i class="fa fa-eye"></i> 853
-                                </li>
-                                <li>
-                                    <i class="fa fa-user"></i> 311
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--body wrapper end-->
+            <!-- main content end-->
+        </section>
+        {/block}
 
         <!--footer section start-->
         <footer>
-            2014 &copy; AdminEx by <a href="http://www.tcode.me/" target="_blank">淘代码</a>
+            2017 &copy; AdminEx by <a href="{:url('index/index/index')}" target="_blank">美丽乡村</a>
         </footer>
         <!--footer section end-->
 
 
     </div>
-    <!-- main content end-->
-    {/block}
 </section>
+    <!-- main content end-->
+
+
 {block name="myjs"}
 <!-- Placed js at the end of the document so the pages load faster -->
 <script src="/static/app/admin/js/jquery-1.10.2.min.js"></script>
@@ -812,40 +527,368 @@
 <script src="/static/app/admin/js/modernizr.min.js"></script>
 <script src="/static/app/admin/js/jquery.nicescroll.js"></script>
 
-<!--easy pie chart-->
-<script src="/static/app/admin/js/easypiechart/jquery.easypiechart.js"></script>
-<script src="/static/app/admin/js/easypiechart/easypiechart-init.js"></script>
+<!--&lt;!&ndash;easy pie chart&ndash;&gt;-->
+<!--<script src="/static/app/admin/js/easypiechart/jquery.easypiechart.js"></script>-->
+<!--<script src="/static/app/admin/js/easypiechart/easypiechart-init.js"></script>-->
 
-<!--Sparkline Chart-->
-<script src="/static/app/admin/js/sparkline/jquery.sparkline.js"></script>
-<script src="/static/app/admin/js/sparkline/sparkline-init.js"></script>
+<!--&lt;!&ndash;Sparkline Chart&ndash;&gt;-->
+<!--<script src="/static/app/admin/js/sparkline/jquery.sparkline.js"></script>-->
+<!--<script src="/static/app/admin/js/sparkline/sparkline-init.js"></script>-->
 
-<!--icheck -->
-<script src="/static/app/admin/js/iCheck/jquery.icheck.js"></script>
-<script src="/static/app/admin/js/icheck-init.js"></script>
+<!--&lt;!&ndash;icheck &ndash;&gt;-->
+<!--<script src="/static/app/admin/js/iCheck/jquery.icheck.js"></script>-->
+<!--<script src="/static/app/admin/js/icheck-init.js"></script>-->
 
-<!-- jQuery Flot Chart-->
-<script src="/static/app/admin/js/flot-chart/jquery.flot.js"></script>
-<script src="/static/app/admin/js/flot-chart/jquery.flot.tooltip.js"></script>
-<script src="/static/app/admin/js/flot-chart/jquery.flot.resize.js"></script>
+<!--&lt;!&ndash; jQuery Flot Chart&ndash;&gt;-->
+<!--<script src="/static/app/admin/js/flot-chart/jquery.flot.js"></script>-->
+<!--<script src="/static/app/admin/js/flot-chart/jquery.flot.tooltip.js"></script>-->
+<!--<script src="/static/app/admin/js/flot-chart/jquery.flot.resize.js"></script>-->
 
 
 <!--Morris Chart-->
-<script src="/static/app/admin/js/morris-chart/morris.js"></script>
-<script src="/static/app/admin/js/morris-chart/raphael-min.js"></script>
+<!--<script src="/static/app/admin/js/morris-chart/morris.js"></script>-->
+<!--<script src="/static/app/admin/js/morris-chart/raphael-min.js"></script>-->
 
-<!--Calendar-->
-<script src="/static/app/admin/js/calendar/clndr.js"></script>
-<script src="/static/app/admin/js/calendar/evnt.calendar.init.js"></script>
-<script src="/static/app/admin/js/calendar/moment-2.2.1.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+<!--&lt;!&ndash;Calendar&ndash;&gt;-->
+<!--<script src="/static/app/admin/js/calendar/clndr.js"></script>-->
+<!--<script src="/static/app/admin/js/calendar/evnt.calendar.init.js"></script>-->
+<!--<script src="/static/app/admin/js/calendar/moment-2.2.1.js"></script>-->
+<!--<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>-->
+
+<!--&lt;!&ndash;common scripts for all pages&ndash;&gt;-->
+<!--<script src="/static/app/admin/js/scripts.js"></script>-->
+
+<!--&lt;!&ndash;Dashboard Charts&ndash;&gt;-->
+<!--<script src="/static/app/admin/js/dashboard-chart-init.js"></script>-->
+
+<!--Chart JS-->
+<script src="/static/app/admin/js/chart-js/Chart.js"></script>
+<script src="/static/app/admin/js/chart-js/chartjs.init.js"></script>
 
 <!--common scripts for all pages-->
 <script src="/static/app/admin/js/scripts.js"></script>
+<!--饼状图插件-->
+<script src="/static/app/admin/js/init.js"></script>
+<script src="/static/app/admin/js/jquery.js"></script>
+<script src="/static/app/admin/js/raphael.js"></script>
+<!--统计-->
+<script src="/static/app/admin/js/echarts.js"></script>
+<script src="/static/app/admin/js/1-6-10.esl.js"></script>
+<!--总计-->
+<script src='/static/app/admin/js/jquery.js'></script>
+<script src="/static/app/admin/js/index.js"></script>
+<script>
+    // 路径配置
+    require.config({
+        paths:{
+            'echarts' : '/static/app/admin/js/echarts',
+            'echarts/chart/pie' : '/static/app/admin/js/echarts'
+        }
+    });
 
-<!--Dashboard Charts-->
-<script src="/static/app/admin/js/dashboard-chart-init.js"></script>
+    // 统计各类产品销量
+    require(
+        [
+            'echarts',
+            'echarts/chart/pie' // 使用柱状图就加载bar模块，按需加载
+        ],
+        function (ec) {
+            // 基于准备好的dom，初始化echarts图表
+            var myChart = ec.init(document.getElementById('main'));
+            var active = $('#active').text();
+            var hotel = $('#hotel').text();
+            var food = $('#food').text();
+            var route = $('#route').text();
+            var scenery = $('#scenery').text();
+
+            var option = {
+                title : {
+                    text: '',
+                    subtext: '',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient : 'vertical',
+                    x : 'left',
+                    data:[]
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                series : [
+                    {
+                        name:'网站数据',
+                        type:'pie',
+                        radius : '55%',
+                        center: ['50%', '60%'],
+                        data:[
+                            {value:active, name:'活动'},
+                            {value:hotel, name:'酒店住宿'},
+                            {value:route, name:'旅游路线'},
+                            {value:scenery, name:'景区门票'},
+                            {value:food, name:'特产美食'}
+                        ]
+                    }
+                ]
+            };
+
+
+            myChart.setOption(option);
+        }
+    );
+
+    //    统计时间单位交易量
+    require(
+        [
+            'echarts',
+            'echarts/chart/pie' // 使用柱状图就加载bar模块，按需加载
+        ],
+        function (ec) {
+            // 基于准备好的dom，初始化echarts图表
+            var myChart = ec.init(document.getElementById('main1'));
+            var ttrade = $('#ttrade').text();
+            var ytrade = $('#ytrade').text();
+            var wtrade = $('#wtrade').text();
+            var mtrade = $('#mtrade').text();
+
+            var option = {
+                title : {
+                    text: '',
+                    subtext: '',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient : 'vertical',
+                    x : 'left',
+                    data:[]
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                series : [
+                    {
+                        name:'网站数据',
+                        type:'pie',
+                        radius : '55%',
+                        center: ['50%', '60%'],
+                        data:[
+                            {value:ttrade, name:'今日交易量'},
+                            {value:ytrade, name:'昨日交易量'},
+                            {value:wtrade, name:'一周交易量'},
+                            {value:mtrade, name:'月交易量'},
+                        ]
+                    }
+                ]
+            };
+
+
+            myChart.setOption(option);
+        }
+    );
+
+    //    统计交易金额
+    require(
+        [
+            'echarts',
+            'echarts/chart/pie' // 使用柱状图就加载bar模块，按需加载
+        ],
+        function (ec) {
+            // 基于准备好的dom，初始化echarts图表
+            var myChart = ec.init(document.getElementById('main2'));
+            var ttotal = $('#ttotal').text();
+            var ytotal = $('#ytotal').text();
+            var wtotal = $('#wtotal').text();
+            var mtotal = $('#mtotal').text();
+
+            var option = {
+                title : {
+                    text: '',
+                    subtext: '',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient : 'vertical',
+                    x : 'left',
+                    data:[]
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                series : [
+                    {
+                        name:'网站数据',
+                        type:'pie',
+                        radius : '55%',
+                        center: ['50%', '60%'],
+                        data:[
+                            {value:ttotal, name:'今日交易额'},
+                            {value:ytotal, name:'昨日交易额'},
+                            {value:wtotal, name:'一周交易额'},
+                            {value:mtotal, name:'月交易额'},
+                        ]
+                    }
+                ]
+            };
+
+
+            myChart.setOption(option);
+        }
+    );
+
+    //    统计访问量
+    require(
+        [
+            'echarts',
+            'echarts/chart/pie' // 使用柱状图就加载bar模块，按需加载
+        ],
+        function (ec) {
+            // 基于准备好的dom，初始化echarts图表
+            var myChart = ec.init(document.getElementById('main3'));
+            var tview = $('#tview').text();
+            var yview = $('#yview').text();
+            var wview = $('#wview').text();
+            var mview = $('#mview').text();
+
+            var option = {
+                title : {
+                    text: '',
+                    subtext: '',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient : 'vertical',
+                    x : 'left',
+                    data:[]
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                series : [
+                    {
+                        name:'网站数据',
+                        type:'pie',
+                        radius : '55%',
+                        center: ['50%', '60%'],
+                        data:[
+                            {value:tview, name:'今日访问量'},
+                            {value:yview, name:'昨日访问量'},
+                            {value:wview, name:'一周访问量'},
+                            {value:mview, name:'月访问量'},
+                        ]
+                    }
+                ]
+            };
+
+
+            myChart.setOption(option);
+        }
+    );
+
+    //    统计注册量
+    require(
+        [
+            'echarts',
+            'echarts/chart/pie' // 使用柱状图就加载bar模块，按需加载
+        ],
+        function (ec) {
+            // 基于准备好的dom，初始化echarts图表
+            var myChart = ec.init(document.getElementById('main4'));
+            var tregister = $('#tregister').text();
+            var yregister = $('#yregister').text();
+            var wregister = $('#wregister').text();
+            var mregister = $('#mregister').text();
+
+            var option = {
+                title : {
+                    text: '',
+                    subtext: '',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient : 'vertical',
+                    x : 'left',
+                    data:[]
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                series : [
+                    {
+                        name:'网站数据',
+                        type:'pie',
+                        radius : '55%',
+                        center: ['50%', '60%'],
+                        data:[
+                            {value:tregister, name:'今日注册量'},
+                            {value:yregister, name:'昨日注册量'},
+                            {value:wregister, name:'一周注册量'},
+                            {value:mregister, name:'月注册量'},
+                        ]
+                    }
+                ]
+            };
+
+
+            myChart.setOption(option);
+        }
+    );
+</script>
 {/block}
-
 </body>
+
 </html>

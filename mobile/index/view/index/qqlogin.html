@@ -46,10 +46,18 @@
 
     <div class="am-form-group">
         <div class="am-u-sm-8 am-u-sm-offset-2">
-            <input type="text" style="border-radius:5px" id="phone" name="phone" placeholder="请输入你的手机号">
+            <input type="text" class="phone" style="border-radius:5px" id="phone" name="phone" placeholder="请输入你的手机号">
         </div>
     </div>
 
+    <div class="am-form-group">
+        <!--<label class="am-u-sm-2 am-form-label"></label>-->
+        <div class="am-u-sm-5 am-u-sm-offset-2">
+            <input type="text" style="border-radius:5px;width: 120px;" placeholder="请输入验证码" id="incode">
+        </div>
+        <button type="button" class="am-btn am-btn-secondary" style="border-radius:5px;width: 80px;" id="send">验证码</button>
+        <p style="display: none" id="code"></p>
+    </div>
 
     <div class="am-form-group">
         <div class="am-u-sm-8 am-u-sm-offset-2">
@@ -62,12 +70,59 @@
 <script src="/static/mobile/js/jquery.min.js"></script>
 <script src="/static/mobile/js/amazeui.min.js"></script>
 <script>
+
+    //        修改个人信息发送短信验证码
+    $('#send').click(function(){
+        n = 30;
+        function time(){
+            if(n <= 1){
+                $('#send').text('验证码');
+                $('#send').attr('disabled', false);
+                clearTimeout(time);
+                n = 30;
+            }else{
+                n--;
+                $('#send').text(n);
+                $('#send').attr('disabled', true);
+                setTimeout(time,1000);
+            }
+//          console.log(n);
+        }
+        time();
+
+        var phone = $('.phone').val();
+//            console.log(phone);
+        $.ajax({
+            type:'get',
+            url:'/sendmsg/'+phone,
+            success:function(data){
+//                    console.log(data);
+                if(data['status']){
+                    $('#code').text(data['string']);
+                    alert('短信验证码发送成功');
+                }else{
+                    alert('短信验证码发送失败~');
+                }
+            },
+            error:function(){
+                alert('短信验证码发送失败');
+            }
+        });
+    });
+
     function checkMsg(){
+        var incode = $('#incode').val();
         if($('#name').val() == ''){
             alert('用户名不能为空');
             return false;
         }else if($('#phone').val() == '') {
             alert('手机号不能为空');
+            return false;
+        }else if(incode == ''){
+            alert('请进行短信验证');
+            return false;
+        }else if(incode != $('#code').text()){
+            alert('验证码不正确,请重试');
             return false;
         }else{
             return true;

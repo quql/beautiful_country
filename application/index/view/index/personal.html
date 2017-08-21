@@ -145,28 +145,14 @@
                             <li><a href="javascript:void(0);" id="showOrder"><i class="icon-book gt-color"></i>我的订单</a></li>
                             <li><a href="javascript:void(0);" id="showHotel"><i class="glyphicon glyphicon-home"></i>我的住宿</a></li>
                             <li><a href="javascript:void(0);" id="showFavorite"><i class="glyphicon glyphicon-flag"></i>我的活动</a></li>
-                            <li><a href="javascript:void(0);" id="showComment"><i class="glyphicon glyphicon-comment"></i>我的评论</a></li>
                             <!--<li><a href="report&achievement.html"><i class="icon-business gt-color"></i>Report &#38; Achievement</a></li>-->
                             <!--<li><a href="profile-setting.html"><i class="icon-three gt-color"></i>Profile Setting</a></li>-->
                             <!--<li><a href="privacy-setting.html"><i class="icon-lock gt-color"></i>Privacy Setting</a></li>-->
+                            <li><a href="javascript:void(0);" id="showComment"><i class="glyphicon glyphicon-comment"></i>我的评论</a></li>
                         </ul>
                         <!--<a href="{:url('index/index/index')}" class="gt-logout"><i class="icon-arrows-2 gt-color"></i>回到首页</a>-->
                     </div>
                 </div>
-              </div>
-              <div class="gt-usser-account-list">
-                <ul>
-                  <li class="active"><a href="javascript:void(0);" id="showInformation"><i class="glyphicon glyphicon-user"></i>基本信息</a></li>
-                  <li><a href="javascript:void(0);" id="showPersonal"><i class="glyphicon glyphicon-th-list"></i>账户信息</a></li>
-                  <li><a href="javascript:void(0);" id="showOrder"><i class="icon-book gt-color"></i>我的订单</a></li>
-                  <li><a href="javascript:void(0);" id="showHotel"><i class="glyphicon glyphicon-home"></i>我的住宿</a></li>
-                  <li><a href="javascript:void(0);" id="showFavorite"><i class="glyphicon glyphicon-flag"></i>我的活动</a></li>
-                  <!--<li><a href="report&achievement.html"><i class="icon-business gt-color"></i>Report &#38; Achievement</a></li>-->
-                  <!--<li><a href="profile-setting.html"><i class="icon-three gt-color"></i>Profile Setting</a></li>-->
-                  <!--<li><a href="privacy-setting.html"><i class="icon-lock gt-color"></i>Privacy Setting</a></li>-->
-                </ul>
-                <a href="{:url('index/index/index')}" class="gt-logout"><i class="icon-arrows-2 gt-color"></i>回到首页</a>
-              </div>
             </div>
             <!-- Dashboard Side Bar Wrap End -->
             <!--Classes List Wrap Start-->
@@ -235,58 +221,33 @@
                                 <!--</li>-->
                                 </li>
                                 <li>
-
-                                        <button type="button" class="btn btn-info" id="showCoupon">我的优惠券</button>
-                                        <br>
-                                        <div class="mt20" style="display: none" id="coupon">
-                                            <div class="" style="float: left;width: 140px;">
-                                                <img src="/static/app/index/images/money/10.png" style="width: 100px;">
-                                            </div>
-                                            <div class="" style="float: left;text-align: center;line-height: 48px;padding-rignt:20px">
-                                                X {$money['m_ten']}
-                                            </div>
-                                            <div class="" style="float: left;width: 140px;margin-left: 43px">
-                                                <img src="/static/app/index/images/money/20.png" style="width: 100px;">
-                                            </div>
-                                            <div class="" style="float: left;text-align: center;line-height: 48px;padding-rignt:20px">
-                                                X {$money['m_twenty']}
-                                            </div>
-                                            <div class="mt20" style="float: left;width: 140px;">
-                                                <img src="/static/app/index/images/money/50.png" style="width: 100px;">
-                                            </div>
-                                            <div class="mt20" style="float: left;text-align: center;line-height: 48px;padding-rignt:20px">
-                                                X {$money['m_fifty']}
-                                            </div>
-                                            <div class="mt20" style="float: left;width: 140px;margin-left: 43px">
-                                                <img src="/static/app/index/images/money/100.png" style="width: 100px;">
-                                            </div>
-                                            <div class="mt20" style="float: left;text-align: center;line-height: 48px;padding-rignt:20px">
-                                                X {$money['m_hundred']}
-                                            </div>
-                                        </div>
-
                                     <button type="button" class="btn btn-info" id="showCoupon">我的优惠券</button>
                                     <br>
                                     <div class="mt20" style="display: none" id="coupon">
-                                        {volist name="money" id="m"}
-                                        <nobr style="width: 700px;">
-                                                <span style="float: left;">
-                                                    <img src="/static/app/index/images/money/10.png" style="width: 100px;"> X {$m['m_ten']}
-                                                </span>
-                                            <span style="">
-                                                    <img src="/static/app/index/images/money/20.png" style="width: 100px;"> X {$m['m_twenty']}
-                                                </span>
-                                        </nobr>
-                                        <br>
-                                        <nobr class="mt20">
-                                                <span style="float: left;">
-                                                <img src="/static/app/index/images/money/50.png" style="width: 100px;"> X {$m['m_fifty']}
-                                                </span>
-                                            <span style="">
-                                                <img src="/static/app/index/images/money/100.png" style="width: 100px;"> X {$m['m_hundred']}
-                                                    </span>
-                                        </nobr>
-                                        {/volist}
+                                        <div class="" style="float: left;width: 140px;">
+                                            <img src="/static/app/index/images/money/10.png" style="width: 100px;">
+                                        </div>
+                                        <div class="" style="float: left;text-align: center;line-height: 48px;padding-rignt:20px">
+                                            X {$money['m_ten']}
+                                        </div>
+                                        <div class="" style="float: left;width: 140px;margin-left: 43px">
+                                            <img src="/static/app/index/images/money/20.png" style="width: 100px;">
+                                        </div>
+                                        <div class="" style="float: left;text-align: center;line-height: 48px;padding-rignt:20px">
+                                            X {$money['m_twenty']}
+                                        </div>
+                                        <div class="mt20" style="float: left;width: 140px;">
+                                            <img src="/static/app/index/images/money/50.png" style="width: 100px;">
+                                        </div>
+                                        <div class="mt20" style="float: left;text-align: center;line-height: 48px;padding-rignt:20px">
+                                            X {$money['m_fifty']}
+                                        </div>
+                                        <div class="mt20" style="float: left;width: 140px;margin-left: 43px">
+                                            <img src="/static/app/index/images/money/100.png" style="width: 100px;">
+                                        </div>
+                                        <div class="mt20" style="float: left;text-align: center;line-height: 48px;padding-rignt:20px">
+                                            X {$money['m_hundred']}
+                                        </div>
                                     </div>
                                 </li>
                             </ul>
@@ -319,7 +280,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"></label>
                                 <div class="col-sm-3">
-                                    <h4><b>添加收货地址</b></h4>
+                                    <h6><b>添加收货地址</b></h6>
                                 </div>
                             </div>
                             <div class="form-group mt20">
@@ -398,7 +359,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"></label>
                                 <div class="col-sm-3">
-                                    <h4><b>修改个人信息</b></h4>
+                                    <h6><b>修改个人信息</b></h6>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -518,7 +479,7 @@
                     </ul>
                     <div id="bigForm">
                         <div class="gt_d_courses_wrap default_width mt20" style="display: block" id="doneForm">
-                            <table class="table table-hover">
+                            <table class="table table-hover table1">
                                 <!--已完成订单-->
                                 <tr>
                                     <th style="text-align: center">订单号</th>
@@ -573,7 +534,7 @@
                         </div>
                         <div class="gt_d_courses_wrap default_width mt20" style="display: none" id="shippedForm">
                             <!--已发货订单-->
-                            <table class="table table-hover">
+                            <table class="table table-hover table2">
                                 <tr>
                                     <th style="text-align: center">订单号</th>
                                     <th style="text-align: center">商品</th>
@@ -627,7 +588,7 @@
                         </div>
                         <div class="gt_d_courses_wrap default_width mt20" style="display: none" id="notShippedForm">
                             <!--未发货订单-->
-                            <table class="table table-hover">
+                            <table class="table table-hover table3">
                                 <tr>
                                     <th style="text-align: center">订单号</th>
                                     <th style="text-align: center">商品</th>
@@ -683,189 +644,6 @@
                     </div>
                 </div>
             </div>
-
-          </div>
-
-
-      <!--</section>-->
-      <!--Classes Wrap End-->
-
-    <!--Main Content Wrap End-->
-          <div class="col-md-8" id="order" style="display: none;">
-              <div class="gt_d_classes_wrap default_width" style="display: block">
-                  <ul class="nav nav-tabs nav-justified" id="choose" style="background-color: inherit">
-                      <li><a href="javascript:void(0);" class="gt_d_title h4" id="done" style="background-color: #ccc">已完成</a></li>
-                      <li><a href="javascript:void(0);" class="gt_d_title h4" id="shipped">已发货</a></li>
-                      <li><a href="javascript:void(0);" class="gt_d_title h4" id="notShipped">未发货</a></li>
-                  </ul>
-                  <div id="bigForm">
-                      <div class="gt_d_courses_wrap default_width mt20" style="display: block" id="doneForm">
-                          <table class="table table-hover">
-                              <!--已完成订单-->
-                              <tr>
-                                  <th style="text-align: center">订单号</th>
-                                  <th style="text-align: center">商品</th>
-                                  <th style="text-align: center">单价(元)</th>
-                                  <th style="text-align: center">数量</th>
-                                  <th style="text-align: center">金额</th>
-                                  <th style="text-align: center" class="col-sm-3">操作</th>
-                              </tr>
-                              {volist name="done" id="v"}
-                              <tr style="line-height: 20px">
-                                  <td style="text-align: center">{$v['o_order_num']}</td>
-                                  <td style="text-align: center">{$v['o_gname']}</td>
-                                  <td style="text-align: center">{$v['o_price']}</td>
-                                  <td style="text-align: center">{$v['o_num']}</td>
-                                  <td style="text-align: center">{$v['o_total']}</td>
-                                  <td style="text-align: center">
-                                      <button class="btn btn-info btn-sm show01" oid="{$v['o_id']}">查看</button>
-                                      <button class="btn btn-info btn-sm comment" oid="{$v['o_id']}" data-toggle="modal" data-target="#myCommentModal">评价</button>
-                                      <!--<a href="{:url('index/Comment/create',['id'=>$v['o_id']])}">评价</a>-->
-                                      <button class="btn btn-danger btn-sm delOrder" oid="{$v['o_id']}">删除</button>
-                                  </td>
-                              </tr>
-                              {/volist}
-                          </table>
-                          　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　{$done->render()}
-                          {volist name="done" id="v" key="k"}
-                          <!--<div class="" id="showDetail" style="display: block">-->
-                          <figure class="show11" style="display: none">
-                              <img src="/uploads/{$v['o_photo']}" style="width: 60%;">
-                              <figcaption class="gt_listing_rating">
-                                  {$k}
-                              </figcaption>
-                          </figure>
-                          <div class="gt_d_classes_des show12" style="display: none">
-                              <h6><a href="#">{$v['o_gname']}</a></h6>
-                              <ul>
-                                  <li>
-                                      <ul class="gt_rating_star">
-                                          <li>
-                                              <!--评级-->
-                                              <a href="#"><i class="fa fa-star"></i></a>
-                                          </li>
-                                      </ul>
-                                  </li>
-                                  <li>{$v['o_time']}</li>
-                              </ul>
-
-                          </div>
-                          {/volist}
-                          <!--</div>-->
-                      </div>
-                      <div class="gt_d_courses_wrap default_width mt20" style="display: none" id="shippedForm">
-                          <!--已发货订单-->
-                          <table class="table table-hover">
-                              <tr>
-                                  <th style="text-align: center">订单号</th>
-                                  <th style="text-align: center">商品</th>
-                                  <th style="text-align: center">单价(元)</th>
-                                  <th style="text-align: center">数量</th>
-                                  <th style="text-align: center">金额</th>
-                                  <th style="text-align: center" class="col-sm-3">操作</th>
-                              </tr>
-                              {volist name="diliver" id="v"}
-                              <tr style="line-height: 20px">
-                                  <td style="text-align: center">{$v['o_order_num']}</td>
-                                  <td style="text-align: center">{$v['o_gname']}</td>
-                                  <td style="text-align: center">{$v['o_price']}</td>
-                                  <td style="text-align: center">{$v['o_num']}</td>
-                                  <td style="text-align: center">{$v['o_total']}</td>
-                                  <td style="text-align: center">
-                                      <button class="btn btn-info btn-sm show02">查看</button>
-                                      <button class="btn btn-danger btn-sm cancel">退货</button>
-                                  </td>
-                              </tr>
-                              {/volist}
-                          </table>
-                          　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　{$diliver->render()}
-                          {volist name="diliver" id="v" key="k"}
-                          <!--<div class="" id="showDetail" style="display: block">-->
-                          <figure class="show21" style="display: none">
-                              <img src="/uploads/{$v['o_photo']}" style="width: 60%;">
-                              <figcaption class="gt_listing_rating">
-                                  {$k}
-                              </figcaption>
-                          </figure>
-                          <div class="gt_d_classes_des show22" style="display: none">
-                              <h6><a href="#">{$v['o_gname']}</a></h6>
-                              <ul>
-                                  <li>
-                                      <ul class="gt_rating_star">
-                                          <li>
-                                              <!--评级-->
-                                              <a href="#"><i class="fa fa-star"></i></a>
-                                          </li>
-                                      </ul>
-                                  </li>
-                                  <li>{$v['o_time']}</li>
-
-                              <p>
-                                  <!--评论...........-->
-                              </p>
-                          </div>
-                          {/volist}
-                          <!--</div>-->
-                      </div>
-                      <div class="gt_d_courses_wrap default_width mt20" style="display: none" id="notShippedForm">
-                          <!--未发货订单-->
-                          <table class="table table-hover">
-                              <tr>
-                                  <th style="text-align: center">订单号</th>
-                                  <th style="text-align: center">商品</th>
-                                  <th style="text-align: center">单价(元)</th>
-                                  <th style="text-align: center">数量</th>
-                                  <th style="text-align: center">金额</th>
-                                  <th style="text-align: center" class="col-sm-3">操作</th>
-                              </tr>
-                              {volist name="un" id="v"}
-                              <tr style="line-height: 20px">
-                                  <td style="text-align: center">{$v['o_order_num']}</td>
-                                  <td style="text-align: center">{$v['o_gname']}</td>
-                                  <td style="text-align: center">{$v['o_price']}</td>
-                                  <td style="text-align: center">{$v['o_num']}</td>
-                                  <td style="text-align: center">{$v['o_total']}</td>
-                                  <td style="text-align: center">
-                                      <button class="btn btn-info btn-sm show03">查看</button>
-                                      <button class="btn btn-danger btn-sm cancel">退货</button>
-                                  </td>
-                              </tr>
-                              {/volist}
-                          </table>
-                          　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　{$un->render()}
-                          {volist name="un" id="v" key="k"}
-                          <figure class="show31" style="display: none">
-                              <img src="/uploads/{$v['o_photo']}" style="width: 60%;">
-                              <figcaption class="gt_listing_rating">
-                                  {$k}
-                              </figcaption>
-                          </figure>
-
-                          <div class="gt_d_classes_des show32" style="display: none">　　　　　　　　　　　　　　　　　　　　　
-                              <h6><a href="#">{$v['o_gname']}</a></h6>
-                              <ul>
-                                  <li>
-                                      <ul class="gt_rating_star">
-                                          <li>
-                                              <!--评级-->
-                                              <a href="#"><i class="fa fa-star"></i></a>
-                                          </li>
-                                      </ul>
-                                  </li>
-                                  <li>{$v['o_time']}</li>
-                              </ul>
-
-                              <p>
-                                  <!--评论...........-->
-                              </p>
-                          </div>
-                          {/volist}
-                      </div>
-
-                  </div>
-              </div>
-          </div>
-
             <!--住宿,hotel-->
             <div class="col-md-8" id="hotel" style="display: none;background-color: white">
                 <div class="row" style="margin-left: 10px;margin-right: 10px">
@@ -943,7 +721,7 @@
                                 {if condition="!empty($vp['c_content'])"}
                                 {$vp['c_content']}<br>回应时间:{$vp['c_atime']}
                                 {else/}
-                                 商家尚未回应此评论哦
+                                商家尚未回应此评论哦
                                 {/if}
                             </td>
                             <td style="text-align: center">
@@ -958,7 +736,6 @@
                 <h5 style="text-align: center"> 您还没有写过任何点评哦O(∩_∩)O </h5>
                 {/if}
             </div>
-
 
             <!--活动,favorite-->
             <div class="col-md-8" id="favorite" style="display: none">
@@ -994,6 +771,13 @@
 
             </div>
 
+
+            <!--Classes List Wrap End-->
+            <!--Classes Wrap End-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+
             <!--Back to Top Wrap Start-->
             <div class="back-to-top">
                 <a href=""><i class="fa fa-angle-up"></i></a>
@@ -1002,8 +786,8 @@
 
         </div>
 
-        <!--评价的模态框 aria-labelledby="myModalLabel"-->
-        <div class="modal fade" id="myCommentModal" tabindex="-1" role="dialog" >
+        <!--评价的模态框 -->
+        <div class="modal fade" id="myCommentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -1018,7 +802,7 @@
                             <input type="hidden" name='uid' id="uid" value="">
                             <input type="hidden" name='oid' id="oid" value="">
                             <input type="hidden" name='gname' id="gname" value="">
-                            <textarea name="content"  cols="75" rows="3" placeholder="请输入评论内容,长度限制在140个字符以内" maxlength="140" noresize></textarea>
+                            <textarea name="content"  cols="90" rows="3" placeholder="请输入评论内容,长度限制在140个字符以内" maxlength="140" noresize></textarea>
                             <br>
                             <br>
                             评分:　
@@ -1035,6 +819,7 @@
                 </div>
             </div>
         </div>
+
         <!--修改评价-->
         <div class="modal fade" id="myCommentModal1" tabindex="-1" role="dialog" >
             <div class="modal-dialog" role="document">
@@ -1063,6 +848,7 @@
                 </div>
             </div>
         </div>
+
 
         {/block}
         <!--gt Wrapper End-->
@@ -1225,6 +1011,7 @@
                 $('#address').css('backgroundColor', '');
                 $('#perForm').css('display', 'block');
                 $('#addForm').css('display', 'none');
+
             });
             $('#address').click(function(){
                 $('#per').css('backgroundColor', '');
@@ -1282,23 +1069,6 @@
 //               console.log(type, typeof(type));
 //               console.log(n, typeof(n));
 //               console.log(total, typeof(total));
-
-            checkpass(id, type, n, total);
-        }
-    });
-
-    function checkpass(id, type, n, total){
-        $.ajax({
-            type: 'post',
-            url: "/money",
-            data: {
-                "id":id,
-                "type":type,
-                "n":n,
-                "total":total
-            },
-            dataType: 'json',
-            success:function(data){
                     checkpass(id, type, n, total);
                 }
             });
@@ -1309,7 +1079,6 @@
                     url: "/money",
                     data: {
                         "id":id,
-//                    "pass":text,
                         "type":type,
                         "n":n,
                         "total":total
@@ -1321,7 +1090,7 @@
                             alert('优惠券兑换成功');
                             history.go(0);
                         }else{
-                            alert('优惠券兑换失败,请重试');
+                            alert('优惠券兑换失败,请重试~');
                         }
                     },
                     error:function(){
@@ -1344,7 +1113,6 @@
                 }else{
                     $('#tips1').html('验证通过~');
                     $('#tips1').css('color','#0a0');
-                    alert('优惠券兑换失败,请重试~');
                 }
             });
             //        验证手机
@@ -1363,9 +1131,6 @@
                     $('#tips3').html('邮箱格式不正确~');
                     $('#tips3').css('color','#f00');
                 }else{
-
-                    alert('优惠券兑换失败,请重试~');
-
                     $('#tips3').html('验证通过~');
                     $('#tips3').css('color','#0a0');
                 }
@@ -1403,7 +1168,7 @@
 
             //        验证收货地址手机
             $('#addphone').change(function(){
-                if ($('#addphone').val().match(/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/) == null){
+                if ($('#addphone').val().match(/^1(3|4|5|7|8)[0-9]\d{8}$/) == null){
                     $('#tips6').html('手机格式不正确~');
                     $('#tips6').css('color','#f00');
                 }else{
@@ -1430,7 +1195,6 @@
                 $('#personal').css('display','none');
                 $('#favorite').css('display','none');
                 $('#hotel').css('display','none');
-                $('#comment').css('display','none');
             });
             $('#done').click(function(){
                 $(this).css('backgroundColor', '#ccc');
@@ -1485,206 +1249,6 @@
 
             }
 
-        });
-    }
-
-    //        显示现金券
-    $('#showCoupon').click(function(){
-        $('#coupon').slideToggle();
-    });
-
-    //      提示信息
-    //        验证用户名
-    $('#username').change(function(){
-        if ($('#username').val().match(/^[A-Za-z0-9_\u4e00-\u9fa5]{1,16}$/) == null){
-            $('#tips1').html('用户名格式不正确~');
-            $('#tips1').css('color','#f00');
-        }else{
-            $('#tips1').html('验证通过~');
-            $('#tips1').css('color','#0a0');
-        }
-    });
-    //        验证手机
-    $('#phone').change(function(){
-        if ($('#phone').val().match(/^1(3|4|5|7|8)[0-9]\d{8}$/) == null){
-            $('#tips2').html('手机格式不正确~');
-            $('#tips2').css('color','#f00');
-        }else{
-            $('#tips2').html('验证通过~');
-            $('#tips2').css('color','#0a0');
-        }
-    });
-    //        验证邮箱
-    $('#email').change(function(){
-        if ($('#email').val().match(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/) == null){
-            $('#tips3').html('邮箱格式不正确~');
-            $('#tips3').css('color','#f00');
-        }else{
-            $('#tips3').html('验证通过~');
-            $('#tips3').css('color','#0a0');
-        }
-    });
-
-    //        验证两次密码
-    $('#oncepass').change(function(){
-        if($('#oncepass').val().match(/^\w{6,18}$/) == null){
-            $('#tips4').html('密码格式不正确~');
-            $('#tips4').css('color','#f00');
-        }else{
-            $('#tips4').html('验证通过~');
-            $('#tips4').css('color','#0a0');
-        }
-    });
-    $('#secondpass').change(function(){
-        if ($('#secondpass').val() != $('#oncepass').val()){
-            $('#tips5').html('新旧密码不一致~');
-            $('#tips5').css('color','#f00');
-        }else{
-            $('#tips5').html('验证通过~');
-            $('#tips5').css('color','#0a0');
-        }
-    });
-    //验证收货人姓名
-    $('#addname').change(function(){
-        if ($('#addname').val().match(/^([\u4e00-\u9fa5]){2,8}$/) == null){
-            $('#tips7').html('姓名格式不正确~');
-            $('#tips7').css('color','#f00');
-        }else{
-            $('#tips7').html('验证通过~');
-            $('#tips7').css('color','#0a0');
-        }
-    });
-
-    //        验证收货地址手机
-    $('#addphone').change(function(){
-        if ($('#addphone').val().match(/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/) == null){
-            $('#tips6').html('手机格式不正确~');
-            $('#tips6').css('color','#f00');
-        }else{
-            $('#tips6').html('验证通过~');
-            $('#tips6').css('color','#0a0');
-        }
-    });
-
-    //        验证收货地址
-    $('#addstreet').change(function(){
-        if ($('#addstreet').val().match(/[\dA-Za-z\u4E00-\u9FA5]+/) == null){
-            $('#tips8').html('地址格式不正确~');
-            $('#tips8').css('color','#f00');
-        }else{
-            $('#tips8').html('验证通过~');
-            $('#tips8').css('color','#0a0');
-        }
-    });
-
-    //      order
-    $('#showOrder').click(function(){
-        $('#order').css('display','block');
-        $('#information').css('display','none');
-        $('#personal').css('display','none');
-        $('#favorite').css('display','none');
-        $('#hotel').css('display','none');
-    });
-    $('#done').click(function(){
-        $(this).css('backgroundColor', '#ccc');
-        $("#choose a:not(#done)").css('backgroundColor', '');
-        $('#doneForm').css('display', 'block');
-        $('#bigForm > div:not(#doneForm)').css('display', 'none');
-    });
-    $('#shipped').click(function(){
-        $(this).css('backgroundColor', '#ccc');
-        $("#choose a:not(#shipped)").css('backgroundColor', '');
-        $('#shippedForm').css('display', 'block');
-        $('#bigForm > div:not(#shippedForm)').css('display', 'none');
-    });
-    $('#notShipped').click(function(){
-        $(this).css('backgroundColor', '#ccc');
-        $("#choose a:not(#notShipped)").css('backgroundColor', '');
-        $('#notShippedForm').css('display', 'block');
-        $('#bigForm > div:not(#notShippedForm)').css('display', 'none');
-    });
-
-    $('#show01').click(function(){
-        $('#show11,#show12').slideToggle();
-
-    });
-    $('#show02').click(function(){
-        $('#show21,#show22').slideToggle();
-    });
-    //      $('.show03').click(function(){
-    //          $('.show3').slideToggle();
-    //      });
-
-
-    //        控制商品详情框弹出
-    var show03 = document.getElementsByClassName('show03');
-    var show31 = document.getElementsByClassName('show31');
-    var show32 = document.getElementsByClassName('show32');
-    //      console.log(show03);
-    //      console.log(show31);
-    //      console.log(show32);
-    for(var i = 0; i<show03.length; i++){
-        (function(i){
-            show03[i].onclick = function(){
-                demo3(i);
-            };
-        })(i);
-    }
-
-    function demo3(i){
-        //          alert(i);
-        $('.show31').eq(i).slideToggle();
-        $('.show32').eq(i).slideToggle();
-
-    }
-
-    var show02 = document.getElementsByClassName('show02');
-    var show21 = document.getElementsByClassName('show21');
-    var show22 = document.getElementsByClassName('show22');
-
-    for(var i = 0; i<show02.length; i++){
-        (function(i){
-            show02[i].onclick = function(){
-                demo2(i);
-            };
-        })(i);
-    }
-
-    function demo2(i){
-        //          alert(i);
-        $('.show21').eq(i).slideToggle();
-        $('.show22').eq(i).slideToggle();
-
-    }
-
-    var show01 = document.getElementsByClassName('show01');
-    var show11 = document.getElementsByClassName('show11');
-    var show12 = document.getElementsByClassName('show12');
-    //      console.log(show01);
-    //      console.log(show11);
-    //      console.log(show12);
-    for(var i = 0; i<show01.length; i++){
-        (function(i){
-            show01[i].onclick = function(){
-                demo1(i);
-            };
-        })(i);
-    }
-
-    function demo1(i){
-        //          alert(i);
-        $('.show11').eq(i).slideToggle();
-        $('.show12').eq(i).slideToggle();
-
-    }
-
-    //        删除已完成订单
-    $('.delOrder').click(function(){
-        var oid = $(this).attr('oid');
-        if(confirm('您确定要删除此订单记录吗?')){
-            var obj = $(this).parents('tr');
-=======
-
             var show02 = document.getElementsByClassName('show02');
             var show21 = document.getElementsByClassName('show21');
             var show22 = document.getElementsByClassName('show22');
@@ -1730,7 +1294,6 @@
                 var oid = $(this).attr('oid');
                 if(confirm('您确定要删除此订单记录吗?')){
                     var obj = $(this).parents('tr');
->>>>>>> origin/shine
 //                alert('订单删除成功');
 //                obj.remove();
                     delOrder(oid, obj);
@@ -1771,8 +1334,6 @@
                 $('#personal').css('display','none');
                 $('#order').css('display','none');
                 $('#hotel').css('display','none');
-                $('#comment').css('display','none');
-
             });
 
             //      提交前验证收货地址
@@ -1790,77 +1351,6 @@
                     return true;
                 }
             }
-
-        });
-    }
-
-    //        退货
-    $('.cancel').click(function(){
-        alert('您的退货申请卖家已收到,请耐心等待商家联系');
-    });
-
-
-    //      favorite
-    $('#showFavorite').click(function(){
-        $('#favorite').css('display','block');
-        $('#information').css('display','none');
-        $('#personal').css('display','none');
-        $('#order').css('display','none');
-        $('#hotel').css('display','none');
-    });
-
-    //      提交前验证收货地址
-    function checkAddress(){
-        if($('#addname').val() == ''){
-            alert('收货人不能为空');
-            return false;
-        }else if($('#addphone').val() == ''){
-            alert('联系方式不能为空');
-            return false;
-        }else if($('#addstreet').val() == ''){
-            alert('详细地址不能为空');
-            return false;
-        }else{
-            return true;
-        }
-    }
-
-    //        验证修改密码
-    function checkPassword(){
-        var oldpass = passform.oldpass.value;
-        var oncepass = passform.oncepass.value;
-        var secondpass = passform.secondpass.value;
-        if (oldpass == ''){
-            alert('原密码不能为空');
-            return false;
-        }else if (oncepass == ''){
-            alert('新密码不能为空');
-            return false;
-        }else if (secondpass == ''){
-            alert('确认密码不能为空');
-            return false;
-        }else{
-            return true;
-        }
-    }
-
-
-//    修改个人信息发送短信验证码
-    $('#sendCode').click(function(){
-        n = 30;
-        function time(){
-          if(n <= 1){
-              $('#sendCode').text('发送短信验证码');
-              $('#sendCode').attr('disabled', false);
-              clearTimeout(time);
-              n = 30;
-          }else{
-              n--;
-              $('#sendCode').text(n+'秒后再获取');
-              $('#sendCode').attr('disabled', true);
-              setTimeout(time,1000);
-          }
-=======
 
             //        验证修改密码
             function checkPassword(){
@@ -1897,7 +1387,6 @@
                         $('#sendCode').attr('disabled', true);
                         setTimeout(time,1000);
                     }
->>>>>>> origin/shine
 //          console.log(n);
                 }
                 time();
@@ -1931,35 +1420,6 @@
                 }
             }
 
-        });
-    });
-
-//    修改个人信息前验证表单数据
-    function checkPer(){
-        if($('.oldcode').val() == ''){
-            alert('请进行短信验证');
-            return false;
-        }else{
-            return true;
-        }
-    }
-
-//    地址联动
-    $('#txt_city').jcity({
-        urlOrData: '/static/app/index/js/citydata.json',
-        animate: { showClass: 'animated flipInX', hideClass: 'animated flipOutX' },
-        onChoice: function (data) {
-            console.log(data);
-        }
-    });
-
-
-</script>
-<!--Custom JavaScript-->
-<script src="/static/app/index/js/custom.js"></script>
-{/block}
-=======
-
             //    地址联动
             $('#txt_city').jcity({
                 urlOrData: '/static/app/index/js/citydata.json',
@@ -1968,10 +1428,32 @@
                     console.log(data);
                 }
             });
+            //    判断是否有订单
+            function check1(){
+                var l1 = $('.table1 tr').length;
+                if(l1 == 1){
+                    $('.table1').css('display', 'none');
+                }
+            }
+            function check2(){
+                var l2 = $('.table2 tr').length;
+                if(l2 == 1){
+                    $('.table2').css('display', 'none');
+                }
+            }
+            function check3(){
+                var l3 = $('.table3 tr').length;
+                if(l3 == 1){
+                    $('.table3').css('display', 'none');
+                }
+            }
+            check1();
+            check2();
+            check3();
+
 
 
         </script>
         <!--Custom JavaScript-->
         <script src="/static/app/index/js/custom.js"></script>
         {/block}
->>>>>>> origin/shine

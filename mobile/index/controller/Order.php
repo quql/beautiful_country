@@ -230,6 +230,10 @@ class Order extends Base
 
     public function hotelpay()
     {
+        $uid = input('session.u_id');
+        if(empty($uid)){
+            $this->success('请先登录','/showLogin');
+        }
         $data = input();
         $gid = $data['id'];
         $list = Db::query("select ml_hotel.id,ml_hotel.gd_title,ml_hotel.price,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1' AND ml_hotel.id='$gid'");
@@ -240,6 +244,10 @@ class Order extends Base
 
     public function hotelorder()
     {
+        $uid = input('session.u_id');
+        if(empty($uid)){
+            $this->success('请先登录','/showLogin');
+        }
         $data = input();
 //        dump($data);
         $username = $data['username'];
@@ -266,6 +274,9 @@ class Order extends Base
     {
         $data = input();
         $uid = input('session.u_id');
+        if(empty($uid)){
+            $this->success('请先登录','/showLogin');
+        }
 //        $uid = '4';
         $time = date('Y-m-d H:i:s',time());
         $orderNum = time().rand(10e8,90e8);

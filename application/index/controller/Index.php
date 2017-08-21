@@ -84,7 +84,7 @@ class Index extends Base
             $list = Db::query("select ml_scenery.id,gd_title,gd_abstract,price,c_id,bus_id,ml_scenery_pic.pic from ml_scenery LEFT JOIN ml_scenery_pic ON ml_scenery.id=ml_scenery_pic.gid where ml_scenery_pic.is_first='1'");
             $type='1';
         }elseif($id==6){
-            $list = Db::query("select ml_food.id,gd_title,gd_abstract,price,c_id,bus_id,ml_food_pic.pic from ml_food LEFT JOIN ml_food_pic ON ml_food.id=ml_food_pic.gid where ml_food_pic.is_first='1'");
+            $list = Db::query("select ml_food.id,gd_title,gd_abstract,price,c_id,bus_id,ml_food_pic.pic from ml_food LEFT JOIN ml_food_pic ON ml_food.id=ml_food_pic.gid WHERE ml_food_pic.is_first='1'");
             $type='6';
         }else{
             return '暂无数据';
@@ -92,9 +92,11 @@ class Index extends Base
 //        var_dump($list);
 //        die;
         //景区排行
-        $scylist = Db::query("select ml_scenery.id,gd_title,c_id,bus_id,ml_scenery_detail.gd_view from ml_scenery LEFT JOIN ml_scenery_detail ON ml_scenery.id=ml_scenery_detail.c_gid where  ml_scenery.gd_is_sale='1' ORDER BY ml_scenery_detail.gd_view desc");
+        $scylist = Db::query("select ml_scenery.id,gd_title,c_id,bus_id,ml_scenery_detail.gd_view from ml_scenery LEFT JOIN ml_scenery_detail ON ml_scenery.id=ml_scenery_detail.c_gid  WHERE ml_scenery.gd_is_sale='1' ORDER BY ml_scenery_detail.gd_view DESC");
+//        dump($scylist);
+//        die;
         //酒店专区
-        $hotellist = Db::query("select ml_hotel.id,gd_title,gd_abstract,price,bus_id,c_id,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1' AND ml_hotel.gd_is_sale='1'");
+        $hotellist = Db::query("select ml_hotel.id,gd_title,gd_abstract,price,bus_id,c_id,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid WHERE ml_hotel_pic.is_first='1' AND ml_hotel.gd_is_sale='1'");
 
 
         $this->assign('scylist',$scylist);

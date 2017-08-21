@@ -1,7 +1,7 @@
 {extend name="index/index"}
 {block name="main"}
-<p style="display: none" id="type">{$type}</p>
     <!--Sub Banner Wrap Start -->
+<p style="display: none" id="type">{$type}</p>
     <div class="gt_sub_banner_bg default_width">
         <div class="container">
             <div class="gt_sub_banner_hdg  default_width">
@@ -16,7 +16,7 @@
         <div class="container">
             <div class="gt_breadcrumb_wrap default_width">
                 <ul>
-                    <li><a href="index/index/index">首页</a></li>
+                    <li><a href="{:url('/')}">首页</a></li>
                     <li><a href="#">详情</a></li>
                 </ul>
             </div>
@@ -117,7 +117,7 @@
                             </figure>
                             <div class="gt_listing_des default_width">
                                 <ul class="gt_event_meta">
-                                    <li><i class="fa fa-calendar"></i>8:00 am-5:00</li>
+                                    <li><i class="fa fa-calendar"></i>8:00 am-5:00 pm</li>
                                     <li><i class="fa fa-user"></i>￥{$list.price}</li>
                                 </ul>
                                 <h6><a href="{:url('/goodsdetail',['id'=>$list.id,'bus_id'=>$list.bus_id,'cid'=>$list.c_id])}">{$list.gd_title}</a></h6>
@@ -194,6 +194,5 @@
             $('.lsc').css('background','#2DCC70');
         };
     });
-
 </script>
 {/block}
