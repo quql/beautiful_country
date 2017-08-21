@@ -15,7 +15,7 @@ class Comment extends Admin
     public function index()
     {
         //加载评论页面视图
-        $list=Db::name('comment')->select();
+        $list=Db::name('comment')->paginate(5);
         //dump($list);
         return view('comment/list',['list'=>$list]);
     }

@@ -21,7 +21,7 @@ class BusInfo extends Bus
 
         //获取到缓存中的b_name 查询出对应商户
         $res = Db::name('business')->where('b_name', cache('b_name'))->find();
-        //dump($res);
+        dump($res);
         return view('bus/busInfo', ['res' => $res]);
 
     }

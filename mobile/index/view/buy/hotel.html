@@ -1,0 +1,306 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <!--<link rel="stylesheet" href="/static/mobile/css/amazeui.min.css">-->
+    <!--<link rel="stylesheet" href="/static/mobile/css/wap.css">-->
+    <link href="/static/app/index/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/static/app/index/js/jquery-1.8.3.min.js"></script>
+    <title>我的住宿</title>
+    <style>
+        body{
+            width: 100%;
+        }
+        .head{
+            width: 100%;
+            height: 50px;
+            background-color: lightskyblue;
+            color: white;
+            text-align: left;
+            line-height: 50px;
+            padding-left: 20px;
+        }
+        form{
+            padding: 20px;
+        }
+        .span1{
+            display: block;
+            float: left;
+        }
+        .span2{
+            display: block;
+            float: right;
+            padding-right: 20px;
+        }
+        ul{
+            padding: 20px;
+        }
+        li{
+            display: inline-block;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class='head'>
+    <span class="span1">我的住宿</span>
+    <a href="{:url('index/personal/index')}"><span class="span2">返回</span></a>
+</div>
+<!--住宿,hotel-->
+<div class="col-md-8" id="hotel" style="display: none;background-color: white">
+    {if condition="!empty($hotels)"}
+    <div class="row">
+        <table class="table table-striped">
+            <caption style="text-align: center"><h3>订单详情</h3></caption>
+            <tr>
+                <th style="text-align: center">下单时间<br>订单号</th>
+                <!--<th style="text-align: center;width: 50px;"></th>-->
+                <th style="text-align: center">商品</th>
+                <th style="text-align: center">单价(元)</th>
+                <th style="text-align: center">数量</th>
+                <th style="text-align: center">总金额(元)</th>
+                <th style="text-align: center;width: 150px;">入住时间</th>
+                <!--<th style="text-align: center">入住人</th>-->
+                <!--<th style="text-align: center">联系方式</th>-->
+                <th style="text-align: center">状态</th>
+                <!--<th style="text-align: center" class="col-sm-1">操作</th>-->
+            </tr>
+            {volist name="hotels" id="v"}
+            <tr >
+                <td style="text-align: center">{$v['o_time']}<br>{$v['o_order_num']}</td>
+                <!--<td style="text-align: center;width: 50px;">{$v['o_order_num']}</td>-->
+                <td style="text-align: center">{$v['o_gname']}</td>
+                <td style="text-align: center">{$v['o_price']}</td>
+                <td style="text-align: center">{$v['o_num']}</td>
+                <td style="text-align: center">{$v['o_total']}</td>
+                <td style="text-align: center">{$v['intime']}</td>
+                <!--<td style="text-align: center">{$v['inname']}</td>-->
+                <!--<td style="text-align: center">{$v['inphone']}</td>-->
+                <td style="text-align: center">
+                    {if condition="$v['o_status'] eq 0"}未入住
+                    {else}已入住
+                    {/if}
+                </td>
+            </tr>
+            {/volist}
+        </table>
+    </div>
+    {else/}
+    <p>还没有预定过哦</p>
+    <!--<div class="row">-->
+        <!--<div class="col-md-6 col-md-offset-3"></div>-->
+    <!--</div>-->
+    {/if}
+</div>
+    <script src="/static/app/index/js/jquery.js"></script>
+    <script src="/static/app/index/js/bootstrap.js"></script>
+    <script src="/static/app/index/js/toastr.min.js"></script>
+    <!--<script src="/static/mobile/js/jquery.min.js"></script>-->
+    <!--<script src="/static/mobile/js/amazeui.min.js"></script>-->
+    <script>
+        $(function() {
+            //      优惠券
+            $('#up').click(function () {
+                if ($('#num').val() >= 99) {
+                    $('#num').val(99);
+                }
+                $('#num').val() + 1;
+                var n = parseInt($('#num').val()) + 1;
+                var t = $('#choosePoint').val() * n;
+                $('#total').html(t);
+//            console.log($('#total').html(t));
+            });
+            $('#back').click(function () {
+                alert('尚未添加收货地址,请去个人中心完善');
+            });
+
+
+            $('#down').click(function () {
+                if ($('#num').val() <= 1) {
+                    $('#num').val(1);
+                }
+                $('#num').val() - 1;
+                var n = parseInt($('#num').val()) - 1;
+                var t = $('#choosePoint').val() * n;
+                $('#total').html(t);
+//            console.log($('#total').html(t));
+
+            });
+
+            $('#choosePoint').change(function () {
+                var n = parseInt($('#num').val());
+                var t = $('#choosePoint').val() * n;
+                $('#total').html(t);
+//            console.log(n);
+//            console.log(t);
+            });
+
+//        优惠券模态框点击确认
+            $('#yes').click(function () {
+                if (parseInt($('#total').html()) > parseInt($('#point').html())) {
+                    alert('您的积分不足哦');
+                } else {
+//               用户id
+                    var id = $('#userid').html();
+//               用户在输入框输入的值
+//               var text = prompt("请输入您的账户密码","password");
+//               用户选择的优惠券类型
+                    var type = parseInt($('#choosePoint').val());
+//               优惠券数量
+                    var n = parseInt($('#num').val());
+//               消耗的总积分
+                    var total = parseInt($('#total').html());
+//               console.log(id, typeof(id));
+//               console.log(type, typeof(type));
+//               console.log(n, typeof(n));
+//               console.log(total, typeof(total));
+                    checkpass(id, type, n, total);
+                }
+            });
+
+            function checkpass(id, type, n, total) {
+                $.ajax({
+                    type: 'post',
+                    url: "/money",
+                    data: {
+                        "id": id,
+//                    "pass":text,
+                        "type": type,
+                        "n": n,
+                        "total": total
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+//                    console.log(data);
+                        if (data.status) {
+                            alert('优惠券兑换成功');
+                            history.go(0);
+                        } else {
+                            alert('优惠券兑换失败,请重试');
+                        }
+                    },
+                    error: function () {
+                        alert('优惠券兑换失败,请重试');
+                    }
+                });
+            }
+        });
+
+
+    </script>
+<script>
+
+    //    计算总价
+        $(function(){
+//            加
+            $('.plus').click(function(){
+//                数量
+               var num = $(this).parent().prev();
+               num.text(parseInt(num.val()+1));
+//               setTotal();
+//                单价
+               var p = parseInt($(this).parents('tr').children('.price').text());
+////                总价
+//                var t = num.text()*p;
+                $('#total').text(parseInt($('#total').text()) + p);
+               console.log(t);
+            });
+
+//            减
+            $('.minus').click(function(){
+                var num = $(this).parent().prev();
+                if(parseInt(num.val()) <= 1){
+                    num.val(1);
+                }else{
+                    num.text(parseInt(num.val()-1));
+//                    setTotal();
+                    var p = parseInt($(this).parents('tr').children('.price').text());
+                    $('#total').text(parseInt($('#total').text()) - p);
+                }
+            });
+
+
+//    执行删除
+        $('.del').click(function(){
+            var gid = $(this).attr('data-id');
+            console.log(gid);
+
+            if (confirm('您确定要狠心删除我吗?(Ｔ▽Ｔ)')){
+                var obj = $(this).parents('tr');
+                // console.log(obj);
+                delAjax(gid, obj);
+            }
+        });
+
+//    执行ajax删除
+        function delAjax(id, obj){
+            $.ajax({
+                type: 'get',
+                url: "/deletecart/"+id,
+                dataType:'json',
+                success:function(data){
+                    console.log(data);
+                    if (data.status){
+                        obj.remove();
+                        alert('O(∩_∩)O~~商品删除成功');
+                    }else{
+                        alert('(╯﹏╰）商品删除失败,请重试~');
+                    }
+                },
+                error:function(){
+                    alert('删除失败,请重试~');
+                }
+            });
+        }
+
+
+//        function check(){
+//            var v = $('input:[name="aid"]:checked').val();
+//            if (v == null){
+//                alert("收货地址不能为空哦~");
+//                return false;
+//            }
+//            return true;
+
+//            if($("input[name='aid']:checked").size()==0){
+//                alert("收货地址不能为空哦~");
+//                return false;
+//            }else{
+//                return true;
+//            }
+
+//            if($(".rid").is(':checked')) {
+//                return true;
+//            }else{
+//                return false;
+//            }
+
+//              if($('.rid').is(':checked')){
+//                return true;
+//            }else{
+//                return false;
+//            }
+
+//        }
+
+
+    });
+</script>
+<script>
+    //    提交订单时 判断是否有商品被选中
+    function checkMsg(){
+        if($(".choose").is(':checked')){
+            return true;
+        }else{
+            alert('请选择要购买的商品');
+            return false;
+        }
+
+    }
+</script>
+
+</body>
+</html>

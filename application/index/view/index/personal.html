@@ -1,140 +1,156 @@
 
 {extend name="index/index"}
 
-    <!--Header Wrap End-->
-    <!--{block name="main"}-->
-    <!--Sub Banner Wrap Start -->
+<!--Header Wrap End-->
+<!--{block name="main"}-->
+<!--Sub Banner Wrap Start -->
 {block name="main"}
-    <div class="gt_sub_banner_bg default_width">
-        <div class="container">
-            <div class="gt_sub_banner_hdg  default_width">
-                <h2>我的首页</h2>
-                <h6>欢迎来到还没确定名字的网站~</h6>
-            </div>
+<div class="gt_sub_banner_bg default_width">
+    <div class="container">
+        <div class="gt_sub_banner_hdg  default_width">
+            <h2>我的首页</h2>
+            <h6>欢迎来到还没确定名字的网站~</h6>
         </div>
     </div>
-    <!--Sub Banner Wrap End -->
-    <!--Breadcrumb Wrap End -->
-    <div class="gt_breadcrumb_bg default_width">
-      <div class="container">
+</div>
+<!--Sub Banner Wrap End -->
+<!--Breadcrumb Wrap End -->
+<div class="gt_breadcrumb_bg default_width">
+    <div class="container">
         <div class="gt_breadcrumb_wrap default_width">
             <ul>
                 <li><a href="{:url('index/index/index')}">首页</a></li>
                 <li><a href="{:url('index/personal/index')}">个人中心</a></li>
             </ul>
         </div>
-      </div>
     </div>
-    <!--Breadcrumb Wrap End -->
+</div>
+<!--Breadcrumb Wrap End -->
 
-    <!--Main Content Wrap Start-->
-    <div class="gt_content_wrap">
-      <!--Classes Wrap Start-->
-      <section class="gt_courses_bg">
+<!--Main Content Wrap Start-->
+<div class="gt_content_wrap">
+    <!--Classes Wrap Start-->
+    <section class="gt_courses_bg">
         <div class="container">
 
-          <!-- Dashboard Side Bar Wrap Start -->
-         {volist name="list" id="v"}
-          <div class="col-md-4">
-            <div class="gt-user-sidebar">
-              <div class="gt_d_author_wrap">
-                <div class="gt_d_author_pic">
-                  <figure>
-                    <!--头像-->
+            <!-- Dashboard Side Bar Wrap Start -->
+            {volist name="list" id="v"}
+            <div class="col-md-4">
+                <div class="gt-user-sidebar">
+                    <div class="gt_d_author_wrap">
+                        <div class="gt_d_author_pic">
+                            <figure>
+                                <!--头像-->
 
-                      <a href="javascript:void(0);" data-toggle="modal" data-target="#imgModal">
-                          {if condition="$v.photo eq '0'"}
-                          <img src="{$v.qqphoto}">
-                          {else /}
-                           <img src="/uploads/headPhoto/{$v['photo']}"  alt="" width="82" style="height: 82px">
-                          {/if}
-                      </a>
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#imgModal">
+                                    {if condition="$v.photo eq '0'"}
+                                    <img src="{$v.qqphoto}">
+                                    {else /}
+                                    <img src="/uploads/headPhoto/{$v['photo']}"  alt="" width="82" style="height: 82px">
+                                    {/if}
+                                </a>
 
-                      <div class="modal fade" id="imgModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                          <div class="modal-dialog">
-                              <div class="modal-content">
-                                  <div class="modal-header">
-                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                      <h4 class="modal-title" id="myModalLabel">更换头像</h4>
-                                  </div>
-                                  <div class="modal-body">
-                                      <div class="form-group">
-                                          <label class="col-sm-2 control-label">选择图片</label>
-                                          <div class="col-sm-10">
-                                              <form action="index/personal/upload" enctype="multipart/form-data" method="post">
-                                                  <input type="hidden" name="id" value="{$v['id']}">
-                                                  <input type="file" name="image" /> <br>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="modal-footer">
-                                      <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                      <button type="submit" class="btn btn-primary">提交更改</button>
-                                      </form>
-                                  </div>
-                              </div><!-- /.modal-content -->
-                          </div><!-- /.modal -->
-                      </div>
-                  </figure>
-                </div>
-                <div class="gt_d_author_pic_des">
-                  <h5>{$v['username']}</h5>
-                  <span class="gt_hdg_span"></span>
-                  <p>会员编号</p>
-                  <label id="userid">{$v['id']}</label>
-                </div>
-                <div class="gt_d_author_sbj">
-                  <h6>会员类型</h6>
-                  <span>{$v['type']==0?'普通会员':'超级会员'}</span>
-                  <h6>积分</h6>
-                  <span><bold id="point">{$v['point']}</bold><button class="btn btn-sm btn-success modal-title" style="margin-left: 200px;" data-toggle="modal" data-target="#pointModal">兑换优惠券</button></span>
-                    <!--模态框-->
-                    <div class="modal fade" id="pointModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title" id="myModalLabel">选择优惠券</h4>
-                                </div>
-                                <div class="modal-body" style="border: none;">
-                                    <div class="row">
-                                        <div class="col-sm-1">
-                                            <img src="/static/app/index/images/yuan.png" style="max-width: 200%;">
-                                        </div>
-                                        <div class="col-sm-5">
-                                            <select class="form-control col-sm-5" style="height: 47px" id="choosePoint">
-                                                <option colum="m_ten" value="10">10元优惠券</option>
-                                                <option colum="m_twenty" value="20">20元优惠券</option>
-                                                <option colum="m_fifty" value="50">50元优惠券</option>
-                                                <option colum="m_hundred" value="100">100元优惠券</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-5 col-sm-offset-1">
-                                            <div class="gt_product_left_wrap ml20" style="border: none;margin: 0px 0px -2px;">
-                                                <span>数量:</span>
-                                                <div class="input-group spinner" data-trigger="spinner" id="spinner">
-                                                    <input type="text" class="form-control ml20" value="1" data-max="99" data-min="1" data-step="1" style="width: 107px;height: 57px" id="num">
-                                                    <div class="input-group-addon" style="background-color: #2dcc70">
-                                                        <a href="javascript:;" class="spin-up" data-spin="up" style="width: 30px;color: #ffffff">+</a>
-                                                        <br><br>
-                                                        <a href="javascript:;" class="spin-down" data-spin="down" style="width: 30px;color: #ffffff">-</a>
+                                <div class="modal fade" id="imgModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel">更换头像</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">选择图片</label>
+                                                    <div class="col-sm-10">
+                                                        <form action="index/personal/upload" enctype="multipart/form-data" method="post">
+                                                            <input type="hidden" name="id" value="{$v['id']}">
+                                                            <input type="file" name="image" /> <br>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-10 control-label">这将消耗您<strong id="total">10</strong>点积分</label>
-                                        </div>
-                                    </div>
-
-
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                <button type="submit" class="btn btn-primary">提交更改</button>
+                                                </form>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal -->
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                    <button type="submit" class="btn btn-primary" id="yes">确认</button>
-                                </div>
-                            </div><!-- /.modal-content -->
+                            </figure>
                         </div>
+                        <div class="gt_d_author_pic_des">
+                            <h5>{$v['username']}</h5>
+                            <span class="gt_hdg_span"></span>
+                            <p>会员编号</p>
+                            <label id="userid">{$v['id']}</label>
+                        </div>
+                        <div class="gt_d_author_sbj">
+                            <h6>会员类型</h6>
+                            <span>{$v['type']==0?'普通会员':'超级会员'}</span>
+                            <h6>积分</h6>
+                            <span><bold id="point">{$v['point']}</bold><button class="btn btn-sm btn-success modal-title" style="margin-left: 200px;" data-toggle="modal" data-target="#pointModal">兑换优惠券</button></span>
+                            <!--模态框-->
+                            <div class="modal fade" id="pointModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel">选择优惠券</h4>
+                                        </div>
+                                        <div class="modal-body" style="border: none;">
+                                            <div class="row">
+                                                <div class="col-sm-1">
+                                                    <img src="/static/app/index/images/yuan.png" style="max-width: 200%;">
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <select class="form-control col-sm-5" style="height: 47px" id="choosePoint">
+                                                        <option colum="m_ten" value="10">10元优惠券</option>
+                                                        <option colum="m_twenty" value="20">20元优惠券</option>
+                                                        <option colum="m_fifty" value="50">50元优惠券</option>
+                                                        <option colum="m_hundred" value="100">100元优惠券</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-5 col-sm-offset-1">
+                                                    <div class="gt_product_left_wrap ml20" style="border: none;margin: 0px 0px -2px;">
+                                                        <span>数量:</span>
+                                                        <div class="input-group spinner" data-trigger="spinner" id="spinner">
+                                                            <input type="text" class="form-control ml20" value="1" data-max="99" data-min="1" data-step="1" style="width: 107px;height: 57px" id="num">
+                                                            <div class="input-group-addon" style="background-color: #2dcc70">
+                                                                <a href="javascript:;" class="spin-up" data-spin="up" style="width: 30px;color: #ffffff">+</a>
+                                                                <br><br>
+                                                                <a href="javascript:;" class="spin-down" data-spin="down" style="width: 30px;color: #ffffff">-</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-10 control-label">这将消耗您<strong id="total">10</strong>点积分</label>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                            <button type="submit" class="btn btn-primary" id="yes">确认</button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gt-usser-account-list">
+                        <ul>
+                            <li class="active"><a href="javascript:void(0);" id="showInformation"><i class="glyphicon glyphicon-user"></i>基本信息</a></li>
+                            <li><a href="javascript:void(0);" id="showPersonal"><i class="glyphicon glyphicon-th-list"></i>账户信息</a></li>
+                            <li><a href="javascript:void(0);" id="showOrder"><i class="icon-book gt-color"></i>我的订单</a></li>
+                            <li><a href="javascript:void(0);" id="showHotel"><i class="glyphicon glyphicon-home"></i>我的住宿</a></li>
+                            <li><a href="javascript:void(0);" id="showFavorite"><i class="glyphicon glyphicon-flag"></i>我的活动</a></li>
+                            <li><a href="javascript:void(0);" id="showComment"><i class="glyphicon glyphicon-comment"></i>我的评论</a></li>
+                            <!--<li><a href="report&achievement.html"><i class="icon-business gt-color"></i>Report &#38; Achievement</a></li>-->
+                            <!--<li><a href="profile-setting.html"><i class="icon-three gt-color"></i>Profile Setting</a></li>-->
+                            <!--<li><a href="privacy-setting.html"><i class="icon-lock gt-color"></i>Privacy Setting</a></li>-->
+                        </ul>
+                        <!--<a href="{:url('index/index/index')}" class="gt-logout"><i class="icon-arrows-2 gt-color"></i>回到首页</a>-->
                     </div>
                 </div>
               </div>
@@ -152,9 +168,8 @@
                 <a href="{:url('index/index/index')}" class="gt-logout"><i class="icon-arrows-2 gt-color"></i>回到首页</a>
               </div>
             </div>
-          </div>
-          <!-- Dashboard Side Bar Wrap End -->
-          <!--Classes List Wrap Start-->
+            <!-- Dashboard Side Bar Wrap End -->
+            <!--Classes List Wrap Start-->
             <!--基本信息-->
             <div class="col-md-8" id="information">
                 <div class="gt_d_classes_wrap default_width mb20">
@@ -213,13 +228,14 @@
                                     </p>
                                 </li>
                                 <!--<li>-->
-                                    <!--<span>邮箱:</span>-->
-                                    <!--<p>-->
-                                        <!--{$v['email']}-->
-                                    <!--</p>-->
+                                <!--<span>邮箱:</span>-->
+                                <!--<p>-->
+                                <!--{$v['email']}-->
+                                <!--</p>-->
                                 <!--</li>-->
                                 </li>
                                 <li>
+
                                         <button type="button" class="btn btn-info" id="showCoupon">我的优惠券</button>
                                         <br>
                                         <div class="mt20" style="display: none" id="coupon">
@@ -248,6 +264,31 @@
                                                 X {$money['m_hundred']}
                                             </div>
                                         </div>
+
+                                    <button type="button" class="btn btn-info" id="showCoupon">我的优惠券</button>
+                                    <br>
+                                    <div class="mt20" style="display: none" id="coupon">
+                                        {volist name="money" id="m"}
+                                        <nobr style="width: 700px;">
+                                                <span style="float: left;">
+                                                    <img src="/static/app/index/images/money/10.png" style="width: 100px;"> X {$m['m_ten']}
+                                                </span>
+                                            <span style="">
+                                                    <img src="/static/app/index/images/money/20.png" style="width: 100px;"> X {$m['m_twenty']}
+                                                </span>
+                                        </nobr>
+                                        <br>
+                                        <nobr class="mt20">
+                                                <span style="float: left;">
+                                                <img src="/static/app/index/images/money/50.png" style="width: 100px;"> X {$m['m_fifty']}
+                                                </span>
+                                            <span style="">
+                                                <img src="/static/app/index/images/money/100.png" style="width: 100px;"> X {$m['m_hundred']}
+                                                    </span>
+                                        </nobr>
+                                        {/volist}
+                                    </div>
+
                                 </li>
                             </ul>
                         </div>
@@ -267,201 +308,383 @@
             <!--personal-->
 
             <div class="col-md-8" id="personal" style="display: none">
-            <div class="gt_d_classes_wrap default_width">
-                <ul class="nav nav-tabs nav-justified" style="background-color: inherit">
-                    <li><a href="javascript:void(0);" class="gt_d_title h4" id="per" style="background-color: #ccc">个人信息</a></li>
-                    <li><a href="javascript:void(0);" class="gt_d_title h4" id="address">收货地址</a></li>
-                </ul>
-              <div class="gt_classes_wrap mt20" id="addForm" style="display: none">
-                  <form class="form-horizontal mt50" action="index/personal/address" method="post" onsubmit="return checkAddress()">
-                      <input type="hidden" name="id" value="{$v['id']}">
-                      {/volist}
-                      <div class="form-group">
-                          <label class="col-sm-2 control-label"></label>
-                          <div class="col-sm-3">
-                              <h4><b>添加收货地址</b></h4>
-                          </div>
-                      </div>
-                      <div class="form-group mt20">
-                          <label class="col-sm-2 control-label">收货人</label>
-                          <div class="col-sm-10">
-                              <input type="text" class="form-control"  style="width: 408px;" maxlength="8" placeholder="请输入收货人姓名" name="addname" id="addname">
-                              <span class="ml30" id="tips7"></span>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label class="col-sm-2 control-label">手机</label>
-                          <div class="col-sm-10">
-                              <input type="text" class="form-control"  style="width: 408px;" maxlength="11" placeholder="请输入收货人手机号" name="addphone" id="addphone">
-                              <span class="ml30" id="tips6"></span>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label class="col-sm-2 control-label">地址</label>
-                          <div class="docs-methods col-sm-10">
-                              <div id="distpicker">
-                                  <div class="form-group">
-                                      <div style="position: relative;margin-left: 20px;">
-                                          <input type="text" id="txt_city" class="form-control" name="address" style="width: 408px;" placeholder="请选择省市区地址"/>
-                                          <input type="text" class="form-control mt10" style="width: 408px;" maxlength="26" name="street" placeholder="请输入详细街道门牌号" id="addstreet">
-                                          <span class="ml30" id="tips8"></span>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <div class="col-sm-offset-2 col-sm-10">
-                              <button type="submit" class="btn btn-success">添加</button>
-                          </div>
-                      </div>
-                  </form>
-                  <hr>
-                  <div class="form-group" style="margin-top: 30px">
-                      <label class="col-sm-2 control-label"></label>
-                      <div class="col-sm-3">
-                          <h4><b>收货地址</b></h4>
-                      </div>
-                  </div>
-                  <div class="row mt20 col-sm-12">
-                      <table class="table table-striped ml20">
-                          <tr style="line-height: inherit">
-                              <th style="text-align: center"></th>
-                              <th style="text-align: center">收货人</th>
-                              <th style="text-align: center">联系电话</th>
-                              <th style="text-align: center">收货地址</th>
-                              <th style="text-align: center">操作</th>
-                          </tr>
-                          <!--<form action="index/personal/editAddress">-->
-                          {volist name="data" id="v" key="k"}
-                          <tr style="line-height: 20px">
-                              <td style="text-align: center;line-height: 31px">{$k}</td>
-                              <td style="text-align: center;line-height: 31px">{$v['ua_name']}</td>
-                              <td style="text-align: center;line-height: 31px">{$v['ua_phone']}</td>
-                              <td style="text-align: center;line-height: 31px">{$v['ua_address']}{$v['ua_street']}</td>
-                              <td style="text-align: center;line-height: 31px">
-                                  <!--<input type="hidden" name="ua_name" value="">-->
-                                  <!--<button class="btn btn-primary btn-sm">修改</button>-->
-                                  <a class="btn btn-danger btn-sm glyphicon glyphicon-trash" href="{:url('index/personal/delAddress', ['id'=>$v['ua_id']])}"></a>
-                              </td>
-                          </tr>
-                          {/volist}
-
-                      </table>
-                  </div>
-                </div>
-                <div class="gt_classes_wrap mt20" id="perForm" style="display: block">
-                    {volist name="list" id="v"}
-                    <form class="form-horizontal mt50" action="{:url('index/personal/updateUser')}" method="post" onsubmit="return checkPer()">
-                        <input type="hidden" name="_method" value="PUT">
-                        <input type="hidden" name="id" value="{$v['id']}">
-                        <div class="form-group">
+                <div class="gt_d_classes_wrap default_width">
+                    <ul class="nav nav-tabs nav-justified" style="background-color: inherit">
+                        <li><a href="javascript:void(0);" class="gt_d_title h4" id="per" style="background-color: #ccc">个人信息</a></li>
+                        <li><a href="javascript:void(0);" class="gt_d_title h4" id="address">收货地址</a></li>
+                    </ul>
+                    <div class="gt_classes_wrap mt20" id="addForm" style="display: none">
+                        <form class="form-horizontal mt50" action="index/personal/address" method="post" onsubmit="return checkAddress()">
+                            <input type="hidden" name="id" value="{$v['id']}">
+                            {/volist}
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-3">
+                                    <h4><b>添加收货地址</b></h4>
+                                </div>
+                            </div>
+                            <div class="form-group mt20">
+                                <label class="col-sm-2 control-label">收货人</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"  style="width: 408px;" maxlength="8" placeholder="请输入收货人姓名" name="addname" id="addname">
+                                    <span class="ml30" id="tips7"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">手机</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"  style="width: 408px;" maxlength="11" placeholder="请输入收货人手机号" name="addphone" id="addphone">
+                                    <span class="ml30" id="tips6"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">地址</label>
+                                <div class="docs-methods col-sm-10">
+                                    <div id="distpicker">
+                                        <div class="form-group">
+                                            <div style="position: relative;margin-left: 20px;">
+                                                <input type="text" id="txt_city" class="form-control" name="address" style="width: 408px;" placeholder="请选择省市区地址"/>
+                                                <input type="text" class="form-control mt10" style="width: 408px;" maxlength="26" name="street" placeholder="请输入详细街道门牌号" id="addstreet">
+                                                <span class="ml30" id="tips8"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-success">添加</button>
+                                </div>
+                            </div>
+                        </form>
+                        <hr>
+                        <div class="form-group" style="margin-top: 30px">
                             <label class="col-sm-2 control-label"></label>
                             <div class="col-sm-3">
-                                <h4><b>修改个人信息</b></h4>
+                                <h4><b>收货地址</b></h4>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">用户名</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" style="width: 300px;" maxlength="8" placeholder="请输入用户名" name="u_username" value="{$v['username']}" id="username">
-                                <span class="ml30" id="tips1"></span>
-                            </div>
+                        <div class="row mt20 col-sm-12">
+                            <table class="table table-striped ml20">
+                                <tr style="line-height: inherit">
+                                    <th style="text-align: center"></th>
+                                    <th style="text-align: center">收货人</th>
+                                    <th style="text-align: center">联系电话</th>
+                                    <th style="text-align: center">收货地址</th>
+                                    <th style="text-align: center">操作</th>
+                                </tr>
+                                <!--<form action="index/personal/editAddress">-->
+                                {volist name="data" id="v" key="k"}
+                                <tr style="line-height: 20px">
+                                    <td style="text-align: center;line-height: 31px">{$k}</td>
+                                    <td style="text-align: center;line-height: 31px">{$v['ua_name']}</td>
+                                    <td style="text-align: center;line-height: 31px">{$v['ua_phone']}</td>
+                                    <td style="text-align: center;line-height: 31px">{$v['ua_address']}{$v['ua_street']}</td>
+                                    <td style="text-align: center;line-height: 31px">
+                                        <!--<input type="hidden" name="ua_name" value="">-->
+                                        <!--<button class="btn btn-primary btn-sm">修改</button>-->
+                                        <a class="btn btn-danger btn-sm glyphicon glyphicon-trash" href="{:url('index/personal/delAddress', ['id'=>$v['ua_id']])}"></a>
+                                    </td>
+                                </tr>
+                                {/volist}
+
+                            </table>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">性别</label>
-                            <div class="radio col-sm-10">
-                                <label class="col-sm-3">
+                    </div>
+                    <div class="gt_classes_wrap mt20" id="perForm" style="display: block">
+                        {volist name="list" id="v"}
+                        <form class="form-horizontal mt50" action="{:url('index/personal/updateUser')}" method="post" onsubmit="return checkPer()">
+                            <input type="hidden" name="_method" value="PUT">
+                            <input type="hidden" name="id" value="{$v['id']}">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-3">
+                                    <h4><b>修改个人信息</b></h4>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">用户名</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" style="width: 300px;" maxlength="8" placeholder="请输入用户名" name="u_username" value="{$v['username']}" id="username">
+                                    <span class="ml30" id="tips1"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">性别</label>
+                                <div class="radio col-sm-10">
+                                    <label class="col-sm-3">
                                   <span>
                                       <input type="radio" name="ud_sex" value="1" {if $v['sex'] == 1}checked{/if}> 男
                                   </span>
-                                </label>
-                                <label class="col-sm-3">
+                                    </label>
+                                    <label class="col-sm-3">
                                   <span>
                                       <input type="radio" name="ud_sex" value="0" {if $v['sex'] == 0}checked{/if}> 女
                                   </span>
-                                </label>
-                                <label class="col-sm-3">
+                                    </label>
+                                    <label class="col-sm-3">
                                   <span>
                                       <input type="radio" name="ud_sex" value="2" {if $v['sex'] == 2}checked{/if}> 保密
                                   </span>
-                                </label>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">手机</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control phone" style="width: 300px;" maxlength="11" placeholder="请输入手机号" name="u_phone" value="{$v['phone']}" id="phone">
-                                <span class="ml30" id="tips2"></span>
-                                <span class="oldphone" style="display: none">{$v['phone']}</span>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">手机</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control phone" style="width: 300px;" maxlength="11" placeholder="请输入手机号" name="u_phone" value="{$v['phone']}" id="phone">
+                                    <span class="ml30" id="tips2"></span>
+                                    <span class="oldphone" style="display: none">{$v['phone']}</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label"></label>
-                            <div class="col-sm-8">
-                                <div class="input-group" style="width: 420px;">
-                                    <input type="text" class="form-control oldcode" placeholder="请输入短信验证码" name="oldcode">
-                                    <input type="hidden" id="newcode" name="newcode">
-                                    <span class="input-group-btn" >
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-8">
+                                    <div class="input-group" style="width: 420px;">
+                                        <input type="text" class="form-control oldcode" placeholder="请输入短信验证码" name="oldcode">
+                                        <input type="hidden" id="newcode" name="newcode">
+                                        <span class="input-group-btn" >
         <button class="btn btn-info" type="button" style="width: 123px;" id="sendCode">发送短信验证码</button>
       </span>
-                                </div><!-- /input-group -->
+                                    </div><!-- /input-group -->
+                                </div>
                             </div>
-                        </div>
-                        <!--<div class="form-group">-->
+                            <!--<div class="form-group">-->
                             <!--<label class="col-sm-2 control-label">邮箱</label>-->
                             <!--<div class="col-sm-10">-->
-                                <!--<input type="email" class="form-control" style="width: 300px;" placeholder="请输入邮箱" name="ud_email" value="{$v['email']}" id="email">-->
-                                <!--<span class="ml30" id="tips3"></span>-->
+                            <!--<input type="email" class="form-control" style="width: 300px;" placeholder="请输入邮箱" name="ud_email" value="{$v['email']}" id="email">-->
+                            <!--<span class="ml30" id="tips3"></span>-->
                             <!--</div>-->
-                        <!--</div>-->
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-success">确认修改</button>
-                            <hr>
-                        </div>
+                            <!--</div>-->
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-success">确认修改</button>
+                                    <hr>
+                                </div>
+                            </div>
+                        </form>
+
+
+                        <form class="form-horizontal mt50" name="passform" action="{:url('index/personal/updatePass')}" method="post" onsubmit="return checkPassword()">
+                            <input type="hidden" name="_method" value="PUT">
+                            <input type="hidden" name="id" value="{$v['id']}">
+                            {/volist}
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-3">
+                                    <h4><b>修改密码</b></h4>
+                                </div>
+                            </div>
+                            <div class="form-group mt20">
+                                <label class="col-sm-2 control-label">原密码</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" style="width: 300px;" name="oldpass" placeholder="请输入原密码">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">新密码</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" style="width: 300px;" name="oncepass" placeholder="请输入新密码" id="oncepass">
+                                    <span class="ml30" id="tips4"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">确认新密码</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" style="width: 300px;" name="secondpass" placeholder="请再次输入新密码" id="secondpass">
+                                    <span class="ml30" id="tips5"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-success">确认修改</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    </form>
-
-
-                    <form class="form-horizontal mt50" name="passform" action="{:url('index/personal/updatePass')}" method="post" onsubmit="return checkPassword()">
-                        <input type="hidden" name="_method" value="PUT">
-                        <input type="hidden" name="id" value="{$v['id']}">
-                        {/volist}
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label"></label>
-                            <div class="col-sm-3">
-                                <h4><b>修改密码</b></h4>
-                            </div>
-                        </div>
-                        <div class="form-group mt20">
-                            <label class="col-sm-2 control-label">原密码</label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" style="width: 300px;" name="oldpass" placeholder="请输入原密码">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">新密码</label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" style="width: 300px;" name="oncepass" placeholder="请输入新密码" id="oncepass">
-                                <span class="ml30" id="tips4"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">确认新密码</label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" style="width: 300px;" name="secondpass" placeholder="请再次输入新密码" id="secondpass">
-                                <span class="ml30" id="tips5"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-success">确认修改</button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
+
+
+            <!--</section>-->
+            <!--Classes Wrap End-->
+
+            <!--Main Content Wrap End-->
+            <div class="col-md-8" id="order" style="display: none;">
+                <div class="gt_d_classes_wrap default_width" style="display: block">
+                    <ul class="nav nav-tabs nav-justified" id="choose" style="background-color: inherit">
+                        <li><a href="javascript:void(0);" class="gt_d_title h4" id="done" style="background-color: #ccc">已完成</a></li>
+                        <li><a href="javascript:void(0);" class="gt_d_title h4" id="shipped">已发货</a></li>
+                        <li><a href="javascript:void(0);" class="gt_d_title h4" id="notShipped">未发货</a></li>
+                    </ul>
+                    <div id="bigForm">
+                        <div class="gt_d_courses_wrap default_width mt20" style="display: block" id="doneForm">
+                            <table class="table table-hover">
+                                <!--已完成订单-->
+                                <tr>
+                                    <th style="text-align: center">订单号</th>
+                                    <th style="text-align: center">商品</th>
+                                    <th style="text-align: center">单价(元)</th>
+                                    <th style="text-align: center">数量</th>
+                                    <th style="text-align: center">金额</th>
+                                    <th style="text-align: center" class="col-sm-3">操作</th>
+                                </tr>
+                                {volist name="done" id="v"}
+                                <tr style="line-height: 20px">
+                                    <td style="text-align: center">{$v['o_order_num']}</td>
+                                    <td style="text-align: center">{$v['o_gname']}</td>
+                                    <td style="text-align: center">{$v['o_price']}</td>
+                                    <td style="text-align: center">{$v['o_num']}</td>
+                                    <td style="text-align: center">{$v['o_total']}</td>
+                                    <td style="text-align: center">
+                                        <button class="btn btn-info btn-sm show01" oid="{$v['o_id']}">查看</button>
+                                        <button class="btn btn-info btn-sm comment" oid="{$v['o_id']}" data-toggle="modal" data-target="#myCommentModal">评价</button>
+                                        <!--<a href="{:url('index/Comment/create',['id'=>$v['o_id']])}">评价</a>-->
+                                        <button class="btn btn-danger btn-sm delOrder" oid="{$v['o_id']}">删除</button>
+                                    </td>
+                                </tr>
+                                {/volist}
+                            </table>
+                            　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　{$done->render()}
+                            {volist name="done" id="v" key="k"}
+                            <!--<div class="" id="showDetail" style="display: block">-->
+                            <figure class="show11" style="display: none">
+                                <img src="/uploads/{$v['o_photo']}" style="width: 60%;">
+                                <figcaption class="gt_listing_rating">
+                                    {$k}
+                                </figcaption>
+                            </figure>
+                            <div class="gt_d_classes_des show12" style="display: none">
+                                <h6><a href="#">{$v['o_gname']}</a></h6>
+                                <ul>
+                                    <li>
+                                        <ul class="gt_rating_star">
+                                            <li>
+                                                <!--评级-->
+                                                <a href="#"><i class="fa fa-star"></i></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>{$v['o_time']}</li>
+                                </ul>
+
+                            </div>
+                            {/volist}
+                            <!--</div>-->
+                        </div>
+                        <div class="gt_d_courses_wrap default_width mt20" style="display: none" id="shippedForm">
+                            <!--已发货订单-->
+                            <table class="table table-hover">
+                                <tr>
+                                    <th style="text-align: center">订单号</th>
+                                    <th style="text-align: center">商品</th>
+                                    <th style="text-align: center">单价(元)</th>
+                                    <th style="text-align: center">数量</th>
+                                    <th style="text-align: center">金额</th>
+                                    <th style="text-align: center" class="col-sm-3">操作</th>
+                                </tr>
+                                {volist name="diliver" id="v"}
+                                <tr style="line-height: 20px">
+                                    <td style="text-align: center">{$v['o_order_num']}</td>
+                                    <td style="text-align: center">{$v['o_gname']}</td>
+                                    <td style="text-align: center">{$v['o_price']}</td>
+                                    <td style="text-align: center">{$v['o_num']}</td>
+                                    <td style="text-align: center">{$v['o_total']}</td>
+                                    <td style="text-align: center">
+                                        <button class="btn btn-info btn-sm show02">查看</button>
+                                        <button class="btn btn-danger btn-sm cancel">退货</button>
+                                    </td>
+                                </tr>
+                                {/volist}
+                            </table>
+                            　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　{$diliver->render()}
+                            {volist name="diliver" id="v" key="k"}
+                            <!--<div class="" id="showDetail" style="display: block">-->
+                            <figure class="show21" style="display: none">
+                                <img src="/uploads/{$v['o_photo']}" style="width: 60%;">
+                                <figcaption class="gt_listing_rating">
+                                    {$k}
+                                </figcaption>
+                            </figure>
+                            <div class="gt_d_classes_des show22" style="display: none">
+                                <h6><a href="#">{$v['o_gname']}</a></h6>
+                                <ul>
+                                    <li>
+                                        <ul class="gt_rating_star">
+                                            <li>
+                                                <!--评级-->
+                                                <a href="#"><i class="fa fa-star"></i></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>{$v['o_time']}</li>
+
+                                    <p>
+                                        <!--评论...........-->
+                                    </p>
+                            </div>
+                            {/volist}
+                            <!--</div>-->
+                        </div>
+                        <div class="gt_d_courses_wrap default_width mt20" style="display: none" id="notShippedForm">
+                            <!--未发货订单-->
+                            <table class="table table-hover">
+                                <tr>
+                                    <th style="text-align: center">订单号</th>
+                                    <th style="text-align: center">商品</th>
+                                    <th style="text-align: center">单价(元)</th>
+                                    <th style="text-align: center">数量</th>
+                                    <th style="text-align: center">金额</th>
+                                    <th style="text-align: center" class="col-sm-3">操作</th>
+                                </tr>
+                                {volist name="un" id="v"}
+                                <tr style="line-height: 20px">
+                                    <td style="text-align: center">{$v['o_order_num']}</td>
+                                    <td style="text-align: center">{$v['o_gname']}</td>
+                                    <td style="text-align: center">{$v['o_price']}</td>
+                                    <td style="text-align: center">{$v['o_num']}</td>
+                                    <td style="text-align: center">{$v['o_total']}</td>
+                                    <td style="text-align: center">
+                                        <button class="btn btn-info btn-sm show03">查看</button>
+                                        <button class="btn btn-danger btn-sm cancel">退货</button>
+                                    </td>
+                                </tr>
+                                {/volist}
+                            </table>
+                            　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　{$un->render()}
+                            {volist name="un" id="v" key="k"}
+                            <figure class="show31" style="display: none">
+                                <img src="/uploads/{$v['o_photo']}" style="width: 60%;">
+                                <figcaption class="gt_listing_rating">
+                                    {$k}
+                                </figcaption>
+                            </figure>
+
+                            <div class="gt_d_classes_des show32" style="display: none">　　　　　　　　　　　　　　　　　　　　　
+                                <h6><a href="#">{$v['o_gname']}</a></h6>
+                                <ul>
+                                    <li>
+                                        <ul class="gt_rating_star">
+                                            <li>
+                                                <!--评级-->
+                                                <a href="#"><i class="fa fa-star"></i></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>{$v['o_time']}</li>
+                                </ul>
+
+                                <p>
+                                    <!--评论...........-->
+                                </p>
+                            </div>
+                            {/volist}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
           </div>
 
 
@@ -643,6 +866,7 @@
                   </div>
               </div>
           </div>
+
             <!--住宿,hotel-->
             <div class="col-md-8" id="hotel" style="display: none;background-color: white">
                 <div class="row" style="margin-left: 10px;margin-right: 10px">
@@ -682,6 +906,61 @@
                     </table>
                 </div>
             </div>
+
+            <!--评论列表-->
+
+            <div class="col-md-8" id="comment" style="display: none;background-color: white">
+                {if condition="!empty($comment)"}
+                <div class="row">
+                    <table class="table table-striped">
+                        <caption style="text-align: center"><h3>我的评论列表</h3></caption>
+                        <tr>
+                            <th style="text-align: center">消费产品</th>
+                            <th style="text-align: center">评论内容</th>
+                            <th style="text-align: center">评论时间</th>
+                            <th style="text-align: center">评分</th>
+                            <th style="text-align: center">商家回应</th>
+                            <th style="text-align: center" class="col-sm-1">操作</th>
+                        </tr>
+                        {volist name="comment" id="vp"}
+                        <tr >
+                            <td style="text-align: center"><a href="{:url('/goodsdetail',['id'=>$vp.c_gid,'bus_id'=>$vp.c_bid,'cid'=>$vp.c_cid])}">{$vp['c_gname']}</a></td>
+                            <td style="text-align: center">
+                                {$vp['c_text']}
+                                <!--<textarea name="text" id="" cols="30" rows="3">{$vp['c_text']}</textarea>-->
+                            </td>
+                            <td style="text-align: center">{$vp['c_time']}</td>
+                            <td style="text-align: center">
+                                {switch name=$vp['c_score']}
+                                {case value="1"}<span class="glyphicon glyphicon-star"></span>{/case}
+                                {case value="2"}<span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span>{/case}
+                                {case value="3"}<span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span>{/case}
+                                {case value="4"}<span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span>{/case}
+                                {case value="5"}<span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span>{/case}
+                                {default /}default
+                                {/switch}
+                            </td>
+                            <td style="text-align: center">
+                                {if condition="!empty($vp['c_content'])"}
+                                {$vp['c_content']}<br>回应时间:{$vp['c_atime']}
+                                {else/}
+                                 商家尚未回应此评论哦
+                                {/if}
+                            </td>
+                            <td style="text-align: center">
+                                <button class="btn btn-info btn-sm updatecom" com-id="{$vp['c_id']}" data-toggle="modal" data-target="#myCommentModal1">修改</button>
+                                <button class="btn btn-danger btn-sm deletecom" com-id="{$vp['c_id']}">删除</button>
+                            </td>
+                        </tr>
+                        {/volist}
+                    </table>
+                </div>
+                {else/}
+                <h5 style="text-align: center"> 您还没有写过任何点评哦O(∩_∩)O </h5>
+                {/if}
+            </div>
+
+
             <!--活动,favorite-->
             <div class="col-md-8" id="favorite" style="display: none">
                 <div class="row">
@@ -707,328 +986,304 @@
                             <td style="text-align: center">{$ar['ar_contact']}</td>
                             <td style="text-align: center">{$ar['ar_comments']}</td>
                             <td style="text-align: center">{$ar['ar_submit_time']}</td>
-                         </tr>
+                        </tr>
                         {/volist}
-                       
+
                     </table>
                 </div>
 
-                  
+
             </div>
 
-
-          <!--Classes List Wrap End-->
-        <!--Classes Wrap End-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--</div>-->
-    <!--Footer Wrap Start-->
-    <footer class="mt20">
-      <!--Newletter Wrap Start-->
-      <div class="gt_newsletter_bg default_width">
-        <div class="container">
-          <div class="gt_newsletter_inside_bg default_width">
-            <div class="gt_newsletter_wrap">
-              <h3>STAY TUNED WITH US</h3>
-              <form class="default_width">
-                <input type="text" class="ph_news" placeholder="Your Email address">
-                <input type="submit" value="Subscribe">
-              </form>
-              <p>Get our updates educational materials, new courses and more!</p>
+            <!--Back to Top Wrap Start-->
+            <div class="back-to-top">
+                <a href=""><i class="fa fa-angle-up"></i></a>
             </div>
-          </div>
+            <!--Back to Top Wrap Start-->
+
         </div>
-      </div>
-      <!--Newletter Wrap End-->
 
-      <!--Footer List Wrap Start-->
-      <div class="gt_footer1_bg default_width">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-3 col-sm-6">
-              <div class="gt_foo_about gt_widget_hdg">
-                  <h5>Our Sevices</h5>
-                  <ul>
-                      <li><a href="#">Courses</a></li>
-                      <li><a href="#">Events</a></li>
-                      <li><a href="#">Teachers</a></li>
-                      <li><a href="#">Blog</a></li>
-                      <li><a href="#">Gdaducation</a></li>
-                  </ul>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-              <div class="gt_foo_about gt_widget_hdg">
-                  <h5>My Account</h5>
-                  <ul>
-                      <li><a href="#">My Account</a></li>
-                      <li><a href="#">Order History</a></li>
-                      <li><a href="#">Wishlist</a></li>
-                      <li><a href="#">Newsletter</a></li>
-                      <li><a href="#">Special</a></li>
-                  </ul>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-              <div class="gt_foo_about gt_widget_hdg">
-                  <h5>Our Support</h5>
-                  <ul>
-                      <li><a href="#">Contact Us</a></li>
-                      <li><a href="#">Shipping &#38; Taxes</a></li>
-                      <li><a href="#">Return Policy</a></li>
-                      <li><a href="#">Site Map</a></li>
-                      <li><a href="#">Conatct Us</a></li>
-                  </ul>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-              <div class="gt_foo_about gt_widget_hdg">
-                  <h5>Information</h5>
-                  <ul>
-                      <li><a href="#">About Us</a></li>
-                      <li><a href="#">Top Sellers</a></li>
-                      <li><a href="#">Special Products</a></li>
-                      <li><a href="#">Privacy Policy</a></li>
-                      <li><a href="#">Delivery Information</a></li>
-                  </ul>
-              </div>
-            </div>
-          </div>
-
-          <!--Footer Contact Wrap Start-->
-          <div class="gt_foo_contact_wrap">
-            <div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <div class="gt_foo_contact_des">
-                        <i class="icon-phone"></i>
-                          <div class="gt_foo_icon_des">
-                            <h5>(8) 111 22 333 444</h5>
-                              <span>Mon - fri 9am to 5pm </span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-md-4 col-sm-6">
-                    <div class="gt_foo_contact_des">
-                        <i class="icon-tool"></i>
-                          <div class="gt_foo_icon_des">
-                            <h5>info@eduskill.com</h5>
-                              <span>Online information </span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="gt_foo_contact_des">
-                        <i class="icon-pin"></i>
-                          <div class="gt_foo_icon_des">
-                            <h5>New york Usa</h5>
-                            <span>787 New south  way CA </span>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <!--Footer Contact Wrap End-->
-        </div>
-      </div>
-      <!--Footer List Wrap End-->
-
-      <!--Copyright Wrap End-->
-      <div class="gt_copyright_wrap">
-        <div class="container">
-            <div class="gt_copyright_des">
-                <p>Copyright © <a href="#">Edu-skill </a> 2016. All rights reserved.</p>
-                <span>Created by: <a href="#">2goodtheme.com</a></span>
+        <!--评价的模态框 aria-labelledby="myModalLabel"-->
+        <div class="modal fade" id="myCommentModal" tabindex="-1" role="dialog" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="gname1"></h4>
+                    </div>
+                    <form action="{:url('index/Comment/save')}" method="post" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <input type="hidden" name='bid' id="bid" value="">
+                            <input type="hidden" name='gid' id="gid" value="">
+                            <input type="hidden" name='cid' id="cid" value="">
+                            <input type="hidden" name='uid' id="uid" value="">
+                            <input type="hidden" name='oid' id="oid" value="">
+                            <input type="hidden" name='gname' id="gname" value="">
+                            <textarea name="content"  cols="75" rows="3" placeholder="请输入评论内容,长度限制在140个字符以内" maxlength="140" noresize></textarea>
+                            <br>
+                            <br>
+                            评分:　
+                            <input type="radio" name='score' value="5" checked>非常好∩_∩
+                            　<input type="radio" name='score' value="4">很好^_^
+                            　<input type="radio" name='score' value="3">好:-D
+                            　<input type="radio" name='score' value="2">一般-_-
+                            　<input type="radio" name='score' value="1">差╯﹏╰
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">提交评价</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-      </div>
-      <!--Copyright Wrap Start-->
-    </footer>
-    <!--Footer Wrap End-->
-
-    <!--Back to Top Wrap Start-->
-    <div class="back-to-top">
-        <a href=""><i class="fa fa-angle-up"></i></a>
-    </div>
-    <!--Back to Top Wrap Start-->
-
-  </div>
-
-<!--评价的模态框 -->
-<div class="modal fade" id="myCommentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="gname1"></h4>
+        <!--修改评价-->
+        <div class="modal fade" id="myCommentModal1" tabindex="-1" role="dialog" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="gname2"></h4>
+                    </div>
+                    <form action="{:url('index/Comment/update')}"  method="post" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <input type="hidden" name="c_id" value="" id="c-id">
+                            <textarea class="content" name="text"  cols="75" rows="3" placeholder="请输入评论内容,长度限制在140个字符以内" maxlength="140" noresize></textarea>
+                            <br>
+                            <br>
+                            评分:　
+                            <input type="radio" name='score' value="5" id="sc5">非常好∩_∩
+                            　<input type="radio" name='score' value="4" id="sc4">很好^_^
+                            　<input type="radio" name='score' value="3" id="sc3">好:-D
+                            　<input type="radio" name='score' value="2" id="sc2">一般-_-
+                            　<input type="radio" name='score' value="1" id="sc1">差╯﹏╰
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary reload">修改</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <form action="{:url('index/Comment/save')}" method="post" enctype="multipart/form-data">
-            <div class="modal-body">
-                <input type="hidden" name='bid' id="bid" value="">
-                <input type="hidden" name='gid' id="gid" value="">
-                <input type="hidden" name='cid' id="cid" value="">
-                <input type="hidden" name='uid' id="uid" value="">
-                <input type="hidden" name='oid' id="oid" value="">
-                <input type="hidden" name='gname' id="gname" value="">
-                <textarea name="content"  cols="90" rows="3" placeholder="请输入评论内容,长度限制在140个字符以内" maxlength="140" noresize></textarea>
-                <br>
-                <br>
-                评分:　
-                <input type="radio" name='score' value="5" checked>非常好∩_∩
-                　<input type="radio" name='score' value="4">很好^_^
-                　<input type="radio" name='score' value="3">好:-D
-                　<input type="radio" name='score' value="2">一般-_-
-                　<input type="radio" name='score' value="1">差╯﹏╰
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">提交评价</button>
-            </div>
-            </form>
         </div>
-    </div>
-</div>
 
-{/block}
-  <!--gt Wrapper End-->
-{block name="myjs"}
-  <!--Jquery Library-->
-  <!--<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>-->
-  <!--&lt;!&ndash;Bootstrap core JavaScript&ndash;&gt;-->
-  <!--<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>-->
-  <!--地址联动-->
-  <script src="/static/app/index/js/jquery.js"></script>
-  <script src="/static/app/index/js/bootstrap.js"></script>
-  <!--<script src="/static/app/index/js/city-picker.data.js"></script>-->
-  <!--<script src="/static/app/index/js/city-picker.js"></script>-->
-  <script src="/static/app/index/js/main.js"></script>
-    <!--新地址联动-->
-<script src="/static/app/index/js/jquery-1.10.2.js"></script>
-<script src="/static/app/index/js/jquery.city.js"></script>
-<script src="/static/app/index/js/bootstrap.js"></script>
-<!--加减按钮-->
-<script src="/static/app/index/js/jquery.spinner.min.js"></script>
+        {/block}
+        <!--gt Wrapper End-->
+        {block name="myjs"}
+        <!--Jquery Library-->
+        <!--<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>-->
+        <!--&lt;!&ndash;Bootstrap core JavaScript&ndash;&gt;-->
+        <!--<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>-->
+        <!--地址联动-->
+        <script src="/static/app/index/js/jquery.js"></script>
+        <script src="/static/app/index/js/bootstrap.js"></script>
+        <!--<script src="/static/app/index/js/city-picker.data.js"></script>-->
+        <!--<script src="/static/app/index/js/city-picker.js"></script>-->
+        <script src="/static/app/index/js/main.js"></script>
+        <!--新地址联动-->
+        <script src="/static/app/index/js/jquery-1.10.2.js"></script>
+        <script src="/static/app/index/js/jquery.city.js"></script>
+        <script src="/static/app/index/js/bootstrap.js"></script>
+        <!--加减按钮-->
+        <script src="/static/app/index/js/jquery.spinner.min.js"></script>
 
-<script>
+        <script>
 
-    //商品评价
-    $('.comment').click(function(){
-        //订单的id
-        var id = $(this).attr('oid');
-        //console.log(id);
-        commentAjax(id);
-    });
-    function commentAjax(id){
-        $.ajax({
-            type:'get',
-            url:'commentcre/'+id,
-            dataType:'json',
-            success:function(data){
-                if(data.status){
-                    $('#gname1').html('商品名称:'+data.gname);
-                    $('#gname').attr('value',data.gname);
-                    $('#gid').attr('value',data.gid);
-                    $('#cid').attr('value',data.cid);
-                    $('#uid').attr('value',data.uid);
-                    $('#bid').attr('value',data.bid);
-                    $('#oid').attr('value',data.oid);
-                }else{
-                    alert('获取数据失败,请重试');
+            //商品评价
+            $('.comment').click(function(){
+                //订单的id
+                var id = $(this).attr('oid');
+                //console.log(id);
+                commentAjax(id);
+            });
+            $('.updatecom').click(function(){
+                //评论的id
+                var id = $(this).attr('com-id');
+                //console.log(id);
+                upComAjax(id);
+            });
+            $('.deletecom').click(function(){
+                var id = $(this).attr('com-id');
+                if (confirm('确定要 [ 删除 ] 此条评论吗?')) {
+                    var obj = $(this).parents('tr');
+                    console.log(obj);
+                    delComAjax(id, obj);// 调用执行AJAX删除
                 }
-            },
-            error:function(){
-                alert('请求失败');
+            });
+            function commentAjax(id){
+                $.ajax({
+                    type:'get',
+                    url:'commentcre/'+id,
+                    dataType:'json',
+                    success:function(data){
+                        if(data.status){
+                            $('#gname1').html('商品名称:'+data.gname);
+                            $('#gname').attr('value',data.gname);
+                            $('#gid').attr('value',data.gid);
+                            $('#cid').attr('value',data.cid);
+                            $('#uid').attr('value',data.uid);
+                            $('#bid').attr('value',data.bid);
+                            $('#oid').attr('value',data.oid);
+                            $('.comment').html('已评论');
+                        }else{
+                            alert('获取数据失败,请重试');
+                        }
+                    },
+                    error:function(){
+                        alert('请求失败');
+                    }
+                });
             }
-        });
-    }
+            function upComAjax(id){
+                $.ajax({
+                    type:'get',
+                    url:'commentfind/'+id,
+                    dataType:'json',
+                    success:function(data){
+                        if(data.status){
+                            $('#gname2').html('商品名称:'+data.gname);
+                            $('.content').html(data.text);
+                            $('#c-id').attr('value',data.c_id);
+                            if(data.score==5){
+                                $('#sc5').attr('checked',true);
+                            }else if(data.score==4){
+                                $('#sc4').attr('checked',true);
+                            }else if(data.score==3){
+                                $('#sc3').attr('checked',true);
+                            }else if(data.score==2){
+                                $('#sc2').attr('checked',true);
+                            }else{
+                                $('#sc1').attr('checked',true);
+                            }
+                        }else{
+                            alert('获取数据失败,请重试');
+                        }
+                    },
+                    error:function(){
+                        alert('请求失败');
+                    }
+                });
+            }
+            function delComAjax(id,obj){
+                $.ajax({
+                    type:'delete',
+                    url:'commentdel/'+id,
+                    dataType:'json',
+                    success:function(data){
+                        if(data.status){
+                            obj.remove();
+                            alert(data.info);
+                            // 将当前的节点删除掉
+                        }else{
+                            alert('获取数据失败,请重试');
+                        }
+                    },
+                    error:function(){
+                        alert('请求失败');
+                    }
+                });
+            }
 
 
 
-    //      information
-    $('#showInformation').click(function(){
-        $('#information').css('display','block');
-        $('#personal').css('display','none');
-        $('#order').css('display','none');
-        $('#favorite').css('display','none');
-        $('#hotel').css('display','none');
-    });
-    //      personal
-    $('#showPersonal').click(function(){
-        $('#personal').css('display','block');
-        $('#information').css('display','none');
-        $('#order').css('display','none');
-        $('#favorite').css('display','none');
-        $('#hotel').css('display','none');
-    });
-    //      hotel
-    $('#showHotel').click(function(){
-        $('#hotel').css('display','block');
-        $('#personal').css('display','none');
-        $('#information').css('display','none');
-        $('#order').css('display','none');
-        $('#favorite').css('display','none');
-    });
+            //      information
+            $('#showInformation').click(function(){
+                $('#information').css('display','block');
+                $('#personal').css('display','none');
+                $('#order').css('display','none');
+                $('#favorite').css('display','none');
+                $('#hotel').css('display','none');
+                $('#comment').css('display','none');
+            });
+            //      personal
+            $('#showPersonal').click(function(){
+                $('#personal').css('display','block');
+                $('#information').css('display','none');
+                $('#order').css('display','none');
+                $('#favorite').css('display','none');
+                $('#hotel').css('display','none');
+                $('#comment').css('display','none');
+            });
+            //      hotel
+            $('#showHotel').click(function(){
+                $('#hotel').css('display','block');
+                $('#personal').css('display','none');
+                $('#information').css('display','none');
+                $('#order').css('display','none');
+                $('#favorite').css('display','none');
+                $('#comment').css('display','none');
+            });
+            //comment
+            $('#showComment').click(function(){
+                $('#comment').css('display','block');
+                $('#hotel').css('display','none');
+                $('#personal').css('display','none');
+                $('#information').css('display','none');
+                $('#order').css('display','none');
+                $('#favorite').css('display','none');
+            });
 
-    $('#per').click(function(){
-        $('#per').css('backgroundColor', '#ccc');
-        $('#address').css('backgroundColor', '');
-        $('#perForm').css('display', 'block');
-        $('#addForm').css('display', 'none');
-    });
-    $('#address').click(function(){
-        $('#per').css('backgroundColor', '');
-        $('#address').css('backgroundColor', '#ccc');
-        $('#perForm').css('display','none');
-        $('#addForm').css('display','block');
-    });
+            $('#per').click(function(){
+                $('#per').css('backgroundColor', '#ccc');
+                $('#address').css('backgroundColor', '');
+                $('#perForm').css('display', 'block');
+                $('#addForm').css('display', 'none');
+            });
+            $('#address').click(function(){
+                $('#per').css('backgroundColor', '');
+                $('#address').css('backgroundColor', '#ccc');
+                $('#perForm').css('display','none');
+                $('#addForm').css('display','block');
+            });
 
-    //      优惠券
-//    加
-    $('.spin-up').click(function(){
-        var n = parseInt($('#num').val())+1;
-        var t = $('#choosePoint').val()*n;
-        $('#total').html(t);
+            //      优惠券
+            //    加
+            $('.spin-up').click(function(){
+                var n = parseInt($('#num').val())+1;
+                var t = $('#choosePoint').val()*n;
+                $('#total').html(t);
 //        console.log(t);
-    });
-//    减
-    $('.spin-down').click(function(){
-        if($('#num').val() <=1){
-            $('#num').val(1);
-            var t = $('#choosePoint').val()*1;
-            $('#total').html(t);
-        }else{
-            var n = parseInt($('#num').val())-1;
-            var t = $('#choosePoint').val()*n;
-            $('#total').html(t);
+            });
+            //    减
+            $('.spin-down').click(function(){
+                if($('#num').val() <=1){
+                    $('#num').val(1);
+                    var t = $('#choosePoint').val()*1;
+                    $('#total').html(t);
+                }else{
+                    var n = parseInt($('#num').val())-1;
+                    var t = $('#choosePoint').val()*n;
+                    $('#total').html(t);
 //            console.log(t);
-        }
+                }
 
-    });
+            });
 
-//    改变优惠券类型时触发
-    $('#choosePoint').change(function(){
-        var n = parseInt($('#num').val());
-        var t = $('#choosePoint').val()*n;
-        $('#total').html(t);
-    });
+            //    改变优惠券类型时触发
+            $('#choosePoint').change(function(){
+                var n = parseInt($('#num').val());
+                var t = $('#choosePoint').val()*n;
+                $('#total').html(t);
+            });
 
-    //        优惠券模态框点击确认
-    $('#yes').click(function(){
-        if(parseInt($('#total').html()) > parseInt($('#point').html())){
-            alert('您的积分不足哦');
-        }else{
+            //        优惠券模态框点击确认
+            $('#yes').click(function(){
+                if(parseInt($('#total').html()) > parseInt($('#point').html())){
+                    alert('您的积分不足哦');
+                }else{
 //               用户id
-            var id = $('#userid').html();
+                    var id = $('#userid').html();
 //               用户在输入框输入的值
 //               var text = prompt("请输入您的账户密码","password");
 //               用户选择的优惠券类型
-            var type = parseInt($('#choosePoint').val());
+                    var type = parseInt($('#choosePoint').val());
 //               优惠券数量
-            var n = parseInt($('#num').val());
+                    var n = parseInt($('#num').val());
 //               消耗的总积分
-            var total = parseInt($('#total').html());
+                    var total = parseInt($('#total').html());
 //               console.log(id, typeof(id));
 //               console.log(type, typeof(type));
 //               console.log(n, typeof(n));
 //               console.log(total, typeof(total));
+
             checkpass(id, type, n, total);
         }
     });
@@ -1045,17 +1300,191 @@
             },
             dataType: 'json',
             success:function(data){
-//                    console.log(data);
-                if (data.status){
-                    alert('优惠券兑换成功');
-                    history.go(0);
-                }else{
-                    alert('优惠券兑换失败,请重试~');
+                    checkpass(id, type, n, total);
                 }
-            },
-            error:function(){
-                alert('优惠券兑换失败,请重试');
+            });
+
+            function checkpass(id, type, n, total){
+                $.ajax({
+                    type: 'post',
+                    url: "/money",
+                    data: {
+                        "id":id,
+//                    "pass":text,
+                        "type":type,
+                        "n":n,
+                        "total":total
+                    },
+                    dataType: 'json',
+                    success:function(data){
+//                    console.log(data);
+                        if (data.status){
+                            alert('优惠券兑换成功');
+                            history.go(0);
+                        }else{
+                            alert('优惠券兑换失败,请重试');
+                        }
+                    },
+                    error:function(){
+                        alert('优惠券兑换失败,请重试');
+                    }
+                });
             }
+
+            //        显示现金券
+            $('#showCoupon').click(function(){
+                $('#coupon').slideToggle();
+            });
+
+            //      提示信息
+            //        验证用户名
+            $('#username').change(function(){
+                if ($('#username').val().match(/^[A-Za-z0-9_\u4e00-\u9fa5]{1,16}$/) == null){
+                    $('#tips1').html('用户名格式不正确~');
+                    $('#tips1').css('color','#f00');
+                }else{
+                    $('#tips1').html('验证通过~');
+                    $('#tips1').css('color','#0a0');
+                }
+            });
+            //        验证手机
+            $('#phone').change(function(){
+                if ($('#phone').val().match(/^1(3|4|5|7|8)[0-9]\d{8}$/) == null){
+                    $('#tips2').html('手机格式不正确~');
+                    $('#tips2').css('color','#f00');
+                }else{
+                    $('#tips2').html('验证通过~');
+                    $('#tips2').css('color','#0a0');
+                }
+            });
+            //        验证邮箱
+            $('#email').change(function(){
+                if ($('#email').val().match(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/) == null){
+                    $('#tips3').html('邮箱格式不正确~');
+                    $('#tips3').css('color','#f00');
+                }else{
+
+                    alert('优惠券兑换失败,请重试~');
+
+                    $('#tips3').html('验证通过~');
+                    $('#tips3').css('color','#0a0');
+                }
+            });
+
+            //        验证两次密码
+            $('#oncepass').change(function(){
+                if($('#oncepass').val().match(/^\w{6,18}$/) == null){
+                    $('#tips4').html('密码格式不正确~');
+                    $('#tips4').css('color','#f00');
+                }else{
+                    $('#tips4').html('验证通过~');
+                    $('#tips4').css('color','#0a0');
+                }
+            });
+            $('#secondpass').change(function(){
+                if ($('#secondpass').val() != $('#oncepass').val()){
+                    $('#tips5').html('新旧密码不一致~');
+                    $('#tips5').css('color','#f00');
+                }else{
+                    $('#tips5').html('验证通过~');
+                    $('#tips5').css('color','#0a0');
+                }
+            });
+            //验证收货人姓名
+            $('#addname').change(function(){
+                if ($('#addname').val().match(/^([\u4e00-\u9fa5]){2,8}$/) == null){
+                    $('#tips7').html('姓名格式不正确~');
+                    $('#tips7').css('color','#f00');
+                }else{
+                    $('#tips7').html('验证通过~');
+                    $('#tips7').css('color','#0a0');
+                }
+            });
+
+            //        验证收货地址手机
+            $('#addphone').change(function(){
+                if ($('#addphone').val().match(/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/) == null){
+                    $('#tips6').html('手机格式不正确~');
+                    $('#tips6').css('color','#f00');
+                }else{
+                    $('#tips6').html('验证通过~');
+                    $('#tips6').css('color','#0a0');
+                }
+            });
+
+            //        验证收货地址
+            $('#addstreet').change(function(){
+                if ($('#addstreet').val().match(/[\dA-Za-z\u4E00-\u9FA5]+/) == null){
+                    $('#tips8').html('地址格式不正确~');
+                    $('#tips8').css('color','#f00');
+                }else{
+                    $('#tips8').html('验证通过~');
+                    $('#tips8').css('color','#0a0');
+                }
+            });
+
+            //      order
+            $('#showOrder').click(function(){
+                $('#order').css('display','block');
+                $('#information').css('display','none');
+                $('#personal').css('display','none');
+                $('#favorite').css('display','none');
+                $('#hotel').css('display','none');
+                $('#comment').css('display','none');
+            });
+            $('#done').click(function(){
+                $(this).css('backgroundColor', '#ccc');
+                $("#choose a:not(#done)").css('backgroundColor', '');
+                $('#doneForm').css('display', 'block');
+                $('#bigForm > div:not(#doneForm)').css('display', 'none');
+            });
+            $('#shipped').click(function(){
+                $(this).css('backgroundColor', '#ccc');
+                $("#choose a:not(#shipped)").css('backgroundColor', '');
+                $('#shippedForm').css('display', 'block');
+                $('#bigForm > div:not(#shippedForm)').css('display', 'none');
+            });
+            $('#notShipped').click(function(){
+                $(this).css('backgroundColor', '#ccc');
+                $("#choose a:not(#notShipped)").css('backgroundColor', '');
+                $('#notShippedForm').css('display', 'block');
+                $('#bigForm > div:not(#notShippedForm)').css('display', 'none');
+            });
+
+            $('#show01').click(function(){
+                $('#show11,#show12').slideToggle();
+
+            });
+            $('#show02').click(function(){
+                $('#show21,#show22').slideToggle();
+            });
+            //      $('.show03').click(function(){
+            //          $('.show3').slideToggle();
+            //      });
+
+
+            //        控制商品详情框弹出
+            var show03 = document.getElementsByClassName('show03');
+            var show31 = document.getElementsByClassName('show31');
+            var show32 = document.getElementsByClassName('show32');
+            //      console.log(show03);
+            //      console.log(show31);
+            //      console.log(show32);
+            for(var i = 0; i<show03.length; i++){
+                (function(i){
+                    show03[i].onclick = function(){
+                        demo3(i);
+                    };
+                })(i);
+            }
+
+            function demo3(i){
+                //          alert(i);
+                $('.show31').eq(i).slideToggle();
+                $('.show32').eq(i).slideToggle();
+
+            }
+
         });
     }
 
@@ -1254,30 +1683,114 @@
         var oid = $(this).attr('oid');
         if(confirm('您确定要删除此订单记录吗?')){
             var obj = $(this).parents('tr');
+=======
+
+            var show02 = document.getElementsByClassName('show02');
+            var show21 = document.getElementsByClassName('show21');
+            var show22 = document.getElementsByClassName('show22');
+
+            for(var i = 0; i<show02.length; i++){
+                (function(i){
+                    show02[i].onclick = function(){
+                        demo2(i);
+                    };
+                })(i);
+            }
+
+            function demo2(i){
+                //          alert(i);
+                $('.show21').eq(i).slideToggle();
+                $('.show22').eq(i).slideToggle();
+
+            }
+
+            var show01 = document.getElementsByClassName('show01');
+            var show11 = document.getElementsByClassName('show11');
+            var show12 = document.getElementsByClassName('show12');
+            //      console.log(show01);
+            //      console.log(show11);
+            //      console.log(show12);
+            for(var i = 0; i<show01.length; i++){
+                (function(i){
+                    show01[i].onclick = function(){
+                        demo1(i);
+                    };
+                })(i);
+            }
+
+            function demo1(i){
+                //          alert(i);
+                $('.show11').eq(i).slideToggle();
+                $('.show12').eq(i).slideToggle();
+
+            }
+
+            //        删除已完成订单
+            $('.delOrder').click(function(){
+                var oid = $(this).attr('oid');
+                if(confirm('您确定要删除此订单记录吗?')){
+                    var obj = $(this).parents('tr');
+>>>>>>> origin/shine
 //                alert('订单删除成功');
 //                obj.remove();
-            delOrder(oid, obj);
-        }
-    });
-    //
-    function delOrder(id, obj){
-        $.ajax({
-            type:'get',
-            url:'index/Order/delete',
-            data:{'id':id},
-            dataType:'json',
-            success:function(data){
-//                    alert(data);
-                if (data.status){
-                    alert('订单删除成功');
-                    obj.remove();
-                }else{
-                    alert('订单删除失败,请重试~');
+                    delOrder(oid, obj);
                 }
-            },
-            error:function(){
-                alert('订单删除失败,请重试~');
+            });
+            //
+            function delOrder(id, obj){
+                $.ajax({
+                    type:'get',
+                    url:'index/Order/delete',
+                    data:{'id':id},
+                    dataType:'json',
+                    success:function(data){
+//                    alert(data);
+                        if (data.status){
+                            alert('订单删除成功');
+                            obj.remove();
+                        }else{
+                            alert('订单删除失败,请重试~');
+                        }
+                    },
+                    error:function(){
+                        alert('订单删除失败,请重试~');
+                    }
+                });
             }
+
+            //        退货
+            $('.cancel').click(function(){
+                alert('您的退货申请卖家已收到,请耐心等待商家联系');
+            });
+
+
+            //      favorite
+            $('#showFavorite').click(function(){
+                $('#favorite').css('display','block');
+                $('#information').css('display','none');
+                $('#personal').css('display','none');
+                $('#order').css('display','none');
+                $('#hotel').css('display','none');
+                $('#comment').css('display','none');
+
+            });
+
+            //      提交前验证收货地址
+            function checkAddress(){
+                if($('#addname').val() == ''){
+                    alert('收货人不能为空');
+                    return false;
+                }else if($('#addphone').val() == ''){
+                    alert('联系方式不能为空');
+                    return false;
+                }else if($('#addstreet').val() == ''){
+                    alert('详细地址不能为空');
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+
         });
     }
 
@@ -1347,26 +1860,77 @@
               $('#sendCode').attr('disabled', true);
               setTimeout(time,1000);
           }
-//          console.log(n);
-      }
-      time();
+=======
 
-        var phone = $('.oldphone').text();
-        $.ajax({
-            type:'get',
-            url:'/sendmsg/'+phone,
-            success:function(data){
-//                console.log(data);
-                if(data['status']){
-                    alert('短信验证码发送成功');
-                    $('#newcode').val(data['string']);
+            //        验证修改密码
+            function checkPassword(){
+                var oldpass = passform.oldpass.value;
+                var oncepass = passform.oncepass.value;
+                var secondpass = passform.secondpass.value;
+                if (oldpass == ''){
+                    alert('原密码不能为空');
+                    return false;
+                }else if (oncepass == ''){
+                    alert('新密码不能为空');
+                    return false;
+                }else if (secondpass == ''){
+                    alert('确认密码不能为空');
+                    return false;
                 }else{
-                    alert('短信验证码发送失败~');
+                    return true;
                 }
-            },
-            error:function(){
-                alert('短信验证码发送失败');
             }
+
+
+            //    修改个人信息发送短信验证码
+            $('#sendCode').click(function(){
+                n = 30;
+                function time(){
+                    if(n <= 1){
+                        $('#sendCode').text('发送短信验证码');
+                        $('#sendCode').attr('disabled', false);
+                        clearTimeout(time);
+                        n = 30;
+                    }else{
+                        n--;
+                        $('#sendCode').text(n+'秒后再获取');
+                        $('#sendCode').attr('disabled', true);
+                        setTimeout(time,1000);
+                    }
+>>>>>>> origin/shine
+//          console.log(n);
+                }
+                time();
+
+                var phone = $('.oldphone').text();
+                $.ajax({
+                    type:'get',
+                    url:'/sendmsg/'+phone,
+                    success:function(data){
+//                console.log(data);
+                        if(data['status']){
+                            alert('短信验证码发送成功');
+                            $('#newcode').val(data['string']);
+                        }else{
+                            alert('短信验证码发送失败~');
+                        }
+                    },
+                    error:function(){
+                        alert('短信验证码发送失败');
+                    }
+                });
+            });
+
+            //    修改个人信息前验证表单数据
+            function checkPer(){
+                if($('.oldcode').val() == ''){
+                    alert('请进行短信验证');
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+
         });
     });
 
@@ -1394,3 +1958,20 @@
 <!--Custom JavaScript-->
 <script src="/static/app/index/js/custom.js"></script>
 {/block}
+=======
+
+            //    地址联动
+            $('#txt_city').jcity({
+                urlOrData: '/static/app/index/js/citydata.json',
+                animate: { showClass: 'animated flipInX', hideClass: 'animated flipOutX' },
+                onChoice: function (data) {
+                    console.log(data);
+                }
+            });
+
+
+        </script>
+        <!--Custom JavaScript-->
+        <script src="/static/app/index/js/custom.js"></script>
+        {/block}
+>>>>>>> origin/shine

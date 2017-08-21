@@ -48,13 +48,13 @@
                         <tbody>
                         {volist name="list" id="v" key="k"}
                         <tr>
-                            <td align="center" valign="middle">{$k}</td>
-                            <td align="center" valign="middle"><a href="{:url('/goodsdetail',['id'=>$v.c_gid,'bus_id'=>$v.c_bid,'cid'=>$v.c_cid])}">{$v.c_gname}</a></td>
-                            <td align="center" valign="middle">
+                            <td style="text-align: center">{$k}</td>
+                            <td style="text-align: center"><a href="{:url('/goodsdetail',['id'=>$v.c_gid,'bus_id'=>$v.c_bid,'cid'=>$v.c_cid])}">{$v.c_gname}</a></td>
+                            <td style="text-align: center">
                                 <textarea name=""  cols="40" rows="1" readonly="readonly">{$v.c_text}</textarea>
                             </td>
-                            <td align="center" valign="middle" id="ban{$v.c_id}">{if condition='($v.is_ban==0)'}已发布{else /}已禁用{/if}</td>
-                            <td class="col-md-3">
+                            <td style="text-align: center" id="ban{$v.c_id}">{if condition='($v.is_ban==0)'}已发布{else /}已禁用{/if}</td>
+                            <td class="col-md-3" style="text-align: center">
                                 <button class=" btn-info btn-sm find-btn" show-id='{$v.c_id}' data-toggle="modal" data-target="#myModal">查看详情</button>
                                 <!--<a href="{:url('admin/comment/find',['id'=>$v.c_id])}">查看</a>-->
                                 <button class=" btn btn-danger del-btn btn-sm" bin-id="{$v.c_id}">禁用此评论</button>
@@ -63,6 +63,7 @@
                         {/volist}
                         </tbody>
                     </table>
+                    <div style="text-align:center">{$list->render()}</div>
                     {/if}
                 </div>
             </section>

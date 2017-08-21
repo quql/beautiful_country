@@ -6,7 +6,7 @@ use think\Controller;
 use think\Request;
 use think\Db;
 
-class Comment extends Controller
+class Comment extends Base
 {
 
     /**

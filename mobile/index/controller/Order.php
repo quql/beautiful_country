@@ -11,8 +11,8 @@ class Order extends Base
     //确认订单
     public function confirm()
     {
-//        $uid = input('session.uid');
-        $uid=1;
+        $uid = input('session.uid');
+//        $uid=1;
         $i = input('post.');
 //        dump($i);
 
@@ -265,8 +265,8 @@ class Order extends Base
     public function playtrue()
     {
         $data = input();
-//        $uid = input('session.u_id');
-        $uid = '4';
+        $uid = input('session.u_id');
+//        $uid = '4';
         $time = date('Y-m-d H:i:s',time());
         $orderNum = time().rand(10e8,90e8);
         $intime = $data['inttime']. '　to　' .$data['outtime'];

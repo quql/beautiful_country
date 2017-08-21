@@ -38,6 +38,11 @@ class Index extends Base
 
         $activitiesindex = Db::query($activitiessql);
 
+        //获取商品评论的内容及用户信息
+        $sql4="select ml_comment.c_score,c_text,c_time,c_gname,c_cid,c_gid,c_bid,ml_user_detail.ud_photo,ml_user.u_username FROM ml_comment LEFT JOIN ml_user_detail ON ml_user_detail.ud_uid=ml_comment.c_uid LEFT JOIN ml_user ON ml_user.u_id=ml_comment.c_uid WHERE ml_comment.c_score>3 AND ml_comment.is_ban='0' ";
+        $comment=Db::query($sql4);
+        //dump($comment);
+
 //        查询四个产品表的数据总量
         $s_num=Db::name('scenery')->count();
         $r_num=Db::name('route')->count();
@@ -49,6 +54,7 @@ class Index extends Base
             'r_num'=>$r_num,
             'f_num'=>$f_num,
             'h_num'=>$h_num,
+            'comment'=>$comment,
             'foods'=>$food,
             'pics'=>$pic,
             'hotroute'=>$routes,
@@ -70,12 +76,16 @@ class Index extends Base
         if($id==4){
             //查询主表字段和封面图片
             $list = Db::query("select ml_hotel.id,gd_title,gd_abstract,price,c_id,bus_id,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1'");
+            $type='4';
         }elseif($id==5){
             $list = Db::query("select ml_route.id,gd_title,gd_abstract,price,c_id,bus_id,ml_route_pic.pic from ml_route LEFT JOIN ml_route_pic ON ml_route.id=ml_route_pic.gid where ml_route_pic.is_first='1'");
+            $type='5';
         }elseif($id==1){
             $list = Db::query("select ml_scenery.id,gd_title,gd_abstract,price,c_id,bus_id,ml_scenery_pic.pic from ml_scenery LEFT JOIN ml_scenery_pic ON ml_scenery.id=ml_scenery_pic.gid where ml_scenery_pic.is_first='1'");
+            $type='1';
         }elseif($id==6){
             $list = Db::query("select ml_food.id,gd_title,gd_abstract,price,c_id,bus_id,ml_food_pic.pic from ml_food LEFT JOIN ml_food_pic ON ml_food.id=ml_food_pic.gid where ml_food_pic.is_first='1'");
+            $type='6';
         }else{
             return '暂无数据';
         }
@@ -90,6 +100,7 @@ class Index extends Base
         $this->assign('scylist',$scylist);
         $this->assign('hotellist',$hotellist);
         $this->assign('list',$list);
+        $this->assign('type',$type);
         return view ('index/list');
     }
 
@@ -156,12 +167,16 @@ class Index extends Base
        // 判断用户查看的类型
         if($id==4){
             //查询主表字段和封面图片
+            $type='4';
             $list = Db::query("select ml_hotel.id,gd_title,gd_abstract,price,bus_id,c_id,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1' AND ml_hotel.h_cate={$cateid}");
         }elseif($id==5){
+            $type='5';
             $list = Db::query("select ml_route.id,gd_title,gd_abstract,price,bus_id,c_id,ml_route_pic.pic from ml_route LEFT JOIN ml_route_pic ON ml_route.id=ml_route_pic.gid where ml_route_pic.is_first='1' AND ml_route.h_cate={$cateid}");
         }elseif($id==1){
+            $type='1';
             $list = Db::query("select ml_scenery.id,gd_title,gd_abstract,price,bus_id,c_id,ml_scenery_pic.pic from ml_scenery LEFT JOIN ml_scenery_pic ON ml_scenery.id=ml_scenery_pic.gid where ml_scenery_pic.is_first='1' AND ml_scenery.h_cate={$cateid}");
         }elseif($id==6){
+            $type='6';
             $list = Db::query("select ml_food.id,gd_title,gd_abstract,price,bus_id,c_id, ml_food_pic.pic from ml_food LEFT JOIN ml_food_pic ON ml_food.id=ml_food_pic.gid where ml_food_pic.is_first='1' AND ml_food.h_cate={$cateid}");
         }else{
             return '暂无数据';
@@ -175,6 +190,7 @@ class Index extends Base
         $this->assign('scylist',$scylist);
         $this->assign('hotellist',$hotellist);
         $this->assign('list',$list);
+        $this->assign('type',$type);
         return view ('index/list');
     }
 
@@ -290,11 +306,12 @@ class Index extends Base
         $this->assign('hotellist',$hotellist);
         $this->assign('list',$list);
         return view ('index/list');
-    }//
+    }
 
-    public function email($toemail='695260422@qq.com')
+    //邮箱接口
+    public function email($email='695260422@qq.com')
     {
-       $toemail = input('email');//定义收件人的邮箱
+       $email = input('email');//定义收件人的邮箱
         //生成一个随机四位数 保存在session中
         $vcode=rand(1000,9999);
 //        Session::set('vcode',$vcode,'think');
@@ -315,15 +332,19 @@ class Index extends Base
         $mail = new PHPMailer(); //建立邮件发送类
         $mail->CharSet = "UTF-8";
         $address ="13127573831@163.com";
+//        $address ="695260422@qq.com";
         $mail->IsSMTP(); // 使用SMTP方式发送
+//        $mail->Host = "smtp.qq.com";
         $mail->Host = "smtp.163.com";
         $mail->SMTPAuth = true; // 启用SMTP验证功能
         $mail->Username = "13127573831@163.com";
+//        $mail->Username = "695260422@qq.com";
+//        $mail->Password = "shanshan123";
         $mail->Password = "shanshan123";
         $mail->Port=25;
         $mail->From = "13127573831@163.com"; //邮件发送者email地址
-        $mail->FromName = "在线Q聊";
-        $mail->AddAddress($toemail, "邮箱测试");
+        $mail->FromName = "美丽乡村";
+        $mail->AddAddress($email, "邮箱测试");
         //$mail->AddReplyTo("", "");//设置回复人信息
         $mail->IsHTML(true); //是否使用HTML格式
 
@@ -333,16 +354,87 @@ class Index extends Base
             if(!$mail->Send())
             {
                 $result['status']=false;
-                $result['info']='验证码获取失败,请重新点击获取';
-                //echo "错误原因: " . $mail->ErrorInfo;
-                //exit;
+                $result['info']='验证码发送失败,请重新点击获取';
+//                echo "错误原因: " . $mail->ErrorInfo;
+//                exit;
             }else{
                 $result['status']=true;
                 $result['info']='验证码已发送到您的邮箱,请在有效期内输入';
             }
         }else{
             $result['status']=false;
-            $result['info']='验证码获取失败,请重新点击获取';
+            $result['info']='验证码获取失败,请重新点击获取~~';
+        }
+
+        return json($result);
+    }
+    //天气接口
+    public function weather($city){
+        // 心知天气接口调用凭据
+        $key = 'xypawljhsg6qpmmf'; // 测试用 key，请更换成您自己的 Key
+        $uid = 'U3B737A6EA'; // 测试用 用户ID，请更换成您自己的用户ID
+        // 参数
+        $api = 'https://api.seniverse.com/v3/weather/daily.json'; // 接口地址
+        $location = $city; // 城市名称。除拼音外，还可以使用 v3 id、汉语等形式
+        $param = [
+            'ts' => time(),
+            'ttl' => 300,
+            'uid' => $uid,
+        ];
+        $sig_data = http_build_query($param); // http_build_query会自动进行url编码
+        // 使用 HMAC-SHA1 方式，以 API 密钥（key）对上一步生成的参数字符串（raw）进行加密，然后base64编码
+        $sig = base64_encode(hash_hmac('sha1', $sig_data, $key, TRUE));
+        // 拼接Url中的get参数。文档：https://www.seniverse.com/doc#daily
+        $param['sig'] = $sig; // 签名
+        $param['location'] = $location;
+        $param['start'] = 0; // 开始日期。0=今天天气
+        $param['days'] = 1; // 查询天数，1=只查一天
+        // 构造url
+        $url = $api . '?' . http_build_query($param);
+        //模拟请求
+        $data= https_request($url);
+        $data=json_decode($data);
+//        if(!empty($data)){
+//            $data['status']=true;
+//        }else{
+//            $data['status']=false;
+//        }
+        return json($data);
+    }
+    //邮箱订阅
+    public function newsemail($email='695260422@qq.com')
+    {
+        $email = input('email');//定义收件人的邮箱
+        $mail = new PHPMailer(); //建立邮件发送类
+        $mail->CharSet = "UTF-8";
+        $address ="13127573831@163.com";
+//        $address ="695260422@qq.com";
+        $mail->IsSMTP(); // 使用SMTP方式发送
+//        $mail->Host = "smtp.qq.com";
+        $mail->Host = "smtp.163.com";
+        $mail->SMTPAuth = true; // 启用SMTP验证功能
+        $mail->Username = "13127573831@163.com";
+//        $mail->Username = "695260422@qq.com";
+//        $mail->Password = "shanshan123";
+        $mail->Password = "shanshan123";
+        $mail->Port=25;
+        $mail->From = "13127573831@163.com"; //邮件发送者email地址
+        $mail->FromName = "美丽乡村";
+        $mail->AddAddress($email, "美丽乡村");
+        $mail->AddReplyTo("13127573831@163.com", "美丽乡村");//设置回复人信息
+        $mail->IsHTML(true); //是否使用HTML格式
+
+        $mail->Subject = "美丽乡村咨询订阅"; //邮件标题
+        $mail->Body = "您好,欢迎订阅美丽乡村咨询,本平台会及时向您推送最新的咨询和路线,谢谢您的关注∩_∩"; //邮件内容，上面设置HTML，则可以是HTML
+        if(!$mail->Send())
+        {
+            $result['status']=false;
+            $result['info']='邮箱发送失败,请重新点击获取';
+//                echo "错误原因: " . $mail->ErrorInfo;
+//                exit;
+        }else{
+            $result['status']=true;
+            $result['info']='恭喜您,订阅成功';
         }
 
         return json($result);

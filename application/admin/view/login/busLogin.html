@@ -31,34 +31,37 @@
 
 <div class="container">
 
-    <form class="form-signin" action="{:url('admin/BusLogin/doLogin')}" method="post">
+    <form class="form-signin" action="{:url('admin/BusLogin/doLogin')}" method="post" onsubmit="return checkregister()">
         <div class="form-signin-heading text-center">
-            <h1 class="sign-title" style="font-size:36px;color:#ABD7CD">进入我的店铺</h1>
+
             <!--<img src="/static/app/admin/images/favicon.jpg" alt=""/>-->
         </div>
         <div class="login-wrap">
+            <h1 class="sign-title" style="font-size:36px;color:#ABD7CD">进入我的店铺</h1>
             <input type="text" name="b_name" class="form-control" placeholder="店铺名称" autofocus>
             <input type="password" name="pass" class="form-control" placeholder="密码">
+            <input type="text" name="phone" class="form-inline" placeholder="手机号码" style="width: 180px; height:39px;padding-left: 10px" onblur="sub5()" id="666">
+            <button type="button" style="display: inline-block;width:100px;height:39px;margin-left: 5px;border-radius: 5px" class="form-inline" id="usebtn">获取验证码</button><span class="subscript" id="sub5"></span>
+            <input type="password"  class="form-control" placeholder="请输入短信验证码" onblur="sub6()" id="888">
+            <span class="subscript" id="sub6"></span>
             <button class="btn btn-lg btn-login btn-block" type="submit">
                 <i class="fa fa-check"></i>
             </button>
 
             <div class="registration">
                 还不是商家?
-                <a class="" href="registration.html">
+                <a class="" href="{:url('index/index/index')}">
                     免费注册
                 </a>
             </div>
-            <label class="checkbox">
-                <input type="checkbox" value="remember-me"> Remember me
-                <span class="pull-right">
-                    <a data-toggle="modal" href="#myModal" > 忘记密码?</a>
+            <!--<label class="checkbox">-->
+                <!--<input type="checkbox" value="remember-me"> Remember me-->
+                <!--<span class="pull-right">-->
+                    <!--<a data-toggle="modal" href="#myModal" > 忘记密码?</a>-->
 
-                </span>
-            </label>
-
+                <!--</span>-->
+            <!--</label>-->
         </div>
-
         <!-- Modal -->
         <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
             <div class="modal-dialog">
@@ -79,19 +82,93 @@
             </div>
         </div>
         <!-- modal -->
-
     </form>
-
 </div>
-
-
-
-<!-- Placed js at the end of the document so the pages load faster -->
-
-<!-- Placed js at the end of the document so the pages load faster -->
 <script src="/static/app/admin/js/jquery-1.10.2.min.js"></script>
 <script src="/static/app/admin/js/bootstrap.min.js"></script>
 <script src="/static/app/admin/js/modernizr.min.js"></script>
+<script>
+    function sub5(){
+        var sub=$("#666").val();
+        if (/^1(3|4|5|7|8)[0-9]\d{8}$/.test(sub)){
+            $('#sub5').html('√手机格式正确');
+            $('#sub5').css('color','green');
+            return true;
+        }else{
+            $('#sub5').html('× 手机格式不正确');
+            $('#sub5').css('color','red');
+            return false;
+        }
+    };
+    var btn1 = document.getElementById('usebtn');
+    $('#usebtn').click(function(){
+        if(!sub5()){
+            return false;
+        }
+        var  phone = document.getElementById('666').value;
+        m=60;
+        showbtn();
+        send(phone);
+    });
+
+    function showbtn() {
+        if (m <= 0) {
+            btn1.disabled = false;
+            btn1.innerHTML = '重新获取';
+            return;
+        }
+        btn1.innerHTML = '重新获取('+m+')';
+        btn1.disabled =true;
+        m--;
+        setTimeout("showbtn()", 1000);
+    }
+    sendsmscode ='adsfdxgfhcvjbknbvjhgfsASdsfdghjkl';
+
+    //AjAX请求发送验证码
+    function send(phone){
+        //console.log(phone);
+        $.ajax({
+            type:'get',
+            url:'/sendmsg/'+phone,
+            dataType: 'json',
+            success:function(data){
+                if(data.status){
+                    sendsmscode=data['string'];
+                    alert('短信发送成功');
+                }else{
+                    alert('系统错误,请重试');
+                }
+            },
+            error:function(){
+                alert('请求失败');
+            }
+        });
+    }
+
+    //短信验证码的合法性验证
+    function sub6(){
+        var smscode =document.getElementById('888').value;
+        if(smscode==sendsmscode){
+            $('#sub6').html('√短信验证码正确');
+            $('#sub6').css('color','green');
+            return true;
+        }else{
+            $('#sub6').html('×短信验证码错误');
+            $('#sub6').css('color','red');
+            return false;
+        }
+    };
+
+    function checkregister()
+    {
+        if(sub5() && sub6())
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
 
 </body>
 </html>

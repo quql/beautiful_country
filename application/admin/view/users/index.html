@@ -43,35 +43,31 @@
                             <th style="text-align: center">性别</th>
                             <th style="text-align: center">手机号</th>
                             <th style="text-align: center">邮箱</th>
-                            <th style="text-align: center">订单总量</th>
-                            <th style="text-align: center">消费总额</th>
-                            <th style="text-align: center">注册时间</th>
                             <th style="text-align: center">评论状态</th>
                             <th style="text-align: center">操作</th>
-
                         </tr>
                         </thead>
                         <tbody>
                         <!--{volist name="list" id="v" key="k"}-->
                         {volist name='$p->data' id='v' key="k"}
                         <tr>
-                            <td align="center" valign="middle">{$k}</td>
-                            <td align="center" valign="middle">{$v.u_username}</td>
-                            <td align="center" valign="middle">{if condition='($v.ud_sex==1)'}男{else /}女{/if}</td>
-                            <td align="center" valign="middle">{$v.u_phone}</td>
-                            <td align="center" valign="middle">{$v.ud_email}</td>
-                            <td align="center" valign="middle">订单总量</td>
-                            <td align="center" valign="middle">消费总额</td>
-                            <td align="center" valign="middle">{:date('Y-m-d',$v.u_create_time)}</td>
-                            <td align="center" valign="middle" id="ban{$v.u_id}">{if condition='($v.is_comment==0)'}开放{else /}禁言{/if}</td>
+                            <td style="text-align: center">{$k}</td>
+                            <td style="text-align: center">{$v.u_username}</td>
+                            <td style="text-align: center">{if condition='($v.ud_sex==1)'}男{else /}女{/if}</td>
+                            <td style="text-align: center">{$v.u_phone}</td>
+                            <td style="text-align: center">{$v.ud_email}</td>
+                            <td style="text-align: center" id="ban{$v.u_id}">{if condition='($v.is_comment==0)'}开放{else /}禁言{/if}</td>
 
-
-                            <td class="col-md-4">
-                                <!--<button class=" btn-info btn-sm" data-toggle="modal" data-target="#myModal">查看大图</button>-->
+<!--data-toggle="modal" data-target="#myModal3"-->
+                            <td class="col-md-3">
+                                {if condition='!empty($v.ud_email)'}
+                                <button class=" btn btn-success email-btn btn-sm" email-id="{$v.u_id}"  email="{$v.ud_email}" data-toggle="modal" data-target="#myModal3">发送邮件</button>
+                                {else/}
+                                <button class=" btn btn-success noemail-btn btn-sm" >发送邮件</button>
+                                {/if}
                                 <button class=" btn btn-info btn-sm find-btn" show-id='{$v.u_id}' data-toggle="modal" data-target="#myModal2">查看</button>
                                 <button class=" btn btn-warning bin-btn btn-sm" bin-id="{$v.u_id}">禁言</button>
                                 <button class=" btn btn-danger del-btn btn-sm" del-id="{$v.u_id}" >删除</button>
-
                             </td>
                         </tr>
                         {/volist}
@@ -95,17 +91,56 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel2">查看用户资料</h4>
+                <h4 class="modal-title title1" id="myModalLabel2"></h4>
             </div>
             <div class="modal-body">
                 <form action="" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label>头像:</label><br>　<img src="" alt="" class="img">
-                        <br><label>用户:</label>　<span class="span1"></span>
-                        <br><label>性别:</label>　<span class="span2"></span>
-                        <br><label >电话:</label>　<span class="span3"></span>
-                        <br><label >邮箱:</label>　<span class="span4"></span>
-
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-3 ">
+                                    <label>头像:</label><br>　<img src="" alt="" class="img img-circle" style="width:200px;height:200px">
+                                </div>
+                                <div class="col-md-5">
+                                    <br><label>用户:</label>　<span class="span1"></span>
+                                    <br><label>性别:</label>　<span class="span2"></span>
+                                    <br><label >电话:</label>　<span class="span3"></span>
+                                    <br><label >邮箱:</label>　<span class="span4"></span>
+                                    <br><label >订单总量:</label>　<span class="span5"></span>
+                                    <br><label >消费金额:</label>　<span class="span6"></span>
+                                    <br><label >注册时间:</label>　<span class="span7"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--发送邮件-->
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title title1" id="myModalLabel3"></h4>
+            </div>
+            <div class="modal-body">
+                <form action="{:url('admin/Users/send')}" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-3 " style="margin-top: 20px">
+                                    <label>头像:</label><br>　<img src="" alt="" class="img2 img-circle" style="width:200px;height:200px">
+                                </div>
+                                <div class="col-md-6" style="margin-top: 0px">
+                                    <input type="hidden" id="sendemail" name="email">
+                                    <br><label >邮件内容:</label><br>　<textarea name="content" id="textarea" cols="30" rows="10" placeholder="请输入邮件正文内容"></textarea>
+                                    <br><input type="submit" value="发送" class='btn-success ' style="margin-left: 15px;width: 65px;border-radius: 3px;height: 30px">
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </form>
@@ -144,7 +179,7 @@
         //查看
         $('.find-btn').click(function () {
             var id = $(this).attr('show-id');
-            console.log(id);
+            //console.log(id);
             findAjax(id);
         });
 
@@ -169,6 +204,15 @@
                 var obj = $(this).parents('tr');
                 delAjax(id, obj);// 调用执行AJAX删除
             }
+        });
+        //邮件
+        $('.email-btn').click(function () {
+            var id = $(this).attr('email-id');
+            emailAjax(id);
+        });
+        //邮件
+        $('.noemail-btn').click(function () {
+            alert('此用户尚未完善邮箱信息,不可发送邮件');
         });
     });
     // 设置弹框参数
@@ -235,7 +279,7 @@
                     var data=data[0];
                     console.log(data);
                     // 图片填充
-                    $('.img').attr('src','/uploads/'+data.ud_photo);
+                    $('.img').attr('src','/uploads/headPhoto/'+data.ud_photo);
                     $('.span1').html(data.u_username);
                     if (data.ud_sex){
                         $('.span2').html('男');
@@ -244,6 +288,10 @@
                     }
                     $('.span4').html(data.ud_email);
                     $('.span3').html(data.u_phone);
+                    $('.title1').html(data.u_username+'的详细资料');
+                    $('.span5').html("共<span style='color:red'>"+ data.num +"</span>单");
+                    $('.span6').html("<span style='color:red'>"+data.sum+'</span>元');
+                    $('.span7').html(data.u_create_time);
 
 
                 } else {
@@ -258,6 +306,31 @@
         });
 
     }
+    //发送邮件
+    function emailAjax(id) {
+        $.ajax({
+            type: 'get',
+            url: '/sendemail/' + id,
+            dataType: 'json',
+            success: function (data) {
+                //console.log(data[0]);
+                if (data.status) {
+                    var data=data[0];
+                    $('.img2').attr('src','/uploads/headPhoto/'+data.ud_photo);
+                    $('#myModalLabel3').html('给用户 '+data.u_username+' 发送邮件');
+                    $('#sendemail').attr('value',data.ud_email)
+                } else {
+                    alert(data['info']);
+                }
+            },
+            error: function () {
+                // AJAX操作失败
+                alert('网络错误,请求失败~~');
+            }
+
+        });
+    }
+
 
 
 

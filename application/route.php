@@ -265,6 +265,7 @@ Route::get('userslist','admin/Users/index');
 Route::resource('usersmg', 'admin/Users');
 //邮箱验证
 Route::get('email/:email','index/index/email');
+Route::get('newsemail/:email','index/index/newsemail');
 
 //显示详情页
 Route::get('goodsdetail','index/GoodsDetail/index');
@@ -292,7 +293,9 @@ Route::get('sceneryprice','index/Motive/price');
 
 //添加评论
 Route::get('commentcre/:id','index/Comment/create');
-//Route::get('commentshow/:id','index/Comment/read');
+Route::post('commentup','index/Comment/update');
+Route::delete('commentdel/:id','index/Comment/delete');
+Route::get('commentfind/:id','index/Comment/read');
 
 //加载商家后台的用户评论列表
 Route::get('usercomment','admin/BusInfo/comment');
@@ -305,12 +308,20 @@ Route::get('weixin','weixin/Index/index');
 //网站统计
 Route::get('chartjs', 'admin/count/chartjs');
 
+
 //微信支付入口
 Route::get('weixinplay','index/Weixinplay/index');
 //确认微信支付
 Route::post('weixininit','index/Weixinplay/weixin');
 
 Route::post('weixinplayover','index/Weixinplay/weixin_notify');
+
+//天气
+Route::get('weather/:city', 'index/index/weather');
+
+//给用户发邮件
+Route::get('sendemail/:id', 'admin/Users/email');
+
 return [
 //    '__pattern__' => [
 //        'name' => '\w+',
