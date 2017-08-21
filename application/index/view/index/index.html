@@ -427,11 +427,14 @@
                   <li class="active"><a href="{:url('index/index/index')}">首页</a>
                   </li>
 
-                  <li><a href="{:url('/shoplist/4')}">住宿</a>
+                  <li class="zhusu"><a href="{:url('/shoplist/4')}">住宿</a>
                     <ul>
                        {volist name='hotel' id="v"}
                          <li><a href="{:url('/listshow/4/'.$v.id)}">{$v.h_name}</a></li>
                         {/volist}
+                        <script>
+
+                        </script>
                     </ul>
                   </li>
 
@@ -1149,6 +1152,11 @@
   </script>
   <script>
     $(function(){
+        $('.liebiao').click(function(){
+            alert(11);
+        });
+
+
       $('.apply').click(function(){
           $('#myModal').modal(options);
       });

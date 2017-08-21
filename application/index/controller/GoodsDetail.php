@@ -77,15 +77,15 @@ class GoodsDetail extends Base
             ]);
 
         }elseif($cid==1){
-            //获取路线的基本信息
+            //获取景区的基本信息
             $s = model('Scenery');
             $scenery = $s->getDetail($id);
 
-            //获取路线的详细信息
+            //获取景区的详细信息
             $d = model('SceneryDetail');
             $detail = $d->getDetail($id);
 
-            //获取路线的图片
+            //获取景区的图片
             $p = model('sceneryPic');
             $photos = $p->getPhotos($id);
 
@@ -97,6 +97,10 @@ class GoodsDetail extends Base
                 $pics= $q->name('scenery_pic')->field('pic')->where('gid',$v['id'])->find();
                 $all[$k]['pic']=$pics['pic'];
             };
+
+            //获取景区所在区域
+            $b = model('business');
+            $area = $b->getArea($bid)['b_area'];
 
             //dump($scenery[0]);
             //dump($detail[0]);
@@ -111,6 +115,7 @@ class GoodsDetail extends Base
                 'cid'=>1,
                 'comment'=>$comment,
                 'all'=>$all,
+                'area'=>$area,
             ]);
         }elseif($cid==5){
             //获取路线的基本信息
@@ -150,15 +155,15 @@ class GoodsDetail extends Base
 
             ]);
         }elseif($cid==4){
-            //获取商品基本信息
+            //获取住宿基本信息
             $h = model('hotel');
             $hotels = $h->getDetail($id);
 
-            //获取商品详细信息
+            //获取住宿详细信息
             $d = model('hotelDetail');
             $detail = $d->getDetail($id);
 
-            //获取商品图片
+            //获取住宿图片
             $p = model('hotelPic');
             $photos = $p->getPhotos($id);
 
