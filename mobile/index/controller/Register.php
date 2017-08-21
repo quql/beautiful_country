@@ -2,6 +2,7 @@
 namespace app\index\controller;
 
 use think\Controller;
+use think\Db;
 use think\Url;
 
 class Register extends Controller
@@ -22,7 +23,7 @@ class Register extends Controller
         $old1 = $u->checkUser($data1);
         $old2 = $u->checkPhone($data2);
         if($old1){
-            $this->error('用户名已存在,换个名字吧~');
+            $this->error('用户名已被注册,换个名字吧~');
         }elseif($old2){
             $this->error('手机号已被注册,换个手机吧~');
         }
@@ -53,7 +54,13 @@ class Register extends Controller
         $res2 = db('user_detail')->insert($d);
 
         if($res && $res2){
-            $this->success('注册成功!', 'index/index/index');
+            //添加数据到统计表
+            model('count')->register();
+            //添加数据到register表
+            model('register')->insert();
+
+
+            $this->success('注册成功!', 'index/Index/showLogin');
         }else{
             $this->error('注册失败,请重试');
         }

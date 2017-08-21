@@ -257,23 +257,24 @@
 					
       					<!--Product List Style 2 Wrap Start-->
       					<div class="row">
+                            {volist name="all" id="v"}
       						<div class="col-md-3 col-sm-6">
       							<div class="gt_product_outer_wrap gt_shop_style_2_wrap">
       								<figure>
-      									<img src="/static/app/index/extra-images/product-01.jpg" alt="">
+      									<img src="/uploads/{$v['pic']}" alt="" style="width: 268px;height: 171px">
       									<div class="gt_overlay_wrap"></div>
       									<figcaption class="gt_product_img_des">
-      										
-      										<p>商品简介...</p>
+
+      										<p>{$v['gd_abstract']}</p>
       										<ul class="gt_product_ui_element">
-      											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-      											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+      											<li><a href="{:url('/goodsdetail',['id'=>$v.id,'bus_id'=>$v.bus_id,'cid'=>$v.c_id])}"><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
+      											<!--<li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>-->
       										</ul>
       									</figcaption>
       								</figure>
       								<div class="gt_product_des_wrap">
-      									<h5><a href="#">商品标题</a></h5>
-      									<p>$66</p>
+      									<h5><a href="{:url('/goodsdetail',['id'=>$v.id,'bus_id'=>$v.bus_id,'cid'=>$v.c_id])}">{:mb_substr($v['gd_title'],6)}...</a></h5>
+      									<p>¥{$v['price']}</p>
       									<ul class="gt_rating_start">
       										<li><a href="#"><i class="fa fa-star"></i></a></li>
       										<li><a href="#"><i class="fa fa-star"></i></a></li>
@@ -283,12 +284,13 @@
       									</ul>
       								</div>
       								<div class="gt_cart_element_wrap">
-      									<a class="gt_retweet_link" href="#"><i class="fa fa-retweet"></i></a>
-      									<a class="gt_add_to_cart" href="#">添加到购物车</a>
-      									<a class="gt_whishlist" href="#"><i class="fa fa-heart"></i></a>
+      									<a class="gt_retweet_link" href="javascript:void(0)"><i class="fa fa-retweet"></i></a>
+      									<a class="gt_add_to_cart" href="{:url('/goodsdetail',['id'=>$v.id,'bus_id'=>$v.bus_id,'cid'=>$v.c_id])}">去看看</a>
+      									<a class="gt_whishlist" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
       								</div>
       							</div>
       						</div>
+                            {/volist}
       					</div>
       					<!--Product List Style 2 Wrap End-->
 				      </div>

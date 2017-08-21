@@ -52,13 +52,9 @@ class Personal extends Base
         //加载已完成订单
         $done = $o->done($id);
 
-
         //加载此用户下的评论内容
         $sql = "select ml_comment.c_score,c_text,c_time,c_gname,c_cid,c_gid,c_bid,c_id,ml_bus_comment.c_content,c_atime FROM ml_comment LEFT JOIN ml_bus_comment ON ml_bus_comment.com_id=ml_comment.c_id WHERE ml_comment.c_uid=$id";
         $comment = Db::query($sql);
-
-
-
         //获取用户参加的活动数据
         $activities_register = Db::name('activities_register')->where('ar_user_id', $id)->select();
 
@@ -70,7 +66,6 @@ class Personal extends Base
         // var_dump($n);
         // var_dump($activities_register);
         // die;
-
         return view('index/personal', [
             'list' => $list,
             'data' => $data,
@@ -302,6 +297,10 @@ class Personal extends Base
                 'ud_point'=>$p
             ];
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/darcy
         //更改积分数据
         $pres = $d->updateDetail($id, $p1);
 

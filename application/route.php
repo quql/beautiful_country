@@ -145,8 +145,10 @@ Route::get('hotelDetail', 'index/hotel/index');
 Route::post('hotelBook', 'index/hotel/update');
 //路线详情页
 Route::get('routeDetail', 'index/route/index');
-//路线详情页
+//景区详情页
 Route::get('sceneryDetail', 'index/scenery/index');
+//景区地图
+Route::get('map', 'index/Map/index');
 //购物车页面
 Route::post('cart', 'index/cart/index');
 //游客购物车

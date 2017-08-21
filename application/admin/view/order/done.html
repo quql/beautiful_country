@@ -43,8 +43,8 @@
                                 <td style="text-align: center">{$v['o_total']}</td>
                                 <td style="text-align: center">
                                     <a href="{:url('admin/busorder/showdetail',['aid'=>$v['o_uid']])}" class="btn btn-info btn-sm">查看收货人信息</a>
-                                    <p style="display: none" class="oid">{$v['o_id']}</p>
-                                    <button class="btn btn-success btn-sm change">转为取消</button>
+                                    <!--<p style="display: none" class="oid">{$v['o_id']}</p>-->
+                                    <button class="btn btn-success btn-sm change" data-id="{$v['o_id']}">转为取消</button>
                                 </td>
                             </tr>
                             {/volist}
@@ -105,7 +105,7 @@
 <script>
     $('.change').click(function(){
         if(confirm('您确定要将此订单转为已发货吗?')){
-            var oid = $('.oid').html();
+            var oid = $(this).attr('data-id');
             dochange(oid);
         }
     });

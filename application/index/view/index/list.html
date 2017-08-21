@@ -16,7 +16,7 @@
         <div class="container">
             <div class="gt_breadcrumb_wrap default_width">
                 <ul>
-                    <li><a href="index/index/index">Home</a></li>
+                    <li><a href="index/index/index">首页</a></li>
                     <li><a href="#">详情</a></li>
                 </ul>
             </div>
@@ -106,7 +106,7 @@
 
                         <div class="gt_blog_listing default_width mb30">
                             <figure>
-                                <img src="/uploads/{$list.pic}" alt="">
+                                <img src="/uploads/{$list.pic}" alt="" style="width: 300px;height: 225px;">
                                 <figcaption class="gt_gallery_style1_des">
                                     <ul>
                                         <li><a href="{:url('/goodsdetail',['id'=>$list.id,'bus_id'=>$list.bus_id,'cid'=>$list.c_id])}"><i class="fa fa-link"></i></a></li>
@@ -122,9 +122,9 @@
                                 </ul>
                                 <h6><a href="{:url('/goodsdetail',['id'=>$list.id,'bus_id'=>$list.bus_id,'cid'=>$list.c_id])}">{$list.gd_title}</a></h6>
                                 <p>{$list.gd_abstract}</p>
-                                <a href="{:url('/goodsdetail',['id'=>$list.id,'bus_id'=>$list.bus_id,'cid'=>$list.c_id])}">Read More</a>
+                                <a href="{:url('/goodsdetail',['id'=>$list.id,'bus_id'=>$list.bus_id,'cid'=>$list.c_id])}">查看更多</a>
                                 <div class="gt_listing_share_wrap">
-                                    <button class="gt_listing_share"><i class="fa fa-share-alt"></i></button>
+                                    <!--<button class="gt_listing_share"><i class="fa fa-share-alt"></i></button>-->
                                     <ul class="gt_scl_icon">
                                         <li><a class="bg_fb" href="{:url('/goodsdetail',['id'=>$list.id,'bus_id'=>$list.bus_id,'cid'=>$list.c_id])}"><i class="fa fa-facebook"></i></a></li>
                                         <li><a class="bg_twitter" href="{:url('/goodsdetail',['id'=>$list.id,'bus_id'=>$list.bus_id,'cid'=>$list.c_id])}"><i class="fa fa-twitter"></i></a></li>

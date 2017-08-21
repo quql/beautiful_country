@@ -131,6 +131,7 @@ class BusOrder extends Bus
     //修改未发货订单为已发货
     public function todiliver(){
         $oid = input('post.')['oid'];
+        //dump($oid);die;
 
         $data = [
             'o_status'=>1,

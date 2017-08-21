@@ -17,4 +17,16 @@ class Route extends Model
 
         return $res;
     }
+
+    //获取店铺的其他商品
+    public function getAll($id = '')
+    {
+        $query = new Query();
+        $res = $query->table('ml_route')
+            ->where("bus_id",$id)
+            ->limit(4)
+            ->select();
+        //var_dump($res);
+        return $res;
+    }
 }

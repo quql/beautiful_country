@@ -270,7 +270,7 @@
             margin-bottom: 15px;
         }
 
-        #msmbtn {
+        #msmbtn{
             width: 100%;
             padding: 11px 0px;
             border-radius: 59px;
@@ -292,6 +292,7 @@
 
     </style>
 
+
     {css href="/static/app/index/css/reset.css"}
     {css href="/static/app/index/css/dashboard.css"}
     {css href="/static/app/index/css/city-picker.css" rel="stylesheet" type="text/css"}
@@ -308,6 +309,7 @@
 <body>
 
 <div class="gt_wrapper">
+
     <!-- Header Wrap Start -->
     <header id="fixed">
         <div class="gt_top_wrap gt_bg_3 default_width">
@@ -460,9 +462,10 @@
                     </div>
                 </div>
 
-                <div class="gt_login_element">
-                    <!-- <a href="#"><i class="icon-lock"></i>登陆</a> -->
-                    {if condition="empty(input('session.u_id'))"}
+
+            <div class="gt_login_element">
+              <!-- <a href="#"><i class="icon-lock"></i>登陆</a> -->
+                {if condition="empty(input('session.u_id'))"}
                     <a href="{:url('index/Register/register')}"><i class="glyphicon glyphicon-flag"></i>注册/登录</a>
                     {else /}
                     <a href="#">欢迎您,{$user.u_username}</a>
@@ -486,24 +489,38 @@
                 <div class="gt_cart_wrap">
                     <a href="{:url('/showCart')}" class="lcart"><i class="fa fa-cart-arrow-down"></i>&nbsp 购物车</a>
                     <div class="gt_cart_list">
-                        <ul>
-                            {volist name="shopcart" id="v"}
-                            <li>
-                                <figure>
-                                    <img src="/uploads/{$v.ca_photo}">
-                                </figure>
-                                <div class="gt_cart_item_detail">
-                                    <p>{$v.ca_gname}</p>
-                                    <span>¥{$v.ca_price}</span>
-                                </div>
-                            </li>
-                            {/volist}
-                        </ul>
-                    </div>
-                </div>
-                {/if}
-                <!--Logo Wrap End-->
-                <!--Navigation Wrap Start-->
+          </div>
+      </div>
+      <div class="gt_menu_bg default_width" >
+          <div class="container">
+            <!--Logo Wrap Start-->
+            <!--<div class="gt_logo">-->
+              <!--<a href="#"><img src="" alt="">logo图片</a>-->
+            <!--</div>-->
+            <!--Logo Wrap End-->
+            <!--Cart Wrap Start-->
+            {if condition="!empty(input('session.u_id'))"}
+            <div class="gt_cart_wrap">
+              <a href="{:url('/showCart')}"><i class="fa fa-cart-arrow-down"></i>&nbsp 购物车</a>
+                <div class="gt_cart_list">
+                  <ul>
+                      {volist name="shopcart" id="v"}
+                      <li>
+                          <figure>
+                              <img src="/uploads/{$v.ca_photo}">
+                          </figure>
+                          <div class="gt_cart_item_detail">
+                              <p>{$v.ca_gname}</p>
+                              <span>¥{$v.ca_price}</span>
+                          </div>
+                      </li>
+                      {/volist}
+                  </ul>
+              </div>
+            </div>
+            {/if}
+            <!--Logo Wrap End-->
+            <!--Navigation Wrap Start-->
                 <nav class="gt_navigation">
                     <button class="gt_mobile_menu">
                         <span class="icon-bar"></span>
@@ -655,9 +672,7 @@
                                         class="fa fa-search"></i></button>
                             </form>
                         </div>
-                    </div>
-
-                </div>
+            <!--Gallery List Wrap Start-->
                 <!--Search Wrap End-->
                 <section class="gt_campus_bg" style="background-color: black;padding-bottom: 0px">
                     <div class="container">
@@ -751,7 +766,6 @@
                 </div>
                 <!--Courses List Wrap End-->
             </div>
-
         </section>
 
 
@@ -1308,221 +1322,87 @@
         });
 
     });
+      $('#closeChat').click(function(){
+          $('#chat').css('display','none');
+      });
 
-    $('.btn_email').click(function () {
-        vemail = document.getElementById("inputEmail").value;
-        //console.log(vemail);
-        emailAjax(vemail);
-        //return false;
-    });
-    //ajax请求发送邮箱验证码 传递参数为邮箱地址EMAIL
-    function emailAjax(email) {
-        $.ajax({
-            type: 'get',
-            url: '/email/' + email,
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-                if (data.status) {
-                    alert(data['info']);
-                } else {
-                    alert(data['info']);
-                }
-            },
-            error: function () {
-                // AJAX操作失败
-                alert('网络错误,请求失败~~');
-            }
+      var ws = io.connect('http://127.0.0.1:888');
+      var sendMsg = function(msg){
+          ws.emit('send.message', msg);
+      };
+      var addMessage = function(from, msg){
+          var a=$('textarea').val();
+          var html = '<li class="list-group-item text-primary"><b>我:　&nbsp;</b>'+a+'</li>';
+          $('#chat_conatiner').append(html);
 
+          // 设置内容区的滚动条到底部
+          document.querySelector('#onchat').scrollTop = document.querySelector('#onchat').scrollHeight;
+
+          // 并设置焦点
+          document.querySelector('textarea').focus();
+
+      };
+
+       var send = function(){
+           var ele_msg = document.querySelector('textarea');
+           var msg = ele_msg.value.replace('\r\n', '').trim();
+           console.log(msg);
+           if(!msg) return;
+           sendMsg(msg);
+           // 添加消息到自己的内容区
+           addMessage('你', msg);
+           ele_msg.value = '';
+       };
+
+//     ws.on('connect', function(){
+//         var nickname = window.prompt('输入你的昵称!');
+//         while(!nickname){
+//             nickname = window.prompt('昵称不能为空，请重新输入!')
+//         }
+//         ws.emit('join', nickname);
+//     });
+//
+//     // 昵称有重复
+//     ws.on('nickname', function(){
+//         var nickname = window.prompt('昵称有重复，请重新输入!');
+//         while(!nickname){
+//             nickname = window.prompt('昵称不能为空，请重新输入!')
+//         }
+//         ws.emit('join', nickname);
+//     });
+
+      ws.on('send.message', function(from, msg){
+          addMessage(from, msg);
+      });
+
+      ws.on('announcement', function(from, msg){
+          addMessage(from, msg);
+      });
+
+      document.querySelector('textarea').addEventListener('keypress', function(event){
+          if(event.which == 13){
+              send();
+          }
+      });
+      document.querySelector('textarea').addEventListener('keydown', function(event){
+          if(event.which == 13){
+              send();
+          }
+      });
+      document.querySelector('#send').addEventListener('click', function(){
+          send();
+      });
+
+      document.querySelector('#clear').addEventListener('click', function(){
+          document.querySelector('#chat_conatiner').innerHTML = '';
+      });
+  </script>
+  <script>
+    $(function(){
+        $('.liebiao').click(function(){
+            alert(11);
         });
-    }
 
-    $('.new_email').click(function () {
-        vemail = document.getElementById("newEmail").value;
-        //console.log(vemail);
-        newemailAjax(vemail);
-        //return false;
-    });
-    //ajax请求发送邮箱验证码 传递参数为邮箱地址EMAIL
-    function newemailAjax(email) {
-        $.ajax({
-            type: 'get',
-            url: '/newsemail/' + email,
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-                if (data.status) {
-                    alert(data['info']);
-                } else {
-                    alert(data['info']);
-                }
-            },
-            error: function () {
-                // AJAX操作失败
-                alert('网络错误,请求失败~~');
-            }
-
-        });
-    }
-
-    // 检测滚动事件
-    window.onscroll = function () {
-        // 导航条 位置判断
-        //console.log(document.body.scrollTop);
-        var top = document.body.scrollTop || document.documentElement.scrollTop;
-        var he = document.getElementById('fixed');
-        //console.log(top);
-        if (top > 0) {
-            he.style.position = 'fixed';
-            he.style.top = '0px';
-            he.style.zIndex = '10000';
-        } else {
-            he.style.position = '';
-            he.style.top = '0px';
-            he.style.zIndex = '10';
-        }
-    }
-
-    // 文字滚动
-    var jchd = document.getElementById('jchd');
-    var msg = document.getElementById('msg');
-    var hot = document.getElementById('hot');
-    setInterval(function () {
-        var str = msg.innerHTML;
-        var arr = str.split("");
-        arr.push(arr.shift());
-        msg.innerHTML = arr.join("");
-    }, 100);
-    setInterval(function () {
-        var str = jchd.innerHTML;
-        var arr = str.split("");
-        arr.push(arr.shift());
-        jchd.innerHTML = arr.join("");
-    }, 100);
-    setInterval(function () {
-        var str = document.title;
-        var fstr = str.charAt(0);
-        var estr = str.substr(1);
-        document.title = estr + fstr;
-    }, 500);
-    setInterval(function () {
-        var str = hot.innerHTML;
-        var arr = str.split("");
-        arr.push(arr.shift());
-        hot.innerHTML = arr.join("");
-    }, 100);
-
-
-    //验证商户注册的表单
-    function checkForm() {
-        //获取提交的数据
-        var name = document.getElementById('inputName').value;
-        var p1 = document.getElementById('p1');
-        //验证店铺名称是否满足正则条件 +出现1次或多次 /^([\u4e00-\u9fa5]){2,8}$/
-        if (name.match(/^([\u4e00-\u9fa5]){1,8}$/) === null) {
-            p1.innerHTML = ' × 请输入1-8个汉字组成的店铺名字';
-            p1.style.color = 'red';
-            return false;
-        } else {
-            p1.style.color = '#0a0';
-            p1.innerHTML = '√ ';
-        }
-
-        var person = document.getElementById('inputPerson').value;
-        var p2 = document.getElementById('p2');
-        //验证负责人是否符合 6-12位的数字字母下划线
-        if ((person.match(/^[a-z]{1,12}$/) === null) && (person.match(/^([\u4e00-\u9fa5]){2,8}$/) === null)) {
-            p2.innerHTML = '× 请输入1-12位的字母或1-8个汉字组成的名字';
-            p2.style.color = 'red';
-            return false;
-        } else {
-            p2.style.color = '#0a0';
-            p2.innerHTML = '√ ';
-        }
-        //密码
-        var pass = document.getElementById('inputPass').value;
-        var p3 = document.getElementById('p3');
-        //验证密码是否符合 6-18位的数字
-        if (pass.match(/^\w{6,18}$/) === null) {
-            p3.innerHTML = ' × 请输入6-18位的数字、字母或下划线组成的密码';
-            p3.style.color = 'red';
-            return false;
-        } else {
-            p3.style.color = '#0a0';
-            p3.innerHTML = '√ ';
-        }
-        //确认密码
-        var repass = document.getElementById('inputRepass').value;
-        var p8 = document.getElementById('p8');
-        if (pass !== repass) {
-            p8.innerHTML = ' × 两次输入不一致';
-            p8.style.color = 'red';
-            return false;
-        } else {
-            p8.style.color = '#0a0';
-            p8.innerHTML = '√ ';
-        }
-        //手机号
-        var phone = document.getElementById('inputPhone').value;
-        var p4 = document.getElementById('p4');
-        if (phone.match(/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/) === null) {
-            p4.innerHTML = ' × 请输入11位合法的手机号码';
-            p4.style.color = 'red';
-            return false;
-        } else {
-            p4.style.color = '#0a0';
-            p4.innerHTML = '√ ';
-        }
-
-        //地区
-        var adress = document.getElementById('city-picker3').value;
-        var p5 = document.getElementById('p5');
-        var arr = adress.split('/');
-        if (arr.length < 2) {
-            p5.innerHTML = ' × 请选择完整的省/市/区';
-            p5.style.color = 'red';
-            return false;
-        } else {
-            p5.style.color = '#0a0';
-            p5.innerHTML = '√ ';
-        }
-
-        //邮箱
-        var email = document.getElementById('inputEmail').value;
-        var p9 = document.getElementById('p9');
-        if (email.match(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/) === null) {
-            p9.innerHTML = ' × 请填写合法的邮箱地址';
-            p9.style.color = 'red';
-            return false;
-        } else {
-            p9.style.color = '#0a0';
-            p9.innerHTML = '√ ';
-        }
-
-        //验证码
-        var vcode = document.getElementById('inputVcode').value;
-        //console.log(vcode);
-        var p10 = document.getElementById('p10');
-        if (vcode == '' || vcode == null) {
-            p10.innerHTML = ' × 验证码不能为空';
-            p10.style.color = 'red';
-            return false;
-        } else {
-            p10.style.color = '#0a0';
-            p10.innerHTML = '√ ';
-        }
-
-        //同意条款
-        var checkbox = document.getElementById('checkbox');
-        var p7 = document.getElementById('p7');
-        if (!checkbox.checked) {
-            p7.innerHTML = ' × 请认真阅读并同意入驻规则';
-            p7.style.color = 'red';
-            return false;
-            p7.style.color = '#0a0';
-            p7.innerHTML = '√ 通过';
-        }
-    }
 
 </script>
 <!--天气-->
