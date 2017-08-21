@@ -18,6 +18,10 @@ class Base extends Controller
         session_start();
         $cate = Db::name('cate')->select();
         $this->assign('cate',$cate);
+
+        $activities = Db::name('ac_cate')->select();
+        // var_dump($activities);die;
+        $this->assign('activities',$activities);
     }
 
 

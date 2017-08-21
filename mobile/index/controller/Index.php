@@ -36,9 +36,10 @@ class Index extends Base
         // where ml_ac_pic.is_first='1'
 
         $activitiesindex = Db::query($activitiessql);
-//         var_dump($hotscy);
+//        var_dump($hotscy);
 //        dump($food);
 //        exit;
+        // var_dump($activitiesindex);die;
 
         return view('index/index',[
             'foods'=>$food,

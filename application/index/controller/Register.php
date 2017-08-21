@@ -59,7 +59,7 @@ class Register extends Base
             model('register')->insert();
 
             //如果添加成功 重定向到首页
-            $this->success('恭喜你注册成功，请点击登录', '/');
+            $this->success('恭喜你注册成功，请点击登录', 'index/Register/register');
         } else {
             //失败则回到注册页 自动触发一次注册按钮
             $this->error('(⊙o⊙)网络异常,提交失败,请重新提交,谢谢!');

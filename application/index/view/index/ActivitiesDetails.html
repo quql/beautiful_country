@@ -129,9 +129,17 @@
       <div class="modal-body">
 
         <form action="{:url('/activitiesregister', ['id'=>$details.activities_id])}" method="post" id="form">
+
+
           <div class="form-group">
             <label ><h6>参与的活动名称：{$details.ac_title}</h6></label>
           </div>
+
+          <li class="am-g am-list-item-dated">
+              <h4>参与的活动名称 : <font color="red">{$details.ac_opentime}~{$details.ac_closetime}</font></h4>
+          </li>
+
+
           <div class="form-group">
             <label >请选择活动使用的起始日期</label>
             <input type="date" class="form-control" name="opentime"   >

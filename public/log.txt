@@ -1,4 +1,5 @@
 request body = <TemplateSMS>
+<<<<<<< HEAD
                     <to>13501728378</to> 
                     <appId>8a216da85da6adf7015de0943d9714e0</appId>
                     <templateId>1</templateId>
@@ -99,32 +100,60 @@ request body = <TemplateSMS>
                     <datas><data>0247</data><data>5</data></datas>
                   </TemplateSMS>
 request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da85da6adf7015de0943b4514da/SMS/TemplateSMS?sig=02D0D08641F1D5A967193329547BBADC
+=======
+                    <to>18121280312</to> 
+                    <appId>8a216da85da6adf7015de0943d9714e0</appId>
+                    <templateId>1</templateId>
+                    <datas><data>0258</data><data>5</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da85da6adf7015de0943b4514da/SMS/TemplateSMS?sig=EA36C228A26B867550A4E34126891BA7
+>>>>>>> origin/zhangsan
 response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Response>
     <statusCode>000000</statusCode>
     <TemplateSMS>
+<<<<<<< HEAD
         <smsMessageSid>341944f11ef444f592ec01e502a91bea</smsMessageSid>
         <dateCreated>20170818103002</dateCreated>
+=======
+        <smsMessageSid>91277593f5ac4488b33fe535bd016482</smsMessageSid>
+        <dateCreated>20170818102305</dateCreated>
+>>>>>>> origin/zhangsan
     </TemplateSMS>
 </Response>
 
 request body = <TemplateSMS>
+<<<<<<< HEAD
                     <to>13501728378</to> 
                     <appId>8a216da85da6adf7015de0943d9714e0</appId>
                     <templateId>1</templateId>
                     <datas><data>3469</data><data>5</data></datas>
                   </TemplateSMS>
 request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da85da6adf7015de0943b4514da/SMS/TemplateSMS?sig=D842EE14F5D65739270C0F4FA5D8AB63
+=======
+                    <to>18121280312</to> 
+                    <appId>8a216da85da6adf7015de0943d9714e0</appId>
+                    <templateId>1</templateId>
+                    <datas><data>1789</data><data>5</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da85da6adf7015de0943b4514da/SMS/TemplateSMS?sig=5100F8D2233664F48B32C481569D7DBD
+>>>>>>> origin/zhangsan
 response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Response>
     <statusCode>000000</statusCode>
     <TemplateSMS>
+<<<<<<< HEAD
         <smsMessageSid>e973a892724549ca94e4cd7822c8252e</smsMessageSid>
         <dateCreated>20170818103023</dateCreated>
+=======
+        <smsMessageSid>e5975f73fd8c4f708726b40a66fbcf8d</smsMessageSid>
+        <dateCreated>20170818111039</dateCreated>
+>>>>>>> origin/zhangsan
     </TemplateSMS>
 </Response>
 
 request body = <TemplateSMS>
+<<<<<<< HEAD
                     <to>13501728378</to> 
                     <appId>8aaf07085dbbd708015dbf8688b800fa</appId>
                     <templateId>1</templateId>
@@ -209,10 +238,36 @@ response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Response>
     <statusCode>112310</statusCode>
     <statusMsg>【短信】应用未上线，模板短信接收号码外呼受限</statusMsg>
+=======
+                    <to>undefined</to> 
+                    <appId>8a216da85da6adf7015de0943d9714e0</appId>
+                    <templateId>1</templateId>
+                    <datas><data>1347</data><data>5</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da85da6adf7015de0943b4514da/SMS/TemplateSMS?sig=B91096BADAD88BAC06DD62CEA2611C1A
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160042</statusCode>
+    <statusMsg>号码格式有误</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to>undefined</to> 
+                    <appId>8a216da85da6adf7015de0943d9714e0</appId>
+                    <templateId>1</templateId>
+                    <datas><data>1259</data><data>5</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da85da6adf7015de0943b4514da/SMS/TemplateSMS?sig=F74EA315223C9B4721577B3C064484D5
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160042</statusCode>
+    <statusMsg>号码格式有误</statusMsg>
+>>>>>>> origin/zhangsan
 </Response>
 
 request body = <TemplateSMS>
                     <to>18121280312</to> 
+<<<<<<< HEAD
                     <appId>8a216da85da6adf7015de0943d9714e0</appId>
                     <templateId>1</templateId>
                     <datas><data>0279</data><data>5</data></datas>
@@ -225,5 +280,16 @@ response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <smsMessageSid>52cb44830af4424c824252a0f72f31e9</smsMessageSid>
         <dateCreated>20170818155530</dateCreated>
     </TemplateSMS>
+=======
+                    <appId>8aaf07085dbbd708015dbf8688b800fa</appId>
+                    <templateId>1</templateId>
+                    <datas><data>1248</data><data>5</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8aaf07085dbbd708015dbf86887500f6/SMS/TemplateSMS?sig=757B195C2B01CDFEC3491170B919AE58
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>113302</statusCode>
+    <statusMsg>【短信】您正在使用云通讯测试模板且短信接收者不是注册的测试号码</statusMsg>
+>>>>>>> origin/zhangsan
 </Response>
 
