@@ -42,7 +42,7 @@
                                   {volist name="photo" id="p"}
                                   <li>
                                       {if condition='$p.is_first eq 0'}
-                                      <img src="/uploads/{$p.pic}" width="140" height="140" />
+                                      <img src="/uploads/{$p.pic}" width="109" height="123" />
                                       {/if}
                                   </li>
                                   {/volist}
@@ -53,7 +53,12 @@
                               <div id="shop_detaild_slider">
                                   <ul class="slides">
                                       <li>
-                                          <img src="/uploads/{if condition='$p.is_first eq 1'}{$p.pic}{/if}" width="421" height="470" id="small"/>
+                                          <!-- <img src="/uploads/{if condition='$p.is_first eq 1'}{$p.pic}{/if}" width="421" height="470" id="small"/> -->
+                                          {volist name="photo" id="p"}
+                                          {if condition='$p.is_first eq 1'}
+                                          <img src="/uploads/{$p.pic}" width="419" height="419" id="small"/>
+                                          {/if}
+                                          {/volist}
                                       </li>
                                   </ul>
                                   <div id="big">
@@ -304,6 +309,8 @@
 {block name="myjs"}
 <script>
     $(function(){
+      $('.lfood').css('background','#2DCC70');
+        $('.lindex').css('background','#16171C');
         var store = parseInt($('#store').html());
         $('#up').click(function(){
             if($('#num').val() >= store){

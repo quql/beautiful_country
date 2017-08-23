@@ -40,7 +40,7 @@ class Scenerycate extends Admin
         $c_id=$p['c_id'];
 
 
-        $b_id=cache('b_id');
+        $b_id=input('session.b_id');
         $data=[
             'c_id'=>$c_id,
             'h_name'=>$h_name,

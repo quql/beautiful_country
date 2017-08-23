@@ -21,12 +21,13 @@ class Register extends Controller
 
         $u = model('user');
         $old1 = $u->checkUser($data1);
-        $old2 = $u->checkPhone($data2);
+       // $old2 = $u->checkPhone($data2);
         if($old1){
             $this->error('用户名已被注册,换个名字吧~');
-        }elseif($old2){
-            $this->error('手机号已被注册,换个手机吧~');
-        }
+         }
+            //elseif($old2){
+        //     $this->error('手机号已被注册,换个手机吧~');
+        // }
 
 
         //注册时间

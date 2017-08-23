@@ -1,4 +1,4 @@
-
+    
 {extend name="index/index"}
 
 <!--Header Wrap End-->
@@ -30,7 +30,7 @@
 <!--Main Content Wrap Start-->
 <div class="gt_content_wrap">
     <!--Classes Wrap Start-->
-    <section class="gt_courses_bg">
+    <section class="gt_courses_bg" style='padding-bottom:0px'>
         <div class="container">
 
             <!-- Dashboard Side Bar Wrap Start -->
@@ -479,26 +479,26 @@
                     </ul>
                     <div id="bigForm">
                         <div class="gt_d_courses_wrap default_width mt20" style="display: block" id="doneForm">
-                            <table class="table table-hover table1">
+                            <table class="table table-hover table1 row">
                                 <!--已完成订单-->
                                 <tr>
-                                    <th style="text-align: center">订单号</th>
-                                    <th style="text-align: center">商品</th>
-                                    <th style="text-align: center">单价(元)</th>
-                                    <th style="text-align: center">数量</th>
-                                    <th style="text-align: center">金额</th>
-                                    <th style="text-align: center" class="col-sm-3">操作</th>
+                                    <th style="text-align: center;line-height: 40px">订单号</th>
+                                    <th style="text-align: center;line-height: 40px">商品</th>
+                                    <th style="text-align: center;line-height: 20px">单价(元)</th>
+                                    <th style="text-align: center;line-height: 20px">数量</th>
+                                    <th style="text-align: center;line-height: 20px">金额</th>
+                                    <th style="text-align: center;line-height: 40px" class="col-sm-3">操作</th>
                                 </tr>
                                 {volist name="done" id="v"}
                                 <tr style="line-height: 20px">
-                                    <td style="text-align: center">{$v['o_order_num']}</td>
+                                    <td style="text-align: center;width:200px;word-wrap:break-word;word-break:break-all;">{$v['o_order_num']}</td>
                                     <td style="text-align: center">{$v['o_gname']}</td>
                                     <td style="text-align: center">{$v['o_price']}</td>
                                     <td style="text-align: center">{$v['o_num']}</td>
                                     <td style="text-align: center">{$v['o_total']}</td>
-                                    <td style="text-align: center">
+                                    <td style="text-align: center;padding: 13px;">
                                         <button class="btn btn-info btn-sm show01" oid="{$v['o_id']}">查看</button>
-                                        <button class="btn btn-info btn-sm comment" oid="{$v['o_id']}" data-toggle="modal" data-target="#myCommentModal">评价</button>
+                                        <button class="btn btn-success btn-sm comment" oid="{$v['o_id']}" data-toggle="modal" data-target="#myCommentModal">评价</button>
                                         <!--<a href="{:url('index/Comment/create',['id'=>$v['o_id']])}">评价</a>-->
                                         <button class="btn btn-danger btn-sm delOrder" oid="{$v['o_id']}">删除</button>
                                     </td>
@@ -545,7 +545,7 @@
                                 </tr>
                                 {volist name="diliver" id="v"}
                                 <tr style="line-height: 20px">
-                                    <td style="text-align: center">{$v['o_order_num']}</td>
+                                    <td style="text-align: center;width:200px;word-wrap:break-word;word-break:break-all;">{$v['o_order_num']}</td>
                                     <td style="text-align: center">{$v['o_gname']}</td>
                                     <td style="text-align: center">{$v['o_price']}</td>
                                     <td style="text-align: center">{$v['o_num']}</td>
@@ -599,7 +599,7 @@
                                 </tr>
                                 {volist name="un" id="v"}
                                 <tr style="line-height: 20px">
-                                    <td style="text-align: center">{$v['o_order_num']}</td>
+                                    <td style="text-align: center;width:200px;word-wrap:break-word;word-break:break-all;">{$v['o_order_num']}</td>
                                     <td style="text-align: center">{$v['o_gname']}</td>
                                     <td style="text-align: center">{$v['o_price']}</td>
                                     <td style="text-align: center">{$v['o_num']}</td>
@@ -650,30 +650,29 @@
                     <table class="table table-striped mt20">
                         <caption style="text-align: center"><h3>订单详情</h3></caption>
                         <tr>
-                            <th style="text-align: center">下单时间<br>订单号</th>
+                            <th style="text-align: center;line-height: 40px">下单时间<br>订单号</th>
                             <!--<th style="text-align: center;width: 50px;"></th>-->
-                            <th style="text-align: center;line-height: 40px;width: 109px;">商品</th>
+                            <th style="text-align: center;line-height: 80px;width: 109px;">商品</th>
                             <th style="text-align: center;line-height: 40px">单价(元)</th>
                             <th style="text-align: center;line-height: 40px">数量</th>
                             <th style="text-align: center;line-height: 40px">总金额(元)</th>
-                            <th style="text-align: center;line-height: 40px;width: 100px;">入住时间</th>
+                            <th style="text-align: center;line-height: 80px;width: 100px;">入住时间</th>
                             <!--<th style="text-align: center">入住人</th>-->
                             <!--<th style="text-align: center">联系方式</th>-->
-                            <th style="text-align: center;line-height: 40px">状态</th>
+                            <th style="text-align: center;line-height: 80px">状态</th>
                             <!--<th style="text-align: center" class="col-sm-1">操作</th>-->
                         </tr>
                         {volist name="hotels" id="v"}
                         <tr >
-                            <td style="text-align: center;line-height: 29px">{$v['o_time']}<br>{$v['o_order_num']}</td>
-                            <!--<td style="text-align: center;width: 50px;">{$v['o_order_num']}</td>-->
-                            <td style="text-align: center;line-height: 29px">{$v['o_gname']}</td>
-                            <td style="text-align: center;line-height: 54px">{$v['o_price']}</td>
-                            <td style="text-align: center;line-height: 54px">{$v['o_num']}</td>
-                            <td style="text-align: center;line-height: 54px">{$v['o_total']}</td>
-                            <td style="text-align: center;line-height: 18px">{$v['intime']}</td>
+                            <td style="text-align: center;line-height: 29px;width:200px;word-wrap:break-word;word-break:break-all;">{$v['o_time']}<br>{$v['o_order_num']}</td>
+                            <td style="text-align: center;line-height: 82px">{$v['o_gname']}</td>
+                            <td style="text-align: center;line-height: 82px">{$v['o_price']}</td>
+                            <td style="text-align: center;line-height: 82px">{$v['o_num']}</td>
+                            <td style="text-align: center;line-height: 82px">{$v['o_total']}</td>
+                            <td style="text-align: center;line-height: 29px">{$v['intime']}</td>
                             <!--<td style="text-align: center">{$v['inname']}</td>-->
                             <!--<td style="text-align: center">{$v['inphone']}</td>-->
-                            <td style="text-align: center;line-height: 54px">
+                            <td style="text-align: center;line-height: 82px;width: 89px">
                                 {if condition="$v['o_status'] eq 0"}未入住
                                 {else}已入住
                                 {/if}
@@ -802,7 +801,7 @@
                             <input type="hidden" name='uid' id="uid" value="">
                             <input type="hidden" name='oid' id="oid" value="">
                             <input type="hidden" name='gname' id="gname" value="">
-                            <textarea name="content"  cols="90" rows="3" placeholder="请输入评论内容,长度限制在140个字符以内" maxlength="140" noresize></textarea>
+                            <textarea name="content"  cols="70" rows="3" placeholder="请输入评论内容,长度限制在140个字符以内" maxlength="140" noresize></textarea>
                             <br>
                             <br>
                             评分:　
@@ -1195,6 +1194,7 @@
                 $('#personal').css('display','none');
                 $('#favorite').css('display','none');
                 $('#hotel').css('display','none');
+                $('#comment').css('display','none');
             });
             $('#done').click(function(){
                 $(this).css('backgroundColor', '#ccc');
@@ -1334,6 +1334,7 @@
                 $('#personal').css('display','none');
                 $('#order').css('display','none');
                 $('#hotel').css('display','none');
+                $('#comment').css('display','none');
             });
 
             //      提交前验证收货地址

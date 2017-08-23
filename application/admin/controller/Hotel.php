@@ -15,7 +15,7 @@ class Hotel extends Bus
      */
     public function index()
     {
-        $b_id = cache('b_id');
+        $b_id =input('session.b_id');
         $list = Db::table('ml_hotel')->where('bus_id',$b_id)->select();
         $catelist = Db::table('ml_h_cate')->select();
 //        var_dump($list);
@@ -67,7 +67,7 @@ class Hotel extends Bus
             }
         }
 
-        $bus_id=cache('b_id');
+        $bus_id=input('session.b_id');
         $p=$request->post();
 
 //        var_dump($p);
@@ -190,8 +190,9 @@ class Hotel extends Bus
     public function update(Request $request, $id)
     {
         $info = $request->put();
-//         var_dump($info);
-//         die;
+        $p=$request->post();
+        // var_dump($id);
+        // die;
         if(empty($info['is_hot'])){
             $hot=0;
         }else{
@@ -239,7 +240,12 @@ class Hotel extends Bus
         $result1 =Db::table('ml_hotel')->where('id',$id)->update($newInfo1);
         $result2 =Db::table('ml_hotel_detail')->where('c_gid',$id)->update($newInfo2);
 
-        if($result1 && $result2){
+        // dump($newInfo1);
+        // dump($result1);
+        // dump($result2);
+        // die;
+
+        if($result1 || $result2){
             //设置成功后跳转页面的地址，默认的返回页面是$_SERVER['HTTP_REFERER']
             $this->success('修改成功', 'admin/hotel/index');
         } else {

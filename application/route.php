@@ -185,7 +185,8 @@ Route::post('busEdit/:id','admin/BusInfo/update');
 //在线咨询
 Route::get('consultation','index/Consultation/index');
 //修改商家密码
-Route::post('busEditPass/:id','admin/BusInfo/pass');
+Route::post('editBusPass/:id','admin/BusInfo/pass');
+
 //特产分类管理
 Route::resource('foodcate', 'admin/Foodcate');
 //特产管理
@@ -251,7 +252,7 @@ Route::get('/shoplist/[:id]', 'index/Index/read');
 //评论列表
 Route::get('commentlist','admin/Comment/index');
 Route::get('/commentedit/:id','admin/Comment/edit');
-Route::get('/commentfind/:id','admin/Comment/find');
+Route::get('/commentlook/:id','admin/Comment/find');
 
 //前台的商家首页展示
 Route::get('busindexshow','index/Bus/index');

@@ -106,7 +106,7 @@ class RoutesPic extends Bus
         $pic = Db::name('route_pic')->field('id,pic')->where('id',$id)->select();
         $pic = $pic['0'];
         $this->assign('pic',$pic);
-        return view('routes/routespicEdit');
+        return view('routes/RoutespicEdit');
     }
 
     /**
@@ -138,7 +138,7 @@ class RoutesPic extends Bus
         ];
 
         $result = Db::name('route_pic')->where('id', $id)->update($data);
-        $b_id = cache('b_id');
+        $b_id =input('session.b_id');
         $list = Db::table('ml_route')->where('bus_id',$b_id)->select();
         $pid = $list['0']['id'];
         if ($result) {

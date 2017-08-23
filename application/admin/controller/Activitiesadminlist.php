@@ -6,7 +6,7 @@ use think\Controller;
 use think\Request;
 use think\Db;
 
-class ActivitiesAdminList extends Admin
+class Activitiesadminlist extends Admin
 {
     /**
      * 显示资源列表
@@ -24,15 +24,7 @@ class ActivitiesAdminList extends Admin
         return view('activities/ActivitiesAdminList');
     }
 
-    /**
-     * 显示创建资源表单页.
-     *
-     * @return \think\Response
-     */
-    public function create()
-    {
-
-    }
+  
 
     /**
      * 保存新建的资源
@@ -99,17 +91,7 @@ class ActivitiesAdminList extends Admin
         return view('activities/ActivitiesAdminListDatails');
     }
 
-    /**
-     * 显示编辑资源表单页.
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function edit($id)
-    {
-
-    }
-
+   
     /**
      * 保存更新的资源
      *
@@ -194,6 +176,6 @@ class ActivitiesAdminList extends Admin
 
         $this->assign('piclist',$list);
         $this->assign('acid',$id);
-        return view('Activities/ActivitiesAdminPic');
+        return view('activities/ActivitiesAdminPic');
     }
 }

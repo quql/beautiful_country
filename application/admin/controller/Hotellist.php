@@ -27,15 +27,7 @@ class Hotellist extends Admin
 
     }
 
-    /**
-     * 显示创建资源表单页.
-     *
-     * @return \think\Response
-     */
-    public function create()
-    {
-
-    }
+    
 
     /**
      * 保存新建的资源
@@ -66,7 +58,7 @@ class Hotellist extends Admin
             }
         }
 
-        $bus_id=cache('b_id');
+        $bus_id=input('session.b_id');
         $p=$request->post();
 
 //        var_dump($p);

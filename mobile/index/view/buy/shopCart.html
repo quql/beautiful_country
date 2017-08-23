@@ -68,7 +68,7 @@
                     {volist name="list" id="v" key="k"}
                     <!--商品id-->
                     <!--<input type="hidden" name="gid" value="{$v.ca_gdid}">-->
-                    <form action="{:url('index/Order/confirm')}" method="post" onsubmit="return checkMsg()">
+                    <form action="{:url('index/Order/confirm')}" method="post" onsubmit="return checkMsg()" id="form">
                     <p style="display: none" class="gnum" value="{$v['ca_gdid']}"></p>
                     <!--商品单价-->
                     <input type="hidden" name="price" value="{$v.ca_price}">
@@ -84,8 +84,11 @@
                             <input type="checkbox" class="choose" name="{$v['ca_id']}">
                         </td>
                         <td style="text-align: center;line-height: 62px;">
+                            
                             <img src="/uploads/{$v['ca_photo']}" class="img-rounded" alt="" width="50" height="50">
-                            {$v['ca_gname']}
+                            <!-- {$v['ca_gname']} -->
+                            {:mb_substr($v['ca_gname'],0,2)}...
+                            
                         </td>
                         <td style="text-align: center;line-height: 62px;" class="price">￥{$v['ca_price']}</td>
                         <td style="text-align: center;line-height: 62px;">{$v['ca_num']}</td>
@@ -94,13 +97,6 @@
                         </td>
                     </tr>
                     {/volist}
-                    <tr>
-                        <td ></td>
-                        <td ></td>
-                        <td ></td>
-                        <td>合计:</td>
-                        <td>金额</td>
-                    </tr>
 
                 </table>
                 {else/}
@@ -109,14 +105,14 @@
                 </div>
             <div class="mt20">
                 {if condition="!empty($address)"}
-                <div class="row col-sm-12">
+                <div class="row col-sm-12" style='padding-left:10px'>
                     <hr>
-                    <h6>选择收货信息:</h6>
+                    <h6 style='padding-left:10px'>选择收货信息:</h6>
                         <table class="table table-striped ml20">
                             {volist name="address" id="a"}
                             <tr style="line-height: 20px">
                                 <td style="text-align: center;line-height: 31px">
-                                    <input type="radio" name="aid" value="{$a['ua_id']}" class="rid" checked>
+                                    <input type="radio" name="aid" value="{$a['ua_id']}" class="rid" checked/>
                                 </td>
                                 <td style="text-align: center;line-height: 31px">{$a['ua_name']}</td>
                                 <td style="text-align: center;line-height: 31px">{$a['ua_phone']}</td>
@@ -137,8 +133,8 @@
 
                 </div>
                 <div style="margin-top: 20px;text-align: center" class="mt50">
-                        <a href="{:url('index/index/index')}" class="btn btn-info btn-sm ml30">再去逛逛</a>
-                        <button class="btn btn-success btn-sm ml30" id="back">去结算</button>
+                        <a href="{:url('/personal')}" class="btn btn-info btn-sm ml30">去添加地址</a>
+                        <!-- <button class="btn btn-success btn-sm ml30" id="back">去结算</button> -->
                 </div>
                 {/if}
             </div>
@@ -151,6 +147,7 @@
     <!--<script src="/static/mobile/js/jquery.min.js"></script>-->
     <!--<script src="/static/mobile/js/amazeui.min.js"></script>-->
     <script>
+    
         $(function() {
             //      优惠券
             $('#up').click(function () {
@@ -164,7 +161,7 @@
 //            console.log($('#total').html(t));
             });
             $('#back').click(function () {
-                alert('尚未添加收货地址,请去个人中心完善');
+                  alert('请选择地址');
             });
 
 
@@ -188,63 +185,10 @@
 //            console.log(t);
             });
 
-//        优惠券模态框点击确认
-            $('#yes').click(function () {
-                if (parseInt($('#total').html()) > parseInt($('#point').html())) {
-                    alert('您的积分不足哦');
-                } else {
-//               用户id
-                    var id = $('#userid').html();
-//               用户在输入框输入的值
-//               var text = prompt("请输入您的账户密码","password");
-//               用户选择的优惠券类型
-                    var type = parseInt($('#choosePoint').val());
-//               优惠券数量
-                    var n = parseInt($('#num').val());
-//               消耗的总积分
-                    var total = parseInt($('#total').html());
-//               console.log(id, typeof(id));
-//               console.log(type, typeof(type));
-//               console.log(n, typeof(n));
-//               console.log(total, typeof(total));
-                    checkpass(id, type, n, total);
-                }
-            });
-
-            function checkpass(id, type, n, total) {
-                $.ajax({
-                    type: 'post',
-                    url: "/money",
-                    data: {
-                        "id": id,
-//                    "pass":text,
-                        "type": type,
-                        "n": n,
-                        "total": total
-                    },
-                    dataType: 'json',
-                    success: function (data) {
-//                    console.log(data);
-                        if (data.status) {
-                            alert('优惠券兑换成功');
-                            history.go(0);
-                        } else {
-                            alert('优惠券兑换失败,请重试');
-                        }
-                    },
-                    error: function () {
-                        alert('优惠券兑换失败,请重试');
-                    }
-                });
-            }
-        });
-
-
-    </script>
-<script>
+           
 
     //    计算总价
-        $(function(){
+        // $(function(){
 //            加
             $('.plus').click(function(){
 //                数量
@@ -276,15 +220,15 @@
 //    执行删除
         $('.del').click(function(){
             var gid = $(this).attr('data-id');
-            console.log(gid);
+            // console.log('123');
 
             if (confirm('您确定要狠心删除我吗?(Ｔ▽Ｔ)')){
                 var obj = $(this).parents('tr');
-                // console.log(obj);
+                 //console.log(obj);
                 delAjax(gid, obj);
             }
         });
-
+ });       
 //    执行ajax删除
         function delAjax(id, obj){
             $.ajax({
@@ -292,7 +236,7 @@
                 url: "/deletecart/"+id,
                 dataType:'json',
                 success:function(data){
-                    console.log(data);
+                    //console.log(data);
                     if (data.status){
                         obj.remove();
                         alert('O(∩_∩)O~~商品删除成功');
@@ -305,50 +249,18 @@
                 }
             });
         }
-
-
-//        function check(){
-//            var v = $('input:[name="aid"]:checked').val();
-//            if (v == null){
-//                alert("收货地址不能为空哦~");
-//                return false;
-//            }
-//            return true;
-
-//            if($("input[name='aid']:checked").size()==0){
-//                alert("收货地址不能为空哦~");
-//                return false;
-//            }else{
-//                return true;
-//            }
-
-//            if($(".rid").is(':checked')) {
-//                return true;
-//            }else{
-//                return false;
-//            }
-
-//              if($('.rid').is(':checked')){
-//                return true;
-//            }else{
-//                return false;
-//            }
-
-//        }
-
-
-    });
 </script>
 <script>
     //    提交订单时 判断是否有商品被选中
     function checkMsg(){
         if($(".choose").is(':checked')){
             return true;
-        }else{
+        }else if(!$(".choose").is(':checked')){
             alert('请选择要购买的商品');
             return false;
+        }else{
+            return flase;
         }
-
     }
 </script>
 

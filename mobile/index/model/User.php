@@ -40,6 +40,7 @@ class User extends Model
     {
         $user = model('user');
         $res = $user->allowField(true)->update($data, ['u_id' => $id]);
+        return $res;
     }
 
     //登录判断用户是否存在

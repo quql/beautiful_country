@@ -41,22 +41,24 @@ class BusLogin extends Controller
         } elseif ($res['is_approve'] == 'N') {
             $this->error('店铺尚未审核通过,请耐心等待,O(∩_∩)O谢谢!!!');
         } else {
-            //把b_name保存在缓存中 使用助手函数 cache
-            $options = [
-                // 缓存类型为redis
-                'type' => 'redis',
-                'host' => '127.0.0.1',
-                // 默认缓存有效期为永久有效
-                'expire' => 0,
-                // 指定缓存目录
-                'path' => APP_PATH . 'runtime/cache/',
-            ];
+            // //把b_name保存在缓存中 使用助手函数 cache
+            // $options = [
+            //     // 缓存类型为redis
+            //     'type' => 'redis',
+            //     'host' => '127.0.0.1',
+            //     // 默认缓存有效期为永久有效
+            //     'expire' => 0,
+            //     // 指定缓存目录
+            //     'path' => APP_PATH . 'runtime/cache/',
+            // ];
+            session('b_name', $res['b_name']);
+            session('b_id', $res['b_id']);
             //初始化缓存
-            cache($options);
-            $b_id=$res['b_id'];
-            //设置缓存
-            cache('b_name', $res['b_name'], 72000);
-            cache('b_id', $b_id, 72000);
+            // cache($options);
+            // $b_id=$res['b_id'];
+            // //设置缓存
+            // cache('b_name', $res['b_name'], 72000);
+            // cache('b_id', $b_id, 72000);
             //dump(cache('b_name'));
             $this->success('登陆成功','admin/BusIndex/index');
         }
@@ -70,8 +72,8 @@ class BusLogin extends Controller
     public function loginOut(Request $request)
     {
         //清空缓存
-        cache('b_name', NULL);
-        cache('b_id', NULL);
+        session('b_name', NULL);
+        session('b_id', NULL);
 
         $this->success('已安全退出', 'admin/BusLogin/index');
 

@@ -25,7 +25,6 @@
             <section class="panel">
                 <header class="panel-heading">
                     特产美食列表
-                    <button  class=" btn-info btn-sm" data-toggle="modal" data-target="#myModal">添加特产</button>
                     <span class="tools pull-right">
                         <a href="javascript:;" class="fa fa-chevron-down"></a>
                         <a href="javascript:;" class="fa fa-times"></a>
@@ -82,7 +81,7 @@
                             <td class="col-md-4">
                                 <a class=" btn btn-success" href="{:url('admin/Foodlist/show',['id'=>$v.id])}">查看商品图片</a>
                                 <a class=" btn btn-primary" href="{:url('admin/Foodlist/read',['id'=>$v['id']])}">查看商品详情</a>
-                                <button class=" btn btn-danger del-btn" goods-id="{$v.id}" >删除商品</button>
+                                <button class=" btn btn-danger del-btn" goods-id="{$v.id}" >删除</button>
                             </td>
 
                         </tr>

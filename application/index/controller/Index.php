@@ -15,6 +15,26 @@ class Index extends Base
         //增加浏览量
         model('count')->view();
         model('view')->insert();
+
+        //判断缓存是否存在
+         if(!empty(cache('s_num')) && !empty(cache('r_num')) && !empty(cache('f_num')) && !empty(cache('h_num')) && !empty(cache('comment')) && !empty(cache('food')) && !empty(cache('pic'))  && !empty(cache('routes')) && !empty(cache('scenery')) && !empty(cache('activitiesindex')) ){
+                // var_dump('111');
+                // die;
+                 return view('index/index',[
+                's_num'=>cache('s_num'),
+                'r_num'=>cache('r_num'),
+                'f_num'=>cache('f_num'),
+                'h_num'=>cache('h_num'),
+                'comment'=>cache('comment'),
+                'foods'=>cache('food'),
+                'pics'=>cache('pic'),
+                'hotroute'=>cache('routes'),
+                'hotscenery'=>cache('scenery'),
+                'activitiesindex'=>cache('activitiesindex')
+             ]);
+        }
+       
+
         //查询轮播图
         $pic=Db::name('pic')->where('is_show','1')->select();
         //查询特产美食数据
@@ -39,7 +59,7 @@ class Index extends Base
         $activitiesindex = Db::query($activitiessql);
 
         //获取商品评论的内容及用户信息
-        $sql4="select ml_comment.c_score,c_text,c_time,c_gname,c_cid,c_gid,c_bid,ml_user_detail.ud_photo,ml_user.u_username FROM ml_comment LEFT JOIN ml_user_detail ON ml_user_detail.ud_uid=ml_comment.c_uid LEFT JOIN ml_user ON ml_user.u_id=ml_comment.c_uid WHERE ml_comment.c_score>3 AND ml_comment.is_ban='0' ";
+        $sql4="select ml_comment.c_score,c_text,c_time,c_gname,c_cid,c_gid,c_bid,ml_user_detail.ud_photo,qqphoto,ml_user.u_username FROM ml_comment LEFT JOIN ml_user_detail ON ml_user_detail.ud_uid=ml_comment.c_uid LEFT JOIN ml_user ON ml_user.u_id=ml_comment.c_uid WHERE ml_comment.c_score>3 AND ml_comment.is_ban='0' ";
         $comment=Db::query($sql4);
         //dump($comment);
 
@@ -48,6 +68,33 @@ class Index extends Base
         $r_num=Db::name('route')->count();
         $f_num=Db::name('food')->count();
         $h_num=Db::name('hotel')->count();
+
+        //将首页数据写入缓存redis
+        $options = [
+            // 缓存类型为File
+            'type' => 'redis',
+            // 缓存有效期为永久有效
+            'expire'=> 0,
+            //缓存前缀
+            'prefix'=> 'think',
+            // 指定缓存目录
+            'path' => APP_PATH.'runtime/cache/',
+            'host' => '127.0.0.1',
+            ];
+        cache($options);
+
+        cache('s_num',$s_num,72000);
+        cache('r_num',$r_num,72000);
+        cache('f_num',$f_num,72000);
+        cache('h_num',$h_num,72000);
+        cache('comment',$comment,72000);
+        cache('food',$food,72000);
+        cache('pic',$pic,72000);
+        cache('routes',$routes,72000);
+        cache('scenery',$scenery,72000);
+        cache('activitiesindex',$activitiesindex,72000);
+
+
 
         return view('index/index',[
             's_num'=>$s_num,
@@ -92,11 +139,11 @@ class Index extends Base
 //        var_dump($list);
 //        die;
         //景区排行
-        $scylist = Db::query("select ml_scenery.id,gd_title,c_id,bus_id,ml_scenery_detail.gd_view from ml_scenery LEFT JOIN ml_scenery_detail ON ml_scenery.id=ml_scenery_detail.c_gid  WHERE ml_scenery.gd_is_sale='1' ORDER BY ml_scenery_detail.gd_view DESC");
+        $scylist = Db::query("select ml_scenery.id,gd_title,c_id,bus_id,ml_scenery_detail.gd_view from ml_scenery LEFT JOIN ml_scenery_detail ON ml_scenery.id=ml_scenery_detail.c_gid  WHERE ml_scenery.gd_is_sale='1' ORDER BY ml_scenery_detail.gd_view DESC limit 6");
 //        dump($scylist);
 //        die;
         //酒店专区
-        $hotellist = Db::query("select ml_hotel.id,gd_title,gd_abstract,price,bus_id,c_id,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid WHERE ml_hotel_pic.is_first='1' AND ml_hotel.gd_is_sale='1'");
+        $hotellist = Db::query("select ml_hotel.id,gd_title,gd_abstract,price,bus_id,c_id,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid WHERE ml_hotel_pic.is_first='1' AND ml_hotel.gd_is_sale='1' limit 4");
 
 
         $this->assign('scylist',$scylist);
@@ -180,13 +227,11 @@ class Index extends Base
         }elseif($id==6){
             $type='6';
             $list = Db::query("select ml_food.id,gd_title,gd_abstract,price,bus_id,c_id, ml_food_pic.pic from ml_food LEFT JOIN ml_food_pic ON ml_food.id=ml_food_pic.gid where ml_food_pic.is_first='1' AND ml_food.h_cate={$cateid}");
-        }else{
-            return '暂无数据';
         }
        //景区排行
-        $scylist = Db::query("select ml_scenery.id,gd_title,c_id,bus_id,ml_scenery_detail.gd_view from ml_scenery LEFT JOIN ml_scenery_detail ON ml_scenery.id=ml_scenery_detail.c_gid where  ml_scenery.gd_is_sale='1' ORDER BY ml_scenery_detail.gd_view desc");
+        $scylist = Db::query("select ml_scenery.id,gd_title,c_id,bus_id,ml_scenery_detail.gd_view from ml_scenery LEFT JOIN ml_scenery_detail ON ml_scenery.id=ml_scenery_detail.c_gid where  ml_scenery.gd_is_sale='1' ORDER BY ml_scenery_detail.gd_view desc limit 6");
         //酒店专区
-        $hotellist = Db::query("select ml_hotel.id,gd_title,gd_abstract,price,bus_id,c_id,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1' AND ml_hotel.gd_is_sale='1'");
+        $hotellist = Db::query("select ml_hotel.id,gd_title,gd_abstract,price,bus_id,c_id,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1' AND ml_hotel.gd_is_sale='1' limit 4");
 
 
         $this->assign('scylist',$scylist);
@@ -244,11 +289,11 @@ class Index extends Base
             $this->error('没有找到哦~~~','index/index/index');
         }
         //景区排行
-        $scylist = Db::query("select ml_scenery.id,gd_title,c_id,bus_id,ml_scenery_detail.gd_view from ml_scenery LEFT JOIN ml_scenery_detail ON ml_scenery.id=ml_scenery_detail.c_gid where  ml_scenery.gd_is_sale='1' ORDER BY ml_scenery_detail.gd_view desc");
+        $scylist = Db::query("select ml_scenery.id,gd_title,c_id,bus_id,ml_scenery_detail.gd_view from ml_scenery LEFT JOIN ml_scenery_detail ON ml_scenery.id=ml_scenery_detail.c_gid where  ml_scenery.gd_is_sale='1' ORDER BY ml_scenery_detail.gd_view desc limit 6");
         //酒店专区
-        $hotellist = Db::query("select ml_hotel.id,gd_title,gd_abstract,price,bus_id,c_id,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1' AND ml_hotel.gd_is_sale='1'");
+        $hotellist = Db::query("select ml_hotel.id,gd_title,gd_abstract,price,bus_id,c_id,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1' AND ml_hotel.gd_is_sale='1' limit 4");
 
-
+        $this->assign('type',null);
         $this->assign('scylist',$scylist);
         $this->assign('hotellist',$hotellist);
         $this->assign('list',$list);
@@ -299,11 +344,11 @@ class Index extends Base
             }
         }
         //景区排行
-        $scylist = Db::query("select ml_scenery.id,gd_title,c_id,bus_id,ml_scenery_detail.gd_view from ml_scenery LEFT JOIN ml_scenery_detail ON ml_scenery.id=ml_scenery_detail.c_gid where  ml_scenery.gd_is_sale='1' ORDER BY ml_scenery_detail.gd_view desc");
+        $scylist = Db::query("select ml_scenery.id,gd_title,c_id,bus_id,ml_scenery_detail.gd_view from ml_scenery LEFT JOIN ml_scenery_detail ON ml_scenery.id=ml_scenery_detail.c_gid where  ml_scenery.gd_is_sale='1' ORDER BY ml_scenery_detail.gd_view desc limit 6");
         //酒店专区
-        $hotellist = Db::query("select ml_hotel.id,gd_title,gd_abstract,price,bus_id,c_id,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1' AND ml_hotel.gd_is_sale='1'");
+        $hotellist = Db::query("select ml_hotel.id,gd_title,gd_abstract,price,bus_id,c_id,ml_hotel_pic.pic from ml_hotel LEFT JOIN ml_hotel_pic ON ml_hotel.id=ml_hotel_pic.gid where ml_hotel_pic.is_first='1' AND ml_hotel.gd_is_sale='1' limit 4");
 
-
+        $this->assign('type',null);
         $this->assign('scylist',$scylist);
         $this->assign('hotellist',$hotellist);
         $this->assign('list',$list);
@@ -311,7 +356,7 @@ class Index extends Base
     }
 
     //邮箱接口
-    public function email($email='695260422@qq.com')
+    public function email($email)
     {
        $email = input('email');//定义收件人的邮箱
         //生成一个随机四位数 保存在session中

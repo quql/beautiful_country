@@ -187,23 +187,23 @@ class Personal extends Base
     {
         $info = input('put.');
         $id = $info['id'];
-        //dump($info);
+        // dump($info);
 
         //后期加上md5
-        $oldpass = $info['oldpass'];
+        $oldpass = md5($info['oldpass']);
         //更新的数据必须是数组!
-        $secondpass = ['u_password'=>$info['secondpass']];
+        $secondpass = ['u_password'=>md5($info['secondpass'])];
         //查询原密码
         $user = model('user');
         $pass = $user->getPass($id)['u_password'];
         //dump($pass);
         //dump($oldpass);
-
+        //dump($secondpass);
         //匹配
         if ($oldpass === $pass){
             //修改
             $res = $user->updatePass($id, $secondpass);
-
+            //dump($res);die;
             if ($res){
                 return $this->success('密码修改成功!', url('index/personal/index'));
             }else{
@@ -283,6 +283,9 @@ class Personal extends Base
     {
         // 获取表单上传文件 例如上传了001.jpg
         $file = request()->file('image');
+        if(empty($file)){
+            return $this->error('请选择要上传的图片哦~');
+        }
         $id = input('post.')['id'];
 //        $id =1;
         //dump($id);
@@ -404,6 +407,7 @@ class Personal extends Base
         //加载酒店订单
         $h = model('hotelOrder');
         $hotels = $h->getOrder($id);
+       //dump(count($hotels));die;
         return view('buy/hotel', [
             'hotels'=>$hotels
         ]);

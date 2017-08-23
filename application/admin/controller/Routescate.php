@@ -8,26 +8,7 @@ use think\Db;
 
 class Routescate extends Admin
 {
-    /**
-     * 显示资源列表
-     *
-     * @return \think\Response
-     */
-    public function index()
-    {
-
-    }
-
-    /**
-     * 显示创建资源表单页.
-     *
-     * @return \think\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+    
     /**
      * 保存新建的资源
      *
@@ -62,11 +43,11 @@ class Routescate extends Admin
      */
     public function read($id)
     {
-
-
+        // var_dump(11);
+        // die;
         $res = Db::table('ml_route_cate')->select();
         $this->assign('list',$res);
-        return view ('routes/routescateList');
+        return view ('routes/RoutescateList');
     }
 
     /**

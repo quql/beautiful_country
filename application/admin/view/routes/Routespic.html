@@ -9,12 +9,12 @@
     </h3>
     <ul class="breadcrumb">
         <li>
-            <a href="#">Dashboard</a>
+            <a href="#"> 旅游路线 </a>
         </li>
         <li>
-            <a href="#">Data Table</a>
+            <a href="#"> 路线管理 </a>
         </li>
-        <li class="active"> Editable Table </li>
+        <li class="active"> 商品图片 </li>
     </ul>
 </div>
 <!-- page heading end-->
@@ -104,9 +104,9 @@
         </div>
     </div>
     <!--footer section start-->
-    <footer>
+    <!-- <footer>
         2014 &copy; AdminEx by <a href="http://www.tcode.me/" target="_blank">淘代码</a>
-    </footer>
+    </footer> -->
     <!--footer section end-->
 
 </div>
@@ -141,7 +141,7 @@
         $('.del-btn').click(function () {
             var ac_id = $(this).attr('cate-id');
 
-            if (confirm('你确定要 [ 删除 ] 该用户么?')) {
+            if (confirm('你确定要 [ 删除 ] 该图片么?')) {
                 var obj = $(this).parents('tr');
                 //console.log(obj);
                 delAjax(ac_id, obj);// 调用执行AJAX删除
@@ -180,7 +180,7 @@
             },
             error: function () {
                 // AJAX操作失败
-                alert('AJAX操作失败');
+                alert('操作失败');
             }
         });
     }
@@ -202,7 +202,7 @@
                 },
                 error: function () {
                     // AJAX操作失败
-                    alert('AJAX操作失败');
+                    alert('操作失败');
                 }
 
             });

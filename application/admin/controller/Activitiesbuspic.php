@@ -105,10 +105,10 @@ class Activitiesbuspic extends Bus
         // die;
 
         //店铺后台展示
-        if (cache('b_name') == null) {
+        if (input('session.b_name')== null) {
             $this->redirect("admin/BusLogin/index");
         }
-        $res = Db::name('business')->where('b_name', cache('b_name'))->find();
+        $res = Db::name('business')->where('b_name',input('session.b_name'))->find();
         $cate = Db::name('cate')->select();
         $this->assign('bus_res',$res);
         $this->assign('cate',$cate);
@@ -151,7 +151,7 @@ class Activitiesbuspic extends Bus
 
         $result = Db::name('ac_pic')->where('id', $id)->update($data);
 
-        $b_id = cache('b_id');
+        $b_id = input('session.b_id');
         // var_dump($b_id);
         // die;
 

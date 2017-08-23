@@ -17,13 +17,13 @@ class Activities extends Bus
     public function index()
     {   
         //店铺后台展示
-        $res = Db::name('business')->where('b_name', cache('b_name'))->find();
+        $res = Db::name('business')->where('b_name', input('session.b_name'))->find();
         $cate = Db::name('cate')->select();
         $this->assign('bus_res',$res);
         $this->assign('cate',$cate);
 
         //店铺活动首页 
-        $list = Db::table('ml_activities')->where('bus_id', cache('b_id'))->select();
+        $list = Db::table('ml_activities')->where('bus_id', input('session.b_id'))->select();
         $catelist = Db::table('ml_ac_cate')->select();
         $this->assign('list',$list);
         $this->assign('catelist',$catelist );
@@ -57,7 +57,7 @@ class Activities extends Bus
             $p['ac_status'] = '1';
         }
 
-        $b_id = cache('b_id');
+        $b_id =input('session.b_id');
         // var_dump($p);
         // die;
         $ActivitiesData = [
@@ -95,11 +95,11 @@ class Activities extends Bus
     {
 
 
-        if (cache('b_name') == null) {
+        if (input('session.b_name') == null) {
             $this->redirect("admin/BusLogin/index");
         }
 
-        $res = Db::name('business')->where('b_name', cache('b_name'))->find();
+        $res = Db::name('business')->where('b_name', input('session.b_name'))->find();
 
         $cate = Db::name('cate')->select();
         // var_dump($cate);
@@ -197,10 +197,10 @@ class Activities extends Bus
     {       
 
          //店铺后台展示
-        if (cache('b_name') == null) {
+        if (input('session.b_name')== null) {
             $this->redirect("admin/BusLogin/index");
         }
-        $res = Db::name('business')->where('b_name', cache('b_name'))->find();
+        $res = Db::name('business')->where('b_name', input('session.b_name'))->find();
         $cate = Db::name('cate')->select();
         $this->assign('bus_res',$res);
         $this->assign('cate',$cate);
@@ -220,7 +220,7 @@ class Activities extends Bus
 
     public function register($id)
     {   
-        if (cache('b_name') == null) {
+        if (input('session.b_name') == null) {
             $this->redirect("admin/BusLogin/index");
         }
 

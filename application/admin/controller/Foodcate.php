@@ -8,25 +8,7 @@ use think\Db;
 
 class Foodcate extends Admin
 {
-    /**
-     * 显示资源列表
-     *
-     * @return \think\Response
-     */
-    public function index()
-    {
-
-    }
-
-    /**
-     * 显示创建资源表单页.
-     *
-     * @return \think\Response
-     */
-    public function create()
-    {
-        //
-    }
+    
 
     /**
      * 保存新建的资源
@@ -40,7 +22,7 @@ class Foodcate extends Admin
         $c_id=$p['c_id'];
         $h_name=$p['h_name'];
 
-        $b_id=cache('b_id');
+        $b_id=input('session.b_id');
         $data=[
             'c_id'=>$c_id,
             'h_name'=>$h_name,

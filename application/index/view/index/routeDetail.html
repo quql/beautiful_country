@@ -10,7 +10,7 @@
         <div class="container">
             <div class="gt_sub_banner_hdg  default_width">
                 <h2>路线详情页</h2>
-                <h6>欢迎来到还没名字的网站~</h6>
+                <h6>欢迎来到美丽乡村网站~</h6>
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@
                                   {volist name="photos" id="p"}
                                   <li>
                                       {if condition='$p.is_first eq 0'}
-                                      <img src="/uploads/{$p.pic}" width="140" height="140" />
+                                      <img src="/uploads/{$p.pic}" width="109" height="123" />
                                       {/if}
                                   </li>
                                   {/volist}
@@ -56,7 +56,7 @@
                                       <li>
                                           {volist name="photos" id="p"}
                                           {if condition='$p.is_first eq 1'}
-                                          <img src="/uploads/{$p.pic}" width="421" height="470" id="small"/>
+                                          <img src="/uploads/{$p.pic}" width="419" height="419" id="small"/>
                                           {/if}
                                           {/volist}
                                       </li>
@@ -138,6 +138,7 @@
           									<button type="submit" class="btn btn-success">添加到购物车</button>
                     </form>
                     <a href="{:url('/')}"class="btn btn-success btn-lg">再去逛逛</a>
+                    <a href="{:url('/map', ['area'=>$area])}" class="btn btn-info btn-lg">在哪儿</a>
           								</div>
                       </div>
 
@@ -283,7 +284,7 @@
                                         <div class="gt_overlay_wrap"></div>
                                         <figcaption class="gt_product_img_des">
 
-                                            <p>{$v['gd_abstract']}</p>
+                                            <p>{:mb_substr($v['gd_abstract'],0,50)}..</p>
                                             <ul class="gt_product_ui_element">
                                                 <li><a href="{:url('/goodsdetail',['id'=>$v.id,'bus_id'=>$v.bus_id,'cid'=>$v.c_id])}"><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
                                                 <!--<li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>-->
@@ -291,7 +292,7 @@
                                         </figcaption>
                                     </figure>
                                     <div class="gt_product_des_wrap">
-                                        <h5><a href="{:url('/goodsdetail',['id'=>$v.id,'bus_id'=>$v.bus_id,'cid'=>$v.c_id])}" max-length="6">{:mb_substr($v['gd_title'],6)}...</a></h5>
+                                        <h5><a href="{:url('/goodsdetail',['id'=>$v.id,'bus_id'=>$v.bus_id,'cid'=>$v.c_id])}" max-length="6">{:mb_substr($v['gd_title'],0,6)}...</a></h5>
                                         <p>¥{$v['price']}</p>
                                         <ul class="gt_rating_start">
                                             <li><a href="#"><i class="fa fa-star"></i></a></li>
@@ -322,6 +323,8 @@
 {block name="myjs"}
 <script>
     $(function(){
+       $('.lroute').css('background','#2DCC70');
+             $('.lindex').css('background','#16171C');
         var store = parseInt($('#store').html());
         $('#up').click(function(){
             if($('#num').val() >= store){

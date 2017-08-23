@@ -72,7 +72,7 @@ class Activities extends Base
         $bus_id = $bus_id['0']['bus_id'];
         // var_dump($bus_id);die;
         //获取用户id
-        $uid = input('session.u_id');
+        $uid = input('session.uid');
 
         if(empty($uid)){
             $this->error('请先登录哦~~~~','index/index/index');

@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
     <title>我的订单</title>
     <link rel="stylesheet" href="/static/mobile/css/amazeui.min.css">
     <link rel="stylesheet" href="/static/mobile/css/wap.css">
@@ -31,7 +34,7 @@
         .span2{
             display: block;
             float: right;
-            padding: 20px;
+            padding-right: 20px;
         }
         ul{
             padding: 20px;
@@ -43,9 +46,9 @@
     </style>
 </head>
 <body>
-
+<div class='head'><span class="span1">我的订单</span><a href="{:url('index/personal/index')}"><span class="span2">返回</span></a></div>
 <div class="col-md-8" id="order" style="display: block;">
-    <div class='head'><span class="span1">我的订单</span><a href="{:url('index/personal/index')}"><span class="span2">返回</span></a></div>
+    
     <div class="gt_d_classes_wrap default_width" style="display: block">
         <ul class="choose">
             <li><button class="gt_d_title h4" id="done" style="background-color: #ccc">已完成</button></li>
@@ -67,17 +70,17 @@
                     </tr>
                     {volist name="done" id="v"}
                     <tr style="line-height: 20px">
-                        <td style="text-align: center">{$v['o_order_num']}</td>
-                        <td style="text-align: center">{$v['o_gname']}</td>
+                        <td style="text-align: center">{:mb_substr($v['o_order_num'],0,8)}...</td>
+                        <td style="text-align: center">{:mb_substr($v['o_gname'],0,3)}...</td>
                         <td style="text-align: center">{$v['o_price']}</td>
                         <td style="text-align: center">{$v['o_num']}</td>
                         <td style="text-align: center">{$v['o_total']}</td>
                         <td style="text-align: center">
-                            <button class="btn btn-info btn-sm show01">查看</button>
+                            <button class="am-btn am-btn-success am-btn-xs show01">查看</button>
                             <!--<button class="btn btn-info btn-sm comment"  data-toggle="modal" data-target="#myCommentModal">评价</button>-->
                             <button class="am-btn am-btn-xs am-btn-primary comment" data-am-modal="{target: '#doc-modal', closeViaDimmer: 0, width:400, height: 325}" oid="{$v['o_id']}">评价</button>
                             <!--<a href="{:url('index/Comment/create',['id'=>$v['o_id']])}">评价</a>-->
-                            <button class="btn btn-danger btn-sm delOrder" oid="{$v['o_id']}">删除</button>
+                            <button class="am-btn am-btn-danger am-btn-xs delOrder" oid="{$v['o_id']}">删除</button>
                         </td>
                     </tr>
                     {/volist}
@@ -93,13 +96,13 @@
                     </figcaption>
                 </figure>
                 <div class="gt_d_classes_des show12" style="display: none">
-                    <h6><a href="{:url('/detail',['cid'=>$v.o_cid,'gid'=>$v.o_gid])}">{$v['o_gname']}</a></h6>
+                    <h6>{$v['o_gname']}</h6>
                     <ul>
                         <li>
                             <ul class="gt_rating_star">
                                 <li>
                                     <!--评级-->
-                                    <a href="#"><i class="fa fa-star"></i></a>
+                                    <i class="fa fa-star"></i>
                                 </li>
                             </ul>
                         </li>
@@ -123,14 +126,14 @@
                     </tr>
                     {volist name="diliver" id="v"}
                     <tr style="line-height: 20px">
-                        <td style="text-align: center">{$v['o_order_num']}</td>
-                        <td style="text-align: center">{$v['o_gname']}</td>
+                        <td style="text-align: center">{:mb_substr($v['o_order_num'],0,8)}...</td>
+                        <td style="text-align: center">{:mb_substr($v['o_gname'],0,3)}...</td>
                         <td style="text-align: center">{$v['o_price']}</td>
                         <td style="text-align: center">{$v['o_num']}</td>
                         <td style="text-align: center">{$v['o_total']}</td>
                         <td style="text-align: center">
-                            <button class="btn btn-info btn-sm show02">查看</button>
-                            <button class="btn btn-danger btn-sm cancel">退货</button>
+                            <button class="am-btn am-btn-success btn-sm show02">查看</button>
+                            <button class="am-btn am-btn-danger btn-sm cancel">退货</button>
                         </td>
                     </tr>
                     {/volist}
@@ -146,13 +149,13 @@
                     </figcaption>
                 </figure>
                 <div class="gt_d_classes_des show22" style="display: none">
-                    <h6><a href="#">{$v['o_gname']}</a></h6>
+                    <h6>{$v['o_gname']}</h6>
                     <ul>
                         <li>
                             <ul class="gt_rating_star">
                                 <li>
                                     <!--评级-->
-                                    <a href="#"><i class="fa fa-star"></i></a>
+                                <i class="fa fa-star"></i>
                                 </li>
                             </ul>
                         </li>
@@ -176,14 +179,14 @@
                     </tr>
                     {volist name="un" id="v"}
                     <tr style="line-height: 20px">
-                        <td style="text-align: center">{$v['o_order_num']}</td>
-                        <td style="text-align: center">{$v['o_gname']}</td>
+                        <td style="text-align: center">{:mb_substr($v['o_order_num'],0,8)}...</td>
+                        <td style="text-align: center">{:mb_substr($v['o_gname'],0,3)}...</td>
                         <td style="text-align: center">{$v['o_price']}</td>
                         <td style="text-align: center">{$v['o_num']}</td>
                         <td style="text-align: center">{$v['o_total']}</td>
                         <td style="text-align: center">
-                            <button class="btn btn-info btn-sm show03">查看</button>
-                            <button class="btn btn-danger btn-sm cancel">退货</button>
+                            <button class="am-btn am-btn-success btn-sm show03">查看</button>
+                            <button class="am-btn am-btn-danger btn-sm cancel">退货</button>
                         </td>
                     </tr>
                     {/volist}
@@ -198,13 +201,13 @@
                 </figure>
 
                 <div class="gt_d_classes_des show32" style="display: none">　　　　　　　　　　　　　　　　　　　　　
-                    <h6><a href="#">{$v['o_gname']}</a></h6>
+                    <h6>{$v['o_gname']}</h6>
                     <ul>
                         <li>
                             <ul class="gt_rating_star">
                                 <li>
                                     <!--评级-->
-                                    <a href="#"><i class="fa fa-star"></i></a>
+                                    <i class="fa fa-star"></a>
                                 </li>
                             </ul>
                         </li>
@@ -235,18 +238,18 @@
                     <input type="hidden" name='uid' id="uid" value="">
                     <input type="hidden" name='oid' id="oid" value="">
                     <input type="hidden" name='gname' id="gname" value="">
-                    <textarea name="content"  cols="40" rows="3" placeholder="请输入评论内容,长度限制在140个字符以内" maxlength="140" noresize></textarea>
+                    <textarea name="content"  cols="35" rows="3" placeholder="请输入评论内容,长度限制在140个字符以内" maxlength="140" noresize></textarea>
                     <br>
                     <br>
-                    评分:　
+                    <span style='padding:10px'>评分:</span>　
                     <input type="radio" name='score' value="5" checked>非常好∩_∩
-                    　<input type="radio" name='score' value="4">很好^_^
+                    　<input type="radio" name='score' value="4">很好^_^ <br>
                     　<input type="radio" name='score' value="3">好:-D
                     　<input type="radio" name='score' value="2">一般-_-
                     　<input type="radio" name='score' value="1">差╯﹏╰
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">提交评价</button>
+                    <button type="submit" class="am-btn am-btn-success">提交评价</button>
                 </div>
             </form>
         </div>
@@ -275,7 +278,7 @@
             url:'/create/'+id,
             dataType:'json',
             success:function(data){
-                console.log(data);
+                //console.log(data);
                 if(data.status){
                     $('#gname1').html('商品名称:'+data.gname);
                     $('#gname').attr('value',data.gname);
@@ -402,7 +405,7 @@
             url:'/delete/'+id,
             dataType:'json',
             success:function(data){
-                    alert(data);
+                    //alert(data);
                 if (data.status){
                     alert('订单删除成功');
                     obj.remove();

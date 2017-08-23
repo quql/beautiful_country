@@ -49,13 +49,82 @@ class Order extends Base
     public function index()
     {
         $i = input('post.');
-        //dump($i);
+        //dump($i);die;
 
         $uid = input('session.u_id');
+
+        $money = $i['money'];
+
+        //修改用户优惠券信息
+        $m = model('money');
+
+        if($money == 10){
+            //获取代金券信息
+            $num = $m->getNum($uid, 'm_ten');
+            $num1 = $num[0]['m_ten'];
+             if($num1 <= 0){
+                $this->error('优惠券不够哦','index/cart/showindex');
+            }
+            $rn = $num1 - 1;
+            //return json($rn);exit;
+            $data = [
+                'm_ten'=>$rn
+            ];
+            $mres = $m->updateNum($uid, $data);
+        }elseif($money == 20){
+            //获取代金券信息
+            $num = $m->getNum($uid, 'm_twenty');
+            $num1 = $num[0]['m_twenty'];
+             if($num1 <= 0){
+                $this->error('优惠券不够哦','index/cart/showindex');
+            }
+            $rn = $num1 - 1;
+            $data = [
+                'm_twenty'=>$rn
+            ];
+            $mres = $m->updateNum($uid, $data);
+        }elseif($money == 50){
+            //获取代金券信息
+            $num = $m->getNum($uid, 'm_fifty');
+            $num1 = $num[0]['m_fifty'];
+             if($num1 <= 0){
+                $this->error('优惠券不够哦','index/cart/showindex');
+            }
+            $rn = $num1 - 1;
+            $data = [
+                'm_fifty'=>$rn
+            ];
+            $mres = $m->updateNum($uid, $data);
+        }elseif($money == 100){
+            //获取代金券信息
+            $num = $m->getNum($uid, 'm_hundred');
+            $num1 = $num[0]['m_hundred'];
+             if($num1 <= 0){
+                $this->error('优惠券不够哦','index/cart/showindex');
+            }
+            $rn = $num1 - 1;
+            $data = [
+                'm_hundred'=>$rn
+            ];
+            $mres = $m->updateNum($uid, $data);
+        }
+
+
+
         //生成订单时间
         $time = date('Y-m-d H:i:s',time());
+        ////生成订单号
+        //$orderNum = time().rand(10e20,90e20);
+        //dump($orderNum);die;
+
         //生成订单号
-        $orderNum = time().rand(10e8,90e8);
+        $str = null;
+        $strPol = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
+        $max = strlen($strPol)-1;
+        for($a=0;$a<32;$a++){
+            $str.=$strPol[rand(0,$max)];//rand($min,$max)生成介于min和max两个数之间的一个随机整数
+        }
+        $orderNum =$str;
 
         //添加积分到用户数据
 
@@ -146,7 +215,7 @@ class Order extends Base
         }
 
 
-        $o=  model('order');
+        $o = model('order');
         $order = $o->saveAll($a);
 
         //$clean = $c->delete($info['cid']);
@@ -163,7 +232,13 @@ class Order extends Base
             //添加数据到trade统计表
             model('trade')->insert();
 
-            $this->success('支付成功~','index/personal/index');
+            $data = [
+                'o_order_num'=>$orderNum,
+                'o_gname'=>'微信支付',
+                'o_total'=>$i['total'],
+            ];
+            cache('data',$data);
+            $this->redirect('index/Weixinplay/goods');
         }else{
             $this->error('支付失败,请重试~');
         }

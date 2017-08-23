@@ -138,7 +138,7 @@ class FoodPic extends Bus
         ];
 
         $result = Db::name('food_pic')->where('id', $id)->update($data);
-        $b_id = cache('b_id');
+        $b_id = input('session.b_id');
         $list = Db::table('ml_food')->where('bus_id',$b_id)->select();
         $pid = $list['0']['id'];
         if ($result) {

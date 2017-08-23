@@ -118,7 +118,9 @@
 
     <li><a href="{:url('index/Cart/showindex')}"><i class="fa fa-envelope-o"></i>购物车<i class="fa fa-circle"></i></a></li>
 
-    <li><a class="close-menu" href="{:url('/outLogin')}"><i class="fa fa-times"></i>退出<i class="fa fa-circle"></i></a></li>
+    <li>
+        <a class="" href="{:url('/outLogin')}"><i class="fa fa-times"></i>退出<i class="fa fa-circle"></i></a>
+    </li>
 
 </ul>
 
@@ -126,7 +128,7 @@
 
 <div class="header">
 
-    <a href="index/index/index" class="header-logo"></a>
+    <a href="{:url('/')}" class="header-logo"></a>
     <a href="#" class="header-navigation show-navigation"><i class="fa fa-navicon"></i></a>
 
 </div>
@@ -194,9 +196,11 @@
 
 
 <div class="top-call-to-action full-bottom">
-
+    {if condition="empty($username)"}
     <a href="{:url('/showLogin')}"><i class="fa fa-lock"></i>登录</a>
-
+    {else /}
+     <a href="#"><i class="">欢迎您,{$username}</i></a>
+    {/if}
     <a class="" href="{:url('/listshow',['cid'=>'4'])}"><i class="fa fa-pie-chart"></i>酒店预订</a>
 
     <a href="{:url('index/Personal/index')}"><i class="fa fa-user"></i>个人中心</a>

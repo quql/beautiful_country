@@ -173,6 +173,15 @@ class User extends Admin
      */
     public function delete($id)
     {
+        
+        $user = Db::name('admin_user')->find($id);
+        $role = $user['role'];
+        if($role==1){
+            $info['status'] = false;
+            $info['id'] = $id;
+            $info['info'] = '超级管理员无法删除';
+            return json($info);
+        }
         $result = Db::name('admin_user')->delete($id);
 
         if ($result) {

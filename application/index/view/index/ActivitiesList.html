@@ -42,7 +42,7 @@
                                 <div class="gt_overlay_wrap"></div>
                                 <figcaption class="gt_product_img_des">
 
-                                    <p>{$list.ac_abstract}</p>
+                                    <p>{:mb_substr($list.ac_abstract,0,30)}</p>
                                     <ul class="gt_product_ui_element">
                                        <!--  <li><a href="#"><i class="fa fa-facebook"></i></a></li> -->
                                         <li><a href="{:url('/activitiesdetailsshow/'.$list.activities_id)}"><i class="glyphicon glyphicon-eye-open"></i></a></li>
@@ -50,14 +50,9 @@
                                 </figcaption>
                             </figure>
                             <div class="gt_product_des_wrap">
-                                <h5><a href="#">{$list.ac_title}</a></h5>
+                                <h5><a href="{:url('/activitiesdetailsshow/'.$list.activities_id)}">{:mb_substr($list.ac_title,0,20)}..</a></h5>
 
                                 <ul class="gt_rating_start">
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
                                     <li><a href="#"><i class="fa fa-star"></i></a></li>
                                     <li><a href="#"><i class="fa fa-star"></i></a></li>
                                     <li><a href="#"><i class="fa fa-star"></i></a></li>
@@ -66,9 +61,9 @@
                                 </ul>
                             </div>
                             <div class="gt_cart_element_wrap">
-                                <a class="gt_retweet_link" href="#"><i class="fa fa-retweet"></i></a>
-                                <a class="gt_add_to_cart" href="#"> <p>￥{$list.ac_price}</p></a>
-                                <a class="gt_whishlist" href="#"><i class="fa fa-heart"></i></a>
+                                <a class="gt_retweet_link" href="{:url('/activitiesdetailsshow/'.$list.activities_id)}"><i class="fa fa-retweet"></i></a>
+                                <a class="gt_add_to_cart" href="{:url('/activitiesdetailsshow/'.$list.activities_id)}"> <p>{$list.ac_price}</p></a>
+                                <a class="gt_whishlist" href="{:url('/activitiesdetailsshow/'.$list.activities_id)}"><i class="fa fa-heart"></i></a>
                             </div>
                         </div>
                     </div>
@@ -115,6 +110,7 @@
 <script src="/static/app/index/js/custom.js"></script>
 <script>
     $('.lac').css('background','#2DCC70');
+    $('.lindex').css('background','#16171C');
 </script>
 {/block}
 

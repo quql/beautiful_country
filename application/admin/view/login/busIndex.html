@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>{$bus_res['b_name']}</title>
+
+    <!--icheck-->
+    <link href="/static/app/admin/js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+    <link href="/static/app/admin/js/iCheck/skins/square/square.css" rel="stylesheet">
+    <link href="/static/app/admin/js/iCheck/skins/square/red.css" rel="stylesheet">
+    <link href="/static/app/admin/js/iCheck/skins/square/blue.css" rel="stylesheet">
+    <link href="/static/app/admin/css/toastr.min.css" rel="stylesheet">
+    <!--<link href="/static/app/index/css/bootstrap.min.css" rel="stylesheet">-->
+    <!--dashboard calendar-->
+    <link href="/static/app/admin/css/clndr.css" rel="stylesheet">
+
+    <!--Morris Chart CSS -->
+    <link rel="stylesheet" href="/static/app/admin/js/morris-chart/morris.css">
+
+    <!--common-->
+    <link href="/static/app/admin/css/style.css" rel="stylesheet">
+    <link href="/static/app/admin/css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <!-<script src="/static/app/admin/js/html5shiv.js"></script>-->
+    <!--<script src="/static/app/admin/js/respond.min.js"></script>-->
+    <!--[endif]-->
+</head>
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <div class="left-side sticky-left-side" style="background-color: #ABD7CD">
+
+        <!--logo and iconic logo start-->
+        <div class="logo" style="background-color: #ABD7CD">
+            <a href="index.html"><img width="144px" height="40px" src="{:empty($bus_res['b_logo'])?'/static/app/admin/images/1.jpg':$bus_res['b_logo'];}" alt=""></a>
+        </div>
+
+        <div class="logo-icon text-center" style="background-color: #ABD7CD">
+            <a href="index.html"><img src="/static/app/admin/images/logo_icon.png" alt=""></a>
+        </div>
+        <!--logo and iconic logo end-->
+
+        <div class="left-side-inner">
+
+            <!--sidebar nav start-->
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <li class="active"><a href="{:url('admin/busIndex/index')}"><i class="fa fa-home"></i> <span>店铺首页</span></a></li>
+                <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>订单管理</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{:url('/unDiliver')}"> 待发货订单</a></li>
+                        <li><a href="{:url('admin/busorder/diliver')}"> 已发货订单</a></li>
+                        <li><a href="{:url('admin/busorder/done')}"> 已完成订单</a></li>
+                        <li><a href="{:url('admin/busorder/cancel')}"> 被取消订单</a></li>
+                        <li><a href="{:url('/hotelOrder')}"> 住宿订单列表</a></li>
+                        <!--<li><a href="{:url('admin/busorder/showdetail')}"> 用户详情</a></li>-->
+                    </ul>
+                </li>
+
+                <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>住宿管理</span></a>
+
+                    <ul class="sub-menu-list">
+                        <li><a href="{:url('admin/Hotel/index')}">住宿列表</a></li>
+                    </ul>
+                </li>
+
+
+                <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>旅游路线管理</span></a>
+
+                    <ul class="sub-menu-list">
+                        <li><a href="{:url('admin/Routes/index')}">旅游路线列表</a></li>
+
+                    </ul>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>特产美食</span></a>
+
+                    <ul class="sub-menu-list">
+                        <li><a href="{:url('admin/Food/index')}">商品列表</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>景区管理</span></a>
+
+                    <ul class="sub-menu-list">
+                        <li><a href="{:url('admin/Scenery/index')}">景区列表</a></li>
+                    </ul>
+                </li>
+
+                <!--yjf-->
+                 <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>活动管理</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{:url('admin/Activities/index')}"> 活动列表</a></li>
+                    </ul>
+                </li>
+                <!--yjf-->
+
+
+                <li class="menu-list"><a href=""><i class="fa fa-cogs"></i> <span>店铺信息管理</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{:url('admin/BusInfo/index')}"> 店铺基本信息</a></li>
+                        <li><a href="gallery.html"> 修改密码</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="{:url('admin/BusInfo/comment')}"><i class="fa fa-tasks"></i> <span>用户评论</span></a></li>
+                <li><a href="{:url('admin/BusLogin/loginOut')}"><i class="fa fa-sign-in"></i> <span>安全退出</span></a></li>
+
+            </ul>
+            <!--sidebar nav end-->
+
+        </div>
+    </div>
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <div class="header-section" >
+
+            <!--toggle button start-->
+            <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+            <!--toggle button end-->
+
+            <a href="javascript:history.go(-1)" class=" btn-info btn-lg" style='margin-top:4px;display:inline-block;background-color:#ABD7CD'>返回上一页</a>
+
+            <!--notification menu start -->
+            <div class="menu-right">
+                <ul class="notification-menu">
+                    <li>
+                        <a href="" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <img width='20px' height='20px' src="{:empty($bus_res['b_logo'])?'/static/app/admin/images/1.jpg':$bus_res['b_logo'];}" alt="" />
+                            {$bus_res['b_name']}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                            <li><a href="{:url('admin/BusInfo/index')}"><i class="fa fa-user"></i> 店铺中心</a></li>    
+                            <li><a href="{:url('admin/BusLogin/loginOut')}"><i class="fa fa-sign-out"></i>退出</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+            <!--notification menu end -->
+
+        </div>
+        <!-- header section end-->
+{block name='main'}
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                店铺首页
+            </h3>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-6">
+                    <!--statistics start-->
+                    <div class="row state-overview">
+                        <div class="col-md-6 col-xs-12 col-sm-6">
+                            <div class="panel purple">
+                                <div class="symbol">
+                                    <i class="fa fa-gavel"></i>
+                                </div>
+                                <div class="state-value">
+                                    <div class="value">{$unum}</div>
+                                    <div class="title">待发货订单</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12 col-sm-6">
+                            <div class="panel red">
+                                <div class="symbol">
+                                    <i class="fa fa-tags"></i>
+                                </div>
+                                <div class="state-value">
+                                    <div class="value">{$dnum}</div>
+                                    <div class="title">待收货订单</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row state-overview">
+                        <div class="col-md-6 col-xs-12 col-sm-6">
+                            <div class="panel blue">
+                                <div class="symbol">
+                                    <i class="fa fa-money"></i>
+                                </div>
+                                <div class="state-value">
+                                    <div class="value">{$hnum}</div>
+                                    <div class="title">住宿订单 </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12 col-sm-6">
+                            <div class="panel green">
+                                <div class="symbol">
+                                    <i class="fa fa-eye"></i>
+                                </div>
+                                <div class="state-value">
+                                    <div class="value">{$onum}</div>
+                                    <div class="title">已完成订单</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--statistics end-->
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-4">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <div class="calendar-block ">
+                                <div class="cal1">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <!--body wrapper end-->
+        {/block}
+        <!--footer section start-->
+        <footer>
+            2017 &copy; AdminEx by <a href="{:url('index/index/index')}" target="_blank">美丽乡村</a>
+        </footer>
+        <!--footer section end-->
+
+
+    </div>
+
+    <!-- main content end-->
+
+
+</section>
+
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="/static/app/admin/js/jquery-1.10.2.min.js"></script>
+<script src="/static/app/admin/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="/static/app/admin/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/static/app/admin/js/bootstrap.min.js"></script>
+<script src="/static/app/admin/js/modernizr.min.js"></script>
+<script src="/static/app/admin/js/jquery.nicescroll.js"></script>
+    {block name='myjs'}
+<!--easy pie chart-->
+<script src="/static/app/admin/js/easypiechart/jquery.easypiechart.js"></script>
+<script src="/static/app/admin/js/easypiechart/easypiechart-init.js"></script>
+
+<!--Sparkline Chart-->
+<script src="/static/app/admin/js/sparkline/jquery.sparkline.js"></script>
+<script src="/static/app/admin/js/sparkline/sparkline-init.js"></script>
+
+<!--icheck -->
+<script src="/static/app/admin/js/iCheck/jquery.icheck.js"></script>
+<script src="/static/app/admin/js/icheck-init.js"></script>
+
+<!-- jQuery Flot Chart-->
+<script src="/static/app/admin/js/flot-chart/jquery.flot.js"></script>
+<script src="/static/app/admin/js/flot-chart/jquery.flot.tooltip.js"></script>
+<script src="/static/app/admin/js/flot-chart/jquery.flot.resize.js"></script>
+
+
+<!--Morris Chart-->
+<script src="/static/app/admin/js/morris-chart/morris.js"></script>
+<script src="/static/app/admin/js/morris-chart/raphael-min.js"></script>
+
+<!--Calendar-->
+<script src="/static/app/admin/js/calendar/clndr.js"></script>
+<script src="/static/app/admin/js/calendar/evnt.calendar.init.js"></script>
+<script src="/static/app/admin/js/calendar/moment-2.2.1.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+<!--common scripts for all pages-->
+<script src="/static/app/admin/js/scripts.js"></script>
+
+<!--Dashboard Charts-->
+<script src="/static/app/admin/js/dashboard-chart-init.js"></script>
+
+<script src="/static/app/admin/js/toastr.min.js"></script>
+
+{/block}
+

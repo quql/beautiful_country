@@ -54,6 +54,10 @@ class Personal extends Base
         //加载已完成订单
         $done = $o->done($id);
 
+        //加载此用户下的评论内容
+        $sql = "select ml_comment.c_score,c_text,c_time,c_gname,c_cid,c_gid,c_bid,c_id,ml_bus_comment.c_content,c_atime FROM ml_comment LEFT JOIN ml_bus_comment ON ml_bus_comment.com_id=ml_comment.c_id WHERE ml_comment.c_uid=$id";
+        $comment = Db::query($sql);
+        //dump($comment);
 
 
 
@@ -77,6 +81,7 @@ class Personal extends Base
             'diliver'=>$diliver,
             'done'=>$done,
             'hotels'=>$hotels,
+            'comment'=>$comment,
             'activities_register'=>$activities_register
         ]);
     }
@@ -126,9 +131,9 @@ class Personal extends Base
         //dump($info);
 
         //后期加上md5
-        $oldpass = $info['oldpass'];
+        $oldpass = md5($info['oldpass']);
         //更新的数据必须是数组!
-        $secondpass = ['u_password'=>$info['secondpass']];
+        $secondpass = ['u_password'=>md5($info['secondpass'])];
         //查询原密码
         $user = model('user');
         $pass = $user->getPass($id)['u_password'];
@@ -141,7 +146,8 @@ class Personal extends Base
             $res = $user->updatePass($id, $secondpass);
 
             if ($res){
-                return $this->success('密码修改成功!', url('index/personal/index'));
+                session('u_id',null);
+                return $this->success('密码修改成功!', url('/register'));
             }else{
                 return $this->error('密码修改失败,请重试~');
             }
@@ -205,18 +211,33 @@ class Personal extends Base
         $file = request()->file('image');
         $id = input('post.')['id'];
 
+        $info = $file->validate(['size'=>156780,'ext'=>'jpg,png,gif'])->move(ROOT_PATH . 'public' . DS . 'uploads/headPhoto');
+        //if($info){
+        //    // 成功上传后 获取上传信息
+        //    // 输出 jpg
+        //    echo $info->getExtension();
+        //    // 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
+        //    echo $info->getSaveName();
+        //    // 输出 42a79759f284b767dfcb2a0197904287.jpg
+        //    echo $info->getFilename();
+        //}else {
+        //    // 上传失败获取错误信息
+        //    echo $file->getError();
+        //}
+        //die;
+
         // 移动到框架应用根目录/public/uploads/ 目录下
-        $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads/headPhoto');
-        //dump($info);die;
-        $ext = $info->getExtension();
-        $name = str_replace('\\','/',$info->getSaveName());
-        //dump($name);die;
-        $array = array("jpg","png","gif");
-        if(!in_array($ext, $array)){
-            $path = './uploads/headPhoto/'.$name;
-            unlink($path);
-            $this->error('仅能上传图片文件');
-        }
+        //$info = $file->move(ROOT_PATH . 'public' . DS . 'uploads/headPhoto');
+        ////dump($info);die;
+        //$ext = $info->getExtension();
+        //$name = str_replace('\\','/',$info->getSaveName());
+        ////dump($name);die;
+        //$array = array("jpg","png","gif");
+        //if(!in_array($ext, $array)){
+        //    $path = './uploads/headPhoto/'.$name;
+        //    unlink($path);
+        //    $this->error('仅能上传图片文件');
+        //}
 
 
 
@@ -260,17 +281,32 @@ class Personal extends Base
         $file = request()->file('image');
         $id = input('post.')['id'];
 
-        // 移动到框架应用根目录/public/uploads/ 目录下
-        $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads/userPic');
-        $ext = $info->getExtension();
-        $name = str_replace('\\','/',$info->getSaveName());
-        //dump($name);die;
-        $array = array("jpg","png","gif");
-        if(!in_array($ext, $array)){
-            $path = './uploads/headPhoto/'.$name;
-            unlink($path);
-            $this->error('仅能上传图片文件');
-        }
+        $info = $file->validate(['size'=>156780,'ext'=>'jpg,png,gif'])->move(ROOT_PATH . 'public' . DS . 'uploads/userPic');
+        //if($info){
+        //// 成功上传后 获取上传信息
+        //// 输出 jpg
+        //    echo $info->getExtension();
+        //// 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
+        //    echo $info->getSaveName();
+        //// 输出 42a79759f284b767dfcb2a0197904287.jpg
+        //    echo $info->getFilename();
+        //}else {
+        //    // 上传失败获取错误信息
+        //    echo $file->getError();
+        //}
+        //die;
+        //
+        //// 移动到框架应用根目录/public/uploads/ 目录下
+        //$info = $file->move(ROOT_PATH . 'public' . DS . 'uploads/userPic');
+        //$ext = $info->getExtension();
+        //$name = str_replace('\\','/',$info->getSaveName());
+        ////dump($name);die;
+        //$array = array("jpg","png","gif");
+        //if(!in_array($ext, $array)){
+        //    $path = './uploads/headPhoto/'.$name;
+        //    unlink($path);
+        //    $this->error('仅能上传图片文件');
+        //}
 
         if($info){
             $old = $info->getSaveName();

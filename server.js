@@ -5,7 +5,7 @@ var app = express();
 
 app.use(express.static('public'));
 
-var server = app.listen(888);
+var server = app.listen('123.56.222.122',888);
 
 
 var ws = io.listen(server);

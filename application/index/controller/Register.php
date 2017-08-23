@@ -23,10 +23,10 @@ class Register extends Base
             $this->error('该名字太热了，换一个吧？');
         }
       //判断手机号码是否注册
-      $a = Db::table('ml_user')->where('u_phone', $info["u_phone"])->find();
-        if ($a !== null) {
-            $this->error('手机号码重复啦,请修改，嘿嘿~~~~');
-        }
+      // $a = Db::table('ml_user')->where('u_phone', $info["u_phone"])->find();
+      //   if ($a !== null) {
+      //       $this->error('手机号码重复啦,请修改，嘿嘿~~~~');
+      //   }
 
       //整理添加的数组信息
       $time = date('Y-m-d H:i:s',time());

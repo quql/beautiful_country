@@ -76,23 +76,21 @@ class Comment extends Base
      */
     public function read($id)
     {
-        //用户的id
-        //$uid = input('session.u_id');
-        //加载已完成订单的评论
-        $comment = Db::name('comment')->where(['c_oid' => $id])->find();
-        return json($comment);
+        //加载此条评论
+        //dump($id);die();
+        $comment = Db::name('comment')->where('c_id', $id)->find();
+        if($comment){
+            $data['status']=true;
+            $data['text']=$comment['c_text'];
+            $data['score']=$comment['c_score'];
+            $data['gname']=$comment['c_gname'];
+            $data['c_id']=$id;
+        }else{
+            $data['status']=false;
+        }
+        return json($data);
     }
 
-    /**
-     * 显示编辑资源表单页.
-     *
-     * @param  int $id
-     * @return \think\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * 保存更新的资源
@@ -101,9 +99,21 @@ class Comment extends Base
      * @param  int $id
      * @return \think\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $info = $request->post();
+        $id=$info['c_id'];
+        $data=[
+            'c_score'=>$info['score'],
+            'c_text'=>$info['text']
+        ];
+        $result = Db::table('ml_comment')->where('c_id',$id)->update($data);
+        //var_dump($result);
+        if ($result) {
+            $this->success('修改成功');
+        } else {
+            $this->success('修改失败,请刷新重试!');
+        }
     }
 
     /**
@@ -114,6 +124,14 @@ class Comment extends Base
      */
     public function delete($id)
     {
-        //
+        $result = Db::name('comment')->delete($id);
+        if ($result) {
+            $info['status'] = true;
+            $info['info'] = '此条评论已删除';
+        } else {
+            $info['status'] = false;
+            $info['info'] = '删除失败,请重试!';
+        }
+        return json($info);
     }
 }

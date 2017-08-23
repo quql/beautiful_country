@@ -12,6 +12,27 @@ class Index extends Base
         //增加浏览量
         model('count')->view();
         model('view')->insert();
+        $uid = input('session.uid');
+        if(!empty($uid)){
+            $username = Db::name('user')->field('u_username')->find($uid);
+            $username = $username['u_username'];
+        }else{
+            $username=null;
+        }
+        //判断缓存是否存在
+         if(!empty(cache('foods')) && !empty(cache('hotroute')) && !empty(cache('hotscenery')) && !empty(cache('activitiesindexm')) && !empty(cache('hotscy')) ){
+                    // var_dump('111');
+                    // die;
+                return view('index/index',[
+                'foods'=>cache('foods'),
+                'hotroute'=>cache('hotroute'),
+                'hotscenery'=>cache('hotscenery'),
+                'activitiesindex'=>cache('activitiesindexm'),
+                'hotscy'=>cache('hotscy'),
+                'username'=>$username
+                 ]);
+        }
+    
 
         //查询特产美食数据
         $sql1="select ml_food.*,ml_food_pic.pic,ml_business.b_name from ml_food LEFT JOIN ml_food_pic ON ml_food.id=ml_food_pic.gid LEFT JOIN ml_business ON ml_food.bus_id=ml_business.b_id  where ml_food_pic.is_first='1' and  ml_food.gd_is_sale='1' limit 3";
@@ -38,12 +59,34 @@ class Index extends Base
 //        dump($hotscy);
 //        die;
 
+        //将首页数据写入缓存redis
+        $options = [
+            // 缓存类型为File
+            'type' => 'redis',
+            // 缓存有效期为永久有效
+            'expire'=> 0,
+            //缓存前缀
+            'prefix'=> 'think',
+            // 指定缓存目录
+            'path' => APP_PATH.'runtime/cache/',
+            'host' => '127.0.0.1',
+            ];
+        cache($options);
+
+        cache('foods',$food,72000);
+        cache('hotroute',$routes,72000);
+        cache('hotscenery',$scenery,72000);
+        cache('activitiesindexm',$activitiesindex,72000);
+        cache('hotscy',$hotscy,72000);
+    
+
         return view('index/index',[
             'foods'=>$food,
             'hotroute'=>$routes,
             'hotscenery'=>$scenery,
             'activitiesindex'=>$activitiesindex,
-            'hotscy'=>$hotscy
+            'hotscy'=>$hotscy,
+            'username'=>$username
         ]);
     }
 

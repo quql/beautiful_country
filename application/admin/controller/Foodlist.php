@@ -27,16 +27,7 @@ class Foodlist extends Admin
 
     }
 
-    /**
-     * 显示创建资源表单页.
-     *
-     * @return \think\Response
-     */
-    public function create()
-    {
-
-    }
-
+    
     /**
      * 保存新建的资源
      *
@@ -66,7 +57,7 @@ class Foodlist extends Admin
             }
         }
 
-        $bus_id=cache('b_id');
+        $bus_id=input('session.b_id');
         $p=$request->post();
 
         //var_dump($p);
@@ -223,6 +214,7 @@ class Foodlist extends Admin
      */
     public function delete($id)
     {
+        
         $res = Db::name('food')->delete($id);
         $res = Db::name('food_detail')->where('c_gid',$id)->delete();
         $res =Db::name('food_pic')->where('gid',$id)->delete();

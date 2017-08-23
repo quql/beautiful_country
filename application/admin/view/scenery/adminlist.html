@@ -9,9 +9,7 @@
         产品列表
     </h3>
     <ul class="breadcrumb">
-        <li>
-            <a href="{:url('admin/BusIndex/index')}">店铺首页</a>
-        </li>
+        
         <li>
             <a href="{:url('admin/SceneryCate')}">分类管理</a>
         </li>
@@ -216,7 +214,7 @@
     function delAjax(id, obj) {
         $.ajax({
             type: 'delete',
-            url: '/foodlist/' + id,
+            url: '/scenerylist/' + id,
             dataType: 'json',
             success: function (data) {
                 console.log(data);
@@ -230,7 +228,7 @@
             },
             error: function () {
                 // AJAX操作失败
-                alert('AJAX操作失败');
+                alert('删除操作失败');
             }
         });
     }

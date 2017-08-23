@@ -17,9 +17,9 @@ return [
     // 应用命名空间
     'app_namespace'          => 'app',
     // 应用调试模式
-    'app_debug'              => true,
+    'app_debug'              => false,
     // 应用Trace
-    'app_trace'              => true,
+    'app_trace'              => false,
     // 应用模式状态
     'app_status'             => '',
     // 是否支持多模块
@@ -151,8 +151,8 @@ return [
     // +----------------------------------------------------------------------
 
     // 异常页面的模板文件
-    'exception_tmpl'         => THINK_PATH . 'tpl' . DS . 'think_exception.tpl',
-//      'exception_tmpl'         => APP_PATH .'index/view/error/404.html',
+    // 'exception_tmpl'         => THINK_PATH . 'tpl' . DS . 'think_exception.tpl',
+     'exception_tmpl'         => APP_PATH .'index/view/index/404.html',
 
     // 错误显示信息,非调试模式有效
     'error_message'          => '页面错误！请稍后再试～',

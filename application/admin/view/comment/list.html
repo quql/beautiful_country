@@ -56,7 +56,7 @@
                             <td style="text-align: center" id="ban{$v.c_id}">{if condition='($v.is_ban==0)'}已发布{else /}已禁用{/if}</td>
                             <td class="col-md-3" style="text-align: center">
                                 <button class=" btn-info btn-sm find-btn" show-id='{$v.c_id}' data-toggle="modal" data-target="#myModal">查看详情</button>
-                                <!--<a href="{:url('admin/comment/find',['id'=>$v.c_id])}">查看</a>-->
+                                <!--<a href="{:url('admin/Comment/find',['id'=>$v.c_id])}">查看</a>-->
                                 <button class=" btn btn-danger del-btn btn-sm" bin-id="{$v.c_id}">禁用此评论</button>
                             </td>
                         </tr>
@@ -96,7 +96,7 @@
                             </div>
                             <div class="form-group">
                                 <label>评价内容:　</label><br>
-                                <textarea cols="30" rows="2" class="textarea1"></textarea>
+                                <textarea cols="25" rows="2" class="textarea1"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>评分:　</label><span class="span3"></span>
@@ -106,7 +106,7 @@
                             </div>
                             <div class="form-group">
                                 <label>商家答复:　</label><br>
-                                <textarea cols="30" rows="2" class="textarea2"></textarea>
+                                <textarea cols="25" rows="2" class="textarea2"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>答复时间:　</label><span class="span5"></span>
@@ -149,7 +149,7 @@
         //查看 编辑
         $('.find-btn').click(function () {
             var id = $(this).attr('show-id');
-            //console.log(id);
+            console.log(id);
             findAjax(id);
         });
 
@@ -202,7 +202,7 @@
     function findAjax(id) {
         $.ajax({
             type: 'get',
-            url: '/commentfind/' + id,
+            url: '/commentlook/' + id,
             dataType: 'json',
             async: false,
             success: function (data) {
@@ -210,7 +210,11 @@
                 // 遍历模态框
                 if (data.status) {
                     // 图片填充
-                    $('.img').attr('src','/uploads/headPhoto/'+data.ud_photo);
+                    if (data.ud_photo=='0'){
+                            $('.img').attr('src',data.qqphoto);
+                        }else{
+                            $('.img').attr('src','/uploads/headPhoto/'+data.ud_photo);
+                        }
                     $('.span1').html(data.c_gname);
                     $('.span2').html(data.u_username);
                     $('.span3').html(data.c_score);

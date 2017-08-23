@@ -15,7 +15,7 @@ class Food extends Bus
      */
     public function index()
     {
-        $b_id = cache('b_id');
+        $b_id = input('session.b_id');
         $list = Db::table('ml_food')->where('bus_id',$b_id)->select();
         $catelist = Db::table('ml_food_cate')->select();
 //        var_dump($list);
@@ -67,7 +67,7 @@ class Food extends Bus
             }
         }
 
-        $bus_id=cache('b_id');
+        $bus_id=input('session.b_id');
         $p=$request->post();
 
         //var_dump($p);

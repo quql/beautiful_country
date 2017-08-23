@@ -20,8 +20,8 @@ class BusInfo extends Bus
     {
 
         //获取到缓存中的b_name 查询出对应商户
-        $res = Db::name('business')->where('b_name', cache('b_name'))->find();
-        dump($res);
+        $res = Db::name('business')->where('b_id',input('session.b_id'))->find();
+        //dump($res);die;
         return view('bus/busInfo', ['res' => $res]);
 
     }
@@ -116,7 +116,7 @@ class BusInfo extends Bus
     public function comment()
     {
         //获取到缓存中的b_id 查询出对应评论
-        $id=cache('b_id');
+        $id= input('session.b_id');
         $sql="select ml_comment.c_score,c_text,c_time,c_cid,c_gname,c_id,ml_bus_comment.c_content,ml_user.u_username FROM ml_comment LEFT JOIN ml_bus_comment ON ml_bus_comment.com_id=ml_comment.c_id LEFT JOIN ml_user ON ml_user.u_id=ml_comment.c_uid WHERE  ml_comment.c_bid=$id  AND ml_comment.is_ban='0'";
         $res=Db::query($sql);
         //dump($res);
@@ -144,7 +144,7 @@ class BusInfo extends Bus
         //dump($arr);die;
         $data = [
             'c_content' => $arr['content'],
-            'bid' => cache('b_id'),
+            'bid' =>input('session.b_id'),
             'com_id' => $arr['com_id'],
             'c_atime' => date('Y-m-d H:i:s')
         ];

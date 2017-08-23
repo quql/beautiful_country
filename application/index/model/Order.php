@@ -20,7 +20,7 @@ class Order extends Model
     {
         $query = new Query();
         $res = $query->table('ml_order')
-            ->where(['o_uid'=>$id,'o_status'=>0])
+            ->where(['o_uid'=>$id,'o_status'=>1])
             ->paginate(5);
         return $res;
     }
@@ -30,7 +30,7 @@ class Order extends Model
     {
         $query = new Query();
         $res = $query->table('ml_order')
-            ->where(['o_uid'=>$id,'o_status'=>1])
+            ->where(['o_uid'=>$id,'o_status'=>2])
             ->paginate(5);
         return $res;
     }
@@ -40,7 +40,7 @@ class Order extends Model
     {
         $query = new Query();
         $res = $query->table('ml_order')
-            ->where(['o_uid'=>$id,'o_status'=>2])
+            ->where(['o_uid'=>$id,'o_status'=>3])
             ->paginate(5);
         return $res;
     }

@@ -22,11 +22,11 @@ class BusRegister extends Base
 //        dump($info);
 //        dump(cache('vcode'));
 //        exit;
-        if (!cache('vcode')){
-            $this->error('验证码已过期,请重新获取~~~');
-        }else if (cache('vcode')!=$info['vcode']){
-            $this->error('验证码输入有误~~~');
-        }
+        // if (!cache('vcode')){
+        //     $this->error('验证码已过期,请重新获取~~~');
+        // }else if (cache('vcode')!=$info['vcode']){
+        //     $this->error('验证码输入有误~~~');
+        // }
 
         //判断店铺名字和手机号的唯一
         $res = Db::name('business')->where('b_name', $info["b_name"])->find();
@@ -34,10 +34,10 @@ class BusRegister extends Base
         if ($res !== null) {
             $this->error('此商铺名称已被注册过啦,请修改~~~');
         }
-        $a = Db::name('business')->where('b_phone', $info["b_phone"])->find();
-        if ($a !== null) {
-            $this->error('手机号码重复啦,请修改~~~~');
-        }
+        // $a = Db::name('business')->where('b_phone', $info["b_phone"])->find();
+        // if ($a !== null) {
+        //     $this->error('手机号码重复啦,请修改~~~~');
+        // }
         //整理添加的数组信息
         $adress = explode('/', $info['adress']);
 
@@ -46,7 +46,7 @@ class BusRegister extends Base
         }
         $date = date('Y-m-d H:i:s');
         $data = [
-            'b_email'=>$info['b_email'],
+            'b_email'=>'',
             'b_type' => $info['b_type'],
             'b_username' => $info['b_username'],
             'b_name' => $info['b_name'],

@@ -360,11 +360,11 @@
             <div class="container">
                 <div class="gt_top_element">
                     <ul>
-                        <li>
+                        <!-- <li>
                             <button class="online btn btn-sm" style='background-color:#2dcc70;'><i
                                     class='glyphicon glyphicon-comment'></i>驴友畅聊
                             </button>
-                        </li>
+                        </li> -->
                         <li>
                             <button class="tel btn btn-sm" style='background-color:#2dcc70;' data-toggle="modal"
                                     data-target=".bs-example-modal-sm"><i class='fa fa-phone'></i>联系我们
@@ -437,14 +437,14 @@
                                             <p id='p8' style="padding-left: 15px"></p>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label for="inputPhone" class="col-sm-2 control-label">手机号</label>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control" id="inputPhone" name="b_phone"
                                                    placeholder="请输入11位合法的手机号码">
                                             <p id='p4' style="padding-left: 15px"></p>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">省/市/区</label>
                                         <div class="col-sm-6">
@@ -458,7 +458,7 @@
                                         </div>
                                     </div>
                                     <!--<form action="{:url('index/index/email')}" method="post">-->
-                                    <div class="form-inline">
+                                    <!-- <div class="form-inline">
                                         <label class="col-sm-2 control-label">邮箱验证</label>
                                         <div class="col-sm-10" style="margin-left: -10px">
                                             <input type="text" class="form-control" id="inputEmail" name="b_email"
@@ -471,14 +471,35 @@
                                         </div>
                                     </div>
                                     <!--</form>-->
-                                    <div class="form-inline">
+                                    <!-- <div class="form-inline">
                                         <label class="col-sm-2 control-label">验证码</label>
                                         <div class="col-sm-10" style="margin-left: -10px">
                                             <input type="text" class="form-control" id="inputVcode" name="vcode"
                                                    placeholder="请输入邮箱验证码">
                                             <p id='p10' style="padding-left: 15px"></p>
                                         </div>
+                                    </div>  -->
+                                    <div class="form-inline">
+                                        <label class="col-sm-2 control-label">手机号</label>
+                                        <div class="col-sm-10" style="margin-left: -10px">
+                                            <input type="text" class="form-control" id="inputPhone" name="b_phone"
+                                                   placeholder="请输入11位合法的手机号">
+
+                                            <p id='p4' style="padding-left: 15px"></p>
+                                            <button type='button' style="display: inline-block;width: 100px"
+                                                    class="btn-default btn-sm btn_email" id="add">获取验证码
+                                            </button>
+                                        </div>
                                     </div>
+                                    <div class="form-inline">
+                                        <label class="col-sm-2 control-label">验证码</label>
+                                        <div class="col-sm-10" style="margin-left: -10px">
+                                            <input type="text" class="form-control" name="vali"  id="inputvail"
+                                                   placeholder="请输入短信验证码">
+                                            <p id='p10' style="padding-left: 15px"></p>
+                                        </div>
+                                    </div> 
+                                
                                     <div class="form-inline">
                                         <label class="col-sm-2 control-label">店铺类型</label>
                                         <div class="col-sm-10">
@@ -562,7 +583,7 @@
                     </button>
                     <ul>
 
-                        <li class="active"><a href="{:url('index/index/index')}" style='width:70px;text-align:center ;'>首页</a>
+                        <li class="lindex"><a href="{:url('index/index/index')}" style='width:70px;text-align:center ;'>首页</a>
                         </li>
 
                         <li class="lhotel"><a href="{:url('/shoplist/4')}" style='width:70px;text-align:center'>住宿</a>
@@ -707,12 +728,12 @@
                 </div>
             <!--Gallery List Wrap Start-->
                 <!--Search Wrap End-->
-                <section class="gt_campus_bg" style="background-color: black;padding-bottom: 0px">
-                    <div class="container">
+                <section class="gt_campus_bg" style="padding-bottom: 0px">
+                    <div class="container" style="background-color: black;">
                         <!--Heading Wrap Start-->
-                        <div class="gt_hdg_1 default_width">
+                        <div class="gt_hdg_1 default_width" style="margin-top: 10px">
                             <h3 style="color:#2DCC70">精彩活动</h3>
-                            <p id="jchd">^_^ 一个人辣么无聊,来报名团体活动才有意思呦 ^_^_</p>
+                            <p id="jchd">^_^ 一个人辣么无聊,来报名团体活动才有意思呦 ^_^</p>
                             <span class="gt_hdg_left"></span>
                             <i class="icon-school" style="color:white "></i>
                             <span class="gt_hdg_right"></span>
@@ -722,10 +743,10 @@
 
                     <!--Gallery List Wrap Start-->
                     {volist name="activitiesindex" id="v"}
-                    <div class="col-md-3 col-sm-6 no_padding">
+                    <div class="col-md-3 col-sm-6 no_padding" style="padding: 20px">
                         <div class="gt_gallery_style1">
                             <figure>
-                                <img src="/uploads/{$v['pic']}" style="height:250px" alt="">
+                                <img src="/uploads/{$v['pic']}" style="height:200px;width: 250px" alt="">
                             </figure>
                             <div class="gt_gallery_style1_des">
                                 <ul>
@@ -782,13 +803,13 @@
                                     </figcaption>
                                 </figure>
                                 <div class="gt_course_des default_width">
-                                    <a href="{:url('/goodsdetail',['id'=>$vroute.c_gid,'bus_id'=>$vroute.bus_id,'cid'=>$vroute.c_id])}">{$vroute.gd_title}</a>
-                                    <h6>{$vroute.gd_abstract}</h6>
+                                    <a href="{:url('/goodsdetail',['id'=>$vroute.c_gid,'bus_id'=>$vroute.bus_id,'cid'=>$vroute.c_id])}">{:mb_substr($vroute.gd_title,0,20)}</a>
+                                    <h6>{:mb_substr($vroute.gd_abstract,0,40)}..</h6>
                                 </div>
                                 <div class="gt_course_bottom default_width">
                                     <h5 style="text-decoration:line-through">原价: ￥{$vroute.gd_price}</h5>
                                     <a href="{:url('/goodsdetail',['id'=>$vroute.c_gid,'bus_id'=>$vroute.bus_id,'cid'=>$vroute.c_id])}"
-                                       style="font-size: 20px">惊喜价: <span
+                                       style="font-size: 20px">会员价: <span
                                             style="color:red">￥{$vroute.gd_discount}</span></a>
                                 </div>
                             </div>
@@ -828,11 +849,15 @@
                                             src="/uploads/{$vsc.pic}" alt="" width="200px" height="130px"></a></span>
                                     <div class="gt_choose_des">
                                         <h6>
-                                            <a href="{:url('/goodsdetail',['id'=>$vsc.c_gid,'bus_id'=>$vsc.bus_id,'cid'=>$vsc.c_id])}">{$vsc.gd_title}</a>
+                                            <a href="{:url('/goodsdetail',['id'=>$vsc.c_gid,'bus_id'=>$vsc.bus_id,'cid'=>$vsc.c_id])}">{:mb_substr($vsc.gd_title,0,6)}</a>
                                         </h6>
                                         <!--<p>{$vsc.gd_abstract}</p>-->
-                                        <p>位于:　{$vsc.b_province}/{$vsc.b_city}/{$vsc.b_area}　<a
-                                                href="{:url('/busindexshow',['id'=>$vsc.bus_id])}">{$vsc.b_name}</a></p>
+                                        <p>位于:　{$vsc.b_province}/{$vsc.b_city}/{$vsc.b_area}</p>　
+                                         <p>   <a href="{:url('/busindexshow',['id'=>$vsc.bus_id])}">
+                                               {$vsc.b_name}</a>       
+                                         </p>          
+                                              
+                                           
 
                                     </div>
                                 </div>
@@ -842,7 +867,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="gt_choose_img" style="top:0px;left:15px">
-                            <img src="/static/app/index/images/hai.jpg" width='340px' height="700px" alt="">
+                            <img src="/static/app/index/images/hai.jpg" width='340px' style="height: 566px">
                         </div>
                     </div>
                 </div>
@@ -916,9 +941,9 @@
 
                             <div class="gt_team_des default_width">
                                 <h6>
-                                    <a href="{:url('/goodsdetail',['id'=>$vfood.id,'bus_id'=>$vfood.bus_id,'cid'=>$vfood.c_id])}">{$vfood['gd_title']}</a>
+                                    <a href="{:url('/goodsdetail',['id'=>$vfood.id,'bus_id'=>$vfood.bus_id,'cid'=>$vfood.c_id])}">{:mb_substr($vfood['gd_title'],0,12)}</a>
                                 </h6>
-                                <span>{$vfood['gd_abstract']}</span>
+                                <span>{:mb_substr($vfood['gd_abstract'],0,12)}..</span>
                             </div>
                             <div class="gt_course_bottom default_width">
                                 <h5>￥{$vfood['price']}<span></span></h5>
@@ -958,7 +983,12 @@
                         </div>
                         <div class="gt_testimonial_img">
                             <figure>
-                                {$vcom['u_username']}<img src="/uploads/headPhoto/{$vcom['ud_photo']}" alt="">
+                                {$vcom['u_username']}
+                                {if condition="$vcom['ud_photo'] eq 0"}
+                                <img src="{$vcom['qqphoto']}" alt="">
+                                {else/}
+                                <img src="/uploads/headPhoto/{$vcom['ud_photo']}" alt="">
+                                {/if}
                             </figure>
                             <div class="gt_testimonial_des">
                                 <h5 style="display: inline-block;margin-left: 20px"><a
@@ -1212,12 +1242,12 @@
     <!--Back to Top Wrap Start-->
     <!--聊天室-->
     <div id='chat'>
-        <div class="headChat"><p>在线畅聊</p>
+        <div class="headChat">在线畅聊
             <button id="closeChat" class="btn btn-danger btn-sm">关闭</button>
         </div>
         <div class="content bodyChat" id="onchat">
             <ul class="list-group" id="chat_conatiner">
-                <li class="list-group-item " id="server"><b>客服:&nbsp;</b>你好...</li>
+                <li class="list-group-item " id="server"><b>游客:</b><span></span></li>
             </ul>
         </div>
         <div class="footerChat">
@@ -1264,7 +1294,7 @@
 <script type="text/javascript" src="/static/app/index/js/socket.io.js"></script>
 
 <script type="text/javascript">
-
+    $('.lindex').css('background','#2DCC70');
     $('.online').click(function () {
         //console.log('12234');
         $('#chat').css('display', 'block');
@@ -1274,172 +1304,139 @@
         $('#chat').css('display', 'none');
     });
 
-    var ws = io.connect('http://127.0.0.1:888');
-    var sendMsg = function (msg) {
-        ws.emit('send.message', msg);
-    };
-    var addMessage = function (from, msg) {
-        var a = $('textarea').val();
-        var html = '<li class="list-group-item text-primary"><b>我:　&nbsp;</b>' + a + '</li>';
-        $('#chat_conatiner').append(html);
+    // var ws = io.connect('http://127.0.0.1:888');
+    // var sendMsg = function (msg) {
+    //     ws.emit('send.message', msg);
+    // };
+    // var addMessage = function (from, msg) {
+    //     var a = $('textarea').val();
+    //     var html = '<li class="list-group-item text-primary"><b>我:　&nbsp;</b>' + a + '</li>';
+    //     $('#chat_conatiner').append(html);
 
-        // 设置内容区的滚动条到底部
-        document.querySelector('#onchat').scrollTop = document.querySelector('#onchat').scrollHeight;
+    //     // 设置内容区的滚动条到底部
+    //     document.querySelector('#onchat').scrollTop = document.querySelector('#onchat').scrollHeight;
 
-        // 并设置焦点
-        document.querySelector('textarea').focus();
+    //     // 并设置焦点
+    //     document.querySelector('textarea').focus();
 
-    };
+    // };
 
-    var send = function () {
-        var ele_msg = document.querySelector('textarea');
-        var msg = ele_msg.value.replace('\r\n', '').trim();
-        console.log(msg);
-        if (!msg) return;
-        sendMsg(msg);
-        // 添加消息到自己的内容区
-        addMessage('你', msg);
-        ele_msg.value = '';
-    };
+    // var send = function () {
+    //     var ele_msg = document.querySelector('textarea');
+    //     var msg = ele_msg.value.replace('\r\n', '').trim();
+    //     console.log(msg);
+    //     if (!msg) return;
+    //     sendMsg(msg);
+    //     // 添加消息到自己的内容区
+    //     addMessage('你', msg);
+    //     ele_msg.value = '';
+    // };
 
-    //     ws.on('connect', function(){
-    //         var nickname = window.prompt('输入你的昵称!');
-    //         while(!nickname){
-    //             nickname = window.prompt('昵称不能为空，请重新输入!')
-    //         }
-    //         ws.emit('join', nickname);
-    //     });
-    //
-    //     // 昵称有重复
-    //     ws.on('nickname', function(){
-    //         var nickname = window.prompt('昵称有重复，请重新输入!');
-    //         while(!nickname){
-    //             nickname = window.prompt('昵称不能为空，请重新输入!')
-    //         }
-    //         ws.emit('join', nickname);
-    //     });
+    // //     ws.on('connect', function(){
+    // //         var nickname = window.prompt('输入你的昵称!');
+    // //         while(!nickname){
+    // //             nickname = window.prompt('昵称不能为空，请重新输入!')
+    // //         }
+    // //         ws.emit('join', nickname);
+    // //     });
+    // //
+    // //     // 昵称有重复
+    // //     ws.on('nickname', function(){
+    // //         var nickname = window.prompt('昵称有重复，请重新输入!');
+    // //         while(!nickname){
+    // //             nickname = window.prompt('昵称不能为空，请重新输入!')
+    // //         }
+    // //         ws.emit('join', nickname);
+    // //     });
 
-    ws.on('send.message', function (from, msg) {
-        addMessage(from, msg);
-    });
+    // ws.on('send.message', function (from, msg) {
+    //     addMessage(from, msg);
+    // });
 
-    ws.on('announcement', function (from, msg) {
-        addMessage(from, msg);
-    });
+    // ws.on('announcement', function (from, msg) {
+    //     addMessage(from, msg);
+    // });
 
-    document.querySelector('textarea').addEventListener('keypress', function (event) {
-        if (event.which == 13) {
-            send();
-        }
-    });
-    document.querySelector('textarea').addEventListener('keydown', function (event) {
-        if (event.which == 13) {
-            send();
-        }
-    });
-    document.querySelector('#send').addEventListener('click', function () {
-        send();
-    });
+    // document.querySelector('textarea').addEventListener('keypress', function (event) {
+    //     if (event.which == 13) {
+    //         send();
+    //     }
+    // });
+    // document.querySelector('textarea').addEventListener('keydown', function (event) {
+    //     if (event.which == 13) {
+    //         send();
+    //     }
+    // });
+    // document.querySelector('#send').addEventListener('click', function () {
+    //     send();
+    // });
 
-    document.querySelector('#clear').addEventListener('click', function () {
-        document.querySelector('#chat_conatiner').innerHTML = '';
-    });
-</script>
-<script>
-    $(function () {
-        $('.apply').click(function () {
-            $('#myModal').modal(options);
-        });
-        $('.tel').click(function () {
-            $('#smodal').modal('show');
-        });
-
-    });
-      $('#closeChat').click(function(){
-          $('#chat').css('display','none');
-      });
-
-      var ws = io.connect('http://127.0.0.1:888');
-      var sendMsg = function(msg){
-          ws.emit('send.message', msg);
-      };
-      var addMessage = function(from, msg){
-          var a=$('textarea').val();
-          var html = '<li class="list-group-item text-primary"><b>我:　&nbsp;</b>'+a+'</li>';
-          $('#chat_conatiner').append(html);
-
-          // 设置内容区的滚动条到底部
-          document.querySelector('#onchat').scrollTop = document.querySelector('#onchat').scrollHeight;
-
-          // 并设置焦点
-          document.querySelector('textarea').focus();
-
-      };
-
-       var send = function(){
-           var ele_msg = document.querySelector('textarea');
-           var msg = ele_msg.value.replace('\r\n', '').trim();
-           console.log(msg);
-           if(!msg) return;
-           sendMsg(msg);
-           // 添加消息到自己的内容区
-           addMessage('你', msg);
-           ele_msg.value = '';
-       };
-
-//     ws.on('connect', function(){
-//         var nickname = window.prompt('输入你的昵称!');
-//         while(!nickname){
-//             nickname = window.prompt('昵称不能为空，请重新输入!')
-//         }
-//         ws.emit('join', nickname);
-//     });
-//
-//     // 昵称有重复
-//     ws.on('nickname', function(){
-//         var nickname = window.prompt('昵称有重复，请重新输入!');
-//         while(!nickname){
-//             nickname = window.prompt('昵称不能为空，请重新输入!')
-//         }
-//         ws.emit('join', nickname);
-//     });
-
-      ws.on('send.message', function(from, msg){
-          addMessage(from, msg);
-      });
-
-      ws.on('announcement', function(from, msg){
-          addMessage(from, msg);
-      });
-
-      document.querySelector('textarea').addEventListener('keypress', function(event){
-          if(event.which == 13){
-              send();
-          }
-      });
-      document.querySelector('textarea').addEventListener('keydown', function(event){
-          if(event.which == 13){
-              send();
-          }
-      });
-      document.querySelector('#send').addEventListener('click', function(){
-          send();
-      });
-
-      document.querySelector('#clear').addEventListener('click', function(){
-          document.querySelector('#chat_conatiner').innerHTML = '';
-      });
-  </script>
-  <script>
-    $(function(){
-        $('.liebiao').click(function(){
-            alert(11);
-        });
-
-
+    // document.querySelector('#clear').addEventListener('click', function () {
+    //     document.querySelector('#chat_conatiner').innerHTML = '';
+    // });
 </script>
 <!--天气-->
 <script>
+    initvail=0;
+   function checkPhone(){
+       var phone = document.getElementById('inputPhone').value;
+//       console.log(phone);
+       if(!(/^1[34578]\d{9}$/.test(phone))){
+           alert("手机号码有误，请重填");
+           return false;
+       }else{
+           return true;
+       }
+   }
+
+   var btn1 = document.getElementById('add');
+   btn1.onclick = function(){
+       if(!checkPhone()){
+           return false;
+       }
+       var  phone = document.getElementById('inputPhone').value;
+       m=60;
+       showbtn();
+       send(phone);
+       //倒计时按钮
+   }
+   function showbtn() {
+       var  btn1 = document.getElementById('add');
+       if (m <= 0) {
+           btn1.disabled = false;
+           btn1.innerHTML = '重新获取';
+           return;
+       }
+       btn1.innerHTML = '重新获取('+m+')';
+       btn1.disabled =true;
+       m--;
+       setTimeout("showbtn()", 1000);
+   }
+   sendvail ='adsfdxgfhcvjbknbvjhgfsASdsfdghjkl';
+   //AjAX请求发送验证码
+    function send(phone){
+       $.ajax({
+          type:'get',
+           url:'/sendmsg/'+phone,
+           dataType: 'json',
+           success:function(data){
+              if(data.status){
+                  sendvail=data['string'];
+                  alert('短信发送成功');
+            }else{
+                  alert('系统错误,请重试');
+              }
+
+           },
+           error:function(){
+               alert('系统错误请重试');
+           }
+       });
+    }
+
+
+
+
     $('#cwheather').click(function(){
         $('#cwdiv').slideToggle();
     });
@@ -1507,10 +1504,6 @@
 
         })
     }
-//    //导航栏的hover效果
-//    $('#gt_navigation>li').click(function(){
-//        $(this).css('backgroundColor','green').siblings().css('backgroundColor','');
-//    });
 
 </script>
 <script>
@@ -1526,15 +1519,19 @@
 
     $('.btn_email').click(function () {
         vemail = document.getElementById("inputEmail").value;
-        //console.log(vemail);
+        console.log(vemail);
+        if (vemail.match(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/) === null) {
+            alert('请输入合法的邮箱地址');
+            return;
+        };
         emailAjax(vemail);
         //return false;
     });
     //ajax请求发送邮箱验证码 传递参数为邮箱地址EMAIL
-    function emailAjax(email) {
+    function emailAjax(vemail) {
         $.ajax({
             type: 'get',
-            url: '/email/' + email,
+            url: '/email/' + vemail,
             dataType: 'json',
             success: function (data) {
                 console.log(data);
@@ -1553,16 +1550,20 @@
     }
 
     $('.new_email').click(function () {
-        vemail = document.getElementById("newEmail").value;
+        xemail = document.getElementById("newEmail").value;
         //console.log(vemail);
-        newemailAjax(vemail);
+        if (xemail.match(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/) === null) {
+            alert('请输入合法的邮箱地址');
+            return;
+        };
+        newemailAjax(xemail);
         //return false;
     });
     //ajax请求发送邮箱验证码 传递参数为邮箱地址EMAIL
-    function newemailAjax(email) {
+    function newemailAjax(xemail) {
         $.ajax({
             type: 'get',
-            url: '/newsemail/' + email,
+            url: '/newsemail/' + xemail,
             dataType: 'json',
             success: function (data) {
                 console.log(data);
@@ -1633,7 +1634,7 @@
         //手机号
         var phone = document.getElementById('inputPhone').value;
         var p4 = document.getElementById('p4');
-        if (phone.match(/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/) === null) {
+        if (!(/^1[34578]\d{9}$/.test(phone))) {
             p4.innerHTML = ' × 请输入11位合法的手机号码';
             p4.style.color = 'red';
             return false;
@@ -1656,23 +1657,22 @@
         }
 
         //邮箱
-        var email = document.getElementById('inputEmail').value;
-        var p9 = document.getElementById('p9');
-        if (email.match(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/) === null) {
-            p9.innerHTML = ' × 请填写合法的邮箱地址';
-            p9.style.color = 'red';
-            return false;
-        } else {
-            p9.style.color = '#0a0';
-            p9.innerHTML = '√ ';
-        }
+        // var email = document.getElementById('inputEmail').value;
+        // var p9 = document.getElementById('p9');
+        // if (email.match(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/) === null) {
+        //     p9.innerHTML = ' × 请填写合法的邮箱地址';
+        //     p9.style.color = 'red';
+        //     return false;
+        // } else {
+        //     p9.style.color = '#0a0';
+        //     p9.innerHTML = '√ ';
+        // }
 
         //验证码
-        var vcode = document.getElementById('inputVcode').value;
-        //console.log(vcode);
         var p10 = document.getElementById('p10');
-        if (vcode == '' || vcode == null) {
-            p10.innerHTML = ' × 验证码不能为空';
+        var vail =document.getElementById('inputvail').value;
+        if (vail!==sendvail) {
+            p10.innerHTML = ' × 验证码错误';
             p10.style.color = 'red';
             return false;
         } else {

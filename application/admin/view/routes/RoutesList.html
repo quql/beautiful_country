@@ -2,19 +2,21 @@
 
 {block name="main"}
 <!-- page heading start-->
+<div class="container" style="margin-top: 20px">
 <button  class=" btn-primary btn-lg" data-toggle="modal" data-target="#myModal">添加商品</button>
+</div>
 <div class="page-heading">
     <h3>
-        Editable Table
+       旅游路线
     </h3>
     <ul class="breadcrumb">
         <li>
-            <a href="#">Dashboard</a>
+            <a href="{:url('/busIndex')}">首页</a>
         </li>
         <li>
-            <a href="#">Data Table</a>
+            <a href="">旅游线路</a>
         </li>
-        <li class="active"> Editable Table </li>
+        <li class="active">旅游线路管理</li>
     </ul>
 </div>
 <!-- page heading end-->
@@ -25,7 +27,7 @@
         <div class="col-sm-12">
             <section class="panel">
                 <header class="panel-heading">
-                    住宿列表管理
+                    路线列表管理
                     <span class="tools pull-right">
                         <a href="javascript:;" class="fa fa-chevron-down"></a>
                         <a href="javascript:;" class="fa fa-times"></a>
@@ -82,7 +84,7 @@
                             <td class="col-md-4">
                                 <a class=" btn btn-success" href="{:url('admin/routes/show',['id'=>$v.id])}">查看商品图片</a>
                                 <a class=" btn btn-primary" href="{:url('admin/routes/read',['id'=>$v['id']])}">查看商品详情</a>
-                                <button class=" btn btn-danger del-btn" goods-id="{$v.id}" >删除商品</button>
+                                <button class=" btn btn-danger del-btn" goods-id="{$v.id}" >删除</button>
                             </td>
 
                         </tr>
@@ -127,7 +129,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">商品价格</label>
-                            <input type="text" name="gd_price" class="form-control" id="exampleInputPassword1" placeholder="请输入商品详细描述">
+                            <input type="text" name="gd_price" class="form-control" id="exampleInputPassword1" placeholder="请输入商品价格">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">商品库存</label>
@@ -162,9 +164,6 @@
         </div>
     </div>
 <!--footer section start-->
-<footer>
-    2014 &copy; AdminEx by <a href="http://www.tcode.me/" target="_blank">淘代码</a>
-</footer>
 <!--footer section end-->
 
 </div>
@@ -199,7 +198,7 @@
         $('.del-btn').click(function () {
             var ac_id = $(this).attr('goods-id');
 
-            if (confirm('你确定要 [ 删除 ] 该用户么?')) {
+            if (confirm('你确定要 [ 删除 ] 该商品么?')) {
                 var obj = $(this).parents('tr');
                 //console.log(obj);
                 delAjax(ac_id, obj);// 调用执行AJAX删除
@@ -238,7 +237,7 @@
             },
             error: function () {
                 // AJAX操作失败
-                alert('AJAX操作失败');
+                alert('删除失败');
             }
         });
     }

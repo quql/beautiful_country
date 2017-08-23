@@ -138,7 +138,7 @@ class SceneryPic extends Bus
         ];
 
         $result = Db::name('scenery_pic')->where('id', $id)->update($data);
-        $b_id = cache('b_id');
+        $b_id = input('session.b_id');;
         $list = Db::table('ml_scenery')->where('bus_id',$b_id)->select();
         $pid = $list['0']['id'];
         if ($result) {

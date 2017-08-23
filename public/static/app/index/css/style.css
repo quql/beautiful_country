@@ -774,7 +774,7 @@ ul.gt_aboutus_list li:before {content: "\f058";font-family: fontawesome;position
 	  ==============================================================
 */
 .gt_blog_wrap{background-color: #ffffff;border-radius: 5px;border-bottom: 2px solid;}
-.gt_blog_wrap figure img{width: 100%;height: auto;}
+/*.gt_blog_wrap figure img{width: 100%;height: auto;}*/
 .gt_blog_wrap figure:before{content: "";position:absolute;left:0;top:0;bottom:0;right:0;z-index: 10;opacity: 0.75;transform-origin:top left;-webkit-transform-origin:top left;-ms-transform-origin:top left;-moz-transform-origin:top left;transform:rotate(90deg);-webkit-transform:rotate(90deg);-moz-transform:rotate(90deg);-ms-transform:rotate(90deg);}
 .gt_blog_des{padding: 20px 15px 0px;background-color: #ffffff;z-index: 10;}
 .gt_blog_wrap ul{margin: 0px 0px 15px;}

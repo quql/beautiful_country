@@ -47,7 +47,7 @@
                                 </figcaption>
                             </figure>
                             <div class="gt_product_des_wrap">
-                                <h5><a href="{:url('/activitiesdetailsshow/'.$list.activities_id)}">{$list.ac_title}</a></h5>
+                                <h5><a href="{:url('/activitiesdetailsshow/'.$list.activities_id)}">{:mb_substr($list.ac_title,0,20)}..</a></h5>
 
                                 <ul class="gt_rating_start">
                                     <li><a href="#"><i class="fa fa-star"></i></a></li>
@@ -59,7 +59,7 @@
                             </div>
                             <div class="gt_cart_element_wrap">
                                 <a class="gt_retweet_link" href="javascript:void(0)"><i class="fa fa-retweet"></i></a>
-                                <a class="gt_add_to_cart" href="{:url('/activitiesdetailsshow/'.$list.activities_id)}"> <p>￥{$list.ac_price}</p></a>
+                                <a class="gt_add_to_cart" href="{:url('/activitiesdetailsshow/'.$list.activities_id)}"> <p>{$list.ac_price}</p></a>
                                 <a class="gt_whishlist" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
                             </div>
                         </div>
@@ -107,6 +107,7 @@
 <script src="/static/app/index/js/custom.js"></script>
 <script>
     $('.lac').css('background','#2DCC70');
+    $('.lindex').css('background','#16171C');
 </script>
 {/block}
 

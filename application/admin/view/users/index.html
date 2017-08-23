@@ -136,7 +136,7 @@
                                 </div>
                                 <div class="col-md-6" style="margin-top: 0px">
                                     <input type="hidden" id="sendemail" name="email">
-                                    <br><label >邮件内容:</label><br>　<textarea name="content" id="textarea" cols="30" rows="10" placeholder="请输入邮件正文内容"></textarea>
+                                    <br><label >邮件内容:</label><br>　<textarea name="content" id="textarea" cols="25" rows="10" placeholder="请输入邮件正文内容"></textarea>
                                     <br><input type="submit" value="发送" class='btn-success ' style="margin-left: 15px;width: 65px;border-radius: 3px;height: 30px">
                                 </div>
                             </div>
@@ -250,7 +250,7 @@
             url: '/usersmg/' + id,
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     toastr.success(data.info);
                     // 将当前的节点删除掉
@@ -277,9 +277,13 @@
                 // 遍历模态框
                 if (data.status) {
                     var data=data[0];
-                    console.log(data);
+                    //console.log(data);
                     // 图片填充
+                    if(data.ud_photo=='0'){
+                        $('.img').attr('src',data.qqphoto);
+                    }else{
                     $('.img').attr('src','/uploads/headPhoto/'+data.ud_photo);
+                    }
                     $('.span1').html(data.u_username);
                     if (data.ud_sex){
                         $('.span2').html('男');
@@ -316,7 +320,11 @@
                 //console.log(data[0]);
                 if (data.status) {
                     var data=data[0];
+                    if(data.ud_photo=='0'){
+                        $('.img2').attr('src',data.qqphoto);
+                    }else{
                     $('.img2').attr('src','/uploads/headPhoto/'+data.ud_photo);
+                    }
                     $('#myModalLabel3').html('给用户 '+data.u_username+' 发送邮件');
                     $('#sendemail').attr('value',data.ud_email)
                 } else {

@@ -121,7 +121,7 @@
                                     <li><i class="fa fa-user"></i>￥{$list.price}</li>
                                 </ul>
                                 <h6><a href="{:url('/goodsdetail',['id'=>$list.id,'bus_id'=>$list.bus_id,'cid'=>$list.c_id])}">{$list.gd_title}</a></h6>
-                                <p>{$list.gd_abstract}</p>
+                                <p>{:mb_substr($list.gd_abstract,'0','80')}....</p>
                                 <a href="{:url('/goodsdetail',['id'=>$list.id,'bus_id'=>$list.bus_id,'cid'=>$list.c_id])}">查看更多</a>
                                 <div class="gt_listing_share_wrap">
                                     <!--<button class="gt_listing_share"><i class="fa fa-share-alt"></i></button>-->
@@ -186,12 +186,16 @@
     $(function(){
         if($('#type').text() == '4'){
             $('.lhotel').css('background','#2DCC70');
+            $('.lindex').css('background','#16171C');
         }else if($('#type').text() == '5'){
             $('.lroute').css('background','#2DCC70');
+             $('.lindex').css('background','#16171C');
         }else if($('#type').text() == '6'){
             $('.lfood').css('background','#2DCC70');
+             $('.lindex').css('background','#16171C');
         }else if($('#type').text() == '1'){
             $('.lsc').css('background','#2DCC70');
+             $('.lindex').css('background','#16171C');
         };
     });
 </script>

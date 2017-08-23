@@ -15,7 +15,7 @@ class Routes extends Bus
      */
     public function index()
     {
-        $b_id = cache('b_id');
+        $b_id =input('session.b_id');
         $list = Db::table('ml_route')->where('bus_id',$b_id)->select();
         $catelist = Db::table('ml_route_cate')->select();
 //        var_dump($list);
@@ -24,7 +24,7 @@ class Routes extends Bus
 //       die;
         $this->assign('list',$list);
         $this->assign('catelist',$catelist );
-        return view('routes/routesList');
+        return view('routes/RoutesList');
 
     }
 
@@ -67,7 +67,7 @@ class Routes extends Bus
             }
         }
 
-        $bus_id=cache('b_id');
+        $bus_id=input('session.b_id');
         $p=$request->post();
 
 //        var_dump($p);
@@ -144,7 +144,7 @@ class Routes extends Bus
         $data2 = $data2['0'];
         $this->assign('data1',$data1);
         $this->assign('data2',$data2);
-        return view('routes/routesListdetail');
+        return view('routes/RoutesListdetail');
 
     }
 
@@ -248,6 +248,6 @@ class Routes extends Bus
         $this->assign('piclist',$list);
         $this->assign('goods_id',$id);
 
-        return view('routes/routespic');
+        return view('routes/Routespic');
     }
 }

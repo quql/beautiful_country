@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>修改基本信息</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <title>重置密码</title>
     <link rel="stylesheet" href="/static/mobile/css/amazeui.min.css">
     <link rel="stylesheet" href="/static/mobile/css/wap.css">
     <style>
@@ -24,52 +27,47 @@
         .span1{
             display: block;
             float: left;
-            padding: 20px;
         }
         .span2{
             display: block;
             float: right;
+            padding-right: 20px;
         }
     </style>
 
 </head>
 <body>
-<div>
-
-    <div class='head'><span class="span1">基本资料</span><a href="{:url('index/personal/index')}"><span class="span2">返回</span></a></div>
+    <div class='head'><span class="span1">重置密码</span><a href="{:url('index/personal/index')}"><span class="span2">返回</span></a></div>
+<div class="col-md-8"  style="display: block;">
+    
     {if condition="!empty($info)";}
+    
     <form class="form-horizontal mt50" action="{:url('index/personal/updatePass')}" method="post">
         <input type="hidden" name="_method" value="PUT">
         <input type="hidden" name="id" value="{$info['id']}">
-        <div class="form-group">
-            <label class="col-sm-2 control-label"></label>
-            <div class="col-sm-3">
-                <h4><b>重置密码</b></h4>
-            </div>
-        </div>
         <div class="form-group mt20">
             <label class="col-sm-2 control-label">原密码</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" style="width: 300px;" name="oldpass" placeholder="请输入原密码">
+                <input type="password" class="form-control" style="width: 300px;border-radius:5px" name="oldpass" placeholder="请输入原密码">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">新密码</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" style="width: 300px;" name="oncepass" placeholder="请输入新密码" id="oncepass">
+                <input type="password" class="form-control" style="width: 300px;border-radius:5px" name="oncepass" placeholder="请输入新密码" id="oncepass">
                 <span class="ml30" id="tips4"></span>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">确认新密码</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" style="width: 300px;" name="secondpass" placeholder="请再次输入新密码" id="secondpass">
+                <input type="password" class="form-control" style="width: 300px;border-radius:5px" name="secondpass" placeholder="请再次输入新密码" id="secondpass">
                 <span class="ml30" id="tips5"></span>
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-success">确认修改</button>
+                <button type="submit" class="am-btn am-btn-success btn-sm" style="border-radius:5px;margin-top:10px">确认修改</button>
             </div>
         </div>
     </form>

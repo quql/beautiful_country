@@ -29,6 +29,9 @@ class Carousel extends Admin
     public function save(Request $request)
     {
         $file = request()->file('pic');
+        if(empty($file)){
+            return $this->error('没有选择图片,添加失败');
+        }
         $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
         //dump($info);
         if($info){

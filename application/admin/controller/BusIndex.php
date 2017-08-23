@@ -4,6 +4,7 @@ namespace app\admin\controller;
 
 use think\Controller;
 use think\Request;
+use think\Db;
 
 class BusIndex extends Bus
 {
@@ -14,7 +15,31 @@ class BusIndex extends Bus
      */
     public function index()
     {
-        return view('index/busIndex');
+       $bid = input('session.b_id');;
+        $o = model('order');
+        //加载未发货订单
+        $un = $o->unOrder($bid);
+        $unum=count($un);
+        //已发货
+        $on = $o->diliver($bid);
+        $onum=count($on);
+        //已完成
+        $dn = $o->done($bid);
+        $dnum=count($dn);
+
+        //酒店
+        $hotel = model('hotelOrder');
+        //加载未发货订单
+        $data = $hotel->getOrder($bid);
+        $hnum=count($data);
+
+        return view('index/busIndex',[
+            'unum'=>$unum,
+            'onum'=>$onum,
+            'dnum'=>$dnum,
+            'hnum'=>$hnum
+
+            ]);
     }
 
     /**

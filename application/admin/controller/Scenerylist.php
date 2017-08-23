@@ -66,7 +66,7 @@ class Scenerylist extends Admin
             }
         }
 
-        $bus_id=cache('b_id');
+        $bus_id= input('session.b_id');
         $p=$request->post();
 
         //var_dump($p);
@@ -223,12 +223,12 @@ class Scenerylist extends Admin
      */
     public function delete($id)
     {
-        $res = Db::name('scenery')->delete($id);
-        $res = Db::name('scenery_detail')->where('c_gid',$id)->delete();
-        $res =Db::name('scenery_pic')->where('gid',$id)->delete();
-        //dump($res);
+        $res1 = Db::name('scenery')->delete($id);
+        $res2 = Db::name('scenery_detail')->where('c_gid',$id)->delete();
+        $res3 =Db::name('scenery_pic')->where('gid',$id)->delete();
+        //var_dump($res1,$res2,$res3);
         //die();
-        if ($res) {
+        if ($res1 || $res2 || $res3) {
             $info['status'] = true;
             $info['id'] = $id;
             $info['info'] = '\(^o^)/产品删除成功';

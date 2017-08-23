@@ -139,7 +139,7 @@ class HotelPic extends Bus
 
         $result = Db::name('hotel_pic')->where('id', $id)->update($data);
         
-        $b_id = cache('b_id');
+        $b_id = input('session.b_id');
         $list = Db::table('ml_hotel')->where('bus_id',$b_id)->select();
         $pid = $list['0']['id'];
 

@@ -112,7 +112,7 @@ class Users extends Admin
     }
     public function email($id)
     {
-        $sql='select ml_user.u_username,ml_user_detail.ud_photo,ud_email from ml_user LEFT JOIN ml_user_detail ON ml_user.u_id=ml_user_detail.ud_uid where u_id='.$id;
+        $sql='select ml_user.u_username,ml_user_detail.ud_photo,qqphoto,ud_email from ml_user LEFT JOIN ml_user_detail ON ml_user.u_id=ml_user_detail.ud_uid where u_id='.$id;
         $result = Db::query($sql);
         if ($result) {
             $result['status'] = true;

@@ -13,10 +13,10 @@ class BusOrder extends Bus
     {
         $info = input();
         $aid = $info['aid'];
-        //dump($aid);exit;
+        // dump($aid);exit;
         $u = model('user');
         $data = $u->getMsg($aid);
-        //dump($data);exit;
+        // dump($data);exit;
         return view('order/showDetail',[
             'data'=>$data[0],
         ]);
@@ -26,7 +26,7 @@ class BusOrder extends Bus
     public function hotelOrder()
     {
         //获取当前登录商家id
-        $bid = cache('b_id');
+        $bid = input('session.b_id');
 
         //处理订单信息
         $o = model('hotelOrder');
@@ -65,7 +65,7 @@ class BusOrder extends Bus
     public function unDiliver()
     {
         //获取当前登录商家id
-        $bid = cache('b_id');
+        $bid = input('session.b_id');
 
         //处理订单信息
         $o = model('order');
@@ -84,7 +84,7 @@ class BusOrder extends Bus
     public function diliver()
     {
         //获取当前登录商家id
-        $bid = cache('b_id');
+       $bid = input('session.b_id');
 
         //处理订单信息
         $o = model('order');
@@ -100,7 +100,7 @@ class BusOrder extends Bus
     public function done()
     {
         //获取当前登录商家id
-        $bid = cache('b_id');
+        $bid = input('session.b_id');
 
         //处理订单信息
         $o = model('order');
@@ -116,7 +116,7 @@ class BusOrder extends Bus
     public function cancel()
     {
         //获取当前登录商家id
-        $bid = cache('b_id');
+        $bid = input('session.b_id');
 
         //处理订单信息
         $o = model('order');
@@ -134,7 +134,7 @@ class BusOrder extends Bus
         //dump($oid);die;
 
         $data = [
-            'o_status'=>1,
+            'o_status'=>2,
         ];
 
         $o = model('order');
@@ -154,7 +154,7 @@ class BusOrder extends Bus
         $oid = input('post.')['oid'];
 
         $data = [
-            'o_status'=>2,
+            'o_status'=>3,
         ];
 
         $o = model('order');
@@ -174,7 +174,7 @@ class BusOrder extends Bus
         $oid = input('post.')['oid'];
 
         $data = [
-            'o_status'=>3,
+            'o_status'=>4,
         ];
 
         $o = model('order');

@@ -28,10 +28,16 @@
       <div class="pet_grzx">
           <div class="pet_grzx_nr">
               <div class="pet_grzx_ico">
-                  <img src="/uploads/headPhoto/{$list['photo']}" alt="" width="200px" height="200px" >
+
+                {if condition="$list['photo'] eq 0"}
+                <img src="{$list['qqphoto']}" width="200px" height="200px">
+                {else/}
+                <img src="/uploads/headPhoto/{$list['photo']}" width="200px" height="200px" >
+                {/if}
+                  
 
                   <!--设置头像的模态框-->
-                  <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+                  <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1" style='padding:20px;'>
                       <div class="am-modal-dialog">
                           <div class="am-modal-hd">更换头像
                               <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
@@ -78,10 +84,10 @@
                           <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left pet_list_one_block">
                               <a href="{:url('index/Personal/comment')}" >我的评论</a>
                           </li>
-                          <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left pet_list_one_block">
+                          <!-- <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left pet_list_one_block">
                               <a href="{:url('index/Personal/coupon')}">我的优惠券({$mnu})</a>
                               <button  class="am-btn am-btn-xs am-radius am-btn-primary" data-am-modal="{target: '#doc-modal-2', closeViaDimmer: 0, width: 400, height: 225}">积分兑换</button>
-                          </li>
+                          </li> -->
                           <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left pet_list_one_block">
                              <a href="{:url('index/Personal/repass')}" >重置密码</a>
                           </li>

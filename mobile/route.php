@@ -10,6 +10,10 @@
 // +----------------------------------------------------------------------
 //动态注册
 use think\Route;
+Route::post('upcomment','index/Comment/update');
+Route::delete('delcomment/:id','index/Comment/delete');
+Route::get('findcomment/:id','index/Comment/read');
+
 Route::get('/','index/index/index');
 
 Route::get('listshow','index/Index/listshow');
@@ -50,7 +54,7 @@ Route::get('delete/:id','index/Order/delete');
 Route::get('docart/:gid/:cid','index/Cart/index');
 //删除购物车中的商品
 
-Route::get('delete/:id','index/Cart/delete');
+// Route::get('delete/:id','index/Cart/delete');
 
 
 //酒店确认支付
@@ -77,6 +81,7 @@ Route::get('/activitieslistshow/:id','index/activities/activitieslistshow');
 Route::get('/activitiesdetailsshow/:id','index/activities/activitiesdetailsshow');
 //活动报名信息
 Route::post('activitiesregister','index/activities/save');
+
 
 
 

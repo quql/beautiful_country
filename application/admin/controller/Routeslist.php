@@ -67,7 +67,7 @@ class Routeslist extends Admin
             }
         }
 
-        $bus_id=cache('b_id');
+        $bus_id=input('session.b_id');
         $p=$request->post();
 
 //        var_dump($p);

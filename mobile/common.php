@@ -54,14 +54,14 @@ function https_request($url,$data = null)
 
 function sendTemplateSMS($to,$datas,$tempId)
 {    //短信接口
-    $accountSid= '8aaf07085dbbd708015dbf86887500f6';
+    $accountSid= '8a216da85da6adf7015de0943b4514da';
 
     //主帐号令牌,对应官网开发者主账号下的 AUTH TOKEN
-    $accountToken= '95838ccef1874936af3c0c2392702177';
+    $accountToken= 'd24f5b639f7f409388b1469dd99bb119';
 
     //应用Id，在官网应用列表中点击应用，对应应用详情中的APP ID
     //在开发调试的时候，可以使用官网自动为您分配的测试Demo的APP ID
-    $appId='8aaf07085dbbd708015dbf8688b800fa';
+    $appId='8a216da85da6adf7015de0943d9714e0';
 
     //请求地址
     //沙盒环境（用于应用开发调试）：sandboxapp.cloopen.com

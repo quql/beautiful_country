@@ -132,7 +132,8 @@
                             <h2 class="tm-text-title tm-gallery-title " ><span class="tm-white">{$cate[$k-1]}</span></h2>
                         </div>
                         {volist name="vt" id="v"}
-                        <div class="tm-img-gallery gallery-one" >
+                        <!-- gallery-one -->
+                            <div class="tm-img-gallery " >
                             <!-- Gallery One pop up connected with JS code below -->
 
                             <div class="grid-item">
@@ -141,14 +142,15 @@
                                     <figcaption>
                                         <h2 class="tm-figure-title">{$v.gd_title}</span></h2>
                                         <p class="tm-figure-description">{$v.gd_abstract}</p>
-                                        <a href="/uploads/{$v.pic}">点击查看详情</a>
+                                        <a href="{:url('/goodsdetail',['id'=>$v.gid,'bus_id'=>$b_id,'cid'=>'1'])}">点击查看详情</a>
+                                        <!-- /uploads/{$v.pic} -->
                                     </figcaption>
                                 </figure>
-
                             </div>
-                            <div style="padding:10px;width: 320px;text-align: center;margin-bottom: 20px"><a href="{:url('/goodsdetail',['id'=>$v.gid,'bus_id'=>$b_id,'cid'=>'1'])}">点击查看详情>>></a></div>
-
-                        </div>
+                          </div>
+                        <!-- <div style="padding:10px;width: 320px;text-align: center;margin-bottom: 20px"><a href="{:url('/goodsdetail',['id'=>$v.gid,'bus_id'=>$b_id,'cid'=>'1'])}">点击查看详情>>></a></div> -->
+                        
+                        
                         {/volist}
                         {/if}
                         {/volist}
@@ -169,7 +171,8 @@
                         <h2 class="tm-text-title tm-gallery-title"><span class="tm-white">{$cate_f[$k-1]}</span></h2>
                     </div>
                     {volist name="vf" id="v"}
-                        <div class="tm-img-gallery gallery-three">
+                    <!-- gallery-three -->
+                        <div class="tm-img-gallery ">
                             <!-- Gallery Two pop up connected with JS code below -->
                             <div class="grid-item">
                                 <figure class="effect-ruby">
@@ -177,11 +180,10 @@
                                     <figcaption>
                                         <h2 class="tm-figure-title">{$v.gd_title}</span></h2>
                                         <p class="tm-figure-description">{$v.gd_abstract}</p>
-                                        <a href="/uploads/{$v.pic}">View more</a>
+                                        <a href="{:url('/goodsdetail',['id'=>$v.gid,'bus_id'=>$b_id,'cid'=>'6'])}">View more</a>
                                     </figcaption>
                                 </figure>
                             </div>
-                            <div style="padding:10px;width: 290px;text-align: center;margin-bottom: 20px"><a href="{:url('/goodsdetail',['id'=>$v.gid,'bus_id'=>$b_id,'cid'=>'6'])}">点击查看详情>>></a></div>
                         </div>
 
 
@@ -204,20 +206,21 @@
                             <h2 class="tm-text-title tm-gallery-title"><span class="tm-white">{$cate_r[$k-1]}</span></h2>
                         </div>
                         {volist name="vr" id="r1"}
-                        <div class="tm-img-gallery gallery-three">
+                        <!-- gallery-three -->
+                        <div class="tm-img-gallery ">
                             <!-- Gallery Two pop up connected with JS code below -->
 
                             <div class="grid-item">
                                 <figure class="effect-ruby">
-                                    <a href=""><img src="/uploads/{$r1.pic}" alt="Image" class="img-fluid tm-img" height="440px" width="660px"></a>
+                                    <a href=""><img src="/uploads/{$r1.pic}" alt="Image" class="img-fluid tm-img" height="440px" width="625px"></a>
                                     <figcaption>
                                         <h2 class="tm-figure-title"><a href="{:url('/goodsdetail',['id'=>$r1.gid,'bus_id'=>$r1.bus_id,'cid'=>$r1.c_id])}">{$r1.gd_title}</a></h2>
                                         <p class="tm-figure-description">{$r1.gd_abstract}</p>
-                                        <a href="/uploads/{$r1.pic}">View more</a>
+                                        <a href="{:url('/goodsdetail',['id'=>$r1.gid,'bus_id'=>$b_id,'cid'=>'5'])}">View more</a>
                                     </figcaption>
                                 </figure>
                             </div>
-                            <div style="padding:10px;width: 660px;text-align: center;margin-bottom: 20px"><a href="{:url('/goodsdetail',['id'=>$r1.gid,'bus_id'=>$b_id,'cid'=>'5'])}">点击查看详情>>></a></div>
+                            <!-- <div style="padding:10px;width: 660px;text-align: center;margin-bottom: 20px"><a href="{:url('/goodsdetail',['id'=>$r1.gid,'bus_id'=>$b_id,'cid'=>'5'])}">点击查看详情>>></a></div> -->
                         </div>
 
                         {/volist}
@@ -239,20 +242,21 @@
                             <h2 class="tm-text-title tm-gallery-title"><span class="tm-white">{$cate_a[$k-1]}</span></h2>
                         </div>
                         {volist name="va" id="r1"}
-                        <div class="tm-img-gallery gallery-three">
+                        <div class="tm-img-gallery ">
+                            <!-- gallery-three -->
                             <!-- Gallery Two pop up connected with JS code below -->
 
                             <div class="grid-item">
                                 <figure class="effect-ruby">
-                                    <a href=""><img src="/uploads/{$r1.pic}" alt="Image" class="img-fluid tm-img" width='585px' height="400px"></a>
+                                    <a href="{:url('/activitiesdetailsshow/'.$r1.acid)}"><img src="/uploads/{$r1.pic}" alt="Image" class="img-fluid tm-img" width='625px' height="400px"></a>
                                 <figcaption>
-                                <h2 class="tm-figure-title"><a href="{:url('/activitiesdetailsshow',['id'=>$r1.acid])}">{$r1.ac_title}</a></h2>
+                                <h2 class="tm-figure-title"><a href="{:url('/activitiesdetailsshow/'.$r1.acid)}">{$r1.ac_title}</a></h2>
                                 <p class="tm-figure-description">{$r1.ac_abstract}</p>
-                                    <a href="/uploads/{$r1.pic}">View more</a>
+                                    <a href="{:url('/activitiesdetailsshow/'.$r1.acid)}">View more</a>
                                 </figcaption>
                                 </figure>
                             </div>
-                            <div style="padding:10px;width: 585px;text-align: center;margin-bottom: 20px"><a href="{:url('/activitiesdetailsshow',['id'=>$r1.acid])}">点击查看详情>>></a></div>
+                            <!-- <div style="padding:10px;width: 585px;text-align: center;margin-bottom: 20px"><a href="{:url('/activitiesdetailsshow',['id'=>$r1.acid])}">点击查看详情>>></a></div> -->
                         </div>
 
                         {/volist}
@@ -274,19 +278,19 @@
                             <h2 class="tm-text-title tm-gallery-title"><span class="tm-white">{$cate_h[$k-1]}</span></h2>
                         </div>
                         {volist name="vh" id="h1"}
-                        <div class="tm-img-gallery gallery-three">
-                            <!-- Gallery Two pop up connected with JS code below -->
+                        <div class="tm-img-gallery ">
+                            <!-- Gallery Two pop up connected with JS code below  gallery-three -->
                             <div class="grid-item" >
                                 <figure class="effect-ruby">
-                                    <img src="/uploads/{$h1.pic}" alt="Image" class="img-fluid tm-img" style="height:420px;width:560px">
+                                    <img src="/uploads/{$h1.pic}" alt="Image" class="img-fluid tm-img" style="height:420px;width:625px">
                                     <figcaption>
                                         <h2 class="tm-figure-title">{$h1.gd_title}</h2>
                                         <p class="tm-figure-description">{$h1.gd_abstract}</p>
-                                        <a href="/uploads/{$h1.pic}">查看详情</a>
+                                        <a href="{:url('/goodsdetail',['id'=>$h1.gid,'bus_id'=>$b_id,'cid'=>'4'])}">查看详情</a>
                                     </figcaption>
                                 </figure>
                             </div>
-                            <div style="padding:10px;width: 560px;text-align: center;margin-bottom: 20px"><a href="{:url('/goodsdetail',['id'=>$v.gid,'bus_id'=>$b_id,'cid'=>'4'])}">点击查看详情>>></a></div>
+                            <!-- <div style="padding:10px;width: 560px;text-align: center;margin-bottom: 20px"><a href="{:url('/goodsdetail',['id'=>$v.gid,'bus_id'=>$b_id,'cid'=>'4'])}">点击查看详情>>></a></div> -->
                         </div>
 
                         {/volist}

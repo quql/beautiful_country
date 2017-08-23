@@ -51,6 +51,7 @@ class GoodsDetail extends Base
             //获取商品图片
             $p = model('foodPic');
             $photos = $p->getPhotos($id);
+            // dump($photos);die;
 
             //获取其他商品
             $all = $f->getAll($bid);
@@ -130,6 +131,10 @@ class GoodsDetail extends Base
             $p = model('RoutePic');
             $photos = $p->getPhotos($id);
 
+             //获取景区所在区域
+            $b = model('business');
+            $area = $b->getArea($bid)['b_area'];
+
             //dump($route[0]);
             //dump($detail[0]);
             //dump($photos);
@@ -152,6 +157,7 @@ class GoodsDetail extends Base
                 'cid'=>5,
                 'comment'=>$comment,
                 'all'=>$all,
+                'area'=>$area,
 
             ]);
         }elseif($cid==4){

@@ -89,7 +89,7 @@ class Order extends Base
             $a[$k]['o_gid'] = $v['ca_gdid'];
             $a[$k]['o_uid'] = $v['ca_uid'];
             $a[$k]['o_time'] = $time;
-            $a[$k]['o_status'] = 0;
+            $a[$k]['o_status'] = 1;
             $a[$k]['o_num'] = $v['ca_num'];
             $a[$k]['o_price'] = $v['ca_price'];
             $a[$k]['o_order_num'] = $orderNum;
@@ -109,7 +109,7 @@ class Order extends Base
         //$clean = $c->delete($info['cid']);
         //exit;
         if ($order) {
-            $this->success('支付成功~', 'index/index/index');
+            $this->success('支付成功~', '/personal');
         } else {
             $this->error('支付失败,请重试~');
         }
@@ -130,7 +130,7 @@ class Order extends Base
         //获取用户id
         $uid = input('session.u_id');
         if (empty($uid)) {
-            $this->error('请先登录哦~~~~', 'index/index/index');
+            $this->error('请先登录哦~~~~', '/showLogin');
         }
 
         $d = model('userDetail');
@@ -202,7 +202,7 @@ class Order extends Base
         $c = model('cart');
         $cart = $c->delete($info['cid']);
 
-        $this->success('支付成功', 'index/index/index');
+        $this->success('支付成功', '/personal');
 
 
         //return view('')
@@ -230,9 +230,9 @@ class Order extends Base
 
     public function hotelpay()
     {
-        $uid = input('session.u_id');
+         $uid = input('session.uid');
         if(empty($uid)){
-            $this->success('请先登录','/showLogin');
+            $this->error('请先登录哦~~~~','index/index/index');
         }
         $data = input();
         $gid = $data['id'];
@@ -244,9 +244,9 @@ class Order extends Base
 
     public function hotelorder()
     {
-        $uid = input('session.u_id');
+         $uid = input('session.uid');
         if(empty($uid)){
-            $this->success('请先登录','/showLogin');
+            $this->error('请先登录哦~~~~','/showLogin');
         }
         $data = input();
 //        dump($data);
@@ -273,9 +273,9 @@ class Order extends Base
     public function playtrue()
     {
         $data = input();
-        $uid = input('session.u_id');
+         $uid = input('session.uid');
         if(empty($uid)){
-            $this->success('请先登录','/showLogin');
+            $this->error('请先登录哦~~~~','/showLogin');
         }
 //        $uid = '4';
         $time = date('Y-m-d H:i:s',time());
@@ -309,7 +309,7 @@ class Order extends Base
         $upnum = Db::name('hotel_detail')->where('c_gid',$gid)->update(['gd_store'=>$newstore]);
         $result = Db::name('hotel_order')->data($res)->insert();
         if($result>0 && $upnum>0){
-            $this->success('支付成功','index/index/index');
+            $this->success('支付成功','/personal');
         }else{
             $this->error('支付失败');
         }

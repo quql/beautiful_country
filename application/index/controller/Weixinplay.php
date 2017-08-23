@@ -12,6 +12,15 @@ class weixinplay extends \think\Controller
         $this->assign('data',$data);
         return view('index/weixinplay');
     }
+
+    public function goods()
+    {
+        $data = cache('data');
+        return view('index/weixinplay', [
+            'data'=>$data,
+        ]);
+    }
+
     public function weixin()
     {//发起微信支付，得到微信支付字符串，直接输出字符串，在模板中通过jquery生成支付二维码
         $data = input();
@@ -61,7 +70,8 @@ class weixinplay extends \think\Controller
             {
                 case SUCCESS:
                 $res = Db::name('hotel_order')->where('o_order_num',$out_trade_no)->update(['o_status'=>'1']);
-                if($res>0){
+                $res1 = Db::name('order')->where('o_order_num',$out_trade_no)->update(['o_status'=>'1']);
+                if($res>0 || $res1>0){
                     $info['status']=true;
                     $info['msg']='支付成功';
                     return json($info);
