@@ -6,18 +6,21 @@ class Sendmsg
   public function send()
   {
     $phone = input('phone');
-    $arr = array(0,1,2,3,4,5,6,7,8,9);
-    $newArr = array_rand($arr,4);
-    $string = implode("",$newArr);
-
-
-    $result = sendTemplateSMS("$phone",array("$string",'5'),"1");
+    $array = "0123456789";
+    $code='';
+    for ($i=0; $i <4 ; $i++) { 
+        $code.=substr($array,rand(0,10),1);
+    }
+    $count = '您的手机验证码为('.$code.'),若不是本人操作请忽略.';
+    $result = send_msg($count,$phone);
 
     if($result['status']){
-        $result['string']=$string;
+        $result['string']=$code;
         return json($result);
     }else{
         return json($result);
     }
   }
+
+
 }

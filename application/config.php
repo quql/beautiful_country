@@ -151,7 +151,7 @@ return [
     // +----------------------------------------------------------------------
 
     // 异常页面的模板文件
-    // 'exception_tmpl'         => THINK_PATH . 'tpl' . DS . 'think_exception.tpl',
+//     'exception_tmpl'         => THINK_PATH . 'tpl' . DS . 'think_exception.tpl',
      'exception_tmpl'         => APP_PATH .'index/view/index/404.html',
 
     // 错误显示信息,非调试模式有效
