@@ -56,15 +56,10 @@ class weixinplay extends \think\Controller
          // $out_trade_no = $_POST['out_trade_no'];
         $post=input();
         $out_trade_no=$post['orderid'];
-        // $out_trade_no = 'uM0iQsjGcNp5v4QOP1K651SCDhtfSIzM';
-//        $order = $_POST['order'];
         if(isset($out_trade_no) && $out_trade_no != ""){
-            // $out_trade_no = $_REQUEST["out_trade_no"];
             $input = new \WxPayOrderQuery();
             $input->SetOut_trade_no($out_trade_no);
             $result  = \WxPayApi::orderQuery($input);
-            // var_dump($result);
-            // die;
             /*判断是否支付成功*/
             switch ($result["trade_state"])
             {

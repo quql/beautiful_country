@@ -53,9 +53,6 @@ class Pay extends \think\Model
         if($result['result_code'] != 'SUCCESS'){
             return ['code'=>0,'msg'=> $result['err_code_des']];
         }
-        //  $res = \WxPayApi::orderQuery($input);
-        // var_dump($res);
-        // die;
         return ['code'=>1,'msg'=>$result["code_url"]];
     }
 
